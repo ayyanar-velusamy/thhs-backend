@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./personal_info.css" rel="stylesheet" />
+    <link href="../global.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $("#datepicker , #start_date , #end_date")
+          .datepicker({
+            autoclose: true,
+            todayHighlight: true,
+          })
+          .datepicker("update", new Date());
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <main>
+      <div class="container-fluid">
+        <!-- Sidebar -->
+        <div class="sidebar-column">
+          <nav id="sidebarMenu" class="collapse d-block sidebar collapse">
+            <div class="sidebar-list">
+              <a href="#" class="" aria-current="true">
+                <i class="icon icon-logo"></i><span></span>
+              </a>
+              <a href="#" class="active" aria-current="true">
+                <i class="icon icon-staffs-logo"></i>
+                <p>Staff Manager</p>
+              </a>
+              <a href="#" class="" aria-current="true">
+                <i class="icon icon-prospects-logo"></i>
+                <p>Prospect Manager</p>
+              </a>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Dashboard layout -->
+        <div class="main-layout" style="background-color: #e5edf9">
+          <section class="dashboard-header-wrapper">
+            <div class="d-flex justify-content-end">
+              <div></div>
+              <div class="dashboard-header-section">
+                <input type="text" placeholder="Search" />
+                <a href="javascript:;"><i class="icon icon-search"></i></a>
+              </div>
+              <div
+                class="dashboard-header-activity-wrapper d-flex justify-content-center align-items-center"
+              >
+                <i class="icon icon-bell with-red"></i>
+                <i class="icon icon-message"></i>
+                <div
+                  class="header-profile-wrapper d-flex justify-content-between align-items-center"
+                >
+                  <img src="../images/user.png" />
+                  <p
+                    class="dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    George Rekblatt
+                    <i class="icon icon-arrow-down"></i>
+                  </p>
+                  <ul class="dropdown-menu">
+                    <li><p class="dropdown-item" href="#">View profile</p></li>
+                    <li>
+                      <p class="dropdown-item" href="#">Logout</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="dashboard-heading-section">
+            <div
+              class="d-block d-lg-flex justify-content-between align-items-center"
+            >
+              <div class="content">
+                <h1>Welcome to Trend Home Health Services Team</h1>
+                <p>We've Custom Healthcare HR Software Services</p>
+              </div>
+              <div class="dashboard-tabs-wrapper d-flex justify-content-end">
+                <div class="dashboard-tabs">
+                  <i class="icon icon-teams"></i>
+                  <p class="mt-1">HR management</p>
+                </div>
+                <div class="dashboard-tabs green">
+                  <i class="icon icon-settings"></i>
+
+                  <p class="mt-1">System application</p>
+                </div>
+                <div class="dashboard-tabs yellow">
+                  <i class="icon icon-file-logo"></i>
+                  <p class="mt-1">EHR</p>
+                </div>
+                <div class="dashboard-tabs purple">
+                  <i class="icon icon-settings-rotate"></i>
+                  <p class="mt-1">Settings</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Dashboard Table -->
+          <section class="form-section bg-white">
+            <div
+              class="form-headings-wrapper d-flex align-items-center justify-content-between"
+            >
+              <a href="#" class="active">Prospect registration</a>
+              <a href="#">Save Information</a>
+              <a href="#">Schedule Interview</a>
+              <a href="#">Confirm Interview</a>
+              <a href="#">Cancel Interview</a>
+              <a href="#">Reject</a>
+              <a href="#">Apply</a>
+            </div>
+            <form>
+              <h3>Personal Information</h3>
+              <div class="form-wrapper">
+                <div class="field-wrapper">
+                  <label for="fname">First name</label>
+                  <input
+                    type="text"
+                    id="fname"
+                    value=""
+                    placeholder="First name"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="mname">Middle name</label>
+                  <input
+                    type="text"
+                    id="mname"
+                    value=""
+                    placeholder="Middle name"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="lname">Last name</label>
+                  <input
+                    type="text"
+                    id="lname"
+                    value=""
+                    placeholder="Last name"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="fname">Birth date</label>
+                  <div
+                    id="datepicker"
+                    class="date"
+                    data-date-format="dd/mm/yyyy"
+                    style="height: 0"
+                  >
+                    <input type="text" readonly />
+                    <span class="input-group-addon">
+                      <i class="icon icon-eye"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="field-wrapper">
+                  <label for="mname">Gender :</label>
+                  <select class="select-control">
+                    <option>Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </div>
+                <div class="field-wrapper">
+                  <label for="mname">Languages :</label>
+                  <select class="select-control">
+                    <option>Languages</option>
+                    <option>English</option>
+                    <option>Hindi</option>
+                  </select>
+                </div>
+                <div class="field-wrapper">
+                  <label for="ssn">SSN :</label>
+                  <input type="text" id="ssn" value="" placeholder="SSN" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="Employment Authorization"
+                    >Employment Authorization</label
+                  >
+                  <input
+                    type="text"
+                    id="Employment Authorization"
+                    value=""
+                    placeholder="Employment Authorization"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="Corporation Name">Corporation Name:</label>
+                  <input
+                    type="text"
+                    id="Corporation Name"
+                    value=""
+                    placeholder="Corporation Name"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" value="" placeholder="Email" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="mname">Position :</label>
+                  <select class="select-control">
+                    <option>Position</option>
+                    <option>Admin</option>
+                    <option>Others</option>
+                  </select>
+                </div>
+                <div class="field-wrapper">
+                  <label for="tax_id">Tax id:</label>
+                  <input
+                    type="number"
+                    id="tax_id"
+                    value=""
+                    placeholder="Tax id"
+                  />
+                </div>
+                <div class="field-wrapper address">
+                  <label for="address">Address:</label>
+                  <input
+                    type="text"
+                    id="address"
+                    value=""
+                    placeholder="Address"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="city">State:</label>
+                  <input type="text" id="state" value="" placeholder="State" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="city">City:</label>
+                  <input type="text" id="city" value="" placeholder="City" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="zip">Zip:</label>
+                  <input type="text" id="zip" value="" placeholder="Zip" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="phone_home">Phone home:</label>
+                  <input
+                    type="number"
+                    id="phone_home"
+                    value=""
+                    placeholder="Phone home"
+                  />
+                </div>
+                <div class="field-wrapper address">
+                  <label for="business">Business:</label>
+                  <input
+                    type="text"
+                    id="business"
+                    value=""
+                    placeholder="Business"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="cellular">Cellular:</label>
+                  <input
+                    type="text"
+                    id="cellular"
+                    value=""
+                    placeholder="Cellular"
+                  />
+                </div>
+              </div>
+              <div class="disclaimer-section">
+                <p class="semi-bold">Disclaimer:</p>
+                <p class="semi-bold mb-2">
+                  Agreement to do business with Trend Home Health Services
+                </p>
+                <p>ELECTRONIC RECORD AND SIGNATURE DISCLOSURE</p>
+                <p>
+                  From time to time, Trend Home Health Services (we, us or
+                  Company) may be required by law to provide to you certain
+                  written notices or disclosures. Described below are the terms
+                  and conditions for providing to you such notices and
+                  disclosures electronically through the email system and or
+                  company portal. Please read the information below carefully
+                  and thoroughly, and if you can access this information
+                  electronically to your
+                </p>
+              </div>
+              <div class="form-wrapper">
+                <div class="field-wrapper">
+                  <div class="checkbox-tick-wrapper d-flex align-items-center">
+                    <label class="d-flex align-items-center">
+                      I agree
+                      <input type="checkbox" value="" />
+                      <span class="cr ms-3"
+                        ><i class="icon icon-tick-white"></i
+                      ></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="field-wrapper position-relative">
+                  <label for="customFile">Upload signature</label>
+                  <input
+                    type="file"
+                    class=""
+                    id="customFile"
+                    placeholder="Upload Signature"
+                  />
+                  <span class="with-icon"
+                    ><i class="icon icon-download"></i
+                  ></span>
+                </div>
+              </div>
+              <h3 class="heading-bg">Position Information</h3>
+              <div class="form-wrapper single_row">
+                <div class="field-wrapper w-25">
+                  <label for="start_date">Date you can start*</label>
+                  <div
+                    id="start_date"
+                    class="date"
+                    data-date-format="dd/mm/yyyy"
+                  >
+                    <input type="text" readonly />
+                    <span class="input-group-addon">
+                      <i class="icon icon-eye"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="field-wrapper w-75">
+                  <input type="radio" id="test1" name="radio-group" checked />
+                  <label for="test1">Yes</label>
+                  <input type="radio" id="test2" name="radio-group" />
+                  <label for="test2">No</label>
+                  <p>
+                    Have you ever been convicted of a felony? (Convictions will
+                    not necessarily disqualify an applicant for employment.) If
+                    yes, explain:
+                  </p>
+                </div>
+                <div class="field-wrapper w-100">
+                  <textarea
+                    placeholder="Business: "
+                    id="business"
+                    name="business"
+                  ></textarea>
+                </div>
+                <div class="field-wrapper">
+                  <div
+                    class="checkbox-tick-wrapper default d-flex align-items-center"
+                  >
+                    <label class="d-flex align-items-center">
+                      <input type="checkbox" value="" />
+                      <span class="cr me-3"
+                        ><i class="icon icon-tick-white"></i
+                      ></span>
+                      E have been told the essential functions of the job
+                      offered and I have reviewed a copy of the job description
+                      listing the essentials function of the job.
+                    </label>
+                  </div>
+                </div>
+                <div class="field-wrapper">
+                  <div
+                    class="checkbox-tick-wrapper default d-flex align-items-center"
+                  >
+                    <label class="d-flex align-items-center">
+                      <input type="checkbox" value="" />
+                      <span class="cr me-3"
+                        ><i class="icon icon-tick-white"></i
+                      ></span>
+                      ] I can perform these essential job functions with or
+                      without reasonable accommodation.
+                    </label>
+                  </div>
+                </div>
+                <div class="field-wrapper w-25">
+                  <label for="end_date">Date you can start*</label>
+                  <div id="end_date" class="date" data-date-format="dd/mm/yyyy">
+                    <input type="text" readonly />
+                    <span class="input-group-addon">
+                      <i class="icon icon-eye"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <h3 class="heading-bg">Work History (Last 3 years)</h3>
+              <div class="form-wrapper six_grid">
+                <div class="field-wrapper">
+                  <label for="employer">Employer</label>
+                  <input
+                    type="text"
+                    id="employer"
+                    value=""
+                    placeholder="Employer"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="position">Position</label>
+                  <input
+                    type="text"
+                    id="position"
+                    value=""
+                    placeholder="Position"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="employer">Supervisors Name</label>
+                  <input
+                    type="text"
+                    id="employer"
+                    value=""
+                    placeholder="Supervisors Name"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" value="" placeholder="Email" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="Fax">Fax</label>
+                  <input type="number" id="Fax" value="" placeholder="Fax" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="Phone no">Phone no</label>
+                  <input
+                    type="number"
+                    id="Phone no"
+                    value=""
+                    placeholder="Phone no"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="employer">Employer</label>
+                  <input
+                    type="text"
+                    id="employer"
+                    value=""
+                    placeholder="Employer"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="position">Position</label>
+                  <input
+                    type="text"
+                    id="position"
+                    value=""
+                    placeholder="Position"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="employer">Supervisors Name</label>
+                  <input
+                    type="text"
+                    id="employer"
+                    value=""
+                    placeholder="Supervisors Name"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" value="" placeholder="Email" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="Fax">Fax</label>
+                  <input type="number" id="Fax" value="" placeholder="Fax" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="Phone no">Phone no</label>
+                  <input
+                    type="number"
+                    id="Phone no"
+                    value=""
+                    placeholder="Phone no"
+                  />
+                </div>
+              </div>
+              <h3 class="heading-bg d-flex gap-3">
+                Special Skils
+                <span style="font-weight: 300"
+                  >List any special skils or experience that you feel would help
+                  you in the position that you are applying for leadership,
+                  actions teams. ate.
+                </span>
+              </h3>
+              <div class="form-wrapper single_row">
+                <div class="field-wrapper w-100">
+                  <textarea
+                    placeholder="Business: "
+                    id="business"
+                    name="business"
+                  ></textarea>
+                </div>
+              </div>
+              <h3 class="heading-bg">Emergency Contacts</h3>
+              <div class="form-wrapper four_grid">
+                <div class="field-wrapper">
+                  <label for="Relationship">Relationship</label>
+                  <input
+                    type="text"
+                    id="Relationship"
+                    value=""
+                    placeholder="Relationship"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="name">Name *</label>
+                  <input type="text" id="name" value="" placeholder="Name *" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="name">Email *</label>
+                  <input
+                    type="email"
+                    id="name"
+                    value=""
+                    placeholder="Email *"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="phone">Phone *</label>
+                  <input
+                    type="number"
+                    id="phone"
+                    value=""
+                    placeholder="Phone *"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="Relationship">Relationship</label>
+                  <input
+                    type="text"
+                    id="Relationship"
+                    value=""
+                    placeholder="Relationship"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="name">Name *</label>
+                  <input type="text" id="name" value="" placeholder="Name *" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="name">Email *</label>
+                  <input
+                    type="email"
+                    id="name"
+                    value=""
+                    placeholder="Email *"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="phone">Phone *</label>
+                  <input
+                    type="number"
+                    id="phone"
+                    value=""
+                    placeholder="Phone *"
+                  />
+                </div>
+              </div>
+
+              <h3 class="heading-bg">Medical Information</h3>
+              <div class="form-wrapper single_row">
+                <div class="field-wrapper w-25">
+                  <p class="mb-2">
+                    Did you receive an influenza Vaccine this year?
+                  </p>
+                  <input type="radio" id="yes1" name="radio-group" checked />
+                  <label for="yes1">Yes</label>
+                  <input type="radio" id="no1" name="radio-group" />
+                  <label for="no1">No</label>
+                </div>
+                <div class="field-wrapper w-25">
+                  <!-- <label for="end_date">Date you can start*</label> -->
+                  <div id="end_date" class="date" data-date-format="dd/mm/yyyy">
+                    <input type="text" readonly />
+                    <span class="input-group-addon">
+                      <i class="icon icon-eye"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="field-wrapper w-100">
+                  <p class="mb-2">If No, Why?</p>
+                  <textarea
+                    placeholder="Disclaimer: You will need to bring a Physicians note to this affect!!!"
+                    id="business"
+                    name="business"
+                  ></textarea>
+                </div>
+                <div class="field-wrapper w-25">
+                  <p class="mb-2">
+                    Did you receive an influenza Vaccine this year?
+                  </p>
+                  <input type="radio" id="yes" name="radio-group" checked />
+                  <label for="yes">Yes</label>
+                  <input type="radio" id="no" name="radio-group" />
+                  <label for="no">No</label>
+                </div>
+                <div class="field-wrapper w-25">
+                  <!-- <label for="end_date">Date you can start*</label> -->
+                  <div id="end_date" class="date" data-date-format="dd/mm/yyyy">
+                    <input type="text" readonly />
+                    <span class="input-group-addon">
+                      <i class="icon icon-eye"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="field-wrapper w-100">
+                  <p class="mb-2">If No, Why?</p>
+                  <textarea
+                    placeholder="Disclaimer: You will need to bring a Physicians note to this affect!!!"
+                    id="business"
+                    name="business"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="cta_wrapper d-flex">
+                <button class="success">Save</button>
+                <button class="danger">Clear</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </main>
+    <!--Main layout-->
+  </body>
+</html>

@@ -1,0 +1,144 @@
+.register-page-wrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 70px;
+}
+
+.register-page-wrapper .register-page-parent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 100px;
+  position: relative;
+  align-items: end;
+}
+
+.register-page-wrapper .form-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background-color: #d3e2f4;
+  left: 50%;
+}
+
+@media screen and (max-width: 1600px) {
+  .register-page-wrapper {
+    padding-top: 30px;
+  }
+}
+
+.register-page-wrapper .img-wrapper img {
+  width: 100%;
+  height: auto;
+}
+
+.form-wrapper .title-wrapper {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.register-page-wrapper.login .form-wrapper .title-wrapper h1 {
+  font-size: 40px;
+}
+
+.register-page-wrapper .form-wrapper .title-wrapper h1 {
+  font-size: 25px;
+}
+
+.form-wrapper .title-wrapper p {
+  color: #082777;
+}
+
+.form-wrapper .logo-img {
+  height: 83px;
+}
+
+.checkbox-wrapper label {
+  font-size: 12px;
+  margin-left: 0px;
+}
+
+@media all and (max-width: 1199.98px) {
+  .register-page-wrapper {
+    padding-top: 80px;
+  }
+}
+
+/* Login page */
+
+.register-page-wrapper.login .carousel.slide {
+  position: unset;
+}
+
+.register-page-wrapper.login .carousel.slide .carousel-inner .carousel-item img {
+  height: 400px;
+}
+
+.register-page-wrapper.login .carousel.slide .carousel-indicators {
+  bottom: -24px;
+  margin-bottom: 13px;
+}
+
+.register-page-wrapper.login .carousel.slide .carousel-indicators button {
+  background-color: #0cd0a2;
+}
+
+.register-page-wrapper.login .form-wrapper .title-wrapper {
+  margin-top: 20px;
+  margin-bottom: 26px;
+}
+
+.register-page-wrapper.login .form-wrapper .form-field-wrapper > * + * {
+  margin-top: 22px;
+}
+
+.register-page-wrapper .form-wrapper .form-field-wrapper .btn-wrap {
+  width: 50% !important;
+  margin: 0 auto;
+}
+
+.form-wrapper .form-field-wrapper > * + * {
+  margin-top: 12px !important;
+}
+
+.form-wrapper .form-field-wrapper .select-wrapper::after {
+  content: "";
+  position: absolute;
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='15' height='7' viewBox='0 0 15 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 1L7.5 6L13.5 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  width: 15px;
+  height: 7px;
+  filter: brightness(0.3);
+  top: 20px;
+  right: 18px;
+
+}
+
+/* forgot-password section */
+.register-page-wrapper.login .forgot-password-wrapper {
+  margin-top: 12px !important;
+}
+
+.register-page-wrapper.login .forgot-password-wrapper label,
+.register-page-wrapper.login .forgot-password-wrapper a {
+  font-size: 16px;
+}
+
+.register-page-wrapper.login .forgot-password-wrapper a {
+  color: #082777 !important;
+  font-size: 16px;
+  font-weight: 400;
+  border-bottom: 1px solid transparent;
+}
+
+.register-page-wrapper.login .forgot-password-wrapper a:hover {
+  border-bottom: 1px solid;
+}
+
+.login-page footer {
+  padding-bottom: 0;
+  padding-top: 150px;
+}
+
+.login-btn-wrap{
+	margin-top: 25px !important;
+}
