@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProspectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,8 @@ Route::get('/thhs/login', function () {
     return view('auth/login');
 });
 
-Route::get('/thhs/app/prospects', function () {
-    return view('prospects/prospect');
+Route::get('/thhs/prospect_personal_info', function () {
+    return view('prospect_personal_info');
 });
-Route::get('/thhs/app/prospects/demographics', function () {
-    return view('prospects/demographics');
-});
+Route::get('/thhs/app/prospects', 'ProspectsController@index')->name('prospects');
+Route::get('/thhs/app/prospects/demographics', 'ProspectsController@demographics')->name('prospects.demographics');

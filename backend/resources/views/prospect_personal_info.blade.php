@@ -1,25 +1,24 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
-
 <link href="{{ asset('css/personal_info.css') }}" rel="stylesheet" />
 <section class="form-section bg-white">
 <form id="personal_info_form" method="POST">
-            <div
-              class="form-headings-wrapper d-flex align-items-center justify-content-between demographics_head"
-            >
-              <a href="#" class="active"><h5>Demographics</h5></a>
-              <a href="#" data-toggle="modal" data-target="#scheduleIntModal">Schedule Interview</a>
-              <a href="#" data-toggle="modal" data-target="#ConfirmIntModal">Confirm Interview</a>
-              <a href="#" data-toggle="modal" data-target="#ConfirmModal">Cancel Interview</a>
-              <a href="#" data-toggle="modal" data-target="#ConfirmModal">Reject</a>
-              <a href="#" data-toggle="modal" data-target="#ConfirmModal">Re-apply</a>
-			  <!-- <a href="#">Save Information</a> -->
-			  <div class="btn-wrap">
-                  <button id="personal_info_submit">Save Information</button>
-				</div>
+            <div class="form-headings-wrapper d-flex align-items-center justify-content-between">
+              <!-- <a href="#" class="active">Prospect registration</a> -->
+              <!-- <a href="#">Save Information</a> -->
+              <!-- <a href="#">Schedule Interview</a> -->
+              <!-- <a href="#">Confirm Interview</a> -->
+              <!-- <a href="#">Cancel Interview</a> -->
+              <!-- <a href="#">Reject</a> -->
+              <!-- <a href="#">Apply</a> -->
+			  <h6>Prospect Registration</h6>
+			  <div class="cta_wrapper d-flex">
+                <button id="personal_info_submit" class="success">Save Information</button>
+                <button class="danger">Clear</button>
+              </div>
             </div>
-              
-            <h3>Personal Information</h3>
+            
+              <h3>Personal Information</h3>
               <div class="form-wrapper">
                 <div class="field-wrapper">
                   <label for="fname">First name</label><span class="mandate">*</span>
@@ -535,94 +534,4 @@ To request paper copies from Trend Home Health Services To request delivery from
                
             </form>
           </section>
-          <!-- Schedule Interviw Appointment -->
-          <div
-        class="modal fade"
-        id="scheduleIntModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Schedule Interview
-              </h5>
-            </div>
-            <div class="modal-body">
-              <form id="schedule_interview_form" method="POST" action="">
-                <div class="form-wrapper">
-                  
-                  <div class="field-wrapper">
-                    <label for="fname">Interview Date/Time</label>
-                    <div id="interview_date_div" class="date" data-date-format="mm/dd/yyyy H:i:s">
-                      <input required type="text" name="interview_date" id="interview_date" readonly placeholder="Interview Date" />
-                      <span class="input-group-addon d-none">
-                        <i class="icon icon-eye"></i>
-                      </span>
-                    </div>
-                  </div>
-                  
-                  
-                
-                <div class="cta_wrapper d-flex justify-content-center gap-5">
-              <button class="danger">Clear</button>
-              <button class="success" id="schedule_interview_btn">Save</button>
-            </div>
-            </div>
-              </form>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-
-<!-- Confirm Interview Appointment-->
-
-      <div
-        class="modal fade"
-        id="ConfirmIntModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Confirm Interview
-              </h5>
-            </div>
-            <div class="modal-body">
-              <form id="confirm_interview_form" method="POST" action="">
-                <div class="form-wrapper">
-                  
-                  <div class="field-wrapper">
-                    <label for="fname">Interview Date/Time</label>
-                    <div id="interview_date_div" class="date" data-date-format="mm/dd/yyyy H:i:s">
-                      <input required type="text" name="interview_date" id="interview_date" readonly placeholder="Interview Date" />
-                      <span class="input-group-addon d-none">
-                        <i class="icon icon-eye"></i>
-                      </span>
-                    </div>
-                  </div>
-                  
-                  
-                
-                <div class="cta_wrapper d-flex justify-content-center gap-5">
-              <button class="danger">Clear</button>
-              <button class="success" id="confirm_interview_btn">Confirm</button>
-            </div>
-            </div>
-              </form>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-
-      
 @endsection
