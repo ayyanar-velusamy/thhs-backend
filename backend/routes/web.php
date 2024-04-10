@@ -19,3 +19,10 @@ Route::get('/thhs/register', function () {
 Route::get('/thhs/login', function () {
     return view('auth/login');
 });
+
+Route::get('/thhs/app/prospects', function () {
+    return view('prospects/prospect');
+});
+Route::get('/thhs/app/prospects/demographics', function () {
+    return view('prospects/demographics');
+});

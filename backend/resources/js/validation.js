@@ -173,17 +173,18 @@ $(document).ready(function () {
 
 
 
-$(document).on('click','#userAddFormSubmit, #userEditFormSubmit' ,function(){ 
-	jQuery("#userAddForm, #userEditForm").validate({
+$(document).on('click','#add_prospect_btn' ,function(){ 
+	alert();
+	jQuery("#add_prospect_form, #userEditForm").validate({
 		rules: {
-			first_name: {
+			firstname: {
 				required: true,
 				minlength:1,
 				maxlength: 40,
 				lettersonly:true
 			},
 			
-			last_name: {
+			lastname: {
 				required: true,
 				minlength:1,
 				maxlength: 40,
@@ -195,27 +196,27 @@ $(document).on('click','#userAddFormSubmit, #userEditFormSubmit' ,function(){
 				validmail:true,
 				noSpace:true,
 			},
-			mobile: {
+			dob: {
 				required: true,
-				phonenumber:true,
-				minlength:7,
-				maxlength: 13,
-				noSpace:true,
+				
 			},
+			position: {
+				required: true,
+			},
+			submit_date:{
+				required:true
+			}
 
-			'roles[]' :{
-				required: true,
-			},
 		},
 
 		messages: {
-			first_name: {
+			firstname: {
 				required:"First Name cannot be empty",
 				maxlength:"First Name cannot exceed 40 characters",
 				lettersonly:"First Name should contain only alphabets", 
 			},
 			
-			last_name: {
+			lastname: {
 				required:"Last Name cannot be empty",
 				maxlength:"Last Name cannot exceed 40 characters",
 				lettersonly:"Last Name should contain only alphabets", 
@@ -228,17 +229,20 @@ $(document).on('click','#userAddFormSubmit, #userEditFormSubmit' ,function(){
 				noSpace:"Space are not allowed",
 			},
 			
-			mobile: {
-				required:"Phone Number cannot be empty",
-				phonenumber:"Phone Number should contain only Numeric",  
-				minlength:"Phone Number cannot be less than 7 digits",
-				maxlength:"Phone Number cannot exceed 13 digits",
-
+			dob: {
+				required:"Date of birth cannot be empty",
+				
+			},
+			position: {
+				required:"Position cannot be empty",
+				
+			},
+			submit_date: {
+				required:"Submit Date cannot be empty",
+				
 			},
 
-			'roles[]' :{
-				required:"Please choose a Role",
-			},
+			
 
 		},
 		errorElement: "span",

@@ -235,91 +235,94 @@ $(document).ready(function () {
 
 
 
-$(document).on('click','#userAddFormSubmit, #userEditFormSubmit' ,function(){ 
-	jQuery("#userAddForm, #userEditForm").validate({
-		rules: {
-			first_name: {
-				required: true,
-				minlength:1,
-				maxlength: 40,
-				lettersonly:true
+	$(document).on('click','#add_prospect_btn' ,function(){ 
+		jQuery("#add_prospect_form").validate({
+			rules: {
+				firstname: {
+					required: true,
+					minlength:1,
+					maxlength: 40,
+					lettersonly:true
+				},
+				
+				lastname: {
+					required: true,
+					minlength:1,
+					maxlength: 40,
+					lettersonly:true,
+				},
+				email: {
+					required: true,
+					maxlength: 64,
+					validmail:true,
+					noSpace:true,
+				},
+				dob: {
+					required: true,
+					
+				},
+				position: {
+					required: true,
+				},
+				submit_date:{
+					required:true
+				}
+	
 			},
-			
-			last_name: {
-				required: true,
-				minlength:1,
-				maxlength: 40,
-				lettersonly:true,
+	
+			messages: {
+				firstname: {
+					required:"First Name cannot be empty",
+					maxlength:"First Name cannot exceed 40 characters",
+					lettersonly:"First Name should contain only alphabets", 
+				},
+				
+				lastname: {
+					required:"Last Name cannot be empty",
+					maxlength:"Last Name cannot exceed 40 characters",
+					lettersonly:"Last Name should contain only alphabets", 
+				},	
+				
+				email: {
+					required:"Email ID cannot be empty",
+					maxlength:"Email address cannot exceed 64 characters",
+					validmail:"Enter a valid Email ID", 
+					noSpace:"Space are not allowed",
+				},
+				
+				dob: {
+					required:"Date of birth cannot be empty",
+					
+				},
+				position: {
+					required:"Position cannot be empty",
+					
+				},
+				submit_date: {
+					required:"Submit Date cannot be empty",
+					
+				},
+	
+				
+	
 			},
-			email: {
-				required: true,
-				maxlength: 64,
-				validmail:true,
-				noSpace:true,
-			},
-			mobile: {
-				required: true,
-				phonenumber:true,
-				minlength:7,
-				maxlength: 13,
-				noSpace:true,
-			},
-
-			'roles[]' :{
-				required: true,
-			},
-		},
-
-		messages: {
-			first_name: {
-				required:"First Name cannot be empty",
-				maxlength:"First Name cannot exceed 40 characters",
-				lettersonly:"First Name should contain only alphabets", 
-			},
-			
-			last_name: {
-				required:"Last Name cannot be empty",
-				maxlength:"Last Name cannot exceed 40 characters",
-				lettersonly:"Last Name should contain only alphabets", 
-			},	
-			
-			email: {
-				required:"Email ID cannot be empty",
-				maxlength:"Email address cannot exceed 64 characters",
-				validmail:"Enter a valid Email ID", 
-				noSpace:"Space are not allowed",
-			},
-			
-			mobile: {
-				required:"Phone Number cannot be empty",
-				phonenumber:"Phone Number should contain only Numeric",  
-				minlength:"Phone Number cannot be less than 7 digits",
-				maxlength:"Phone Number cannot exceed 13 digits",
-
-			},
-
-			'roles[]' :{
-				required:"Please choose a Role",
-			},
-
-		},
-		errorElement: "span",
-		errorPlacement: function(error, element) {
-			
-			$('span.removeclass-valid').remove();
-            var placement = $(element).data('error');
-			if (placement) {
-				$(placement).append(error)
-			 } else {
-				if(element.hasClass('select2') && element.next('.select2-container').length) {
-					error.insertAfter(element.next('.select2-container'));
-				}else{
-					error.insertAfter(element);
+			errorElement: "span",
+			errorPlacement: function(error, element) {
+				console.log(element);
+				$('span.removeclass-valid').remove();
+				var placement = $(element).data('error');
+				if (placement) {
+					$(placement).append(error)
+				 } else {
+					if(element.hasClass('select2') && element.next('.select2-container').length) {
+						error.insertAfter(element.next('.select2-container'));
+					}else{
+						error.insertAfter(element);
+					}
 				}
 			}
-		}
+		});
 	});
-});
 
 $(document).on('click','#pageAddFormSubmit, #pageEditFormSubmit' ,function(){ 
 	jQuery("#pageAddForm, #pageEditForm").validate({
