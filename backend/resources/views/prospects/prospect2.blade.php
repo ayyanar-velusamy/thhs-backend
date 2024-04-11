@@ -100,7 +100,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!-- <tr>
                   <td>
                     <div
                       class="checkbox-tick-wrapper d-flex align-items-center"
@@ -160,7 +160,7 @@
                     ></a>
                   </td>
                   <td></td>
-                </tr>
+                </tr> -->
                 <tr>
                   <td>
                     <div
@@ -504,11 +504,11 @@
               </tbody>
             </table>
             <div
-              class="pagination-wrapper d-flex justify-content-between align-items-center"
+              class="pagination-wrapper with-data-table d-flex justify-content-center align-items-center pt-0"
             >
-              <div class="count-text">
+              <!-- <div class="count-text">
                 <p>Showing data 1 to 8 of 256 entries</p>
-              </div>
+              </div> -->
               <div
                 class="data-section d-flex justify-content-between align-items-center gap-4"
               >
@@ -531,7 +531,7 @@
                   <p>Already expired</p>
                 </div>
               </div>
-              <nav class="d-flex align-items-center">
+              <!-- <nav class="d-flex align-items-center">
                 <ul class="pagination pagination-sm">
                   <li class="page-item">
                     <a href="#"><i class="icon icon-prev"></i></a>
@@ -548,7 +548,7 @@
                     <a href="#"><i class="icon icon-next"></i></a>
                   </li>
                 </ul>
-              </nav>
+              </nav> -->
             </div>
           </section>
           <div
