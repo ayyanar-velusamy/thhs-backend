@@ -29,6 +29,6 @@ Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/thhs/app/prospects', 'ProspectsController@index')->name('prospects');
-Route::get('/thhs/app/prospects2', 'ProspectsController@table')->name('prospects_table');
-Route::get('/thhs/app/prospects/demographics', 'ProspectsController@demographics')->name('prospects.demographics');
+Route::get('/thhs/app/prospects', [App\Http\Controllers\ProspectsController::class, 'index'])->name('prospects');
+Route::get('/thhs/app/prospects2', [App\Http\Controllers\ProspectsController::class, 'table'])->name('prospects_table');
+Route::get('/thhs/app/prospects/demographics', [App\Http\Controllers\ProspectsController::class, 'demographics'])->name('prospects.demographics');

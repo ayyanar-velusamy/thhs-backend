@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
 		$user->password 	= bcrypt('Admin@123');
         $user->position 	= 1;
         $user->is_admin 	= 1;
+        $user->status 	= 1;
 		$user->save(); 
     }
 }

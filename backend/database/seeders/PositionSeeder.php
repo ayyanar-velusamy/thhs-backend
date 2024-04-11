@@ -18,7 +18,7 @@ class PositionSeeder extends Seeder
             ['position' => 'CNA – Certified Nursing Assistant'],
             ['position' => 'DON – Director of Nursing'],
             ['position' => 'HHA – Home Health Aide'],
-            ['position' => 'Human Resource'],
+            ['position' => 'HR - Human Resource'],
             ['position' => 'LPN – Practical Registered Nurse'],
             ['position' => 'MSW – Medical Social Worker'],
             ['position' => 'OT – Occupational Therapist'],

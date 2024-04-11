@@ -65,4 +65,7 @@ function toggle_hepatitis(value){
   }
 }
 
-new DataTable('#datatable');
+// new DataTable('#datatable');
+$('#datatable').dataTable( {
+  "lengthChange": false
+});
