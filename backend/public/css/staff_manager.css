@@ -162,6 +162,7 @@
   padding: 0px 10px !important;
 }
 
+.dt-layout-row .dt-search label,
 .status-wrapper label,
 .location-wrapper label {
   font-weight: 500;
@@ -383,6 +384,8 @@ table tbody tr td a:hover {
   border-bottom: unset;
 }
 
+
+.dt-layout-row .dt-search input[type="search"],
 table tbody tr td input[type="text"] {
   padding: 4px 8px;
   background-color: white;
@@ -485,3 +488,93 @@ table tbody tr td input[type="text"] {
   font-weight: 500;
   margin-bottom: 8px;
 }
+
+
+
+/* Data table css */
+
+.dt-layout-row .dt-search {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 15%;
+  margin-left: auto;
+}
+
+.dt-layout-row .dt-search input[type="search"] {
+  padding: 4px 8px;
+  background-color: white;
+  border: 1px solid #a5c9ff;
+  border-radius: 5px;
+  height: 30px;
+  width: 100%;
+  color: #082777;
+  font-size: 14px;
+}
+
+table.dataTable {
+  margin-bottom: 24px ;
+}
+
+table.dataTable > thead > tr > th:hover {
+  outline: none !important;
+}
+
+table.dataTable > thead > tr > th {
+border: 0px;
+text-align: center;
+}
+
+table.dataTable > thead > tr > th span {
+  color: #5e63f2;
+  font-size: 14px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+div.dt-container.dt-empty-footer tbody > tr:last-child > * {
+  border: 0px;
+}
+
+.dt-layout-row .dt-info {
+  color: #b5b7c0 !important;
+}
+
+.dt-layout-row .dt-paging.paging_full_numbers {
+  display: flex;
+  justify-content: end;
+}
+
+.dt-layout-row .dt-paging.paging_full_numbers > * + * {
+  margin-left: 12px !important;
+
+}
+
+.dt-container .dt-paging .dt-paging-button  {
+  padding: 6px 9px !important;
+  background-color: #f5f5f5 !important;
+  border: 1px solid #eeeeee !important;
+  color: #404b52 !important;
+  border-radius: 4px !important;
+  width: unset;
+  height: unset;
+  font-size: 12px !important;
+}
+
+.dt-container .dt-paging .dt-paging-button.current  {
+  padding: 5px 9px !important;
+  background-color: #0cd0a2 !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+  border: 1px solid transparent !important;
+  box-shadow: unset !important;
+}
+
+.pagination-wrapper.with-data-table {
+  position: relative;
+  top: -33px;
+}
+
+/* Data table css */
