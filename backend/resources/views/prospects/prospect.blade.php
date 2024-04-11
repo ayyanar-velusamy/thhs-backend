@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <!-- Dashboard Table -->
+    <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />
     <section class="table-wrapper bg-white">
             <div
               class="dropdowns-section d-flex justify-content-end align-items-center"

@@ -454,6 +454,9 @@ form .form-wrapper .field-wrapper textarea {
 .demographics_head {
 	padding : 15px
 }
+.modal .form-wrapper {
+	display: block !important;
+}
 
 /* .cta_wrapper > * + * { */
   /* margin-left: 45px; */

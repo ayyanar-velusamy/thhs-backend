@@ -169,6 +169,137 @@ $(document).on('click','#register_submit' ,function(){
 	});
 });
 
+
+$(document).on('click','#personal_info_submit' ,function(){  
+	jQuery("#personal_info_form").validate({
+		rules: {
+			firstname:{
+				required: true,
+				maxlength: 64,
+			},
+			middlename:{
+				required: true,
+				maxlength: 64,
+			},
+			lastname:{
+				required: true,
+				maxlength: 64,
+			},
+			dob:{
+				required: true,
+			},
+			gender:{
+				required: true,
+			},
+			languages:{
+				required: true,
+			},
+			ssn:{
+				required: true,
+			},
+			email:{
+				required: true,
+				validmail:true,
+				maxlength: 64,
+			},
+			position:{
+				required: true,
+			},
+			address:{
+				required: true,
+			},
+			state:{
+				required: true,
+			},
+			city:{
+				required: true,
+			},
+			zip:{
+				required: true,
+			},
+			cellular:{
+				required: true,
+			},
+			i_agree:{
+				required: true,
+			},
+			start_date:{
+				required: true,
+			}
+		},
+		messages: {
+			firstname:{
+				required:"Firstname cannot be empty",
+			},			
+			middlename:{
+				required:"Middlename cannot be empty",
+			},
+			lastname:{
+				required:"Lastname cannot be empty",
+			},
+			dob: {
+				required:"Date of birth cannot be empty",
+				
+			},
+			gender: {
+				required:"Gender cannot be empty",
+				
+			},
+			languages: {
+				required:"Language cannot be empty",
+				
+			},
+			ssn: {
+				required:"SSN cannot be empty",
+				
+			},
+			email:{
+				required:"Email cannot be empty",
+			},			
+			position:{
+				required:"Position cannot be empty",
+			},
+						
+			address:{
+				required:"Address cannot be empty",
+			},
+			state:{
+				required:"State cannot be empty",
+			},
+			city:{
+				required:"City cannot be empty",
+			},	
+			zip:{
+				required:"Zipcode cannot be empty",
+			},			
+			cellular:{
+				required:"Cellular cannot be empty",
+			},
+			i_agree:{
+				required:"Please read and accept the agreement",
+			},
+			start_date:{
+				required:"Start date cannot be empty",
+			},
+			// password:{
+			// 	required:"Password cannot be empty",
+			// },	
+
+		},
+		errorElement: "span",
+		errorPlacement: function(error, element) {
+			console.log(element);
+			$('span.removeclass-valid').remove();
+            var placement = $(element).data('error');
+			if (placement) {
+				$(placement).append(error)
+			 } else {
+				error.insertAfter(element);
+			}
+		}
+	});
+});
+
 $(document).on('click','#reset_submit, #set_submit' ,function(){  
 	jQuery("#reset_form, #set_form").validate({
 		rules: {

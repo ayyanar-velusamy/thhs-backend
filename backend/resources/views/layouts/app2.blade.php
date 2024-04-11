@@ -61,10 +61,10 @@
               <a href="#" class="" aria-current="true">
                 <i class="icon icon-logo"></i><span></span>
               </a>
-			  <a href="{{ route('prospects')}}" class="active" aria-current="true">
+			  <!-- <a href="{{ route('prospects')}}" class="active" aria-current="true">
                 <i class="icon icon-prospects-logo"></i>
                 <p>Prospect Manager</p>
-              </a>
+              </a> -->
               <!-- <a href="../staff_manager/staff_manager.html" class="" aria-current="true">
                 <i class="icon icon-staffs-logo"></i>
                 <p>Staff Manager</p>
@@ -79,7 +79,7 @@
           <section class="dashboard-header-wrapper">
             <div class="d-flex justify-content-end">
               <div></div>
-              <div class="dashboard-header-section">
+              <!-- <div class="dashboard-header-section">
                 <input type="text" placeholder="Search" />
                 <a href="javascript:;"><i class="icon icon-search"></i></a>
               </div>
@@ -107,7 +107,7 @@
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> -->
             </div>
           </section>
           <section class="dashboard-heading-section">
@@ -118,7 +118,7 @@
                 <h1>Welcome to Trend Home Health Services Team</h1>
                 <p>We've Custom Healthcare HR Software Services</p>
               </div>
-              <div class="dashboard-tabs-wrapper d-flex justify-content-end">
+              <!-- <div class="dashboard-tabs-wrapper d-flex justify-content-end">
                 <div class="dashboard-tabs">
                   <i class="icon icon-teams"></i>
                   <p class="mt-1">HR management</p>
@@ -136,7 +136,7 @@
                   <i class="icon icon-settings-rotate"></i>
                   <p class="mt-1">Settings</p>
                 </div>
-              </div>
+              </div> -->
             </div>
           </section>
         @yield('content')
@@ -148,40 +148,11 @@
 	  
     </main>
     <!--Main layout-->
-    <!-- Confirm dailog-->
-
-    <div
-        class="modal fade"
-        id="ConfirmModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Confirm
-              </h5>
-            </div>
-            <div class="modal-body">
-              <p>Are you sure want to Cancel?</p>
-            </div>
-            <div class="cta_wrapper d-flex justify-content-center gap-5">
-              <button class="danger">Clear</button>
-              <button class="success" id="confirm_interview_btn">Confirm</button>
-            </div>
-            
-          </div>
-        </div>
-      </div>
   </body>
   <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
   <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
   <script src="{{ asset('js/validation.js') }}"></script>
   <script src="{{ asset('js/common.js') }}"></script>
-  
   {{ moduleJs()}}
   
 </html>
