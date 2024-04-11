@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/thhs/register', function () {
+Route::get('/thhs/register', function () { 
     return view('auth/register');
 });
 Route::get('/thhs/login', function () {
@@ -26,3 +26,7 @@ Route::get('/thhs/app/prospects', function () {
 Route::get('/thhs/app/prospects/demographics', function () {
     return view('prospects/demographics');
 });
+Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
