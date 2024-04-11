@@ -14,7 +14,7 @@ use App\Http\Controllers\ProspectsController;
 |
 */
 
-Route::get('/thhs/register', function () {
+Route::get('/thhs/register', function () { 
     return view('auth/register');
 });
 Route::get('/thhs/login', function () {
@@ -24,6 +24,11 @@ Route::get('/thhs/login', function () {
 Route::get('/thhs/prospect_personal_info', function () {
     return view('prospect_personal_info');
 });
+ 
+Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/thhs/app/prospects', 'ProspectsController@index')->name('prospects');
 Route::get('/thhs/app/prospects2', 'ProspectsController@table')->name('prospects_table');
 Route::get('/thhs/app/prospects/demographics', 'ProspectsController@demographics')->name('prospects.demographics');

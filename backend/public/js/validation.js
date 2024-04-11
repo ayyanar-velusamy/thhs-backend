@@ -116,6 +116,15 @@ $(document).on('click','#register_submit' ,function(){
 			},
 			password:{
 				required: true,
+				minlength:8,
+				maxlength:16, 
+				
+			},
+			password_confirmation: {
+				required: true,
+				confirmpassword:true,
+				minlength:8,
+				maxlength:16,
 			},
 		},
 		messages: {
@@ -136,8 +145,15 @@ $(document).on('click','#register_submit' ,function(){
 			},
 			password:{
 				required:"Password cannot be empty",
+				minlength:"Password cannot be less than 8 characters",
+				maxlength:"Password cannot exceed 16 characters",
+				newpassword:"Password must contain at least 1 digit, 1 lowercase letter,1 uppercase letter and 1 special character",
+			
 			},	
-
+			password_confirmation:{
+				required:"Confirm Password cannot be empty",
+				confirmpassword:"Password mismatch! Retry",
+			}, 
 		},
 		errorElement: "span",
 		errorPlacement: function(error, element) {
