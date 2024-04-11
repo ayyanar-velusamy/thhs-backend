@@ -25,4 +25,5 @@ Route::get('/thhs/prospect_personal_info', function () {
     return view('prospect_personal_info');
 });
 Route::get('/thhs/app/prospects', 'ProspectsController@index')->name('prospects');
+Route::get('/thhs/app/prospects2', 'ProspectsController@table')->name('prospects_table');
 Route::get('/thhs/app/prospects/demographics', 'ProspectsController@demographics')->name('prospects.demographics');

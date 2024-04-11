@@ -64,3 +64,5 @@ function toggle_hepatitis(value){
       $(".hepatitis_reason").show();
   }
 }
+
+new DataTable('#datatable');

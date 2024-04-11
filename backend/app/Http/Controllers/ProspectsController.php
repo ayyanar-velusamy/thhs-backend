@@ -17,6 +17,11 @@ class ProspectsController extends BaseController
         return view('prospects/prospect');
     }
 
+    public function table()
+    {
+        return view('prospects/prospect2');
+    }
+
      /**
      * Display a listing of the resource.
      *
