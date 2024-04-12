@@ -17,7 +17,7 @@ $(function () {
 $(function () {
   $("#datepicker , #start_date , #end_date")
     .datepicker({
-    format: "mm/dd/yyyy",
+      format: "mm/dd/yyyy",
       autoclose: true,
       todayHighlight: true,
       onSelect: function(value, date) {
@@ -25,10 +25,34 @@ $(function () {
           .css('background-color', 'green');
       }
     })
-    .datepicker("update", new Date());
+    // .datepicker("update", new Date());
 
    
-    $("#no_textarea,.influenza_reason, .hepatitis_reason").hide();
+    if($("input[name='has_convicted_felony']:checked").val() == 1){
+      $("#no_textarea").show();
+      
+    }else{
+      $("#no_textarea").hide();
+    }
+
+    if($("input[name='had_influeza_vaccine']:checked").val() == 1){
+      $(".influenza_reason").hide();
+      $(".influenza_date").show();
+    }else{
+      $(".influenza_reason").show();
+      $(".influenza_date").hide();
+    }
+
+    if($("input[name='had_hepatitis_vaccine']:checked").val() == 1){
+      $(".hepatitis_reason").hide();
+      $(".hepatitis_date").show();
+    }else{
+      $(".hepatitis_reason").show();
+      $(".hepatitis_date").hide();
+    }
+
+
+    // $(".hepatitis_reason").hide();
 });
 
 function change_no_textarea(status){
@@ -47,7 +71,7 @@ function change_no_textarea(status){
 }
 
 function toggle_influeza(value){
-  if(value == "yes"){
+  if(value == "1"){
       $(".influenza_date").show();
       $(".influenza_reason").hide();
   }else{
@@ -56,7 +80,7 @@ function toggle_influeza(value){
   }
 }
 function toggle_hepatitis(value){
-  if(value == "yes"){
+  if(value == "1"){
       $(".hepatitis_date").show();
       $(".hepatitis_reason").hide();
   }else{
@@ -69,7 +93,7 @@ function toggle_hepatitis(value){
 $('#datatable').dataTable( {
   "lengthChange": false,
   "columnDefs": [ {
-    "targets": 0,
+    "targets": 9,
     "bSort": false,
     "orderable": false
     } ],

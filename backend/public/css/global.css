@@ -721,3 +721,6 @@ input[type=number] {
 span.error {
   color:rgb(231, 27, 27);
 }
+.authorize_to_us_checbox:checked{
+  background-color: #0cd0a2 !important;
+}

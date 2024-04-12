@@ -1,5 +1,9 @@
 @extends('layouts.auth')
 @section('content')
+
+<?php
+pr(@$error);
+?>
     <section class="register-page-wrapper">
         <div class="container">
             <div class="register-page-parent">
@@ -35,9 +39,9 @@
                             {{ session()->get('message') }}
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('register') }}" class="form-field-wrapper" id="registe_form">
+                    <form method="POST" action="{{ route('register') }}" class="form-field-wrapper" id="register_form">
                         @csrf
-                        <div
+                        <!-- <div
                             class="checkbox-tick-wrapper d-flex align-items-center @error('authorize_to_us') is-invalid @enderror">
                             <label class="d-flex align-items-center">
                                 <input type="checkbox" name="authorize_to_us" id="authorize_to_us" required />
@@ -48,6 +52,17 @@
 
                             </label>
 
+                        </div> -->
+                        <div class="checkbox-tick-wrapper d-flex align-items-center">
+                            <div class="form-check">
+                            <label class="form-check-label" for="authorize_to_us">
+                            <input class="form-check-input authorize_to_us_checbox" type="checkbox" value="1" id="authorize_to_us" name="authorize_to_us">
+                            <p>
+                                    Authorized to work in the U.S. on an unrestricted basis?
+                                </p>
+                            </label>
+                            
+                            </div>
                         </div>
                         @error('authorize_to_us')
                             <span class="invalid-feedback" role="alert">

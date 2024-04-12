@@ -22,9 +22,7 @@ Route::get('/thhs/login', function () {
     return view('auth/login');
 });
 
-Route::get('/thhs/prospect_personal_info', function () {
-    return view('prospect_personal_info');
-});
+Route::get('/thhs/prospect_personal_info/{id}',[App\Http\Controllers\PersonalInformationController::class, 'personal_info'])->name('personal_info');
  
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 Auth::routes();
@@ -32,7 +30,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/thhs/app/prospects', [App\Http\Controllers\ProspectsController::class, 'index'])->name('prospects');
 Route::get('/thhs/app/prospects2', [App\Http\Controllers\ProspectsController::class, 'table'])->name('prospects_table');
-Route::get('/thhs/app/prospects/demographics', [App\Http\Controllers\ProspectsController::class, 'demographics'])->name('prospects.demographics');
+Route::get('/thhs/app/prospects/demographics/{id}', [App\Http\Controllers\ProspectsController::class, 'demographics'])->name('prospects.demographics');
 
 // Route::get('/sendhtmlmail', [App\Http\Controllers\MailController::class, 'html_mail'])->name('html_mail');
  

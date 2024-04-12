@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <link href="{{ asset('css/global.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="{{ asset('css/lib/bootstrap-datepicker.min.css') }}"

@@ -91,6 +91,7 @@ class RegisterController extends Controller
     public function register(Request $request)
     {    
        $data = $request->all(); 
+       
        $this->validator($data)->validate();
     //    $postdata = [
     //         'name' => $data['firstname'] . " " . $data['lastname'],
@@ -107,8 +108,7 @@ class RegisterController extends Controller
         $user->email    	= $data['email'];
         $user->password 	= Hash::make($data['password']);
         $user->position   	= $data['position'];
-		 
- 
+        
         // if(User::create($postdata)){
         if($user->save()){ 
             Mail::to($data['email'])->send(new RegisterEmail($user)); 
