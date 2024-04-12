@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <link href="{{ asset('css/global.css') }}" rel="stylesheet" />
+    
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+      href="{{ asset('css/lib/bootstrap-datepicker.min.css') }}"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,40 +17,40 @@
       rel="stylesheet"
     />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      href="{{ asset('css/lib/bootstrap.min.css') }}"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
     <link
-      href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css"
+      href="{{ asset('css/lib/dataTables.dataTables.css') }}"
       rel="stylesheet"
     />
     
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      src="{{ asset('js/lib/bootstrap.bundle.min.js') }}"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
   </head>
   <body>
   <script
-      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      src="{{ asset('js/lib/jquery-3.6.1.min.js') }}"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
       crossorigin="anonymous"
     ></script>
 	
     <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      src="{{ asset('js/lib/popper.min.js') }}"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
       crossorigin="anonymous"
     ></script>
-    <!-- <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    <script
+      src="{{ asset('js/lib/bootstrap.min.js') }}"
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
-    ></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    ></script>
+    <script src="{{ asset('js/lib/bootstrap-datepicker.min.js') }}"></script>
     <main>
       <div class="container-fluid">
         <!-- Sidebar -->
@@ -167,7 +168,7 @@
               <p>Are you sure want to Cancel?</p>
             </div>
             <div class="cta_wrapper d-flex justify-content-center gap-5">
-              <button class="danger">Clear</button>
+              <button class="danger" data-dismiss="modal">Clear</button>
               <button class="success" id="confirm_interview_btn">Confirm</button>
             </div>
             
@@ -176,14 +177,11 @@
       </div>
   </body>
   <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
-  <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+  <script src="{{ asset('js/lib/dataTables.js') }}"></script>
   <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
   <script src="{{ asset('js/validation.js') }}"></script>
   <script src="{{ asset('js/common.js') }}"></script>
-  
 
-  
-  
   {{ moduleJs()}}
   
 </html>

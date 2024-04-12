@@ -75,10 +75,10 @@
                 </div>
               </div>
             </div>
-            <table class="w-100">
+            <table class="w-100" id="datatable">
               <thead>
                 <tr>
-                  <td>
+                  <th>
                     <input
                       type="checkbox"
                       id="vehicle1"
@@ -86,20 +86,22 @@
                       value="Bike"
                       style="visibility: hidden"
                     />
-                  </td>
-                  <td>Full Name</td>
-                  <td>Phone</td>
-                  <td>Date Hired</td>
-                  <td>Gender</td>
-                  <td>Position</td>
-                  <td>Address</td>
-                  <td>Status</td>
-                  <td>Employment Type</td>
-                  <td>Termination Date</td>
+                  </th>
+                  <th>Full Name</th>
+                  <th>Phone</th>
+                  <th>Date Hired</th>
+                  <th>Gender</th>
+                  <th>Position</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Employment Type</th>
+                  <th>Termination Date</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                
+                <!-- <tr>
                   <td>
                     <div
                       class="checkbox-tick-wrapper d-flex align-items-center"
@@ -159,7 +161,7 @@
                     ></a>
                   </td>
                   <td></td>
-                </tr>
+                </tr> -->
                 <tr>
                   <td>
                     <div
@@ -501,13 +503,28 @@
                   </td>
                 </tr>
               </tbody>
+              <!-- <tfoot>
+              <tr>
+                <th></th>
+                <th>Full Name</th>
+                  <th>Phone</th>
+                  <th>Date Hired</th>
+                  <th>Gender</th>
+                  <th>Position</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Employment Type</th>
+                  <th>Termination Date</th>
+                  <th>Action</th>
+                </tr>
+              </tfoot> -->
             </table>
             <div
-              class="pagination-wrapper d-flex justify-content-between align-items-center"
+              class="pagination-wrapper with-data-table d-flex justify-content-center align-items-center pt-0"
             >
-              <div class="count-text">
+              <!-- <div class="count-text">
                 <p>Showing data 1 to 8 of 256 entries</p>
-              </div>
+              </div> -->
               <div
                 class="data-section d-flex justify-content-between align-items-center gap-4"
               >
@@ -530,7 +547,7 @@
                   <p>Already expired</p>
                 </div>
               </div>
-              <nav class="d-flex align-items-center">
+              <!-- <nav class="d-flex align-items-center">
                 <ul class="pagination pagination-sm">
                   <li class="page-item">
                     <a href="#"><i class="icon icon-prev"></i></a>
@@ -547,7 +564,7 @@
                     <a href="#"><i class="icon icon-next"></i></a>
                   </li>
                 </ul>
-              </nav>
+              </nav> -->
             </div>
           </section>
           <div
@@ -640,7 +657,7 @@
                   </div>
                 </div>
                 <div class="cta_wrapper d-flex justify-content-center gap-5">
-              <button class="danger">Clear</button>
+              <button class="danger"  data-dismiss="modal">Cancel</button>
               <button class="success" id="add_prospect_btn">Save</button>
             </div>
               </form>

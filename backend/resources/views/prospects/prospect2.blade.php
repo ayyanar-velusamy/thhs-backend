@@ -21,9 +21,7 @@
               class="table-heading-data d-flex align-items-center justify-content-between"
             >
               <h5>Prospect Manager</h5>
-              <div
-                class="table-center-heading-data d-flex align-items-center justify-content-between"
-              >
+              <div class="table-center-heading-data d-flex align-items-center justify-content-between">
                 <!-- <div class="forms-report d-flex align-items-center"> -->
                   <!-- <i class="icon icon-form-report"></i> -->
                   <!-- <div class="div-5">Expiring Forms Report</div> -->
@@ -100,6 +98,7 @@
                 </tr>
               </thead>
               <tbody>
+                
                 <!-- <tr>
                   <td>
                     <div
@@ -502,6 +501,21 @@
                   </td>
                 </tr>
               </tbody>
+              <!-- <tfoot>
+              <tr>
+                <th></th>
+                <th>Full Name</th>
+                  <th>Phone</th>
+                  <th>Date Hired</th>
+                  <th>Gender</th>
+                  <th>Position</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Employment Type</th>
+                  <th>Termination Date</th>
+                  <th>Action</th>
+                </tr>
+              </tfoot> -->
             </table>
             <div
               class="pagination-wrapper with-data-table d-flex justify-content-center align-items-center pt-0"
@@ -636,12 +650,12 @@
                       <input required type="text" name="submit_date" readonly placeholder="Submit date" />
                       <span class="input-group-addon d-none">
                         <i class="icon icon-eye"></i>
-                      </span>
+                      </sp0an>
                     </div>
                   </div>
                 </div>
                 <div class="cta_wrapper d-flex justify-content-center gap-5">
-              <button class="danger">Clear</button>
+              <button class="danger"  data-dismiss="modal">Cancel</button>
               <button class="success" id="add_prospect_btn">Save</button>
             </div>
               </form>
