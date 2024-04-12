@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Mail\RegisterEmail;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail; 
+use Illuminate\Http\Request;
+
+use Session;
 
 class RegisterController extends Controller
 {
@@ -38,7 +44,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest');  
     }
 
     /**
@@ -65,16 +71,51 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
-    { 
-        
-        return User::create([
-            'name' => $data['firstname'] . " " .  $data['lastname'],
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'email' => $data['email'],
-            'position' => $data['position'], 
-            'password' => Hash::make($data['password']),
-        ]);
+    // protected function create(array $data)
+    // {  
+    //     $post_data = [
+    //         'name' => $data['firstname'] . " " . $data['lastname'],
+    //         'firstname' => $data['firstname'],
+    //         'lastname' => $data['lastname'],
+    //         'email' => $data['email'],
+    //         'position' => $data['position'], 
+    //         'password' => Hash::make($data['password'])
+    //     ]; 
+
+    //     if(User::create($post_data)){
+    //         // Mail::to($data['email'])->send(new RegisterEmail($post_data));  
+    //         return back()->with('message', 'Registration successfully');
+    //     } 
+    // }
+
+    public function register(Request $request)
+    {    
+       $data = $request->all(); 
+       $this->validator($data)->validate();
+    //    $postdata = [
+    //         'name' => $data['firstname'] . " " . $data['lastname'],
+    //         'firstname' => $data['firstname'],
+    //         'lastname' => $data['lastname'],
+    //         'email' => $data['email'],
+    //         'position' => $data['position'], 
+    //         'password' => Hash::make($data['password'])
+    //     ]; 
+        $user = new User();
+        $user->name         = $data['firstname'] . " " . $data['lastname'];
+        $user->firstname    = $data['firstname'];
+        $user->lastname     = $data['lastname'];
+        $user->email    	= $data['email'];
+        $user->password 	= Hash::make($data['password']);
+        $user->position   	= $data['position'];
+		 
+ 
+        // if(User::create($postdata)){
+        if($user->save()){ 
+            Mail::to($data['email'])->send(new RegisterEmail($user)); 
+            return  back()->with('message', 'Registration successfully');
+        }else{
+            return  back()->with('message', 'Registration failed');
+        }
+     
     }
 }
