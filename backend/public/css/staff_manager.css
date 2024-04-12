@@ -561,20 +561,30 @@ div.dt-container.dt-empty-footer tbody > tr:last-child > * {
   width: unset;
   height: unset;
   font-size: 12px !important;
+  box-shadow: unset !important;
 }
 
-.dt-container .dt-paging .dt-paging-button.current  {
+
+div.dt-container .dt-paging .dt-paging-button:hover  {
+  padding: 5px 9px !important;
+  background-color: #eee !important;
+  color: #212529 !important;
+  background-image: unset !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.current  {
   padding: 5px 9px !important;
   background-color: #0cd0a2 !important;
   color: #fff !important;
   border-radius: 4px !important;
   border: 1px solid transparent !important;
-  box-shadow: unset !important;
 }
 
 .pagination-wrapper.with-data-table {
   position: relative;
   top: -33px;
+  width: 40%;
+  margin: 0 auto;
 }
 
 /* Data table css */
