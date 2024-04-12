@@ -216,13 +216,12 @@ To request paper copies from Trend Home Health Services To request delivery from
               <div class="form-wrapper">
                 <div class="field-wrapper">
                   <div class="checkbox-tick-wrapper d-flex align-items-center">
-                    <label class="d-flex align-items-center">
+                      <div class="form-check">
+                      <label class="form-check-label" for="i_agree">
                       I agree
-                      <input type="checkbox" value="" required name="i_agree"/>
-                      <span class="cr ms-3"
-                        ><i class="icon icon-tick-white"></i
-                      ></span>
-                    </label>
+                      </label>
+                      <input class="form-check-input" type="checkbox" value="" id="i_agree" name="i_agree">
+                    </div>
                   </div>
                 </div>
                 <div class="field-wrapper position-relative">
@@ -273,29 +272,24 @@ To request paper copies from Trend Home Health Services To request delivery from
                   ></textarea>
                 </div>
                 <div class="field-wrapper">
-                  <div
-                    class="checkbox-tick-wrapper default d-flex align-items-center"
-                  >
-                    <label class="d-flex align-items-center">
-                      <input type="checkbox" value="" />
-                      <span class="cr me-3"
-                        ><i class="icon icon-tick-white"></i
-                      ></span>
-                      I have been told the essential functions of the job offered and I have reviewed a copy of the job description listing the essentials function of the job.
-                    </label>
+                  
+                  <div class="checkbox-tick-wrapper default d-flex align-items-center">
+                      <div class="form-check">
+                      <input class="form-check-input right_space" type="checkbox" value="" id="check1" >
+                      <label class="form-check-label" for="check1">
+                        I have been told the essential functions of the job offered and I have reviewed a copy of the job description listing the essentials function of the job.
+                      </label>
+                    </div>
                   </div>
                 </div>
                 <div class="field-wrapper">
-                  <div
-                    class="checkbox-tick-wrapper default d-flex align-items-center"
-                  >
-                    <label class="d-flex align-items-center">
-                      <input type="checkbox" value="" />
-                      <span class="cr me-3"
-                        ><i class="icon icon-tick-white"></i
-                      ></span>
-                       I can perform these essential job functions with or without reasonable accommodation.
-                    </label>
+                  <div class="checkbox-tick-wrapper default d-flex align-items-center">
+                      <div class="form-check">
+                      <input class="form-check-input right_space" type="checkbox" value="" id="check2" >
+                      <label class="form-check-label" for="check2">
+                        I can perform these essential job functions with or without reasonable accommodation.
+                      </label>
+                    </div>
                   </div>
                 </div>
                 
