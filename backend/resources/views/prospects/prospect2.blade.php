@@ -21,52 +21,54 @@
               class="table-heading-data d-flex align-items-center justify-content-between"
             >
               <h5>Prospect Manager</h5>
-              <div class="table-center-heading-data d-flex align-items-center justify-content-between">
-                <!-- <div class="forms-report d-flex align-items-center"> -->
-                  <!-- <i class="icon icon-form-report"></i> -->
-                  <!-- <div class="div-5">Expiring Forms Report</div> -->
-                <!-- </div> -->
-                <!-- <div -->
-                  <!-- class="expired-docs d-flex align-items-center justify-content-center" -->
-                <!-- > -->
-                  <!-- <div class="div-7">View Expired docs:</div> -->
-                  <!-- <div class="checkbox-tick-wrapper d-flex align-items-center"> -->
-                    <!-- <label class="d-flex align-items-center"> -->
-                      <!-- <input type="checkbox" value="" /> -->
-                      <!-- <span class="cr" -->
-                        <!-- ><i class="icon icon-tick-white"></i -->
-                      <!-- ></span> -->
-                      <!-- All -->
-                    <!-- </label> -->
-                  <!-- </div> -->
-                  <!-- <div class="checkbox-tick-wrapper d-flex align-items-center"> -->
-                    <!-- <label class="d-flex align-items-center"> -->
-                      <!-- <input type="checkbox" value="" /> -->
-                      <!-- <span class="cr" -->
-                        <!-- ><i class="icon icon-tick-white"></i -->
-                      <!-- ></span> -->
-                      <!-- 07 -->
-                    <!-- </label> -->
-                  <!-- </div> -->
-                  <!-- <div class="checkbox-tick-wrapper d-flex align-items-center"> -->
-                    <!-- <label class="d-flex align-items-center"> -->
-                      <!-- <input type="checkbox" value="" /> -->
-                      <!-- <span class="cr" -->
-                        <!-- ><i class="icon icon-tick-white"></i -->
-                      <!-- ></span> -->
-                      <!-- 14 -->
-                    <!-- </label> -->
-                  <!-- </div> -->
-                  <!-- <div class="checkbox-tick-wrapper d-flex align-items-center"> -->
-                    <!-- <label class="d-flex align-items-center"> -->
-                      <!-- <input type="checkbox" value="" /> -->
-                      <!-- <span class="cr" -->
-                        <!-- ><i class="icon icon-tick-white"></i -->
-                      <!-- ></span> -->
-                      <!-- 30 -->
-                    <!-- </label> -->
-                  <!-- </div> -->
-                <!-- </div> -->
+              <div
+                class="table-center-heading-data d-flex align-items-center justify-content-between"
+              >
+                <div class="forms-report d-flex align-items-center">
+                  <i class="icon icon-form-report"></i>
+                  <div class="div-5">Expiring Forms Report</div>
+                </div>
+                <div
+                  class="expired-docs d-flex align-items-center justify-content-center"
+                >
+                  <div class="div-7">View Expired docs:</div>
+                  <div class="checkbox-tick-wrapper d-flex align-items-center">
+                    <label class="d-flex align-items-center">
+                      <input type="checkbox" value="" />
+                      <span class="cr"
+                        ><i class="icon icon-tick-white"></i
+                      ></span>
+                      All
+                    </label>
+                  </div>
+                  <div class="checkbox-tick-wrapper d-flex align-items-center">
+                    <label class="d-flex align-items-center">
+                      <input type="checkbox" value="" />
+                      <span class="cr"
+                        ><i class="icon icon-tick-white"></i
+                      ></span>
+                      07
+                    </label>
+                  </div>
+                  <div class="checkbox-tick-wrapper d-flex align-items-center">
+                    <label class="d-flex align-items-center">
+                      <input type="checkbox" value="" />
+                      <span class="cr"
+                        ><i class="icon icon-tick-white"></i
+                      ></span>
+                      14
+                    </label>
+                  </div>
+                  <div class="checkbox-tick-wrapper d-flex align-items-center">
+                    <label class="d-flex align-items-center">
+                      <input type="checkbox" value="" />
+                      <span class="cr"
+                        ><i class="icon icon-tick-white"></i
+                      ></span>
+                      30
+                    </label>
+                  </div>
+                </div>
                 <div class="add-staff-field d-flex align-items-center">
                   <i class="icon icon-plus"></i>
                   <p data-toggle="modal" data-target="#myModal">Add Prospect Manager</p>
