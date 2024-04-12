@@ -45,6 +45,6 @@ class RegisterEmail extends Mailable
 	}
 
     private function generateUrl(){
-		return url('/verify-email/'.$this->generateToken().'?email='.$this->user->email);
+		return url('/login?token='.$this->generateToken().'&&email='.$this->user->email);
 	}
 }
