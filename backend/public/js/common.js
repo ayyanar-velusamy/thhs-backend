@@ -68,6 +68,12 @@ function toggle_hepatitis(value){
 // new DataTable('#datatable');
 $('#datatable').dataTable( {
   "lengthChange": false,
+  "columnDefs": [ {
+    "targets": 0,
+    "bSort": false,
+    "orderable": false
+    } ],
+    autoWidth: false,
   initComplete: function () {
     this.api()
         .columns()

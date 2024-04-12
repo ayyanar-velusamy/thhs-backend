@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <link href="{{ asset('css/global.css') }}" rel="stylesheet" />
-    
+    <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="{{ asset('css/lib/bootstrap-datepicker.min.css') }}"
@@ -26,19 +26,14 @@
       href="{{ asset('css/lib/dataTables.dataTables.css') }}"
       rel="stylesheet"
     />
-    
-    <script
-      src="{{ asset('js/lib/bootstrap.bundle.min.js') }}"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
+    <script src="{{ asset('js/lib/jquery-3.6.1.min.js') }}"></script>
+    <script src="{{ asset('js/lib/bootstrap.bundle.min.js') }}" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/lib/dataTables.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
+    <script src="{{ asset('js/validation.js') }}"></script>
   </head>
   <body>
-  <script
-      src="{{ asset('js/lib/jquery-3.6.1.min.js') }}"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
-    ></script>
+ 
 	
     <script
       src="{{ asset('js/lib/popper.min.js') }}"
@@ -100,9 +95,9 @@
                     <i class="icon icon-arrow-down"></i>
                   </p>
                   <ul class="dropdown-menu">
-                    <li><p class="dropdown-item" href="#">View profile</p></li>
+                    <!-- <li><p class="dropdown-item" href="#">View profile</p></li> -->
                     <li>
-                      <p class="dropdown-item" href="#">Logout</p>
+                      <a class="dropdown-item" href="/logout">Logout</a>
                     </li>
                   </ul>
                 </div>
@@ -177,11 +172,7 @@
       </div>
   </body>
   <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
-  <script src="{{ asset('js/lib/dataTables.js') }}"></script>
-  <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
-  <script src="{{ asset('js/validation.js') }}"></script>
   <script src="{{ asset('js/common.js') }}"></script>
-
   {{ moduleJs()}}
   
 </html>
