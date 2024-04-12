@@ -170,7 +170,9 @@ $(document).on('click','#register_submit' ,function(){
 });
 
 
+
 $(document).on('click','#personal_info_submit' ,function(){  
+	
 	jQuery("#personal_info_form").validate({
 		rules: {
 			firstname:{
@@ -225,6 +227,39 @@ $(document).on('click','#personal_info_submit' ,function(){
 			},
 			start_date:{
 				required: true,
+			},
+			"employer[]":{
+				required:true,
+			},
+			"prev_position[]":{
+				required: true,
+			},
+			"supervisor[]":{
+				required: true,
+			},
+			"employer_email[]":{
+				required: true,
+			},
+			"employer_fax[]":{
+				required: true,
+			},
+			"employer_phone[]":{
+				required: true,
+			},
+			"relationship[]":{
+				required:true,
+			},
+			"relationship_name[]":{
+				required: true,
+			},
+			"relationship_email[]":{
+				required: true,
+			},
+			"relationship_phone[]":{
+				required: true,
+			},
+			signature_file:{
+				required: true,	
 			}
 		},
 		messages: {
@@ -281,6 +316,42 @@ $(document).on('click','#personal_info_submit' ,function(){
 			start_date:{
 				required:"Start date cannot be empty",
 			},
+			"employer[]":{
+				required: "Employer cannot be empty"
+			},
+			"prev_position[]":{
+				required: "Position cannot be empty"
+			},
+			"supervisor[]":{
+				required: "Supervisor cannot be empty"
+			},
+			"employer_email[]":{
+				required: "Email cannot be empty"
+			},
+			"employer_fax[]":{
+				required: "Fax cannot be empty"
+			},
+			"employer_phone[]":{
+				required: "Phone cannot be empty"
+			},
+			
+			"relationship[]":{
+				required: "Relationship cannot be empty"
+
+			},
+			"relationship_name[]":{
+				required: "Name cannot be empty"
+			},
+			"relationship_email[]":{
+				required: "Email cannot be empty"
+			},
+			"relationship_phone[]":{
+				required: "Phone cannot be empty"
+			},
+			signature_file:{
+				required: "Signature cannot be empty"
+			}
+
 			// password:{
 			// 	required:"Password cannot be empty",
 			// },	
@@ -288,13 +359,18 @@ $(document).on('click','#personal_info_submit' ,function(){
 		},
 		errorElement: "span",
 		errorPlacement: function(error, element) {
-			console.log(element);
+			console.log($(element).parent().parent().hasClass("work_history"));
 			$('span.removeclass-valid').remove();
             var placement = $(element).data('error');
 			if (placement) {
 				$(placement).append(error)
 			 } else {
-				error.insertAfter(element);
+				if($(element).parent().parent().hasClass("work_history")){
+					error.insertAfter(element);
+				}else{
+					error.insertAfter(element);
+				}
+				
 			}
 		}
 	});

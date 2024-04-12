@@ -217,7 +217,7 @@ To request paper copies from Trend Home Health Services To request delivery from
                   <div class="checkbox-tick-wrapper d-flex align-items-center">
                     <label class="d-flex align-items-center">
                       I agree
-                      <input type="checkbox" value="" required name="i_agree"/>
+                      <input type="checkbox" value="" id="i_agree" required name="i_agree"/>
                       <span class="cr ms-3"
                         ><i class="icon icon-tick-white"></i
                       ></span>
@@ -230,7 +230,9 @@ To request paper copies from Trend Home Health Services To request delivery from
                     type="file"
                     class=""
                     id="customFile"
+                    name="signature_file"
                     placeholder="Upload Signature"
+                    required
                   />
                   <span class="with-icon"
                     ><i class="icon icon-upload"></i
@@ -300,14 +302,17 @@ To request paper copies from Trend Home Health Services To request delivery from
                 
               </div>
               <h3 class="heading-bg">Work History (Last 3 years)</h3>
-              <div class="form-wrapper six_grid">
+              <div class="form-wrapper six_grid ">
                 <div class="field-wrapper">
                   <label for="employer">Employer</label><span class="mandate">*</span>
                   <input
                     type="text"
                     id="employer"
                     value=""
+                    name="employer[]"
                     placeholder="Employer"
+                    required
+                    class="employer"
                   />
                 </div>
                 <div class="field-wrapper">
@@ -317,6 +322,7 @@ To request paper copies from Trend Home Health Services To request delivery from
                     id="position"
                     value=""
                     placeholder="Position"
+                    name="prev_position[]"
                   />
                 </div>
                 <div class="field-wrapper">
@@ -326,69 +332,79 @@ To request paper copies from Trend Home Health Services To request delivery from
                     id="employer"
                     value=""
                     placeholder="Supervisors Name"
+                    name="supervisor[]"
                   />
                 </div>
                 <div class="field-wrapper">
                   <label for="email">Email</label><span class="mandate">*</span>
-                  <input type="email" id="email" value="" placeholder="Email" />
+                  <input type="email" id="email" value="" name="employer_email[]" placeholder="Email" />
                 </div>
                 <div class="field-wrapper">
                   <label for="Fax">Fax</label><span class="mandate">*</span>
-                  <input type="text" id="Fax" value="" placeholder="Fax" />
+                  <input type="text" id="Fax" value="" name="employer_fax[]" placeholder="Fax" />
                 </div>
                 <div class="field-wrapper">
                   <label for="Phone no">Phone no</label><span class="mandate">*</span>
                   <input
                     type="number"
-                    id="Phone no"
+                    id="Phone_no"
                     value=""
                     placeholder="Phone no"
+                    name="employer_phone[]"
                   />
                 </div>
+                
                 <div class="field-wrapper">
-                  <label for="employer">Employer</label>
+                  <label for="employer">Employer</label><span class="mandate">*</span>
                   <input
                     type="text"
                     id="employer"
                     value=""
+                    name="employer[]"
+                    class="employer"
                     placeholder="Employer"
+                    required
                   />
                 </div>
                 <div class="field-wrapper">
-                  <label for="position">Position</label>
+                  <label for="position">Position</label><span class="mandate">*</span>
                   <input
                     type="text"
                     id="position"
                     value=""
                     placeholder="Position"
+                    name="prev_position[]"
                   />
                 </div>
                 <div class="field-wrapper">
-                  <label for="employer">Supervisors Name</label>
+                  <label for="employer">Supervisors Name</label><span class="mandate">*</span>
                   <input
                     type="text"
                     id="employer"
                     value=""
                     placeholder="Supervisors Name"
+                    name="supervisor[]"
                   />
                 </div>
                 <div class="field-wrapper">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" value="" placeholder="Email" />
+                  <label for="email">Email</label><span class="mandate">*</span>
+                  <input type="email" id="email" value="" name="employer_email[]" placeholder="Email" />
                 </div>
                 <div class="field-wrapper">
-                  <label for="Fax">Fax</label>
-                  <input type="number" id="Fax" value="" placeholder="Fax" />
+                  <label for="Fax">Fax</label><span class="mandate">*</span>
+                  <input type="text" id="Fax" value="" name="employer_fax[]" placeholder="Fax" />
                 </div>
                 <div class="field-wrapper">
-                  <label for="Phone no">Phone no</label>
+                  <label for="Phone no">Phone no</label><span class="mandate">*</span>
                   <input
                     type="number"
-                    id="Phone no"
+                    id="Phone_no"
                     value=""
                     placeholder="Phone no"
+                    name="employer_phone[]"
                   />
                 </div>
+                
               </div>
               <h3 class="heading-bg d-flex gap-3">
                 Special Skils
@@ -416,11 +432,13 @@ To request paper copies from Trend Home Health Services To request delivery from
                     id="Relationship"
                     value=""
                     placeholder="Relationship"
+                    name="relationship[]"
+                    required
                   />
                 </div>
                 <div class="field-wrapper">
                   <label for="name">Name </label><span class="mandate">*</span>
-                  <input type="text" id="name" value="" placeholder="Name *" />
+                  <input type="text" id="name" value="" placeholder="Name *" name="relationship_name[]" required/>
                 </div>
                 <div class="field-wrapper">
                   <label for="name">Email </label><span class="mandate">*</span>
@@ -429,6 +447,8 @@ To request paper copies from Trend Home Health Services To request delivery from
                     id="name"
                     value=""
                     placeholder="Email *"
+                    name="relationship_email[]"
+                    required
                   />
                 </div>
                 <div class="field-wrapper">
@@ -437,7 +457,9 @@ To request paper copies from Trend Home Health Services To request delivery from
                     type="number"
                     id="phone"
                     value=""
-                    placeholder="Phone *"
+                    placeholder="Phone"
+                    name="relationship_phone[]"
+                    required
                   />
                 </div>
                 <div class="field-wrapper">
@@ -447,11 +469,13 @@ To request paper copies from Trend Home Health Services To request delivery from
                     id="Relationship"
                     value=""
                     placeholder="Relationship"
+                    name="relationship[]"
+                    required
                   />
                 </div>
                 <div class="field-wrapper">
                   <label for="name">Name *</label>
-                  <input type="text" id="name" value="" placeholder="Name *" />
+                  <input type="text" id="name" value="" placeholder="Name *" name="relationship_name[]" required/>
                 </div>
                 <div class="field-wrapper">
                   <label for="name">Email *</label>
@@ -459,7 +483,9 @@ To request paper copies from Trend Home Health Services To request delivery from
                     type="email"
                     id="name"
                     value=""
-                    placeholder="Email *"
+                    placeholder="Email"
+                    name="relationship_email[]"
+                    required
                   />
                 </div>
                 <div class="field-wrapper">
@@ -468,7 +494,9 @@ To request paper copies from Trend Home Health Services To request delivery from
                     type="number"
                     id="phone"
                     value=""
-                    placeholder="Phone *"
+                    placeholder="Phone"
+                    name="relationship_phone[]"
+                    required
                   />
                 </div>
               </div>
@@ -534,4 +562,49 @@ To request paper copies from Trend Home Health Services To request delivery from
                
             </form>
           </section>
+          <!-- Schedule Interviw Appointment -->
+          <div
+        class="modal fade"
+        id="scheduleIntModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Schedule Interview
+              </h5>
+            </div>
+            <div class="modal-body">
+              <form id="schedule_interview_form" method="POST" action="">
+                <div class="form-wrapper">
+                  
+                  <div class="field-wrapper">
+                    <label for="fname">Interview Date/Time</label>
+                    <div id="interview_date_div" class="date" data-date-format="mm/dd/yyyy H:i:s">
+                      <input required type="text" name="interview_date" id="interview_date" readonly placeholder="Interview Date" />
+                      <span class="input-group-addon d-none">
+                        <i class="icon icon-eye"></i>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  
+                
+                <div class="cta_wrapper d-flex justify-content-center gap-5">
+              <button class="danger" data-dismiss="modal">Clear</button>
+              <button class="success" id="schedule_interview_btn">Save</button>
+            </div>
+            </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+
 @endsection
