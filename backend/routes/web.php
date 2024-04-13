@@ -33,6 +33,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/thhs/app/prospects', [App\Http\Controllers\ProspectsController::class, 'index'])->name('prospects');
 Route::get('/thhs/app/prospects2', [App\Http\Controllers\ProspectsController::class, 'table'])->name('prospects_table');
 Route::get('/thhs/app/prospects/demographics', [App\Http\Controllers\ProspectsController::class, 'demographics'])->name('prospects.demographics');
-
+Route::get('/verify/email/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'verifyEmail']);
 // Route::get('/sendhtmlmail', [App\Http\Controllers\MailController::class, 'html_mail'])->name('html_mail');
  

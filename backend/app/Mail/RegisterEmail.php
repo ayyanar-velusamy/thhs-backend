@@ -5,8 +5,8 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels; 
-use App\Models\PasswordReset;
+use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 
 class RegisterEmail extends Mailable
 {
@@ -19,7 +19,7 @@ class RegisterEmail extends Mailable
      */
     public function __construct($data)
     {
-        $this->user = $data; 
+        $this->user = $data;
     }
 
     /**
@@ -31,20 +31,21 @@ class RegisterEmail extends Mailable
     {
         $subject = 'Register Successfully';
         return $this->view('email.mail')
-        ->with(['user' => $this->user,'link'=> $this->generateUrl()])
-        ->subject($subject);
-        // return $this->view('view.name');
+            ->with(['user' => $this->user, 'link' => $this->generateUrl()])
+            ->subject($subject);
     }
 
-    private function generateToken(){
-		//Generate a new reset password token
-		$token = app('auth.password.broker')->createToken($this->user);
-		PasswordReset::where(['email'=>$this->user->email])->update(['token'=>$token]);
-		return $token; 
-		
-	}
+    private function generateToken()
+    {
+        //Generate a new reset password token
+        $token = app('auth.password.broker')->createToken($this->user);
+        User::where(['email' => $this->user->email])->update(['remember_token' => $token]);
+        return $token;
 
-    private function generateUrl(){
-		return url('/login?token='.$this->generateToken().'&&email='.$this->user->email);
-	}
+    }
+
+    private function generateUrl()
+    {
+        return url('/verify/email/' . $this->generateToken());
+    }
 }
