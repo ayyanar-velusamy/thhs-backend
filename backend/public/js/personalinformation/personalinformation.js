@@ -7,7 +7,7 @@ $(document).on('submit','form',function(e){
 		let myEle = document.getElementById("inputFile");
 		var formData = new FormData(this);     
 		let messagePosition = 'toastr';
-		var formData = new FormData();
+		// var formData = new FormData();
 		// jQuery.each(jQuery('#inputFile')[0].files, function(i, file) {
 		// 	formData.append('file-'+i, file);
 		// });
@@ -23,7 +23,7 @@ $(document).on('submit','form',function(e){
 			contentType: false,
 			processData: false,
 			success: function(data){
-				alert(data);
+				// alert(data);
 			}
 		});
 	}

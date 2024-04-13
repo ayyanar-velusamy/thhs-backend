@@ -32,8 +32,8 @@ Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 Route::group(['middleware'=>'auth'], function(){	
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/thhs/prospect_personal_info/{id}',[App\Http\Controllers\PersonalInformationController::class, 'personal_info'])->name('personal_info');
-    Route::post('add_personal_info',[App\Http\Controllers\PersonalInformationController::class, 'add_personal_info'])->name('add_personal_info');
-	  
+    Route::post('update_personal_info/{id}',[App\Http\Controllers\PersonalInformationController::class, 'update_personal_info'])->name('update_personal_info');
+ 
 
     Route::get('/thhs/app/prospects', [App\Http\Controllers\ProspectsController::class, 'index'])->name('prospects');
     Route::get('/thhs/app/prospects2', [App\Http\Controllers\ProspectsController::class, 'table'])->name('prospects_table');

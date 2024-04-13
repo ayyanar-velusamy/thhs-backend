@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PersonalInfoRequest;
 use App\Models\Language;
 use App\Models\Position;
-use Illuminate\Http\Request;
-use App\Http\Requests\PersonalInfoRequest;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Http\FormRequest;  
+use Illuminate\Http\Request;
 
 class PersonalInformationController extends BaseController
 {
- 
- 
+
     /**
      * Create a new controller instance.
      *
@@ -21,19 +18,19 @@ class PersonalInformationController extends BaseController
      */
     public function __construct()
     {
-    //    $this->middleware('auth');
-    } 
-     /**
+        //    $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        
+
     }
 
-    // public function authorize()  
+    // public function authorize()
     // {
     //     return true;
     // }
@@ -41,53 +38,47 @@ class PersonalInformationController extends BaseController
     public function personal_info(Request $request, $id)
     {
         $data = $this->getPersonalInfoData($id);
-        return view('prospect_personal_info',compact("data"));
+        return view('prospect_personal_info', compact("data"));
     }
-    public function getPersonalInfoData($id){
+    public function getPersonalInfoData($id)
+    {
         $languages = Language::all();
         $positions = Position::all();
         $user = User::with("emergency_contacts")->with("work_history")->findOrFail($id);
-        return ["languages"=>$languages,"user"=>$user,"positions"=>$positions];
+        return ["languages" => $languages, "user" => $user, "positions" => $positions];
     }
 
-    public function add_personal_info(PersonalInfoRequest $request)
-	{
-        // $user = new User();
-        // $user->first_name   = $request->first_name;
-        // $user->last_name    = $request->last_name;
-        // $user->email    	= $request->email;
-        // $user->password 	= Hash::make(str_random(35));
-        // $user->mobile   	= $request->mobile;
-		// //$user->status   	= $request->status;
-        // $user->designation  = $request->designation;
-        // $user->team  		= $request->team;
-        // $user->department  	= $request->department;
-        
-        // if ($request->hasFile('image')) {
-        //     $user->image = $this->profileUpload($request);
-        // }
-              
-        // if($user->save()){ 
-		//     $this->syncPermissions($request, $user);
-			
-		// 	$this->response['status']   = true;
-		// 	$this->response['message']  = str_replace("{username}",$request->first_name." ".$request->last_name,__('message.user_create_success'));
-		// 	$this->response['redirect'] = route('users.index');
-			
-		// 	try{
-		// 		//User Invite mail notification
-		// 		Mail::to($user)->send(new UserInviteEmail($user));
-		// 		//$user->notify(new WelcomeNotification($user));
-		// 	}
-		// 	catch(\Exception $e){ // Using a generic exception
-		// 		$this->response['message']  = __('message.mail_not_send');
-		// 	}
-		// }else{
-		// 	$this->response['status']   = false;
-		// 	$this->response['message']  = str_replace("{username}",$request->first_name." ".$request->last_name,__('message.user_create_failed'));
-		// }
-            return true;
-        // return $this->response();
+    public function update_personal_info(PersonalInfoRequest $request, $id)
+    {
+        $user = User::find($id);  
+        $user->firstname = $request->input('firstname');
+        $user->middlename = $request->input('middlename');
+        $user->lastname = $request->input('lastname');
+        // $user->birth_date = $request->input('dob');
+        $user->gender = $request->input('gender');
+        $user->language_id = $request->input('languages');
+        $user->ssn = $request->input('ssn');  
+        $user->name = $request->input('firstname') . $request->input('middlename') . $request->input('lastname'); 
+        $user->email = $request->input('email');  
+        $user->position = $request->input('position');  
+        $user->address = $request->input('address'); 
+        $user->state = $request->input('state'); 
+        $user->city = $request->input('city'); 
+        $user->zip = $request->input('zip');   
+        $user->cellular = $request->input('cellular');  
+        // $user->start_date = $request->input('start_date');  
+    
+
+        if($user->save()){ 
+            $this->response['status']   = true;
+            $this->response['message']  = "Personal information updated";
+ 
+         
+        }else{
+            $this->response['status']   = false;
+            $this->response['message']  = "Personal information update failed";
+        } 
+        return $this->response();
     }
 
 }

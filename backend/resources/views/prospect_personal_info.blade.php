@@ -8,7 +8,8 @@
     <link href="{{ asset('css/personal_info.css') }}" rel="stylesheet" />
     <section class="form-section bg-white">
 
-        <form id="personal_info_form" method="POST" class="ajax-form"  action="{{route('add_personal_info')}}" role="form" enctype="multipart/form-data" >
+        <form id="personal_info_form" method="POST" class="ajax-form"  action="{{route('update_personal_info', [$user->id])}}" role="form" enctype="multipart/form-data" >
+ 
             <div class="form-headings-wrapper d-flex align-items-center justify-content-between">
                 <!-- <a href="#" class="active">Prospect registration</a> -->
                 <!-- <a href="#">Save Information</a> -->
