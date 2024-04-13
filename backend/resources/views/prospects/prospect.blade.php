@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <!-- Dashboard Table -->
+    
     <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />
     <section class="table-wrapper bg-white">
             <div
@@ -78,15 +79,6 @@
             <table class="w-100" id="datatable">
               <thead>
                 <tr>
-                  <th>
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                      style="visibility: hidden"
-                    />
-                  </th>
                   <th>Full Name</th>
                   <th>Phone</th>
                   <th>Date Hired</th>
@@ -102,18 +94,7 @@
               <tbody>
                 
                 <!-- <tr>
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td>
                     <input type="text" />
                     <a href="javascript:;"
@@ -163,18 +144,7 @@
                   <td></td>
                 </tr> -->
                 <tr>
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
                   </td>
@@ -197,18 +167,7 @@
                   </td>
                 </tr>
                 <tr class="all-clear-bg">
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
                   </td>
@@ -231,18 +190,7 @@
                   </td>
                 </tr>
                 <tr class="expired-bg">
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
                   </td>
@@ -265,18 +213,7 @@
                   </td>
                 </tr>
                 <tr class="doc-expire-bg">
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
                   </td>
@@ -299,18 +236,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
                   </td>
@@ -333,18 +259,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
                   </td>
@@ -367,18 +282,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
                   </td>
@@ -401,18 +305,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
                   </td>
@@ -435,18 +328,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
                   </td>
@@ -469,18 +351,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    <div
-                      class="checkbox-tick-wrapper d-flex align-items-center"
-                    >
-                      <label class="d-flex align-items-center">
-                        <input type="checkbox" value="" />
-                        <span class="cr"
-                          ><i class="icon icon-tick-white"></i
-                        ></span>
-                      </label>
-                    </div>
-                  </td>
+                  
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
                   </td>

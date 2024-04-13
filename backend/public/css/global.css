@@ -202,6 +202,49 @@ button:focus {
   background-color: #4b93e7;
 }
 
+.checkbox-tick-wrapper .form-check {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+}
+ 
+.checkbox-tick-wrapper .form-check .form-check-input {
+  float: none;
+  margin-left: 20px;
+  margin-top: 0;
+  margin-right: 10px;
+}
+
+.checkbox-tick-wrapper .form-check .form-check-input.right_space {
+  float: none;
+  margin-right: 20px;
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.checkbox-tick-wrapper .form-check input[type="checkbox"] {
+  display: block;
+  border-radius: 2px;
+  padding: 9px;
+  cursor: pointer;
+}
+
+.form-check-input:checked[type=checkbox] {
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='17' height='13' viewBox='0 0 17 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.1 9.652L1.3 5.852L0 7.138L5.1 12.238L16.048 1.286L14.761 0L5.1 9.652Z' fill='white'/%3E%3C/svg%3E%0A") !important;
+  background-size: 13px;
+  width: 17px;
+  height: 13px;
+  border: 1px solid transparent;
+}
+
+.form-check-input:focus {
+  box-shadow: unset !important;
+}
+
+.form-check-input:checked {
+  background-color: #008948 !important;
+}
+
 .checkbox-tick-wrapper input[type="checkbox"],
 .checkbox-wrapper input[type="checkbox"] {
   display: none;
@@ -677,4 +720,7 @@ input[type=number] {
 
 span.error {
   color:rgb(231, 27, 27);
+}
+.authorize_to_us_checbox:checked{
+  background-color: #0cd0a2 !important;
 }

@@ -79,13 +79,16 @@
               <thead>
                 <tr>
                   <th>
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                      style="visibility: hidden"
-                    />
+                  <div
+                      class="checkbox-tick-wrapper d-flex align-items-center"
+                    >
+                      <label class="d-flex align-items-center">
+                        <input type="checkbox" value="" />
+                        <span class="cr"
+                          ><i class="icon icon-tick-white"></i
+                        ></span>
+                      </label>
+                    </div>
                   </th>
                   <th>Full Name</th>
                   <th>Phone</th>

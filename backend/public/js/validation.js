@@ -129,7 +129,7 @@ $(document).on('click','#register_submit' ,function(){
 		},
 		messages: {
 			authorize_to_us:{
-				required:"Authorize to work in US is mandatory",
+				required:"You should be authorized to work in US",
 			},
 			firstname:{
 				required:"Firstname cannot be empty",
@@ -163,7 +163,12 @@ $(document).on('click','#register_submit' ,function(){
 			if (placement) {
 				$(placement).append(error)
 			 } else {
-				error.insertAfter(element);
+				if($(element).hasClass("authorize_to_us_checbox")){
+					$(element).parent().append(error);
+				}else{
+					error.insertAfter(element);	
+				}
+				
 			}
 		}
 	});
@@ -176,10 +181,6 @@ $(document).on('click','#personal_info_submit' ,function(){
 	jQuery("#personal_info_form").validate({
 		rules: {
 			firstname:{
-				required: true,
-				maxlength: 64,
-			},
-			middlename:{
 				required: true,
 				maxlength: 64,
 			},
@@ -228,34 +229,34 @@ $(document).on('click','#personal_info_submit' ,function(){
 			start_date:{
 				required: true,
 			},
-			"employer[]":{
+			"employer[0]":{
 				required:true,
 			},
-			"prev_position[]":{
+			"prev_position[0]":{
 				required: true,
 			},
-			"supervisor[]":{
+			"supervisor[0]":{
 				required: true,
 			},
-			"employer_email[]":{
+			"employer_email[0]":{
 				required: true,
 			},
-			"employer_fax[]":{
+			"employer_fax[0]":{
 				required: true,
 			},
-			"employer_phone[]":{
+			"employer_phone[0]":{
 				required: true,
 			},
-			"relationship[]":{
+			"relationship[0]":{
 				required:true,
 			},
-			"relationship_name[]":{
+			"relationship_name[0]":{
 				required: true,
 			},
-			"relationship_email[]":{
+			"relationship_email[0]":{
 				required: true,
 			},
-			"relationship_phone[]":{
+			"relationship_phone[0]":{
 				required: true,
 			},
 			signature_file:{
@@ -266,9 +267,6 @@ $(document).on('click','#personal_info_submit' ,function(){
 			firstname:{
 				required:"Firstname cannot be empty",
 			},			
-			middlename:{
-				required:"Middlename cannot be empty",
-			},
 			lastname:{
 				required:"Lastname cannot be empty",
 			},
@@ -316,36 +314,36 @@ $(document).on('click','#personal_info_submit' ,function(){
 			start_date:{
 				required:"Start date cannot be empty",
 			},
-			"employer[]":{
+			"employer[0]":{
 				required: "Employer cannot be empty"
 			},
-			"prev_position[]":{
+			"prev_position[0]":{
 				required: "Position cannot be empty"
 			},
-			"supervisor[]":{
+			"supervisor[0]":{
 				required: "Supervisor cannot be empty"
 			},
-			"employer_email[]":{
+			"employer_email[0]":{
 				required: "Email cannot be empty"
 			},
-			"employer_fax[]":{
+			"employer_fax[0]":{
 				required: "Fax cannot be empty"
 			},
-			"employer_phone[]":{
+			"employer_phone[0]":{
 				required: "Phone cannot be empty"
 			},
 			
-			"relationship[]":{
+			"relationship[0]":{
 				required: "Relationship cannot be empty"
 
 			},
-			"relationship_name[]":{
+			"relationship_name[0]":{
 				required: "Name cannot be empty"
 			},
-			"relationship_email[]":{
+			"relationship_email[0]":{
 				required: "Email cannot be empty"
 			},
-			"relationship_phone[]":{
+			"relationship_phone[0]":{
 				required: "Phone cannot be empty"
 			},
 			signature_file:{

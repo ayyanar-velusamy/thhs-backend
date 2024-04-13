@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\Language;
 use App\Models\Position;
+use Illuminate\Http\Request;
 use App\Models\User;
 
-class ProspectsController extends BaseController
+class PersonalInformationController extends BaseController
 {
  
     /**
@@ -18,7 +17,7 @@ class ProspectsController extends BaseController
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        
     }
      /**
      * Display a listing of the resource.
@@ -27,29 +26,19 @@ class ProspectsController extends BaseController
      */
     public function index()
     {
-        return view('prospects/prospect');
+        
     }
 
-    public function table()
-    {
-        return view('prospects/prospect2');
-    }
-
-     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function demographics(Request $request, $id)
+    public function personal_info(Request $request, $id)
     {
         $data = $this->getPersonalInfoData($id);
-        return view('prospects/demographics',compact("data"));
+        return view('prospect_personal_info',compact("data"));
     }
-
     public function getPersonalInfoData($id){
         $languages = Language::all();
         $positions = Position::all();
         $user = User::with("emergency_contacts")->with("work_history")->findOrFail($id);
         return ["languages"=>$languages,"user"=>$user,"positions"=>$positions];
     }
+
 }

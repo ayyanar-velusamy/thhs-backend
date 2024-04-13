@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
-
+@php
+    $user = $data["user"];
+    $languages = $data["languages"];
+    $positions = $data["positions"];
+@endphp
 <link href="{{ asset('css/personal_info.css') }}" rel="stylesheet" />
 <section class="form-section bg-white">
 <form id="personal_info_form" method="POST">
@@ -29,15 +33,16 @@
                     name="firstname"
                     required
                     placeholder="First name"
+                    value="{{@$user->firstname}}"
                   />
                 </div>
                 <div class="field-wrapper">
-                  <label for="mname">Middle name</label><span class="mandate">*</span>
+                  <label for="mname">Middle name</label>
                   <input
                     type="text"
                     id="mname"
                     name="middlename"
-                    value=""
+                    value="{{@$user->middlename}}"
                     placeholder="Middle name"
                   />
                 </div>
@@ -49,6 +54,7 @@
                     required
                     name="lastname"
                     placeholder="Last name"
+                    value="{{@$user->lastname}}"
                   />
                 </div>
                 <div class="field-wrapper">
@@ -60,7 +66,7 @@
                     data-date-format="dd/mm/yyyy"
                     style="height: 0"
                   >
-                    <input type="text" name="dob" readonly  required/>
+                    <input type="text" name="dob" readonly  value="{{@$user->birth_date}}" required/>
                     <span class="input-group-addon">
                       <i class="icon icon-eye"></i>
                     </span>
@@ -70,30 +76,33 @@
                   <label for="mname">Gender :</label><span class="mandate">*</span>
                   <select required name="gender" class="select-control">
                     <option value="">Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="1" @if($user->gender == '1') selected @endif>Male</option>
+                    <option value="2" @if($user->gender == '2') selected @endif>Female</option>
                   </select>
                 </div>
                 <div class="field-wrapper">
                   <label for="mname">Languages :</label><span class="mandate">*</span>
-                  <select class="select-control" name="languages" required>
+                  <select class="select-control" name="languages" value="{{@$user->language_id}}" required>
                     <option value="">Languages</option>
-                    <option value="english">English</option>
-                    <option value="french">French</option>
-                    <option value="german">German</option>
-                    <option value="greek">Greek</option>
-                    <option value="hungarian">Hungarian</option>
-                    <option value="italian">Italian</option>
-                    <option value="polish">Polish</option>
-                    <option value="russian">Russian</option>
-                    <option value="spanish">Spanish</option>
-                    <option value="ukarainian">Ukarainian</option>
-                    <option value="yiddish">Yiddish</option>
+                    @foreach($languages as $language)
+                      @if(@$user->language_id == $language->id) 
+                        @php
+                          $selected = "selected";
+                        @endphp
+                      @else 
+                        @php
+                          $selected = "";
+                        @endphp
+                      @endif
+                      <option value="{{$language->id}}" {{@$selected}}>{{@$language->language_name}}</option>
+
+                    @endforeach  
+                    
                   </select>
                 </div>
                 <div class="field-wrapper">
                   <label for="ssn">SSN :</label><span class="mandate">*</span>
-                  <input type="text" id="ssn" value="" required name="ssn" placeholder="SSN" />
+                  <input type="text" id="ssn" value="{{@$user->ssn}}" required name="ssn" placeholder="SSN" />
                 </div>
                 <div class="field-wrapper">
                   <label for="Employment Authorization"
@@ -102,7 +111,7 @@
                   <input
                     type="text"
                     id="Employment Authorization"
-                    value=""
+                    value="{{@$user->employeement_authorization}}"
                     placeholder="Employment Authorization"
                   />
                 </div>
@@ -111,30 +120,31 @@
                   <input
                     type="text"
                     id="Corporation Name"
-                    value=""
+                    value="{{@$user->corporation_name}}"
                     placeholder="Corporation Name"
                   />
                 </div>
                 <div class="field-wrapper">
                   <label for="email">Email:</label><span class="mandate">*</span>
-                  <input type="email" p="email" value="" required name="email" placeholder="Email" />
+                  <input type="email" p="email" value="{{@$user->email}}" required name="email" placeholder="Email" />
                 </div>
                 <div class="field-wrapper">
                   <label for="mname">Position :</label><span class="mandate">*</span>
                   <select class="select-control" name="position" required>
 
                     <option value="">Position</option>
-                    <option value="1">CNA – Certified Nursing Assistant</option>
-                    <option value="2">DON – Director of Nursing</option>
-                    <option value="3">HHA – Home Health Aide</option>
-                    <option value="4">Human Resource</option>
-                    <option value="5">LPN – Practical Registered Nurse</option>
-                    <option value="6">MSW – Medical Social Worker</option>
-                    <option value="7">OT – Occupational Therapist</option>
-                    <option value="8">OTA - Occupational Therapist Assistant</option>
-                    <option value="9">PT- Physical Therapist</option>
-                    <option value="10">PTA – Physical Therapist Assistant</option>
-                    <option value="11">RN- Registered Nurse</option>
+                    @foreach($positions as $position)
+                      @if(@$user->position == $position->id) 
+                        @php
+                          $selected = "selected";
+                        @endphp
+                      @else 
+                        @php
+                          $selected = "";
+                        @endphp
+                      @endif
+                      <option value="{{$position->id}}" {{@$selected}}>{{@$position->position}}</option>
+                    @endforeach
                     </select>
                 </div>
                 <div class="field-wrapper">
@@ -142,7 +152,7 @@
                   <input
                     type="text"
                     id="tax_id"
-                    value=""
+                    value="{{@$user->tax_id}}"
                     placeholder="Tax id"
                   />
                 </div>
@@ -154,27 +164,28 @@
                     required
                     name="address"
                     placeholder="Address"
+                    value="{{@$user->address}}"
                   />
                 </div>
                 <div class="field-wrapper">
                   <label for="city">State:</label><span class="mandate">*</span>
-                  <input type="text" id="state" required name="state" placeholder="State" />
+                  <input type="text" id="state" required name="state" placeholder="State" value="{{@$user->state}}"/>
                 </div>
                 <div class="field-wrapper">
                   <label for="city">City:</label><span class="mandate">*</span>
-                  <input type="text" id="city" name="city" required placeholder="City" />
+                  <input type="text" id="city" name="city" required placeholder="City" value="{{@$user->city}}"/>
                 </div>
                 <div class="field-wrapper">
                   <label for="zip">Zip:</label><span class="mandate">*</span>
-                  <input type="text" id="zip" required name="zip" placeholder="Zip" />
+                  <input type="text" id="zip" required name="zip" placeholder="Zip" value="{{@$user->zip}}"/>
                 </div>
                 <div class="field-wrapper">
                   <label for="phone_home">Phone home:</label>
                   <input
                     type="number"
                     id="phone_home"
-                    value=""
                     placeholder="Phone home"
+                    value="{{@$user->phone_home}}"
                   />
                 </div>
                 <div class="field-wrapper address">
@@ -182,7 +193,7 @@
                   <input
                     type="text"
                     id="business"
-                    value=""
+                    value="{{@$user->business}}"
                     placeholder="Business"
                   />
                 </div>
@@ -194,6 +205,7 @@
                     required
                     name="cellular"
                     placeholder="Cellular"
+                    value="{{@$user->cellular}}"
                   />
                 </div>
               </div>
@@ -215,14 +227,13 @@ To request paper copies from Trend Home Health Services To request delivery from
               </div>
               <div class="form-wrapper">
                 <div class="field-wrapper">
-                  <div class="checkbox-tick-wrapper d-flex align-items-center">
-                    <label class="d-flex align-items-center">
+                <div class="checkbox-tick-wrapper d-flex align-items-center">
+                      <div class="form-check">
+                      <label class="form-check-label" for="i_agree">
                       I agree
-                      <input type="checkbox" value="" required name="i_agree"/>
-                      <span class="cr ms-3"
-                        ><i class="icon icon-tick-white"></i
-                      ></span>
-                    </label>
+                      </label>
+                      <input class="form-check-input" type="checkbox" value="" id="i_agree" name="i_agree">
+                    </div>
                   </div>
                 </div>
                 <div class="field-wrapper position-relative">
@@ -231,7 +242,9 @@ To request paper copies from Trend Home Health Services To request delivery from
                     type="file"
                     class=""
                     id="customFile"
+                    name="signature_file"
                     placeholder="Upload Signature"
+                    required
                   />
                   <span class="with-icon"
                     ><i class="icon icon-upload"></i
@@ -247,7 +260,7 @@ To request paper copies from Trend Home Health Services To request delivery from
                     class="date"
                     data-date-format="dd/mm/yyyy"
                   >
-                    <input type="text" readonly required name="start_date"/>
+                    <input type="text" readonly required name="start_date" value="{{$user->start_date}}"/>
                     <span class="input-group-addon">
                       <i class="icon icon-eye"></i>
                     </span>
@@ -259,10 +272,21 @@ To request paper copies from Trend Home Health Services To request delivery from
                     not necessarily disqualify an applicant for employment.) If
                     yes, explain:
                   </p>
-                  <input onchange="change_no_textarea(true)" type="radio" id="test1" name="radio-group1" />
-                  <label for="test1">Yes</label>
-                  <input onchange="change_no_textarea(false)" type="radio" id="test2" name="radio-group1" checked  />
-                  <label for="test2">No</label>
+                  @if(@$user->has_convicted_felony == 1) 
+                    @php
+                      $checked_yes = "checked";
+                      $checked_no = "";
+                    @endphp
+                  @else 
+                    @php
+                      $checked_yes = "";
+                      $checked_no = "checked";
+                    @endphp
+                  @endif
+                  <input onchange="change_no_textarea(true)" type="radio" id="has_convicted_felony_yes" value="1" name="has_convicted_felony" {{@$checked_yes}}/>
+                  <label for="has_convicted_felony_yes">Yes</label>
+                  <input onchange="change_no_textarea(false)" type="radio" id="has_convicted_felony_no" value="0" name="has_convicted_felony" {{@$checked_no}}  />
+                  <label for="has_convicted_felony_no">No</label>
                   
                 </div>
                 <div class="field-wrapper w-100"id="no_textarea">
@@ -270,14 +294,23 @@ To request paper copies from Trend Home Health Services To request delivery from
                     placeholder="Reason"
                     id="business"
                     name="business"
-                  ></textarea>
+                  >{{@$user->convicted_reason}}</textarea>
                 </div>
                 <div class="field-wrapper">
                   <div
                     class="checkbox-tick-wrapper default d-flex align-items-center"
                   >
                     <label class="d-flex align-items-center">
-                      <input type="checkbox" value="" />
+                    @if(@$user->has_reviwed_job_description == 1) 
+                      @php
+                        $checked = "checked";
+                      @endphp
+                    @else 
+                      @php
+                        $checked = "";
+                      @endphp
+                    @endif
+                      <input type="checkbox" {{$checked}}/>
                       <span class="cr me-3"
                         ><i class="icon icon-tick-white"></i
                       ></span>
@@ -290,7 +323,16 @@ To request paper copies from Trend Home Health Services To request delivery from
                     class="checkbox-tick-wrapper default d-flex align-items-center"
                   >
                     <label class="d-flex align-items-center">
-                      <input type="checkbox" value="" />
+                    @if(@$user->can_perform_without_accomodation	 == 1) 
+                      @php
+                        $checked = "checked";
+                      @endphp
+                    @else 
+                      @php
+                        $checked = "";
+                      @endphp
+                    @endif
+                      <input type="checkbox" {{$checked}} />
                       <span class="cr me-3"
                         ><i class="icon icon-tick-white"></i
                       ></span>
@@ -302,13 +344,14 @@ To request paper copies from Trend Home Health Services To request delivery from
               </div>
               <h3 class="heading-bg">Work History (Last 3 years)</h3>
               <div class="form-wrapper six_grid ">
+              <!-- Employer 1-->
                 <div class="field-wrapper">
                   <label for="employer">Employer</label><span class="mandate">*</span>
                   <input
                     type="text"
                     id="employer"
-                    value=""
-                    name="employer[]"
+                    value="{{@$user->work_history[0]->employer_name}}"
+                    name="employer[0]"
                     placeholder="Employer"
                     required
                     class="employer"
@@ -319,9 +362,9 @@ To request paper copies from Trend Home Health Services To request delivery from
                   <input
                     type="text"
                     id="position"
-                    value=""
+                    value="{{@$user->work_history[0]->position}}"
                     placeholder="Position"
-                    name="prev_position[]"
+                    name="prev_position[0]"
                   />
                 </div>
                 <div class="field-wrapper">
@@ -329,80 +372,135 @@ To request paper copies from Trend Home Health Services To request delivery from
                   <input
                     type="text"
                     id="employer"
-                    value=""
+                    value="{{@$user->work_history[0]->supervisor_name}}"
                     placeholder="Supervisors Name"
-                    name="supervisor[]"
+                    name="supervisor[0]"
                   />
                 </div>
                 <div class="field-wrapper">
                   <label for="email">Email</label><span class="mandate">*</span>
-                  <input type="email" id="email" value="" name="employer_email[]" placeholder="Email" />
+                  <input type="email" id="email" value="{{@$user->work_history[0]->employer_email}}" name="employer_email[0]" placeholder="Email" />
                 </div>
                 <div class="field-wrapper">
                   <label for="Fax">Fax</label><span class="mandate">*</span>
-                  <input type="text" id="Fax" value="" name="employer_fax[]" placeholder="Fax" />
+                  <input type="text" id="Fax" value="{{@$user->work_history[0]->employer_fax}}" name="employer_fax[0]" placeholder="Fax" />
                 </div>
                 <div class="field-wrapper">
                   <label for="Phone no">Phone no</label><span class="mandate">*</span>
                   <input
                     type="number"
                     id="Phone_no"
-                    value=""
+                    value="{{@$user->work_history[0]->employer_phone}}"
                     placeholder="Phone no"
-                    name="employer_phone[]"
+                    name="employer_phone[0]"
                   />
                 </div>
-                
+
+                <!-- Employer 1-->
+
+                <!-- Employer 2-->
                 <div class="field-wrapper">
-                  <label for="employer">Employer</label><span class="mandate">*</span>
+                  <label for="employer">Employer</label>
                   <input
                     type="text"
                     id="employer"
-                    value=""
-                    name="employer[]"
-                    class="employer"
+                    value="{{@$user->work_history[1]->employer_name}}"
+                    name="employer[1]"
                     placeholder="Employer"
-                    required
+                    class="employer"
                   />
                 </div>
                 <div class="field-wrapper">
-                  <label for="position">Position</label><span class="mandate">*</span>
+                  <label for="position">Position</label>
                   <input
                     type="text"
                     id="position"
-                    value=""
+                    value="{{@$user->work_history[1]->position}}"
                     placeholder="Position"
-                    name="prev_position[]"
+                    name="prev_position[1]"
                   />
                 </div>
                 <div class="field-wrapper">
-                  <label for="employer">Supervisors Name</label><span class="mandate">*</span>
+                  <label for="employer">Supervisors Name</label>
                   <input
                     type="text"
                     id="employer"
-                    value=""
+                    value="{{@$user->work_history[1]->supervisor_name}}"
                     placeholder="Supervisors Name"
-                    name="supervisor[]"
+                    name="supervisor[1]"
                   />
                 </div>
                 <div class="field-wrapper">
-                  <label for="email">Email</label><span class="mandate">*</span>
-                  <input type="email" id="email" value="" name="employer_email[]" placeholder="Email" />
+                  <label for="email">Email</label>
+                  <input type="email" id="email" value="{{@$user->work_history[1]->employer_email}}" name="employer_email[1]" placeholder="Email" />
                 </div>
                 <div class="field-wrapper">
-                  <label for="Fax">Fax</label><span class="mandate">*</span>
-                  <input type="text" id="Fax" value="" name="employer_fax[]" placeholder="Fax" />
+                  <label for="Fax">Fax</label>
+                  <input type="text" id="Fax" value="{{@$user->work_history[1]->employer_fax}}" name="employer_fax[1]" placeholder="Fax" />
                 </div>
                 <div class="field-wrapper">
                   <label for="Phone no">Phone no</label><span class="mandate">*</span>
                   <input
                     type="number"
                     id="Phone_no"
-                    value=""
+                    value="{{@$user->work_history[1]->employer_phone}}"
                     placeholder="Phone no"
-                    name="employer_phone[]"
+                    name="employer_phone[1]"
                   />
                 </div>
+                <!-- Employer 2-->
+
+                <!-- Employer 3-->
+                <div class="field-wrapper">
+                  <label for="employer">Employer</label>
+                  <input
+                    type="text"
+                    id="employer"
+                    value="{{@$user->work_history[2]->employer_name}}"
+                    name="employer[2]"
+                    placeholder="Employer"
+                    class="employer"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="position">Position</label>
+                  <input
+                    type="text"
+                    id="position"
+                    value="{{@$user->work_history[2]->position}}"
+                    placeholder="Position"
+                    name="prev_position[2]"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="employer">Supervisors Name</label>
+                  <input
+                    type="text"
+                    id="employer"
+                    value="{{@$user->work_history[2]->supervisor_name}}"
+                    placeholder="Supervisors Name"
+                    name="supervisor[2]"
+                  />
+                </div>
+                <div class="field-wrapper">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" value="{{@$user->work_history[2]->employer_email}}" name="employer_email[2]" placeholder="Email" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="Fax">Fax</label>
+                  <input type="text" id="Fax" value="{{@$user->work_history[2]->employer_fax}}" name="employer_fax[2]" placeholder="Fax" />
+                </div>
+                <div class="field-wrapper">
+                  <label for="Phone no">Phone no</label><span class="mandate">*</span>
+                  <input
+                    type="number"
+                    id="Phone_no"
+                    value="{{@$user->work_history[2]->employer_phone}}"
+                    placeholder="Phone no"
+                    name="employer_phone[2]"
+                  />
+                </div>
+                <!-- Employer 3-->
                 
               </div>
               <h3 class="heading-bg d-flex gap-3">
@@ -419,48 +517,52 @@ To request paper copies from Trend Home Health Services To request delivery from
                     placeholder="Business: "
                     id="business"
                     name="business"
-                  ></textarea>
+                  >{{$user->special_skills}}</textarea>
                 </div>
               </div>
               <h3 class="heading-bg">Emergency Contacts</h3>
               <div class="form-wrapper four_grid">
-                <div class="field-wrapper">
-                  <label for="Relationship">Relationship</label><span class="mandate">*</span>
-                  <input
-                    type="text"
-                    id="Relationship"
-                    value=""
-                    placeholder="Relationship"
-                    name="relationship[]"
-                    required
-                  />
-                </div>
-                <div class="field-wrapper">
-                  <label for="name">Name </label><span class="mandate">*</span>
-                  <input type="text" id="name" value="" placeholder="Name *" name="relationship_name[]" required/>
-                </div>
-                <div class="field-wrapper">
-                  <label for="name">Email </label><span class="mandate">*</span>
-                  <input
-                    type="email"
-                    id="name"
-                    value=""
-                    placeholder="Email *"
-                    name="relationship_email[]"
-                    required
-                  />
-                </div>
-                <div class="field-wrapper">
-                  <label for="phone">Phone </label><span class="mandate">*</span>
-                  <input
-                    type="number"
-                    id="phone"
-                    value=""
-                    placeholder="Phone"
-                    name="relationship_phone[]"
-                    required
-                  />
-                </div>
+                @foreach(@$user->emergency_contacts as $emergency_contact)
+                  <div class="field-wrapper">
+                    <label for="Relationship">Relationship</label><span class="mandate">*</span>
+                    <input
+                      type="text"
+                      id="Relationship"
+                      value="{{$emergency_contact->relationship}}"
+                      placeholder="Relationship"
+                      name="relationship[0]"
+                      required
+                    />
+                  </div>
+                  <div class="field-wrapper">
+                    <label for="name">Name </label><span class="mandate">*</span>
+                    <input type="text" id="name" value="{{$emergency_contact->relationship_name}}" placeholder="Name" name="relationship_name[0]" required/>
+                  </div>
+                  <div class="field-wrapper">
+                    <label for="name">Email </label><span class="mandate">*</span>
+                    <input
+                      type="email"
+                      id="name"
+                      value="{{$emergency_contact->relationship_email}}"
+                      placeholder="Email"
+                      name="relationship_email[0]"
+                      required
+                    />
+                  </div>
+                  <div class="field-wrapper">
+                    <label for="phone">Phone </label><span class="mandate">*</span>
+                    <input
+                      type="number"
+                      id="phone"
+                      value="{{$emergency_contact->relationship_phone}}"
+                      placeholder="Phone"
+                      name="relationship_phone[0]"
+                      required
+                    />
+                  </div>
+                      
+                @endforeach
+                
                 <div class="field-wrapper">
                   <label for="Relationship">Relationship</label>
                   <input
@@ -468,34 +570,33 @@ To request paper copies from Trend Home Health Services To request delivery from
                     id="Relationship"
                     value=""
                     placeholder="Relationship"
-                    name="relationship[]"
-                    required
+                    name="relationship[1]"
                   />
                 </div>
                 <div class="field-wrapper">
-                  <label for="name">Name *</label>
-                  <input type="text" id="name" value="" placeholder="Name *" name="relationship_name[]" required/>
+                  <label for="relationship_name">Name</label>
+                  <input type="text" id="relationship_name" value="" placeholder="Name" name="relationship_name[1]" />
                 </div>
                 <div class="field-wrapper">
-                  <label for="name">Email *</label>
+                  <label for="relationship_email">Email </label>
                   <input
                     type="email"
-                    id="name"
+                    id="relationship_email"
                     value=""
                     placeholder="Email"
-                    name="relationship_email[]"
-                    required
+                    name="relationship_email[1]"
+                    
                   />
                 </div>
                 <div class="field-wrapper">
-                  <label for="phone">Phone *</label>
+                  <label for="relationship_phone">Phone </label>
                   <input
                     type="number"
-                    id="phone"
+                    id="relationship_phone"
                     value=""
                     placeholder="Phone"
-                    name="relationship_phone[]"
-                    required
+                    name="relationship_phone[1]"
+                   
                   />
                 </div>
               </div>
@@ -506,17 +607,32 @@ To request paper copies from Trend Home Health Services To request delivery from
                   <p class="mb-2">
                     Did you receive an Influenza Vaccine this year?
                   </p>
-                  <input onchange="toggle_influeza(event.target.value)" type="radio" id="yes1" name="influenza" checked value="yes"/>
+                  @if(@$user->had_influeza_vaccine == 1) 
+                    @php
+                      $checked_yes = "checked";
+                      $checked_no = "";
+                    @endphp
+                  @else 
+                    @php
+                      $checked_yes = "";
+                      $checked_no = "checked";
+                    @endphp
+                  @endif
+                  <input onchange="toggle_influeza(event.target.value)" type="radio" id="yes1" name="had_influeza_vaccine" {{$checked_yes}} value="1"/>
                   <label for="yes1">Yes</label>
-                  <input onchange="toggle_influeza(event.target.value)" type="radio" id="no1" name="influenza" value="no"/>
+                  <input onchange="toggle_influeza(event.target.value)" type="radio" id="no1" name="had_influeza_vaccine" {{$checked_no}} value="0"/>
                   <label for="no1">No</label>
                 </div>
                 <div class="field-wrapper w-25 influenza_date">
 
-                  <label for="end_date">Vaccinated Date<span class="mandate">*</span></label>
+                  <label for="influeza_vaccine_date">Vaccinated Date<span class="mandate">*</span></label>
 
-                  <div id="end_date" class="date" data-date-format="mm/dd/yyyy">
-                    <input type="text" readonly />
+                  <div id="influeza_vaccine_date" class="date" data-date-format="mm/dd/yyyy">
+                    @php
+                      $influeza_vaccine_date = strtotime( $user->influeza_vaccine_date );  
+                      $influeza_vaccine_date = date('m/d/Y', $influeza_vaccine_date );
+                    @endphp
+                    <input type="text" readonly name="influeza_vaccine_date" value="{{$influeza_vaccine_date}}"/>
                     <span class="input-group-addon">
                       <i class="icon icon-eye"></i>
                     </span>
@@ -528,22 +644,36 @@ To request paper copies from Trend Home Health Services To request delivery from
                     placeholder="Disclaimer: You will need to bring a Physicians note to this affect!!!"
                     id="business"
                     name="business"
-                  ></textarea>
+                  >{{@$user->influeza_vaccine_reason}}</textarea>
                 </div>
                 <div class="field-wrapper" >
                   <p class="mb-2">
                     Did you receive an Hepatitis Vaccine this year?
                   </p>
-                  <input onchange="toggle_hepatitis(event.target.value)" type="radio" id="yes" name="radio-group" value="yes" checked />
+                  @if(@$user->had_hepatitis_vaccine == 1) 
+                    @php
+                      $checked_yes = "checked";
+                      $checked_no = "";
+                    @endphp
+                  @else 
+                    @php
+                      $checked_yes = "";
+                      $checked_no = "checked";
+                    @endphp
+                  @endif
+                  <input onchange="toggle_hepatitis(event.target.value)" type="radio" id="yes" name="had_hepatitis_vaccine" value="1"  {{$checked_yes}}/>
                   <label for="yes">Yes</label>
-                  <input onchange="toggle_hepatitis(event.target.value)" type="radio" id="no" name="radio-group" value="no"/>
+                  <input onchange="toggle_hepatitis(event.target.value)" type="radio" id="no" name="had_hepatitis_vaccine" value="0" {{$checked_no}}/>
                   <label for="no">No</label>
                 </div>
                 <div class="field-wrapper w-25 hepatitis_date">
                   <label for="end_date">Vaccinated date<span class="mandate">*</span></label>
                   <div id="end_date" class="date" data-date-format="mm/dd/yyyy">
-
-                    <input type="text" readonly />
+                  @php
+                      $hepatitis_vaccine_date = strtotime( $user->hepatitis_vaccine_date );  
+                      $hepatitis_vaccine_date = date('m/d/Y', $hepatitis_vaccine_date );
+                    @endphp
+                    <input type="text" readonly value="{{$hepatitis_vaccine_date}}" />
                     <span class="input-group-addon">
                       <i class="icon icon-eye"></i>
                     </span>
@@ -555,7 +685,7 @@ To request paper copies from Trend Home Health Services To request delivery from
                     placeholder="Disclaimer: You will need to bring a Physicians note to this affect!!!"
                     id="business"
                     name="business"
-                  ></textarea>
+                  >{{$user->hepatitis_vaccine_reason}}</textarea>
                 </div>
               </div>
                
