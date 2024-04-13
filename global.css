@@ -687,6 +687,15 @@ input[type=number] {
   border-radius: 5px;
 }
 
+.btn-close   {
+  box-shadow: unset !important;
+  opacity: 1 !important;
+}
+
+.btn-close:hover  {
+  background-color: unset !important;
+}
+
 .toast.success {
   background-color: #22b27d;
 }
