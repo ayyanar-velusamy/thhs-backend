@@ -54,9 +54,9 @@ pr(@$error);
 
                         </div> -->
                         <div class="checkbox-tick-wrapper d-flex align-items-center">
-                            <div class="form-check">
-                            <label class="form-check-label" for="authorize_to_us">
-                            <input class="form-check-input authorize_to_us_checbox" type="checkbox" value="1" id="authorize_to_us" name="authorize_to_us">
+                            <div class="form-check d-block">
+                            <label class="form-check-label d-flex align-items-center" for="authorize_to_us">
+                            <input class="form-check-input right_space authorize_to_us_checbox" type="checkbox" value="1" id="authorize_to_us" name="authorize_to_us">
                             <p>
                                     Authorized to work in the U.S. on an unrestricted basis?
                                 </p>

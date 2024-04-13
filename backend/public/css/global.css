@@ -239,6 +239,7 @@ button:focus {
 
 .form-check-input:focus {
   box-shadow: unset !important;
+  border: 1px solid rgba(0,0,0,.25) !important;
 }
 
 .form-check-input:checked {
@@ -723,4 +724,5 @@ span.error {
 }
 .authorize_to_us_checbox:checked{
   background-color: #0cd0a2 !important;
+  border: 1px solid #0cd0a2 !important;
 }

@@ -164,7 +164,7 @@ $(document).on('click','#register_submit' ,function(){
 				$(placement).append(error)
 			 } else {
 				if($(element).hasClass("authorize_to_us_checbox")){
-					$(element).parent().append(error);
+					$(element).parents(".form-check").append(error);
 				}else{
 					error.insertAfter(element);	
 				}
