@@ -46,6 +46,27 @@
       crossorigin="anonymous"
     ></script>
     <script src="{{ asset('js/lib/bootstrap-datepicker.min.js') }}"></script>
+    <script>
+      function showToast() {
+        var toast = new bootstrap.Toast(document.getElementById("myToast"));
+        toast.show();
+      }
+
+      function hideToast() {
+        var toast = new bootstrap.Toast(document.getElementById("myToast"));
+        toast.hide();
+      }
+
+      window.addEventListener("load", function () {
+        showToast();
+      });
+
+      setTimeout(function () {
+        var toastElement = document.getElementById("myToast");
+        var toast = bootstrap.Toast.getInstance(toastElement);
+        toast.hide();
+      }, 3000);
+    </script>
     <main>
       <div class="container-fluid">
         <!-- Sidebar -->

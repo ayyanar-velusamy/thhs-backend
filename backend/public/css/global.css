@@ -729,3 +729,35 @@ span.error {
   background-color: #0cd0a2 !important;
   border: 1px solid #0cd0a2 !important;
 }
+
+.toast {
+  position: absolute;
+  opacity: 1 !important;
+  top: 25px;
+  right: 25px;
+  z-index: 1;
+  padding: 10px 5px;
+  border-radius: 5px;
+}
+
+.btn-close   {
+  box-shadow: unset !important;
+  opacity: 1 !important;
+}
+
+.btn-close:hover  {
+  background-color: unset !important;
+}
+
+
+.toast.success {
+  background-color: #22b27d;
+}
+
+.toast.warn {
+  background-color: #ffc107;
+}
+
+.toast.failure {
+  background-color: #eb3b3b;
+}
