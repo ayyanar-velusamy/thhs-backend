@@ -1,6 +1,7 @@
-
 $(document).on('submit','form',function(e){
-    if($(this).hasClass('ajax-form')){
+	var btn = $("#personal_info_submit");
+	var btn_text = btn.text();
+	if($(this).hasClass('ajax-form')){
 		e.preventDefault()
 		let url = $(this).attr('action');
 		let target = ('#'+$(this).attr('id') == '#undefined') ? 'body' : '#'+$(this).attr('id');
@@ -11,6 +12,8 @@ $(document).on('submit','form',function(e){
 		// jQuery.each(jQuery('#inputFile')[0].files, function(i, file) {
 		// 	formData.append('file-'+i, file);
 		// });
+		btn.text("Loading..");
+		btn.prop('disabled', true);
 		$.ajax({
 			url: url,
 			// container	: target,
@@ -21,9 +24,20 @@ $(document).on('submit','form',function(e){
 			data: formData,
 			// messagePosition:messagePosition,
 			contentType: false,
+			dataType:'json',
 			processData: false,
 			success: function(data){
-				// alert(data);
+				alert(data.message);
+				if(data.status){
+					if(data.redirect_url != ""){
+						location.href = data.redirect_url;
+					}else{
+						location.reload();
+					}
+				}else{
+					location.reload();
+				}
+				
 			}
 		});
 	}

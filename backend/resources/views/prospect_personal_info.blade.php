@@ -45,7 +45,7 @@
                 <div class="field-wrapper">
                     <label for="fname">Birth date</label><span class="mandate">*</span>
                     <div id="datepicker" class="date" data-date-format="dd/mm/yyyy" style="height: 0">
-                        <input type="text" name="dob" readonly value="{{ @$user->birth_date }}" required />
+                        <input type="text" name="dob" readonly value="{{ @update_date_format($user->birth_date) }}" required />
                         <span class="input-group-addon">
                             <i class="icon icon-eye"></i>
                         </span>
@@ -85,12 +85,12 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="Employment Authorization">Employment Authorization</label>
-                    <input type="text" id="Employment Authorization" value="{{ @$user->employeement_authorization }}"
+                    <input type="text" id="Employment Authorization" value="{{ @$user->employement_authorization }}" name="employement_authorization"
                         placeholder="Employment Authorization" />
                 </div>
                 <div class="field-wrapper">
                     <label for="Corporation Name">Corporation Name:</label>
-                    <input type="text" id="Corporation Name" value="{{ @$user->corporation_name }}"
+                    <input type="text" id="Corporation Name" value="{{ @$user->corporation_name }}" name="corporation_name"
                         placeholder="Corporation Name" />
                 </div>
                 <div class="field-wrapper">
@@ -119,7 +119,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="tax_id">Tax id:</label>
-                    <input type="text" id="tax_id" value="{{ @$user->tax_id }}" placeholder="Tax id" />
+                    <input type="text" id="tax_id" name="tax_id" value="{{ @$user->tax_id }}" placeholder="Tax id" />
                 </div>
                 <div class="field-wrapper address">
                     <label for="address">Address:</label><span class="mandate">*</span>
@@ -143,11 +143,11 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="phone_home">Phone home:</label>
-                    <input type="number" id="phone_home" placeholder="Phone home" value="{{ @$user->phone_home }}" />
+                    <input type="number" id="phone_home"  name="phone_home" placeholder="Phone home" value="{{ @$user->phone_home }}" />
                 </div>
                 <div class="field-wrapper address">
                     <label for="business">Business:</label>
-                    <input type="text" id="business" value="{{ @$user->business }}" placeholder="Business" />
+                    <input type="text" id="business" name="business" value="{{ @$user->business }}" placeholder="Business" />
                 </div>
                 <div class="field-wrapper">
                     <label for="cellular">Cellular:</label><span class="mandate">*</span>
@@ -257,12 +257,12 @@
 
                 </div>
                 <div class="field-wrapper w-100"id="no_textarea">
-                    <textarea placeholder="Reason" id="business" name="business">{{ @$user->convicted_reason }}</textarea>
+                    <textarea placeholder="Reason" id="convicted_reason" name="convicted_reason">{{ @$user->convicted_reason }}</textarea>
                 </div>
                 <div class="field-wrapper">
                     <div class="checkbox-tick-wrapper default d-flex align-items-center">
                         <label class="d-flex align-items-center">
-                            @if (@$user->has_reviwed_job_description == 1)
+                            @if (@$user->has_reviewed_job_description == 1)
                                 @php
                                     $checked = 'checked';
                                 @endphp
@@ -271,7 +271,7 @@
                                     $checked = '';
                                 @endphp
                             @endif
-                            <input type="checkbox" {{ $checked }} />
+                            <input type="checkbox" {{ $checked }} name="has_reviewed_job_description" value="1"/>
                             <span class="cr me-3"><i class="icon icon-tick-white"></i></span>
                             I have been told the essential functions of the job offered and I have reviewed a copy of the
                             job description listing the essentials function of the job.
@@ -290,7 +290,7 @@
                                     $checked = '';
                                 @endphp
                             @endif
-                            <input type="checkbox" {{ $checked }} />
+                            <input type="checkbox" {{ $checked }} value="1" name="can_perform_without_accomodation"/>
                             <span class="cr me-3"><i class="icon icon-tick-white"></i></span>
                             I can perform these essential job functions with or without reasonable accommodation.
                         </label>
@@ -410,7 +410,7 @@
             </h3>
             <div class="form-wrapper single_row">
                 <div class="field-wrapper w-100">
-                    <textarea placeholder="Business: " id="business" name="business">{{ $user->special_skills }}</textarea>
+                    <textarea placeholder="Business: " id="special_skills" name="special_skills">{{ $user->special_skills }}</textarea>
                 </div>
             </div>
             <h3 class="heading-bg">Emergency Contacts</h3>
@@ -503,7 +503,7 @@
                 <div class="field-wrapper w-100 influenza_reason">
                     <p class="mb-2">If No, Why?</p>
                     <textarea placeholder="Disclaimer: You will need to bring a Physicians note to this affect!!!" id="business"
-                        name="business">{{ @$user->influeza_vaccine_reason }}</textarea>
+                        name="influeza_vaccine_reason">{{ @$user->influeza_vaccine_reason }}</textarea>
                 </div>
                 <div class="field-wrapper">
                     <p class="mb-2">
@@ -528,13 +528,13 @@
                     <label for="no">No</label>
                 </div>
                 <div class="field-wrapper w-25 hepatitis_date">
-                    <label for="end_date">Vaccinated date<span class="mandate">*</span></label>
-                    <div id="end_date" class="date" data-date-format="mm/dd/yyyy">
+                    <label for="hepatitis_vaccine_date">Vaccinated date<span class="mandate">*</span></label>
+                    <div id="hepatitis_vaccine_date" class="date" data-date-format="mm/dd/yyyy">
                         @php
                             $hepatitis_vaccine_date = strtotime($user->hepatitis_vaccine_date);
                             $hepatitis_vaccine_date = date('m/d/Y', $hepatitis_vaccine_date);
                         @endphp
-                        <input type="text" readonly value="{{ $hepatitis_vaccine_date }}" />
+                        <input type="text" readonly name="hepatitis_vaccine_date" value="{{ $hepatitis_vaccine_date }}" />
                         <span class="input-group-addon">
                             <i class="icon icon-eye"></i>
                         </span>
@@ -542,8 +542,8 @@
                 </div>
                 <div class="field-wrapper w-100 hepatitis_reason">
                     <p class="mb-2">If No, Why?</p>
-                    <textarea placeholder="Disclaimer: You will need to bring a Physicians note to this affect!!!" id="business"
-                        name="business">{{ $user->hepatitis_vaccine_reason }}</textarea>
+                    <textarea placeholder="Disclaimer: You will need to bring a Physicians note to this affect!!!" id="hepatitis_vaccine_reason"
+                        name="hepatitis_vaccine_reason">{{ $user->hepatitis_vaccine_reason }}</textarea>
                 </div>
             </div>
 

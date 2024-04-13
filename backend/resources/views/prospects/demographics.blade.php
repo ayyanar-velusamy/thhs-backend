@@ -708,7 +708,7 @@ To request paper copies from Trend Home Health Services To request delivery from
               </h5>
             </div>
             <div class="modal-body">
-              <form id="schedule_interview_form" method="POST" action="">
+              <form id="schedule_interview_form" class="ajax-form" method="POST" action="{{route('prospects.schedule_interview', [$user->id])}}">
                 <div class="form-wrapper">
                   
                   <div class="field-wrapper">
@@ -753,12 +753,12 @@ To request paper copies from Trend Home Health Services To request delivery from
               </h5>
             </div>
             <div class="modal-body">
-              <form id="confirm_interview_form" method="POST" action="">
+              <form id="confirm_interview_form" class="ajax-form" method="POST" action="{{route('prospects.confirm_interview', [$user->id])}}">
                 <div class="form-wrapper">
                   
                   <div class="field-wrapper">
                     <label for="fname">Interview Date/Time</label>
-                    <div id="interview_date_div" class="date" data-date-format="mm/dd/yyyy H:i:s">
+                    <div id="confirm_interview_date_div" class="date" data-date-format="mm/dd/yyyy H:i:s">
                       <input required type="text" name="interview_date" id="interview_date" readonly placeholder="Interview Date" />
                       <span class="input-group-addon d-none">
                         <i class="icon icon-eye"></i>

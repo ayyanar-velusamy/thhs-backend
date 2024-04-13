@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InterviewMail;
 use Illuminate\Http\Request;
 
 use App\Models\Language;
 use App\Models\Position;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class ProspectsController extends BaseController
 {
@@ -27,7 +29,12 @@ class ProspectsController extends BaseController
      */
     public function index()
     {
-        return view('prospects/prospect');
+        $prospect_list = User::all();
+        foreach($prospect_list as $prospect){
+            $position = Position::where("id",$prospect->position)->first()->position;
+            $prospect->position = $position;
+        }
+        return view('prospects/prospect',compact("prospect_list"));
     }
 
     public function table()
@@ -51,5 +58,31 @@ class ProspectsController extends BaseController
         $positions = Position::all();
         $user = User::with("emergency_contacts")->with("work_history")->findOrFail($id);
         return ["languages"=>$languages,"user"=>$user,"positions"=>$positions];
+    }
+
+    
+    public function schedule_interview(Request $request, $id)
+    {
+        $user = User::find($id);  
+        $user->interview_date = update_date_format($request->input('interview_date'),"m-d-Y");
+        
+        Mail::to($user->email)->send(new InterviewMail($user));
+        $this->response['status']   = true;
+        $this->response['message']  = "Interview Scheduled successfully";
+        $this->response['redirect_url']  = route('prospects.demographics', [$user->id]);
+        return $this->response();
+    }
+
+    public function confirm_interview(Request $request, $id)
+    {
+        $user = User::find($id);  
+        $user->interview_date = update_date_format($request->input('interview_date'),"m-d-Y");
+        $user->mail = "confirm_interview";
+        
+        Mail::to($user->email)->send(new InterviewMail($user));
+        $this->response['status']   = true;
+        $this->response['message']  = "Interview Confirmed";
+        $this->response['redirect_url']  = route('prospects.demographics', [$user->id]);
+        return $this->response();
     }
 }

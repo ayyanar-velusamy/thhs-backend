@@ -30,6 +30,7 @@
     <script src="{{ asset('js/lib/dataTables.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
     <script src="{{ asset('js/validation.js') }}"></script>
+    
   </head>
   <body>
  
@@ -90,7 +91,10 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    George Rekblatt
+                  @php
+                    $current_user = Auth()->user()->name;
+                  @endphp
+                  {{$current_user}}
                     <i class="icon icon-arrow-down"></i>
                   </p>
                   <ul class="dropdown-menu">
@@ -170,9 +174,13 @@
         </div>
       </div>
   </body>
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script> -->
   <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
   <script src="{{ asset('js/common.js') }}"></script>
-  {{ moduleJs()}}
+  
+  {{  moduleJs() }}
   <script type="text/javascript"> 
     $.ajaxSetup({
       headers: {

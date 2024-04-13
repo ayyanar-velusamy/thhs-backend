@@ -102,7 +102,7 @@ class RegisterController extends Controller
  
         if ($user->save()) {
             Mail::to($data['email'])->send(new RegisterEmail($user));
-            return back()->with('message', 'Registration successfully');
+            return back()->with('message', 'Registered successfully. Please verify your email.');
         } else {
             return back()->with('message', 'Registration failed');
         }

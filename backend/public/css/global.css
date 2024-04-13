@@ -490,6 +490,9 @@ button:focus {
   height: 19px;
 }
 
+.datepicker {
+  z-index: 10000000 !important;
+}
 .datepicker.datepicker-dropdown {
   width: 300px;
   font-size: 12px;

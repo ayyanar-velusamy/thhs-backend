@@ -1,9 +1,7 @@
 @extends('layouts.auth')
 @section('content')
 
-<?php
-pr(@$error);
-?>
+
     <section class="register-page-wrapper">
         <div class="container">
             <div class="register-page-parent">

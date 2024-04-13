@@ -92,81 +92,31 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach ($prospect_list as $prospect)
+                  
+                    <tr>
+                      <td class="d-flex align-items-center" style="gap: 7px">
+                        <img src="{{ asset('images/user.png')}}" />{{$prospect->name}}
+                      </td>
+                      <td>{{$prospect->phone_home}}</td>
+                      <td>10/10/224</td>
+                      <td>{{($prospect->gender == 1)? "Male" : "female"}}</td>
+                      <td>{{$prospect->position}}</td>
+                      <td>
+                        {{$prospect->address}}<br>{{$prospect->state, $prospect->city}}
+                      </td>
+                      <td><span class="tag active">Active</span></td>
+                      <td>Contract</td>
+                      <td>10/10/2024</td>
+                      <td class="icons">
+                        <a href="/thhs/app/prospects/demographics/{{$prospect->id}}"><i class="icon icon-eye-green"></i></a>
+                        <i class="icon icon-edit"></i>
+                        <i class="icon icon-delete"></i>
+                      </td>
+                    </tr>
+                @endforeach
                 
-                <!-- <tr>
-                  
-                  <td>
-                    <input type="text" />
-                    <a href="javascript:;"
-                      ><i class="icon icon-small-search"></i
-                    ></a>
-                  </td>
-                  <td>
-                    <input type="text" /><a href="javascript:;"
-                      ><i class="icon icon-small-search"></i
-                    ></a>
-                  </td>
-                  <td>
-                    <input type="text" /><a href="javascript:;"
-                      ><i class="icon icon-small-search"></i
-                    ></a>
-                  </td>
-                  <td>
-                    <input type="text" /><a href="javascript:;"
-                      ><i class="icon icon-small-search"></i
-                    ></a>
-                  </td>
-                  <td>
-                    <input type="text" /><a href="javascript:;"
-                      ><i class="icon icon-small-search"></i
-                    ></a>
-                  </td>
-                  <td>
-                    <input type="text" /><a href="javascript:;"
-                      ><i class="icon icon-small-search"></i
-                    ></a>
-                  </td>
-                  <td>
-                    <input type="text" /><a href="javascript:;"
-                      ><i class="icon icon-small-search"></i
-                    ></a>
-                  </td>
-                  <td>
-                    <input type="text" /><a href="javascript:;"
-                      ><i class="icon icon-small-search"></i
-                    ></a>
-                  </td>
-                  <td>
-                    <input type="text" /><a href="javascript:;"
-                      ><i class="icon icon-small-search"></i
-                    ></a>
-                  </td>
-                  <td></td>
-                </tr> -->
-                <tr>
-                  
-                  <td class="d-flex align-items-center" style="gap: 7px">
-                    <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
-                  </td>
-                  <td>(786)-966-8411</td>
-                  <td>07/31/2023</td>
-                  <td>Female</td>
-                  <td>HHA</td>
-                  <td>
-                    2801 NE 183RD
-                    <br />
-                    ST Apt 603, Aventura,
-                  </td>
-                  <td><span class="tag active">Active</span></td>
-                  <td>Contract</td>
-                  <td>07/31/2024</td>
-                  <td class="icons">
-                    <a href="/thhs/app/prospects/demographics"><i class="icon icon-eye-green"></i></a>
-                    <i class="icon icon-edit"></i>
-                    <i class="icon icon-delete"></i>
-                  </td>
-                </tr>
-                <tr class="all-clear-bg">
+                <!-- <tr class="all-clear-bg">
                   
                   <td class="d-flex align-items-center" style="gap: 7px">
                     <img src="{{ asset('images/user.png')}}" />Adamenko Natalia
@@ -372,7 +322,7 @@
                     <i class="icon icon-edit"></i>
                     <i class="icon icon-delete"></i>
                   </td>
-                </tr>
+                </tr> -->
               </tbody>
               <!-- <tfoot>
               <tr>

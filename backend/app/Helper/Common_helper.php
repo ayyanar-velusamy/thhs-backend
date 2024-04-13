@@ -16,12 +16,13 @@ if (! function_exists('pr')) {
 if(!function_exists('moduleJs')){
 
     function moduleJs($dir= "", $file = ""){
+		
         if($dir != "" && $file != ""){
             echo includeJs($dir, $file);
         }else{
             list($controller, $method) = GetActionControllerAndMethodName();
-          
-            //Include contoller js 
+			
+			//Include contoller js 
             echo includeJs($controller, $controller);
     
             //Include method js 
@@ -62,6 +63,7 @@ if(!function_exists('GetActionMethodName')){
 
 if(!function_exists('includeJs')){
     function includeJs($dir,$file){ 
+		echo $dir."/".$file;
         if (file_exists(public_path('js/'.$dir.'/'.$file.'.js'))){
             return "<script src=".asset('js/'.$dir.'/'.$file.'.js')."></script>";
         }
@@ -297,5 +299,9 @@ function back_url($url = ""){
 			return "";
 		}
 	} 
+
+	function update_date_format($date,$format="m/d/Y"){
+		return date($format, strtotime($date));
+	}
 
 //**********************************************//

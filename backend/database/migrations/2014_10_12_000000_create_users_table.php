@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('gender')->nullable();
             $table->integer('language_id')->nullable();
             $table->integer('ssn')->nullable();
-            $table->string('employeement_authorization')->nullable();
+            $table->string('employement_authorization')->nullable();
             $table->string('corporation_name')->nullable();
             $table->string('name')->nullable();
             $table->string('email')->unique();
@@ -40,7 +40,7 @@ class CreateUsersTable extends Migration
             $table->string('start_date')->nullable();
             $table->integer('has_convicted_felony')->nullable();
             $table->string('convicted_reason')->nullable();
-            $table->integer('has_reviwed_job_description')->nullable();
+            $table->integer('has_reviewed_job_description')->nullable();
             $table->integer('can_perform_without_accomodation')->nullable();
             $table->text('special_skills')->nullable();
             $table->integer('had_influeza_vaccine')->nullable();

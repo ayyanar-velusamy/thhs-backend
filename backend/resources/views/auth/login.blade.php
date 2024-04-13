@@ -32,6 +32,16 @@
                         <h1>Login</h1>
                         <div class="small-bar"></div>
                     </div>
+                    @if(session()->has('error'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('error') }}
+                        </div>
+                    @endif
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
                     <form class="form-field-wrapper" method="POST" action="{{ route('login') }}" id="signin-form">
                         @csrf
                         <input type="text" name="email" placeholder="Username" value="{{ old('email') }}" required

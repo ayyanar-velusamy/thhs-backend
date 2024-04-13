@@ -32,7 +32,7 @@
                   font-size: 18px;
                   color: rgba(94, 99, 242, 1);
                 ">
-                            melidr99@gmail.com
+                            {{ $user->email }}
                         </span>
                         and
                         <br />

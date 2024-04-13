@@ -29,8 +29,8 @@ class RegisterEmail extends Mailable
      */
     public function build()
     {
-        $subject = 'Register Successfully';
-        return $this->view('email.mail')
+        $subject = 'THHS - Registered Successfully';
+        return $this->view('email.register')
             ->with(['user' => $this->user, 'link' => $this->generateUrl()])
             ->subject($subject);
     }

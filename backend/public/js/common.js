@@ -7,6 +7,11 @@ $(function () {
       onSelect: function(value, date) {
       date.dpDiv.find('.ui-datepicker-current-day a')
           .css('background-color', 'green');
+      },
+      beforeShow: function() {
+        setTimeout(function(){
+            $('.datepicker').css('z-index', 100);
+        }, 0);
       }
     })
     .datepicker("update", new Date());
@@ -15,7 +20,7 @@ $(function () {
 });
 
 $(function () {
-  $("#datepicker , #start_date , #end_date")
+  $("#datepicker , #start_date , #influeza_vaccine_date, #hepatitis_vaccine_date, #interview_date_div, #confirm_interview_date_div")
     .datepicker({
       format: "mm/dd/yyyy",
       autoclose: true,
@@ -25,6 +30,16 @@ $(function () {
           .css('background-color', 'green');
       }
     })
+
+    // $("#confirm_interview_date_div").datetimepicker({
+    //   format: "mm/dd/yyyy H:i:s",
+    //   autoclose: true,
+    //   todayHighlight: true,
+    //   onSelect: function(value, date) {
+    //   date.dpDiv.find('.ui-datepicker-current-day a')
+    //       .css('background-color', 'green');
+    //   }
+    // })
     // .datepicker("update", new Date());
 
    
