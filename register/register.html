@@ -23,10 +23,50 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      function showToast() {
+        var toast = new bootstrap.Toast(document.getElementById("myToast"));
+        toast.show();
+      }
+
+      window.addEventListener("load", function () {
+        showToast();
+      });
+      setTimeout(function () {
+        var toastElement = document.getElementById("myToast");
+        var toast = bootstrap.Toast.getInstance(toastElement);
+        toast.hide();
+      }, 5000);
+    </script>
     <div class="main">
       <section class="register-page-wrapper">
+        <div
+          id="myToast"
+          class="toast  success align-items-center text-white border-0"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="d-flex">
+            <div class="toast-body">Hello, this is a toast!</div>
+            <button
+              type="button"
+              class="btn-close btn-close-white me-2 m-auto"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+        </div>
         <div class="container">
           <div class="register-page-parent">
             <div class="position-relative">
@@ -92,7 +132,6 @@
                 <input type="text" name="lname" placeholder="Last Name" />
                 <div class="select-wrapper position-relative">
                   <select class="select-control">
-
                     <option>Position</option>
                     <option>CNA – Certified Nursing Assistant</option>
                     <option>DON – Director of Nursing</option>
@@ -105,7 +144,7 @@
                     <option>PT- Physical Therapist</option>
                     <option>PTA – Physical Therapist Assistant</option>
                     <option>RN- Registered Nurse</option>
-					</select>
+                  </select>
                 </div>
                 <input type="text" name="email" placeholder="Email" />
                 <div class="password-wrapper position-relative">

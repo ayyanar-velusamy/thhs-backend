@@ -675,3 +675,26 @@ input[type=number] {
   transform: scale(1);
 }
 
+
+
+.toast {
+  position: absolute;
+  opacity: 1 !important;
+  top: 25px;
+  right: 25px;
+  z-index: 1;
+  padding: 10px 5px;
+  border-radius: 5px;
+}
+
+.toast.success {
+  background-color: #ffc107;
+}
+
+.toast.warn {
+  background-color: #ffc107;
+}
+
+.toast.failure {
+  background-color: #eb3b3b;
+}
