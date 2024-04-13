@@ -23,6 +23,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+   
   </head>
   <body>
     <div class="main">
@@ -40,9 +41,11 @@
       </footer>
     </div>
   </body>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
   <script src="{{ asset('js/validation.js') }}"></script>
+  
   
 
 </html>

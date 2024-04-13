@@ -3,7 +3,7 @@
   <head>
    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}"> 
     <link href="{{ asset('css/global.css') }}" rel="stylesheet" />
     <link
       rel="stylesheet"
@@ -173,5 +173,12 @@
   <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
   <script src="{{ asset('js/common.js') }}"></script>
   {{ moduleJs()}}
+  <script type="text/javascript"> 
+    $.ajaxSetup({
+      headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    }); 
+  </script>
   
 </html>
