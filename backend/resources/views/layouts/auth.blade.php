@@ -45,6 +45,13 @@
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
   <script src="{{ asset('js/validation.js') }}"></script>
+
+<script>
+  function hideToast(){
+    $("#myToast").hide();
+  }
+  
+</script>
   
   
 

@@ -3,14 +3,7 @@
 
     
     <section class="register-page-wrapper position-relative">
-        <div id="myToast" class="toast success align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="d-flex">
-            <div class="toast-body">
-              Hello, this is a toast!
-            </div>
-            <button onclick="hideToast()" type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-        </div>
+        
         <div class="container">
             <div class="register-page-parent">
                 <div class="position-relative">
@@ -41,9 +34,14 @@
                         <h1>Prospect <span>Registration</span></h1>
                     </div>
                     @if(session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session()->get('message') }}
-                        </div>
+                        <div id="myToast" class="toast success align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                              <div class="toast-body">
+                                {{ session()->get('message') }}
+                              </div>
+                              <button onclick="hideToast()" type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                          </div>
                     @endif
                     <form method="POST" action="{{ route('register') }}" class="form-field-wrapper" id="register_form">
                         @csrf

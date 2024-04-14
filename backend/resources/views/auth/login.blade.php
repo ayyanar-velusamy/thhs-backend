@@ -1,6 +1,26 @@
 @extends('layouts.auth')
 @section('content')
     <section class="register-page-wrapper login">
+        @if(session()->has('error'))
+        <div id="myToast" class="toast failure align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+              <div class="toast-body">
+                {{ session()->get('error') }}
+              </div>
+              <button onclick="hideToast()" type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+          </div>
+    @endif
+    @if(session()->has('message'))
+        <div id="myToast" class="toast success align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+              <div class="toast-body">
+                {{ session()->get('message') }}
+              </div>
+              <button onclick="hideToast()" type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+          </div>
+    @endif
         <div class="container">
             <div class="register-page-parent">
                 <div class="position-relative">
@@ -32,16 +52,7 @@
                         <h1>Login</h1>
                         <div class="small-bar"></div>
                     </div>
-                    @if(session()->has('error'))
-                        <div class="alert alert-danger">
-                            {{ session()->get('error') }}
-                        </div>
-                    @endif
-                    @if(session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session()->get('message') }}
-                        </div>
-                    @endif
+                   
                     <form class="form-field-wrapper" method="POST" action="{{ route('login') }}" id="signin-form">
                         @csrf
                         <input type="text" name="email" placeholder="Username" value="{{ old('email') }}" required
