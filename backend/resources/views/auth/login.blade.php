@@ -65,7 +65,7 @@
                         <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
                         @error('g-recaptcha-response')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
+                        @enderror 
                         <div class="forgot-password-wrapper d-flex align-items-center justify-content-between">
                             <div class="checkbox-tick-wrapper d-flex align-items-center">
                                 <label class="d-flex align-items-center">

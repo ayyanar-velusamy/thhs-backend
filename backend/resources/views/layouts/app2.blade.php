@@ -25,7 +25,11 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
-    ></script>
+    ></script> 
+  
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/lib/signature.css') }}">
+    <link  rel="stylesheet" type="text/css" href="{{ asset('css/lib/toastr.css') }}"/>
+    
   </head>
   <body>
   <script
@@ -52,6 +56,10 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+ 
+   
+  
+    
     <main>
       <div class="container-fluid">
         <!-- Sidebar -->
@@ -152,7 +160,30 @@
   <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
   <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
   <script src="{{ asset('js/validation.js') }}"></script>
-  <script src="{{ asset('js/common.js') }}"></script>
+  <script src="{{ asset('js/common.js') }}"></script> 
+  <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/lib/jquery.signature.js') }}"></script> 
+  <script type="text/javascript" src="{{ asset('js/lib/toastr.min.js') }}"></script> 
+  <script type="text/javascript"> 
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "50000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+  </script> 
+
   {{ moduleJs()}}
   <script type="text/javascript"> 
     $.ajaxSetup({
@@ -160,6 +191,6 @@
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     }); 
-  </script>
+  </script> 
   
 </html>

@@ -761,3 +761,7 @@ span.error {
 .toast.failure {
   background-color: #eb3b3b;
 }
+
+.toast .toast-success{
+  background-color: #22b27d !important;
+}

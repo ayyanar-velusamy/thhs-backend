@@ -63,7 +63,7 @@ if(!function_exists('GetActionMethodName')){
 
 if(!function_exists('includeJs')){
     function includeJs($dir,$file){ 
-		echo $dir."/".$file;
+		// echo $dir."/".$file;
         if (file_exists(public_path('js/'.$dir.'/'.$file.'.js'))){
             return "<script src=".asset('js/'.$dir.'/'.$file.'.js')."></script>";
         }

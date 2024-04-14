@@ -6,12 +6,7 @@ $(document).on('submit','form',function(e){
 		let url = $(this).attr('action');
 		let target = ('#'+$(this).attr('id') == '#undefined') ? 'body' : '#'+$(this).attr('id');
 		let myEle = document.getElementById("inputFile");
-		var formData = new FormData(this);     
-		let messagePosition = 'toastr';
-		// var formData = new FormData();
-		// jQuery.each(jQuery('#inputFile')[0].files, function(i, file) {
-		// 	formData.append('file-'+i, file);
-		// });
+		var formData = new FormData(this);   
 		btn.text("Loading..");
 		btn.prop('disabled', true);
 		$.ajax({
@@ -21,24 +16,36 @@ $(document).on('submit','form',function(e){
 			// redirect: true,
 			// disableButton: true,
 			// file: true,
-			data: formData,
-			// messagePosition:messagePosition,
+			data: formData, 
 			contentType: false,
 			dataType:'json',
 			processData: false,
 			success: function(data){
-				alert(data.message);
+			
 				if(data.status){
+					toastr.success(data.message)
 					if(data.redirect_url != ""){
 						location.href = data.redirect_url;
 					}else{
 						location.reload();
 					}
 				}else{
+					toastr.error(data.message)
 					location.reload();
 				}
 				
 			}
 		});
 	}
+});
+
+
+
+$( document ).ready(function() { 
+	var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG', guideline: true});
+	$('#clear').click(function(e) {
+		e.preventDefault();
+		sig.signature('clear');
+		$("#signature64").val('');
+	});
 });
