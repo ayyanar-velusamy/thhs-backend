@@ -39,7 +39,7 @@ class ResetPasswordController extends Controller
 			$valid->remember_token = null; 
 			$valid->status = 1; 
 			if($valid->save()){							
-				return redirect()->route('login')->with('message', 'Email verfifrcation success'); 
+				return redirect()->route('login')->with('message', 'Email Verification success'); 
 			}
 		} 
     }

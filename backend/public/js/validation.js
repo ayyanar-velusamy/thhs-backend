@@ -178,6 +178,7 @@ $(document).on('click','#register_submit' ,function(){
 
 $(document).on('click','#personal_info_submit' ,function(){  
 	
+	
 	jQuery("#personal_info_form").validate({
 		rules: {
 			firstname:{
@@ -356,6 +357,197 @@ $(document).on('click','#personal_info_submit' ,function(){
 			signed:{
 				required: "Signature cannot be empty"
 			}
+
+			// password:{
+			// 	required:"Password cannot be empty",
+			// },	
+
+		},
+		errorElement: "span",
+		errorPlacement: function(error, element) {
+			console.log($(element).parent().parent().hasClass("work_history"));
+			$('span.removeclass-valid').remove();
+            var placement = $(element).data('error');
+			if (placement) {
+				$(placement).append(error)
+			 } else {
+				if($(element).parent().parent().hasClass("work_history")){
+					error.insertAfter(element);
+				}else{
+					error.insertAfter(element);
+				}
+				
+			}
+		}
+	});
+});
+
+
+$(document).on('click','#demographics_submit' ,function(){  
+	
+	jQuery("#demographics_form").validate({
+		rules: {
+			firstname:{
+				required: true,
+				maxlength: 64,
+			},
+			lastname:{
+				required: true,
+				maxlength: 64,
+			},
+			dob:{
+				required: true,
+			},
+			gender:{
+				required: true,
+			},
+			languages:{
+				required: true,
+			},
+			ssn:{
+				required: true,
+			},
+			email:{
+				required: true,
+				validmail:true,
+				maxlength: 64,
+			},
+			position:{
+				required: true,
+			},
+			address:{
+				required: true,
+			},
+			state:{
+				required: true,
+			},
+			city:{
+				required: true,
+			},
+			zip:{
+				required: true,
+			},
+			cellular:{
+				required: true,
+			},
+			start_date:{
+				required: true,
+			},
+			"employer[0]":{
+				required:true,
+			},
+			"prev_position[0]":{
+				required: true,
+			},
+			"supervisor[0]":{
+				required: true,
+			},
+			"employer_email[0]":{
+				required: true,
+			},
+			"employer_fax[0]":{
+				required: true,
+			},
+			"employer_phone[0]":{
+				required: true,
+			},
+			"relationship[0]":{
+				required:true,
+			},
+			"relationship_name[0]":{
+				required: true,
+			},
+			"relationship_email[0]":{
+				required: true,
+			},
+			"relationship_phone[0]":{
+				required: true,
+			},
+			// signature_file:{
+			// 	required: true,	
+			// },
+			
+		},
+		messages: {
+			firstname:{
+				required:"Firstname cannot be empty",
+			},			
+			lastname:{
+				required:"Lastname cannot be empty",
+			},
+			dob: {
+				required:"Date of birth cannot be empty",
+				
+			},
+			gender: {
+				required:"Gender cannot be empty",
+				
+			},
+			languages: {
+				required:"Language cannot be empty",
+				
+			},
+			ssn: {
+				required:"SSN cannot be empty",
+				
+			},
+			email:{
+				required:"Email cannot be empty",
+			},			
+			position:{
+				required:"Position cannot be empty",
+			},
+						
+			address:{
+				required:"Address cannot be empty",
+			},
+			state:{
+				required:"State cannot be empty",
+			},
+			city:{
+				required:"City cannot be empty",
+			},	
+			zip:{
+				required:"Zipcode cannot be empty",
+			},			
+			cellular:{
+				required:"Cellular cannot be empty",
+			},
+			start_date:{
+				required:"Start date cannot be empty",
+			},
+			"employer[0]":{
+				required: "Employer cannot be empty"
+			},
+			"prev_position[0]":{
+				required: "Position cannot be empty"
+			},
+			"supervisor[0]":{
+				required: "Supervisor cannot be empty"
+			},
+			"employer_email[0]":{
+				required: "Email cannot be empty"
+			},
+			"employer_fax[0]":{
+				required: "Fax cannot be empty"
+			},
+			"employer_phone[0]":{
+				required: "Phone cannot be empty"
+			},
+			
+			"relationship[0]":{
+				required: "Relationship cannot be empty"
+
+			},
+			"relationship_name[0]":{
+				required: "Name cannot be empty"
+			},
+			"relationship_email[0]":{
+				required: "Email cannot be empty"
+			},
+			"relationship_phone[0]":{
+				required: "Phone cannot be empty"
+			},
 
 			// password:{
 			// 	required:"Password cannot be empty",

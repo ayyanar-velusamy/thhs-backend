@@ -320,8 +320,8 @@
                         placeholder="Position" name="prev_position[0]" />
                 </div>
                 <div class="field-wrapper">
-                    <label for="employer">Supervisors Name</label><span class="mandate">*</span>
-                    <input type="text" id="employer" value="{{ @$user->work_history[0]->supervisor_name }}"
+                    <label for="supervisor">Supervisors Name</label><span class="mandate">*</span>
+                    <input type="text" id="supervisor" value="{{ @$user->work_history[0]->supervisor_name }}"
                         placeholder="Supervisors Name" name="supervisor[0]" />
                 </div>
                 <div class="field-wrapper">

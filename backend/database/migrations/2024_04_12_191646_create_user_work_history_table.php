@@ -22,7 +22,7 @@ class CreateUserWorkHistoryTable extends Migration
             $table->string('supervisor_name');
             $table->string('employer_email');
             $table->string('employer_fax');
-            $table->integer('employer_phone');
+            $table->bigInteger('employer_phone');
             $table->timestamps();            
         });
     }

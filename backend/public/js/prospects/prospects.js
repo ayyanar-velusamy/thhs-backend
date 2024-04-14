@@ -1,3 +1,46 @@
+$(document).on('submit','#demographics_form',function(e){
+	// $(this).validate();
+	
+	var btn = $("#demographics_submit");
+	var btn_text = btn.text();
+	if($(this).hasClass('ajax-form')){
+		e.preventDefault()
+		let url = $(this).attr('action');
+		let target = ('#'+$(this).attr('id') == '#undefined') ? 'body' : '#'+$(this).attr('id');
+		// let myEle = document.getElementById("inputFile");
+		var formData = new FormData(this);   
+		btn.text("Loading..");
+		btn.prop('disabled', true);
+		$.ajax({
+			url: url,
+			// container	: target,
+			type: "POST",
+			// redirect: true,
+			// disableButton: true,
+			// file: true,
+			data: formData, 
+			contentType: false,
+			dataType:'json',
+			processData: false,
+			success: function(data){
+			
+				if(data.status){
+					toastr.success(data.message)
+					if(data.redirect_url != ""){
+						location.href = data.redirect_url;
+					}else{
+						location.reload();
+					}
+				}else{
+					toastr.error(data.message)
+					location.reload();
+				}
+				
+			}
+		});
+	}
+});
+
 $("#schedule_interview_form").on('submit',function(e){
 	var btn = $("#schedule_interview_btn");
 	var btn_text = btn.text();
@@ -82,8 +125,7 @@ $("#confirm_interview_form").on('submit',function(e){
 });
 
 
-
-$("#add_prospect_form").on('submit',function(e){
+$(document).on('submit','#add_prospect_form',function(e){
 	var form = $("#add_prospect_form");
     var formBtnId = 'add_prospect_btn';
 	if($(this).hasClass('ajax-form')){
@@ -107,6 +149,7 @@ $("#add_prospect_form").on('submit',function(e){
 				}else{
 					toastr.error(data.message) 
 				} 
+				location.reload();
 			},
 			error: function(err){
 				unloadingButton(formBtnId)
@@ -117,7 +160,7 @@ $("#add_prospect_form").on('submit',function(e){
 					container : target,
 					errorPosition : "field"
 				})
-				
+				location.reload();
 			}
 		});
 	}

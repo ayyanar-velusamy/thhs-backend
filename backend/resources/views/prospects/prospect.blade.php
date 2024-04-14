@@ -72,14 +72,15 @@
             <thead>
                 <tr>
                     <th>Full Name</th>
-                    <th>Phone</th>
-                    <th>Date Hired</th>
-                    <th>Gender</th>
                     <th>Position</th>
+                    <th>Phone</th>
                     <th>Address</th>
+                    <th>Zip Code</th>
                     <th>Status</th>
-                    <th>Employment Type</th>
-                    <th>Termination Date</th>
+                    <th>Submit Date</th>
+                    <th>Date Hired</th>
+                    <th>Interview Scheduled Date</th>
+                    <th>Interview Confirmed Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -87,18 +88,23 @@
                 @foreach ($prospect_list as $prospect)
                     <tr>
                         <td class="d-flex align-items-center" style="gap: 7px">
-                            <img src="{{ asset('images/user.png') }}" />{{ $prospect->name }}
+                            {{ $prospect->name }}
                         </td>
-                        <td>{{ $prospect->phone_home }}</td>
-                        <td>10/10/224</td>
-                        <td>{{ $prospect->gender == 1 ? 'Male' : 'female' }}</td>
+                       
+                        <!-- <td>{{$prospect->name}}</td> -->
                         <td>{{ $prospect->position }}</td>
+                        <td>{{ $prospect->cellular }}</td>
                         <td>
                             {{ $prospect->address }}<br>{{ $prospect->state, $prospect->city }}
                         </td>
-                        <td><span class="tag active">Active</span></td>
-                        <td>Contract</td>
-                        <td>10/10/2024</td>
+                        <td>{{ $prospect->zip }}</td>
+                        <td><span class="tag active">Applied</span></td>
+                        <td>{{ update_date_format($prospect->created_at,"m-d-Y") }}</td>
+                        
+                        <td>{{ " " }}</td>
+                        <td>{{" "}}</td>
+                        <td>{{" "}}</td>
+                        
                         <td class="icons">
                             <a href="/thhs/app/prospects/demographics/{{ $prospect->id }}"><i
                                     class="icon icon-eye-green"></i></a>

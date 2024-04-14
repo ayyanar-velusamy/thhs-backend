@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('middlename')->nullable();
             $table->string('lastname');
             $table->date('birth_date')->nullable();
-            $table->integer('gender')->nullable();
+            $table->integer('gender')->default('1');
             $table->integer('language_id')->nullable();
             $table->integer('ssn')->nullable();
             $table->string('employement_authorization')->nullable();
@@ -33,9 +33,9 @@ class CreateUsersTable extends Migration
             $table->string('state')->nullable(); 
             $table->string('city')->nullable(); 
             $table->string('zip')->nullable(); 
-            $table->integer('phone_home')->nullable(); 
+            $table->bigInteger('phone_home')->nullable(); 
             $table->string('business')->nullable(); 
-            $table->integer('cellular')->nullable();
+            $table->bigInteger('cellular')->nullable();
             $table->string('signature_path')->nullable();
             $table->string('start_date')->nullable();
             $table->integer('has_convicted_felony')->nullable();
