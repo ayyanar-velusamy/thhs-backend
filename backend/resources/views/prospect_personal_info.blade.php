@@ -214,11 +214,19 @@
                     </div>
                 </div>
                 <div class="field-wrapper position-relative">
+                    <label class="" for="">Signature:</label>
+                    <br/>
+                    <div id="sig" ></div>
+                    <br/>
+                    <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
+                    <textarea id="signature64" name="signed" style="opacity:0; height:0;"></textarea>
+                </div>
+                {{-- <div class="field-wrapper position-relative">
                     <label for="customFile">Upload signature</label>
                     <input type="file" class="" id="customFile" name="signature_file"
                         placeholder="Upload Signature" required />
                     <span class="with-icon"><i class="icon icon-upload"></i></span>
-                </div>
+                </div> --}}
             </div>
             <h3 class="heading-bg">Position Information</h3>
             <div class="form-wrapper single_row">

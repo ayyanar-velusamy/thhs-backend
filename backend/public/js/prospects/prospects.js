@@ -80,3 +80,45 @@ $("#confirm_interview_form").on('submit',function(e){
 		});
 	}
 });
+
+
+
+$("#add_prospect_form").on('submit',function(e){
+	var form = $("#add_prospect_form");
+    var formBtnId = 'add_prospect_btn';
+	if($(this).hasClass('ajax-form')){
+		e.preventDefault()
+		let url = $(this).attr('action'); 
+		let target = ('#'+$(this).attr('id') == '#undefined') ? 'body' : '#'+$(this).attr('id');
+		var formData = new FormData(this);  
+		loadingButton(formBtnId)
+		$.ajax({
+			url: url, 
+			type: "POST", 
+			data: formData, 
+			contentType: false,
+			dataType:'json',
+			processData: false,
+			success: function(data){
+				unloadingButton(formBtnId)
+				form.trigger("reset");
+				if(data.status){
+					toastr.success(data.message) 
+				}else{
+					toastr.error(data.message) 
+				} 
+			},
+			error: function(err){
+				unloadingButton(formBtnId)
+				if(err.responseJSON){  
+					toastr.error(err.responseJSON.message) 
+				}
+				handleFail(err.responseJSON,{
+					container : target,
+					errorPosition : "field"
+				})
+				
+			}
+		});
+	}
+});

@@ -259,9 +259,13 @@ $(document).on('click','#personal_info_submit' ,function(){
 			"relationship_phone[0]":{
 				required: true,
 			},
-			signature_file:{
+			// signature_file:{
+			// 	required: true,	
+			// },
+			signed:{
 				required: true,	
 			}
+			
 		},
 		messages: {
 			firstname:{
@@ -346,7 +350,10 @@ $(document).on('click','#personal_info_submit' ,function(){
 			"relationship_phone[0]":{
 				required: "Phone cannot be empty"
 			},
-			signature_file:{
+			// signature_file:{
+			// 	required: "Signature cannot be empty"
+			// },
+			signed:{
 				required: "Signature cannot be empty"
 			}
 
