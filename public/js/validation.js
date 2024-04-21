@@ -260,9 +260,9 @@ $(document).on('click','#personal_info_submit' ,function(){
 			"relationship_phone[0]":{
 				required: true,
 			},
-			// signature_file:{
-			// 	required: true,	
-			// },
+			resume:{
+				required: true,	
+			},
 			signed:{
 				required: true,	
 			}
@@ -356,7 +356,11 @@ $(document).on('click','#personal_info_submit' ,function(){
 			// },
 			signed:{
 				required: "Signature cannot be empty"
+			},
+			resume:{
+				required: "Resume cannot be empty"
 			}
+			
 
 			// password:{
 			// 	required:"Password cannot be empty",

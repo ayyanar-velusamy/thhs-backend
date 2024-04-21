@@ -8,8 +8,9 @@
     <link href="{{ asset('css/personal_info.css') }}" rel="stylesheet" />
     <section class="form-section bg-white">
 
-        <form id="personal_info_form" method="POST" class="ajax-form"  action="{{route('update_personal_info', [$user->id])}}" role="form" enctype="multipart/form-data" >
- 
+        <form id="personal_info_form" method="POST" class="ajax-form" action="{{ route('update_personal_info', [$user->id]) }}"
+            role="form" enctype="multipart/form-data">
+
             <div class="form-headings-wrapper d-flex align-items-center justify-content-between">
                 <!-- <a href="#" class="active">Prospect registration</a> -->
                 <!-- <a href="#">Save Information</a> -->
@@ -85,13 +86,13 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="Employment Authorization">Employment Authorization</label>
-                    <input type="text" id="Employment Authorization" value="{{ @$user->employement_authorization }}" name="employement_authorization"
-                        placeholder="Employment Authorization" />
+                    <input type="text" id="Employment Authorization" value="{{ @$user->employement_authorization }}"
+                        name="employement_authorization" placeholder="Employment Authorization" />
                 </div>
                 <div class="field-wrapper">
                     <label for="Corporation Name">Corporation Name:</label>
-                    <input type="text" id="Corporation Name" value="{{ @$user->corporation_name }}" name="corporation_name"
-                        placeholder="Corporation Name" />
+                    <input type="text" id="Corporation Name" value="{{ @$user->corporation_name }}"
+                        name="corporation_name" placeholder="Corporation Name" />
                 </div>
                 <div class="field-wrapper">
                     <label for="email">Email:</label><span class="mandate">*</span>
@@ -119,7 +120,8 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="tax_id">Tax id:</label>
-                    <input type="text" id="tax_id" name="tax_id" value="{{ @$user->tax_id }}" placeholder="Tax id" />
+                    <input type="text" id="tax_id" name="tax_id" value="{{ @$user->tax_id }}"
+                        placeholder="Tax id" />
                 </div>
                 <div class="field-wrapper address">
                     <label for="address">Address:</label><span class="mandate">*</span>
@@ -143,11 +145,13 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="phone_home">Phone home:</label>
-                    <input type="number" id="phone_home"  name="phone_home" placeholder="Phone home" value="{{ @$user->phone_home }}" />
+                    <input type="number" id="phone_home" name="phone_home" placeholder="Phone home"
+                        value="{{ @$user->phone_home }}" />
                 </div>
                 <div class="field-wrapper address">
                     <label for="business">Business:</label>
-                    <input type="text" id="business" name="business" value="{{ @$user->business }}" placeholder="Business" />
+                    <input type="text" id="business" name="business" value="{{ @$user->business }}"
+                        placeholder="Business" />
                 </div>
                 <div class="field-wrapper">
                     <label for="cellular">Cellular:</label><span class="mandate">*</span>
@@ -213,20 +217,49 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="field-wrapper position-relative">
-                    <label class="" for="">Signature:</label>
-                    <br/>
-                    <div id="sig" ></div>
-                    <br/>
-                    <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
-                    <textarea id="signature64" name="signed" style="opacity:0; height:0;"></textarea>
+                    <div class="btn-group custom_btn_toggle" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="signature_type"
+                            onchange="toggle_sign(event.target.value)" id="btnradio1" autocomplete="off" value="1"
+                            >
+                        <label class="btn btn-outline-primary toggle" for="btnradio1">Type</label>
+
+                        <input type="radio" class="btn-check" name="signature_type"
+                            onchange="toggle_sign(event.target.value)" id="btnradio2" value="2" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary toggle" for="btnradio2">Draw</label>
+
+                        <input type="radio" class="btn-check" name="signature_type"
+                            onchange="toggle_sign(event.target.value)" id="btnradio3" value="3" autocomplete="off">
+                        <label class="btn btn-outline-primary toggle" for="btnradio3">Upload</label>
+                    </div>
+                    <div class="type_sign">
+                        <input type="text" class="" onkeyup="type_signature(event.target.value)" name="type_sign" id="type_sign" value="{{ @$user->firstname }}"  />
+                        <div class="typed sign_1" id="sign_1" onclick="text_to_image('sign_1')"></div>
+                        <div class="typed sign_2" id="sign_2" onclick="text_to_image('sign_2')"></div>
+                        <div class="typed sign_3" id="sign_3" onclick="text_to_image('sign_3')"></div>
+                        <div class="typed sign_4" id="sign_4" onclick="text_to_image('sign_4')"></div>
+                        {{-- <img id='image'> --}}
+                    </div>
+                    <div class="draw_sign">
+                        <div id="sig"></div>
+                        <br />
+                        <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
+                    </div> 
+                    <div class="upload_sign">
+                        <input type="file" class="" id="customFile" name="signature_file"
+                            placeholder="Upload Signature" onchange="previewFile('signature_file', 'signature64')" accept="image/*"/>
+                        <span class="with-icon"><i class="icon icon-upload"></i></span>
+                           {{-- <img id='image'> --}}
+                    </div>
+                    <textarea id="signature64" name="signed" style="opacity:0; height:0; position: absolute;"></textarea>
                 </div>
-                {{-- <div class="field-wrapper position-relative">
-                    <label for="customFile">Upload signature</label>
-                    <input type="file" class="" id="customFile" name="signature_file"
-                        placeholder="Upload Signature" required />
-                    <span class="with-icon"><i class="icon icon-upload"></i></span>
-                </div> --}}
+                <div class="field-wrapper position-relative">
+                    <label for="customFile">Upload Resume</label>
+                    <input type="file" class="" id="customFile" name="resume"
+                    placeholder="Upload Signature" accept=".doc, .docx, .pdf" required/>
+                     <span class="with-icon"><i class="icon icon-upload"></i></span>  
+                </div>
             </div>
             <h3 class="heading-bg">Position Information</h3>
             <div class="form-wrapper single_row">
@@ -279,7 +312,8 @@
                                     $checked = '';
                                 @endphp
                             @endif
-                            <input type="checkbox" {{ $checked }} name="has_reviewed_job_description" value="1"/>
+                            <input type="checkbox" {{ $checked }} name="has_reviewed_job_description"
+                                value="1" />
                             <span class="cr me-3"><i class="icon icon-tick-white"></i></span>
                             I have been told the essential functions of the job offered and I have reviewed a copy of the
                             job description listing the essentials function of the job.
@@ -298,7 +332,8 @@
                                     $checked = '';
                                 @endphp
                             @endif
-                            <input type="checkbox" {{ $checked }} value="1" name="can_perform_without_accomodation"/>
+                            <input type="checkbox" {{ $checked }} value="1"
+                                name="can_perform_without_accomodation" />
                             <span class="cr me-3"><i class="icon icon-tick-white"></i></span>
                             I can perform these essential job functions with or without reasonable accommodation.
                         </label>
@@ -542,7 +577,8 @@
                             $hepatitis_vaccine_date = strtotime($user->hepatitis_vaccine_date);
                             $hepatitis_vaccine_date = date('m/d/Y', $hepatitis_vaccine_date);
                         @endphp
-                        <input type="text" readonly name="hepatitis_vaccine_date" value="{{ $hepatitis_vaccine_date }}" />
+                        <input type="text" readonly name="hepatitis_vaccine_date"
+                            value="{{ $hepatitis_vaccine_date }}" />
                         <span class="input-group-addon">
                             <i class="icon icon-eye"></i>
                         </span>
@@ -550,8 +586,8 @@
                 </div>
                 <div class="field-wrapper w-100 hepatitis_reason">
                     <p class="mb-2">If No, Why?</p>
-                    <textarea placeholder="Disclaimer: You will need to bring a Physicians note to this affect!!!" id="hepatitis_vaccine_reason"
-                        name="hepatitis_vaccine_reason">{{ $user->hepatitis_vaccine_reason }}</textarea>
+                    <textarea placeholder="Disclaimer: You will need to bring a Physicians note to this affect!!!"
+                        id="hepatitis_vaccine_reason" name="hepatitis_vaccine_reason">{{ $user->hepatitis_vaccine_reason }}</textarea>
                 </div>
             </div>
 

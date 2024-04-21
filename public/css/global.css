@@ -2,6 +2,11 @@ body {
   font-family: "Poppins", sans-serif !important;
 }
 
+@font-face {
+  font-family: 'SignatureFont'; /*a name to be used later*/
+  src: url('../fonts/sign1.otf') format('otf'); /*URL to font*/
+}
+
 .container {
   max-width: 1130px !important;
 }

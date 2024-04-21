@@ -1,14 +1,50 @@
 /* Styles for signature plugin v1.2.0. */
 .kbw-signature {
-	display: inline-block;
-	border: 1px solid #a0a0a0;
-	-ms-touch-action: none;
+    display: inline-block;
+    border: 1px solid #a0a0a0;
+    -ms-touch-action: none;
 }
+
 .kbw-signature-disabled {
-	opacity: 0.35;
+    opacity: 0.35;
 }
- .kbw-signature { width: 100%; height: 200px;}
-        #sig canvas{
-            width: 100% !important;
-            height: auto;
-        }
+
+.kbw-signature {
+    width: 100%;
+    height: 200px;
+}
+
+#sig canvas {
+    width: 100% !important;
+    height: auto;
+}
+
+
+.typed { 
+    margin: 0;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    z-index: 90; 
+    cursor: pointer;  
+    font-size: 24px;
+    /* color: #0cd0a2; */
+    border-radius: 5px; 
+}
+.typed:hover, .typed.active{
+    background: #0cd0a2;
+    color: #ffffff;
+}
+.typed.sign_1 { 
+    font-family: 'Dancing Script';
+}
+.typed.sign_2 {
+    font-family: "Allura";
+}
+.typed.sign_3 {
+    font-family: "Smooch";
+}
+.typed.sign_4 {
+    font-family: "Tangerine";
+}

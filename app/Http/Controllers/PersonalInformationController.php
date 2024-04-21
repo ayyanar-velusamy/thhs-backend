@@ -91,6 +91,8 @@ class PersonalInformationController extends BaseController
         $user->hepatitis_vaccine_reason = $request->input('hepatitis_vaccine_reason');
         $user->status = 2; // Personal Infor Form submitted.
         $user->signature_path = $this->save_signature($request);
+        $user->resume_path =  $this->upload_resume($request);
+       
         
         // pr($request->all(),1);
      
@@ -142,7 +144,7 @@ class PersonalInformationController extends BaseController
 
     private function save_signature($request){
 
-        $folderPath = 'upload/signature/'; 
+        $folderPath = 'uploads/signature/'; 
         $image_parts = explode(";base64,", $request->input('signed'));
               
         $image_type_aux = explode("image/", $image_parts[0]);
@@ -152,8 +154,16 @@ class PersonalInformationController extends BaseController
         $image_base64 = base64_decode($image_parts[1]);
   
         $filename = uniqid() . '.'.$image_type;
-        $file = public_path($folderPath) . $filename; 
+        $file = base_path($folderPath) . $filename; 
         file_put_contents($file, $image_base64);
        return $folderPath.$filename;
+    }
+
+    private function upload_resume($request){ 
+        $file = $request->file('resume');  
+        //Move Uploaded File
+        $destinationPath = 'uploads/resume/';
+        $file->move($destinationPath,$file->getClientOriginalName());   
+       return $destinationPath.$file->getClientOriginalName();
     }
 }
