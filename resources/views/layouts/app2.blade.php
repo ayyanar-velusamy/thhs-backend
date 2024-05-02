@@ -30,8 +30,7 @@
     ></script> 
   
     <link rel="stylesheet" type="text/css" href="{{ asset('css/lib/signature.css') }}">
-    <link  rel="stylesheet" type="text/css" href="{{ asset('css/lib/toastr.css') }}"/>
-    
+    <link  rel="stylesheet" type="text/css" href="{{ asset('css/lib/toastr.css') }}"/> 
   </head>
   <body>
   <script

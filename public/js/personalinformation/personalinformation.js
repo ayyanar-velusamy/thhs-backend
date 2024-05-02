@@ -2,12 +2,12 @@ var sig;
 $(document).on('submit','form',function(e){
 	var btn = $("#personal_info_submit");
 	var btn_text = btn.text();
-	if($(this).hasClass('ajax-form')){
+	if ($(this).hasClass('ajax-form')) {
 		e.preventDefault()
 		let url = $(this).attr('action');
-		let target = ('#'+$(this).attr('id') == '#undefined') ? 'body' : '#'+$(this).attr('id');
+		let target = ('#' + $(this).attr('id') == '#undefined') ? 'body' : '#' + $(this).attr('id');
 		let myEle = document.getElementById("inputFile");
-		var formData = new FormData(this);   
+		var formData = new FormData(this);
 		btn.text("Loading..");
 		btn.prop('disabled', true);
 		$.ajax({
@@ -17,24 +17,24 @@ $(document).on('submit','form',function(e){
 			// redirect: true,
 			// disableButton: true,
 			// file: true,
-			data: formData, 
+			data: formData,
 			contentType: false,
-			dataType:'json',
+			dataType: 'json',
 			processData: false,
-			success: function(data){
-			
-				if(data.status){
+			success: function (data) {
+
+				if (data.status) {
 					toastr.success(data.message)
 					if(data.redirect_url != ""){
 						reload_page(data.redirect_url);
 					}else{
 						reload_page();
 					}
-				}else{
+				} else {
 					toastr.error(data.message)
 					reload_page();
 				}
-				
+
 			}
 		});
 	}

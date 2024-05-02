@@ -267,6 +267,7 @@ $(document).on('click','#personal_info_submit' ,function(){
 			"reference_phone[1]":{
 				required: true,
 			},
+<<<<<<< HEAD
 
 			
 			"education_type[0]":{
@@ -287,6 +288,11 @@ $(document).on('click','#personal_info_submit' ,function(){
 			// signature_file:{
 			// 	required: true,	
 			// },
+=======
+			resume:{
+				required: true,	
+			},
+>>>>>>> f6a7fb030765a20ca93888b69a587566bc21ee81
 			signed:{
 				required: true,	
 			}
@@ -407,6 +413,7 @@ $(document).on('click','#personal_info_submit' ,function(){
 			resume:{
 				required: "Resume cannot be empty"
 			}
+			
 
 
 			// password:{
