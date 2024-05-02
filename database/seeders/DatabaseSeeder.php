@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             PositionSeeder::class,
-            LanguageSeeder::class
+            LanguageSeeder::class,
+            ProspectStatusSeeder::class
         ]);
     }
 }

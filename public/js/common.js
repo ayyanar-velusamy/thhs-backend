@@ -19,7 +19,7 @@ $(function () {
 });
 
 $(function () {
-  $("#datepicker , #start_date , #influeza_vaccine_date, #hepatitis_vaccine_date, #interview_date_div, #confirm_interview_date_div")
+  $("#datepicker , #start_date , #influeza_vaccine_date, #hepatitis_vaccine_date, #date_completed")
     .datepicker({
       format: "mm/dd/yyyy",
       autoclose: true,
@@ -30,15 +30,15 @@ $(function () {
       }
     })
 
-    // $("#confirm_interview_date_div").datetimepicker({
-    //   format: "mm/dd/yyyy H:i:s",
-    //   autoclose: true,
-    //   todayHighlight: true,
-    //   onSelect: function(value, date) {
-    //   date.dpDiv.find('.ui-datepicker-current-day a')
-    //       .css('background-color', 'green');
-    //   }
-    // })
+    $("#interview_date, #interview_date_div").datetimepicker({
+      format: "m/d/Y H:i",
+      autoclose: true,
+      todayHighlight: true,
+      onSelect: function(value, date) {
+      date.dpDiv.find('.ui-datepicker-current-day a')
+          .css('background-color', 'green');
+      }
+    })
     // .datepicker("update", new Date());
 
    
@@ -49,6 +49,8 @@ $(function () {
       $("#no_textarea").hide();
     }
 
+    $(".influenza_reason").hide();
+    $(".hepatitis_reason").hide();
     if($("input[name='had_influeza_vaccine']:checked").val() == 1){
       $(".influenza_reason").hide();
       $(".influenza_date").show();
@@ -103,6 +105,18 @@ function toggle_hepatitis(value){
   }
 }
 
+function reload_page($url){
+  if($url){
+    setTimeout(function () {
+      location.href = $url
+    }, 3000);
+  }else{
+    setTimeout(function () {
+      location.reload()
+    }, 3000);
+  }
+  
+}
 
 // new DataTable('#datatable');
 $('#datatable').dataTable( {
@@ -113,25 +127,15 @@ $('#datatable').dataTable( {
     "bSort": false,
     "orderable": false
     } ],
+    "columnDefs": [
+      {"className": "dt-center", "targets": "_all"}
+    ],
     autoWidth: false,
   initComplete: function () {
     this.api()
         .columns()
         .every(function () {
             let column = this;
-            // let title = column.footer().textContent;
-
-            // Create input element
-            // let input = document.createElement('input');
-            // input.placeholder = title;
-            // column.footer().replaceChildren(input);
-
-            // Event listener for user input
-            // input.addEventListener('keyup', () => {
-            //     if (column.search() !== this.value) {
-            //         column.search(input.value).draw();
-            //     }
-            // });
         });
 }
 });

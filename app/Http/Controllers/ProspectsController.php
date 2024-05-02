@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddProspectRequest;
 
 use App\Mail\InterviewMail;
+use App\Mail\PersonalInfoEmail;
 use App\Models\EmergencyContacts;
 use App\Models\Language;
 use App\Models\Position;
+use App\Models\ProfessionalReferences;
+use App\Models\ProspectStatus;
 use App\Models\User;
+use App\Models\UserEducation;
 use App\Models\WorkHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,9 +40,20 @@ class ProspectsController extends BaseController
     {
         $prospect_list = User::all()->sortByDesc("id");
         $positions = Position::all();
+        $prospect_statuses = ProspectStatus::all();
         foreach ($prospect_list as $prospect) {
-            $position = Position::where("id", $prospect->position)->first()->position;
-            $prospect->position = $position;
+            $position = Position::where("id", $prospect->position)->first();
+            $prospect->short_name = $position->short_name;
+            $prospect->position = $position->position;
+        }
+        foreach ($prospect_list as $prospect) {
+            $prospect_status = ProspectStatus::where("id", $prospect->prospect_status)->first();
+            if($prospect_status){
+                $prospect->prospect_status = $prospect_status->status;
+            }else{
+                $prospect->prospect_status = "Active";
+            }
+            
         }
         return view('prospects/prospect', compact("prospect_list", "positions"));
     }
@@ -70,7 +85,7 @@ class ProspectsController extends BaseController
         // pr($request->all(),1);
 
         if ($user->save()) {   
-            // Mail::to($user->email)->send(new PersonalInfoEmail($user));
+            Mail::to($user->email)->send(new PersonalInfoEmail($user));
             $this->response['status'] = true;
             $this->response['message'] = "Prospect added successfully"; 
         } else {
@@ -97,7 +112,7 @@ class ProspectsController extends BaseController
         $user->ssn = $request->input('ssn');
         $user->employement_authorization = $request->input('employeement_authorization');
         $user->corporation_name = $request->input('corporation_name');
-        $user->name = $request->input('firstname') . $request->input('middlename') . $request->input('lastname'); 
+        $user->name = $request->input('firstname') . " " . $request->input('lastname'); 
         // $user->email = $request->input('email');  
         $user->position = $request->input('position');  
         $user->tax_id = $request->input('tax_id');  
@@ -127,9 +142,10 @@ class ProspectsController extends BaseController
      
         if($user->save()){ 
            
-           
-            $this->save_work_history_data($request,$id);
-            $this->save_emergency_contacts($request,$id);
+            $this->save_user_education($request);
+            $this->save_professional_references($request);
+            $this->save_work_history_data($request);
+            $this->save_emergency_contacts($request);
             
             $this->response['status']   = true;
             $this->response['message']  = "Prospect details updated successfully";
@@ -145,15 +161,20 @@ class ProspectsController extends BaseController
     {
         $languages = Language::all();
         $positions = Position::all();
-        $user = User::with("emergency_contacts")->with("work_history")->findOrFail($id);
+        $user = User::with("emergency_contacts")
+                    ->with("work_history")
+                    ->with("user_education")
+                    ->with("professional_references")
+                    ->findOrFail($id);
+        // pr($user,1);
         return ["languages" => $languages, "user" => $user, "positions" => $positions];
     }
 
     public function schedule_interview(Request $request, $id)
     {
         $user = User::find($id);
-        $user->interview_schedule_date = update_date_format($request->input('interview_date'), "Y-m-d");
-
+        $user->interview_schedule_date = update_date_format($request->input('interview_date'), "Y-m-d H:i");
+        $user->prospect_status = 5;
         if($user->save()){ 
             Mail::to($user->email)->send(new InterviewMail($user));
             $this->response['status'] = true;
@@ -172,7 +193,8 @@ class ProspectsController extends BaseController
     public function confirm_interview(Request $request, $id)
     {
         $user = User::find($id);
-        $user->interview_confirm_date = update_date_format($request->input('interview_date'), "Y-m-d");
+        $user->interview_confirm_date =update_date_format($request->input('interview_date'), "Y-m-d H:i");
+        $user->prospect_status = 6;
         
         if($user->save()){ 
             $user->mail = "confirm_interview";
@@ -193,28 +215,98 @@ class ProspectsController extends BaseController
     public function cancel_interview(Request $request, $id)
     {
             $user = User::find($id);
+            $user->prospect_status = 7;
         // $user->interview_confirm_date = update_date_format($request->input('interview_date'), "Y-m-d");
         
-        
+        if($user->save()){ 
             $user->mail = "cancel_interview";
             Mail::to($user->email)->send(new InterviewMail($user));
             $this->response['status'] = true;
             $this->response['message'] = "Interview Cancelled";
-            $this->response['redirect_url'] = route('prospects.demographics', [$user->id]);
             
-        // }else{
-        //     $this->response['status'] = false;
-        //     $this->response['message'] = "Interview Confirmation Failed";
-        //     $this->response['redirect_url'] = route('prospects.demographics', [$user->id]);
-        // }
+            
+        }else{
+            $this->response['status'] = false;
+            $this->response['message'] = "Interview Confirmation Failed";
+            
+        }
         return $this->response();
         
     }
+
+    public function reject_prospect(Request $request, $id)
+    {
+            $user = User::find($id);
+            $user->prospect_status = 9;
+        // $user->interview_confirm_date = update_date_format($request->input('interview_date'), "Y-m-d");
+        
+        if($user->save()){ 
+            // $user->mail = "cancel_interview";
+            // Mail::to($user->email)->send(new InterviewMail($user));
+            $this->response['status'] = true;
+            $this->response['message'] = "Prospect Rejected";
+            
+            
+        }else{
+            $this->response['status'] = false;
+            $this->response['message'] = "Prospect Rejection Failed";
+            
+        }
+        return $this->response();
+        
+    }
+    public function reapply_prospect(Request $request, $id)
+    {
+            $user = User::find($id);
+            $user->prospect_status = 11;
+        // $user->interview_confirm_date = update_date_format($request->input('interview_date'), "Y-m-d");
+        
+        if($user->save()){ 
+            // $user->mail = "cancel_interview";
+            // Mail::to($user->email)->send(new InterviewMail($user));
+            $this->response['status'] = true;
+            $this->response['message'] = "Prospect changed to Re Apply";
+            
+            
+        }else{
+            $this->response['status'] = false;
+            $this->response['message'] = "Prospect status updation Failed";
+            
+        }
+        return $this->response();
+        
+    }
+
+    public function archive_prospect(Request $request, $id)
+    {
+            $user = User::find($id);
+            $user->prospect_status = 10;
+        // $user->interview_confirm_date = update_date_format($request->input('interview_date'), "Y-m-d");
+        
+        if($user->save()){ 
+            // $user->mail = "cancel_interview";
+            // Mail::to($user->email)->send(new InterviewMail($user));
+            $this->response['status'] = true;
+            $this->response['message'] = "Prospect archived";
+            
+            
+        }else{
+            $this->response['status'] = false;
+            $this->response['message'] = "Prospect archive Failed";
+            
+        }
+        return $this->response();
+        
+    }
+
+    
+    
 
     public function hire_prospect(Request $request)
     {
         $user = User::find($request->input('user_id'));
         $user->hire_date = update_date_format($request->input('hire_date'), "Y-m-d");
+        $user->prospect_status = 12;
         
         if($user->save()){ 
             $this->response['status'] = true;
@@ -228,12 +320,25 @@ class ProspectsController extends BaseController
         
     }
 
+    public function save_professional_references($request){
+        $references = array_filter($request->input("reference_relationship"));
+        foreach($references as $key => $reference){
+            $user_references = new ProfessionalReferences;
+            $user_references->user_id = Auth::user()->id;
+            $user_references->relationship_id = $reference;
+            $user_references->name = $request->input("reference_name")[$key];
+            $user_references->email = $request->input("reference_email")[$key];
+            $user_references->phone = $request->input("reference_phone")[$key];
+           
+            $user_references->save();
+        }
+    }
 
-    public function save_work_history_data($request,$id){
+    public function save_work_history_data($request){
         $employers = array_filter($request->input("employer"));
         foreach($employers as $key => $employer){
             $work_history = new WorkHistory;
-            $work_history->user_id = $id;
+            $work_history->user_id = Auth::user()->id;
             $work_history->employer_name = $employer;
             $work_history->position = $request->input("prev_position")[$key];
             $work_history->supervisor_name = $request->input("supervisor")[$key];
@@ -244,12 +349,27 @@ class ProspectsController extends BaseController
         }
     }
 
-    public function save_emergency_contacts($request,$id){
+    public function save_user_education($request){
+        $education_types = array_filter($request->input("education_type"));
+        // pr($education_types,1);
+        foreach($education_types as $key => $education_type){
+            $user_education = new UserEducation;
+            $user_education->user_id = Auth::user()->id;
+            $user_education->type_id = $education_type;
+            $user_education->name = $request->input("education_name")[$key];
+            $user_education->date_completed =  update_date_format($request->input("education_date_completed")[$key],"Y-m-d");
+            $user_education->degree_id = $request->input("education_degree")[$key];
+           
+            $user_education->save();
+        }
+    }
+
+    public function save_emergency_contacts($request){
         $relationships = array_filter($request->input("relationship"));
         foreach($relationships as $key => $relationship){
             $work_history = new EmergencyContacts;
-            $work_history->user_id = $id;
-            $work_history->relationship = $relationship;
+            $work_history->user_id = Auth::user()->id;
+            $work_history->relationship_id = $relationship;
             $work_history->relationship_name = $request->input("relationship_name")[$key];
             $work_history->relationship_email = $request->input("relationship_email")[$key];
             $work_history->relationship_phone = $request->input("relationship_phone")[$key];

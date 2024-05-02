@@ -31,18 +31,14 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"
   ></script>
-  <script
-  src="https://code.jquery.com/jquery-3.6.1.min.js"
-  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-  crossorigin="anonymous"
-></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
  
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
   crossorigin="anonymous"
 ></script>
-    <script src="{{ asset('js/lib/bootstrap.bundle.min.js') }}" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- <script src="{{ asset('js/lib/bootstrap.bundle.min.js') }}" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
     <script src="{{ asset('js/lib/dataTables.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
     <script src="{{ asset('js/validation.js') }}"></script>
@@ -212,20 +208,19 @@
         </div>
       </div>
   </body>
-  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/lib/jquery.datetimepicker.min.css') }}" />
+<script type="text/javascript" src="{{ asset('js/lib/jquery.datetimepicker.full.min.js') }}"></script>
   <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
   <script src="{{ asset('js/common.js') }}"></script>
    <script type="text/javascript" src="{{ asset('js/lib/toastr.min.js') }}"></script> 
    <script src="{{ asset('js/helper.js') }}"></script>
-  {{-- <script type="text/javascript"> 
-    toastr.options = {
+  <script type="text/javascript"> 
+      toastr.options = {
       "closeButton": false,
       "debug": false,
       "newestOnTop": false,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
+      "progressBar": false,
+      "positionClass": "toast-top-center",
       "preventDuplicates": false,
       "onclick": null,
       "showDuration": "300",
@@ -237,7 +232,7 @@
       "showMethod": "fadeIn",
       "hideMethod": "fadeOut"
     }
-  </script>  --}}
+  </script>  
   {{  moduleJs() }}
   <script type="text/javascript"> 
     $.ajaxSetup({

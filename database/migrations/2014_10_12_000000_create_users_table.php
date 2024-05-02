@@ -37,6 +37,7 @@ class CreateUsersTable extends Migration
             $table->string('business')->nullable(); 
             $table->bigInteger('cellular')->nullable();
             $table->string('signature_path')->nullable();
+            $table->string('resume_path')->nullable(); 
             $table->string('start_date')->nullable();
             $table->integer('has_convicted_felony')->nullable();
             $table->string('convicted_reason')->nullable();
@@ -52,9 +53,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('is_admin')->default('0'); 
             $table->integer('status')->default('0'); 
-            $table->date('interview_schedule_date')->nullable(); 
+            $table->dateTime('interview_schedule_date')->nullable(); 
             $table->date('interview_confirm_date')->nullable(); 
             $table->date('hire_date')->nullable(); 
+            $table->integer('prospect_status')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
         });

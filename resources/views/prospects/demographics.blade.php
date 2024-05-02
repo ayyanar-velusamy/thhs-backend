@@ -16,8 +16,8 @@
     <a href="#" data-toggle="modal" data-target="#scheduleIntModal">Schedule Interview</a>
     <a href="#" data-toggle="modal" data-target="#ConfirmIntModal">Confirm Interview</a>
     <a href="#" id="cancel_interview_btn" data-toggle="modal" data-url="{{@route('prospects.cancel_interview',[$user->id])}}" onclick="confirm_cancel_interview()">Cancel Interview</a>
-    <a href="#" data-toggle="modal" data-target="#ConfirmModal">Reject</a>
-    <a href="#" data-toggle="modal" data-target="#ConfirmModal">Re-apply</a>
+    <a href="#" id="reject_prospect_btn" data-toggle="modal" data-url="{{@route('prospects.reject_prospect',[$user->id])}}" onclick="confirm_reject_prospect()">Reject</a>
+    <a href="#" id="reapply_prospect_btn" data-toggle="modal" data-url="{{@route('prospects.reapply_prospect',[$user->id])}}" onclick="confirm_reapply_prospect()">Re-apply</a>
 <!-- <a href="#">Save Information</a> -->
 <div class="btn-wrap">
         <button id="demographics_submit">Save Information</button>
@@ -305,36 +305,326 @@
         </div>
 
     </div>
+    <h3 class="heading-bg">Education</h3>
+    <div class="form-wrapper four_grid ">
+        <!-- Education 1-->
+        <div class="field-wrapper">
+            <label for="education_type">Type</label><span class="mandate">*</span>
+            <select required name="education_type[0]" class="select-control">
+                <option value="">Select Type</option>
+                
+                @foreach (get_education_type_list() as $type)
+                    @if (@$type["id"] == @$user->user_education[0]->id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    
+                    <option value="{{ $type['id'] }}" {{$selected}}>{{ @$type['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="field-wrapper">
+            <label for="education_name">Name</label><span class="mandate">*</span>
+            <input type="text" id="education_name" value="{{ @$user->user_education[0]->name }}"
+                placeholder="Name" name="education_name[0]" />
+        </div>
+        <div class="field-wrapper">
+            <label for="education_date_completed">Date Completed</label><span class="mandate">*</span>
+            
+            <div id="date_completed" class="date" data-date-format="dd/mm/yyyy">
+                <input type="text" placeholder="Date" readonly value="{{ @update_date_format($user->user_education[0]->date_completed) }}" required name="education_date_completed[0]"/>
+                <span class="input-group-addon">
+                    <i class="icon icon-eye"></i>
+                </span>
+            </div>
+        </div>
+        <div class="field-wrapper">
+            <label for="education_degree">Degree</label><span class="mandate">*</span>
+            <select required name="education_degree[0]" class="select-control">
+                <option value="">Select Degree</option>
+                
+                @foreach (get_education_degree_list() as $degree)
+                    @if (@$degree["id"] == @$user->user_education[0]->degree_id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    <option value="{{ $degree['id'] }}" {{$selected}}>{{ @$degree['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <!-- Education 1-->
+        <!-- Education 2-->
+        <div class="field-wrapper">
+            <label for="education_type">Type</label>
+            <select name="education_type[1]" class="select-control">
+                <option value="">Select Type</option>
+                
+                @foreach (get_education_type_list() as $type)
+                    @if (@$type["id"] == @$user->user_education[1]->id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    <option value="{{ $type['id'] }}" {{$selected}}>{{ @$type['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="field-wrapper">
+            <label for="education_name">Name</label>
+            <input type="text" id="education_name" value="{{ @$user->user_education[1]->name }}"
+                placeholder="Name" name="education_name[1]" />
+        </div>
+        <div class="field-wrapper">
+            <label for="education_date_completed">Date Completed</label>
+            
+            <div id="date_completed" class="date" data-date-format="dd/mm/yyyy">
+                <input type="text" placeholder="Date" readonly value="{{ @update_date_format($user->user_education[1]->date_completed)}}"  name="education_date_completed[1]"/>
+                <span class="input-group-addon">
+                    <i class="icon icon-eye"></i>
+                </span>
+            </div>
+        </div>
+        <div class="field-wrapper">
+            <label for="education_degree">Degree</label>
+            <select  name="education_degree[1]" class="select-control">
+                <option value="">Select Degree</option>
+                
+                @foreach (get_education_degree_list() as $degree)
+                    @if (@$degree["id"] == @$user->user_education[1]->degree_id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    <option value="{{ $degree['id'] }}" {{$selected}}>{{ @$degree['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <!-- Education 2-->
+        <!-- Education 3-->
+        <div class="field-wrapper">
+            <label for="education_type">Type</label>
+            <select  name="education_type[2]" class="select-control">
+                <option value="">Select Type</option>
+                
+                @foreach (get_education_type_list() as $type)
+                    @if (@$type["id"] == @$user->user_education[2]->id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    <option value="{{ $type['id'] }}" {{$selected}}>{{ @$type['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="field-wrapper">
+            <label for="education_name">Name</label>
+            <input type="text" id="education_name" value="{{ @$user->user_education[2]->name }}"
+                placeholder="Name" name="education_name[2]" />
+        </div>
+        <div class="field-wrapper">
+            <label for="education_date_completed">Date Completed</label>
+            
+            <div id="date_completed" class="date" data-date-format="dd/mm/yyyy">
+                <input type="text" placeholder="Date" readonly value="{{ @update_date_format($user->user_education[2]->date_completed)}}" name="education_date_completed[2]"/>
+                <span class="input-group-addon">
+                    <i class="icon icon-eye"></i>
+                </span>
+            </div>
+        </div>
+        <div class="field-wrapper">
+            <label for="education_degree">Degree</label>
+            <select  name="education_degree[2]" class="select-control">
+                <option value="">Select Degree</option>
+                
+                @foreach (get_education_degree_list() as $degree)
+                    @if (@$degree["id"] == @$user->user_education[2]->degree_id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    <option value="{{ $degree['id'] }}" {{$selected}}>{{ @$degree['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <!-- Education 3-->
+    </div>
+    <h3 class="heading-bg">Professional References</h3>
+    <div class="form-wrapper four_grid ">
+        <!-- References 1-->
+        <div class="field-wrapper">
+            <label for="employer">Relationship</label><span class="mandate">*</span>
+            <select required name="reference_relationship[0]" class="select-control">
+                <option value="">Select Relationship</option>
+                
+                @foreach (get_professional_relationships_list() as $relationship)
+                    @if (@$relationship["id"] == @$user->professional_references[0]->relationship_id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    <option value="{{ $relationship['id'] }}" {{$selected}}>{{ @$relationship['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="field-wrapper">
+            <label for="reference_name">Name</label><span class="mandate">*</span>
+            <input type="text"  value="{{ @$user->professional_references[0]->name }}"
+                placeholder="Name" name="reference_name[0]" />
+        </div>
+        <div class="field-wrapper">
+            <label for="reference_email">Email</label><span class="mandate">*</span>
+            <input type="email"  value="{{ @$user->professional_references[0]->email }}"
+                placeholder="Email" name="reference_email[0]" />
+        </div>
+        <div class="field-wrapper">
+            <label for="reference_phone">Phone</label><span class="mandate">*</span>
+            <input type="text"  value="{{ @$user->professional_references[0]->phone }}"
+                name="reference_phone[0]" placeholder="Phone" />
+        </div>
+
+        <!-- References 1-->
+
+        <!-- References 2-->
+        <div class="field-wrapper">
+            <label for="employer">Relationship</label><span class="mandate">*</span>
+            <select required name="reference_relationship[1]" class="select-control">
+                <option value="">Select Relationship</option>
+                
+                @foreach (get_professional_relationships_list() as $relationship)
+                    @if (@$relationship["id"] == @$user->professional_references[1]->relationship_id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    <option value="{{ $relationship['id'] }}" {{$selected}}>{{ @$relationship['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="field-wrapper">
+            <label for="reference_name">Name</label><span class="mandate">*</span>
+            <input type="text" id="reference_name" value="{{ @$user->professional_references[1]->name }}"
+                placeholder="Name" name="reference_name[1]" />
+        </div>
+        <div class="field-wrapper">
+            <label for="reference_email">Email</label><span class="mandate">*</span>
+            <input type="email" id="reference_email" value="{{ @$user->professional_references[1]->email }}"
+                placeholder="Email" name="reference_email[1]" />
+        </div>
+        <div class="field-wrapper">
+            <label for="reference_phone">Phone</label><span class="mandate">*</span>
+            <input type="text" id="reference_phone" value="{{ @$user->professional_references[1]->phone }}"
+                name="reference_phone[1]" placeholder="Phone" />
+        </div>
+
+        <!-- References 2-->
+
+        <!-- References 3-->
+        <div class="field-wrapper">
+            <label for="employer">Relationship</label>
+            <select  name="reference_relationship[3]" class="select-control">
+                <option value="">Select Relationship</option>
+                
+                @foreach (get_professional_relationships_list() as $relationship)
+                    @if (@$relationship["id"] == @$user->professional_references[2]->relationship_id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    <option value="{{ $relationship['id'] }}" {{$selected}}>{{ @$relationship['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="field-wrapper">
+            <label for="reference_name">Name</label>
+            <input type="text" id="reference_name" value="{{ @$user->professional_references[2]->name }}"
+                placeholder="Name" name="reference_name[3]" />
+        </div>
+        <div class="field-wrapper">
+            <label for="reference_email">Email</label>
+            <input type="text" id="reference_email" value="{{ @$user->work_history[2]->email}}"
+                placeholder="Email" name="reference_email[3]" />
+        </div>
+        <div class="field-wrapper">
+            <label for="reference_phone">Phone</label>
+            <input type="email" id="reference_phone" value="{{ @$user->professional_references[2]->phone }}"
+                name="reference_phone[3]" placeholder="Phone" />
+        </div>
+
+        <!-- References 3-->
+
+
+    </div>
     <h3 class="heading-bg">Work History (Last 3 years)</h3>
     <div class="form-wrapper six_grid ">
         <!-- Employer 1-->
         <div class="field-wrapper">
-            <label for="employer">Employer</label><span class="mandate">*</span>
+            <label for="employer">Employer</label>
             <input type="text" id="employer" value="{{ @$user->work_history[0]->employer_name }}"
-                name="employer[0]" placeholder="Employer" required class="employer" />
+                name="employer[0]" placeholder="Employer"  class="employer" />
         </div>
         <div class="field-wrapper">
-            <label for="position">Position</label><span class="mandate">*</span>
+            <label for="position">Position</label>
             <input type="text" id="position" value="{{ @$user->work_history[0]->position }}"
                 placeholder="Position" name="prev_position[0]" />
         </div>
         <div class="field-wrapper">
-            <label for="supervisor">Supervisors Name</label><span class="mandate">*</span>
+            <label for="supervisor">Supervisors Name</label>
             <input type="text" id="supervisor" value="{{ @$user->work_history[0]->supervisor_name }}"
                 placeholder="Supervisors Name" name="supervisor[0]" />
         </div>
         <div class="field-wrapper">
-            <label for="email">Email</label><span class="mandate">*</span>
+            <label for="email">Email</label>
             <input type="email" id="email" value="{{ @$user->work_history[0]->employer_email }}"
                 name="employer_email[0]" placeholder="Email" />
         </div>
         <div class="field-wrapper">
-            <label for="Fax">Fax</label><span class="mandate">*</span>
+            <label for="Fax">Fax</label>
             <input type="text" id="Fax" value="{{ @$user->work_history[0]->employer_fax }}"
                 name="employer_fax[0]" placeholder="Fax" />
         </div>
         <div class="field-wrapper">
-            <label for="Phone no">Phone no</label><span class="mandate">*</span>
+            <label for="Phone no">Phone no</label>
             <input type="number" id="Phone_no" value="{{ @$user->work_history[0]->employer_phone }}"
                 placeholder="Phone no" name="employer_phone[0]" />
         </div>
@@ -401,7 +691,7 @@
                 name="employer_fax[2]" placeholder="Fax" />
         </div>
         <div class="field-wrapper">
-            <label for="Phone no">Phone no</label><span class="mandate">*</span>
+            <label for="Phone no">Phone no</label>
             <input type="number" id="Phone_no" value="{{ @$user->work_history[2]->employer_phone }}"
                 placeholder="Phone no" name="employer_phone[2]" />
         </div>
@@ -422,50 +712,80 @@
     </div>
     <h3 class="heading-bg">Emergency Contacts</h3>
     <div class="form-wrapper four_grid">
-        @foreach (@$user->emergency_contacts as $emergency_contact)
-            <div class="field-wrapper">
-                <label for="Relationship">Relationship</label><span class="mandate">*</span>
-                <input type="text" id="Relationship" value="{{ $emergency_contact->relationship }}"
-                    placeholder="Relationship" name="relationship[0]" required />
-            </div>
-            <div class="field-wrapper">
-                <label for="name">Name </label><span class="mandate">*</span>
-                <input type="text" id="name" value="{{ $emergency_contact->relationship_name }}"
-                    placeholder="Name" name="relationship_name[0]" required />
-            </div>
-            <div class="field-wrapper">
-                <label for="name">Email </label><span class="mandate">*</span>
-                <input type="email" id="name" value="{{ $emergency_contact->relationship_email }}"
-                    placeholder="Email" name="relationship_email[0]" required />
-            </div>
-            <div class="field-wrapper">
-                <label for="phone">Phone </label><span class="mandate">*</span>
-                <input type="number" id="phone" value="{{ $emergency_contact->relationship_phone }}"
-                    placeholder="Phone" name="relationship_phone[0]" required />
-            </div>
-        @endforeach
+        <div class="field-wrapper">
+            <label for="Relationship">Relationship</label><span class="mandate">*</span>
+            <!-- <input type="text" id="Relationship" value="{{ @$emergency_contact->relationship }}"
+                placeholder="Relationship" name="relationship[0]" required /> -->
+            <select  name="relationship[0]" class="select-control">
+                <option value="">Select Relationship</option>
+                
+                @foreach (get_emergency_contact_list() as $relationship)
+                    @if (@$relationship["id"] == @$user->emergency_contacts[0]->id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    <option value="{{ $relationship['id'] }}" {{$selected}}>{{ @$relationship['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="field-wrapper">
+            <label for="name">Name </label><span class="mandate">*</span>
+            <input type="text" value="{{ @$user->emergency_contacts[0]->relationship_name }}"
+                placeholder="Name" name="relationship_name[0]" required />
+        </div>
+        <div class="field-wrapper">
+            <label for="name">Email </label><span class="mandate">*</span>
+            <input type="email" value="{{ @$user->emergency_contacts[0]->relationship_email }}"
+                placeholder="Email" name="relationship_email[0]" required />
+        </div>
+        <div class="field-wrapper">
+            <label for="phone">Phone </label><span class="mandate">*</span>
+            <input type="number" id="phone" value="{{ @$user->emergency_contacts[0]->relationship_phone }}"
+                placeholder="Phone" name="relationship_phone[0]" required />
+        </div>
 
-        <div class="field-wrapper">
-            <label for="Relationship">Relationship</label>
-            <input type="text" id="Relationship" value="" placeholder="Relationship"
-                name="relationship[1]" />
-        </div>
-        <div class="field-wrapper">
-            <label for="relationship_name">Name</label>
-            <input type="text" id="relationship_name" value="" placeholder="Name"
-                name="relationship_name[1]" />
-        </div>
-        <div class="field-wrapper">
-            <label for="relationship_email">Email </label>
-            <input type="email" id="relationship_email" value="" placeholder="Email"
-                name="relationship_email[1]" />
-        </div>
-        <div class="field-wrapper">
-            <label for="relationship_phone">Phone </label>
-            <input type="number" id="relationship_phone" value="" placeholder="Phone"
-                name="relationship_phone[1]" />
-        </div>
+    <div class="field-wrapper">
+        <label for="Relationship">Relationship</label>
+        <!-- <input type="text" id="Relationship" value="" placeholder="Relationship"
+            name="relationship[1]" /> -->
+            <select  name="relationship[1]" class="select-control">
+                <option value="">Select Relationship</option>
+                
+                @foreach (get_emergency_contact_list() as $relationship)
+                    @if (@$relationship["id"] == @$user->emergency_contacts[1]->id)
+                        @php
+                            $selected = 'selected';
+                        @endphp
+                    @else
+                        @php
+                            $selected = '';
+                        @endphp
+                    @endif
+                    <option value="{{ $relationship['id'] }}" >{{ @$relationship['name'] }}</option>
+                @endforeach
+            </select>
     </div>
+    <div class="field-wrapper">
+        <label for="relationship_name">Name</label>
+        <input type="text" id="relationship_name" value="{{@$user->emergency_contacts[1]->relationship_name}}" placeholder="Name"
+            name="relationship_name[1]" />
+    </div>
+    <div class="field-wrapper">
+        <label for="relationship_email">Email </label>
+        <input type="email" id="relationship_email" value="{{@$user->emergency_contacts[1]->relationship_email}}" placeholder="Email"
+            name="relationship_email[1]" />
+    </div>
+    <div class="field-wrapper">
+        <label for="relationship_phone">Phone </label>
+        <input type="number" id="relationship_phone" value="{{@$user->emergency_contacts[1]->relationship_phone}}" placeholder="Phone"
+            name="relationship_phone[1]" />
+    </div>
+</div>
 
     <h3 class="heading-bg">Medical Information</h3>
     <div class="form-wrapper single_row">
@@ -496,12 +816,8 @@
             <label for="influeza_vaccine_date">Vaccinated Date<span class="mandate">*</span></label>
 
             <div id="influeza_vaccine_date" class="date" data-date-format="mm/dd/yyyy">
-                @php
-                    $influeza_vaccine_date = strtotime($user->influeza_vaccine_date);
-                    $influeza_vaccine_date = date('m/d/Y', $influeza_vaccine_date);
-                @endphp
                 <input type="text" readonly name="influeza_vaccine_date"
-                    value="{{ $influeza_vaccine_date }}" />
+                    value="{{ @update_date_format($user->influeza_vaccine_date) }}" />
                 <span class="input-group-addon">
                     <i class="icon icon-eye"></i>
                 </span>
@@ -537,11 +853,8 @@
         <div class="field-wrapper w-25 hepatitis_date">
             <label for="hepatitis_vaccine_date">Vaccinated date<span class="mandate">*</span></label>
             <div id="hepatitis_vaccine_date" class="date" data-date-format="mm/dd/yyyy">
-                @php
-                    $hepatitis_vaccine_date = strtotime($user->hepatitis_vaccine_date);
-                    $hepatitis_vaccine_date = date('m/d/Y', $hepatitis_vaccine_date);
-                @endphp
-                <input type="text" readonly name="hepatitis_vaccine_date" value="{{ $hepatitis_vaccine_date }}" />
+                
+                <input type="text" readonly name="hepatitis_vaccine_date" value="{{ @update_date_format($user->hepatitis_vaccine_date) }}" />
                 <span class="input-group-addon">
                     <i class="icon icon-eye"></i>
                 </span>
@@ -578,7 +891,7 @@
                   
                   <div class="field-wrapper">
                     <label for="fname">Interview Date/Time</label>
-                    <div id="interview_date_div" class="date" data-date-format="mm/dd/yyyy H:i:s">
+                    <div id="interview_date_div" class="date" data-date-format="mm/dd/yyyy H:i">
                       <input required type="text" name="interview_date" id="interview_date" readonly placeholder="Interview Date" />
                       <span class="input-group-addon d-none">
                         <i class="icon icon-eye"></i>

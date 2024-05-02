@@ -45,7 +45,7 @@
                 <div class="field-wrapper">
                     <label for="fname">Birth date</label><span class="mandate">*</span>
                     <div id="datepicker" class="date" data-date-format="dd/mm/yyyy" style="height: 0">
-                        <input type="text" name="dob" readonly value="{{ $user->birth_date }}" required />
+                        <input type="text" name="dob" readonly value="{{@update_date_format($user->birth_date)}}" required />
                         <span class="input-group-addon">
                             <i class="icon icon-eye"></i>
                         </span>
@@ -214,26 +214,100 @@
                     </div>
                 </div>
                 <div class="field-wrapper position-relative">
-                    <label class="" for="">Signature:</label>
-                    <br/>
-                    <div id="sig" ></div>
-                    <br/>
-                    <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
-                    <textarea id="signature64" name="signed" style="opacity:0; height:0;"></textarea>
+
+                    <div class="btn-group custom_btn_toggle" role="group" aria-label="Basic radio toggle button group">
+
+                        <input type="radio" class="btn-check" name="signature_type"
+
+                            onchange="toggle_sign(event.target.value)" id="btnradio1" autocomplete="off" value="1"
+
+                            >
+
+                        <label class="btn btn-outline-primary toggle" for="btnradio1">Type</label>
+
+
+
+                        <input type="radio" class="btn-check" name="signature_type"
+
+                            onchange="toggle_sign(event.target.value)" id="btnradio2" value="2" autocomplete="off" checked>
+
+                        <label class="btn btn-outline-primary toggle" for="btnradio2">Draw</label>
+
+
+
+                        <input type="radio" class="btn-check" name="signature_type"
+
+                            onchange="toggle_sign(event.target.value)" id="btnradio3" value="3" autocomplete="off">
+
+                        <label class="btn btn-outline-primary toggle" for="btnradio3">Upload</label>
+
+                    </div>
+
+                    <div class="type_sign">
+
+                        <input type="text" class="" onkeyup="type_signature(event.target.value)" name="type_sign" id="type_sign" value="{{ @$user->firstname }}"  />
+
+                        <div class="typed sign_1" id="sign_1" onclick="text_to_image('sign_1')"></div>
+
+                        <div class="typed sign_2" id="sign_2" onclick="text_to_image('sign_2')"></div>
+
+                        <div class="typed sign_3" id="sign_3" onclick="text_to_image('sign_3')"></div>
+
+                        <div class="typed sign_4" id="sign_4" onclick="text_to_image('sign_4')"></div>
+
+                        {{-- <img id='image'> --}}
+
+                    </div>
+
+                    <div class="draw_sign">
+
+                        <div id="sig"></div>
+
+                        <br />
+
+                        <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
+
+                    </div> 
+
+                    <div class="upload_sign">
+
+                        <input type="file" class="" id="customFile" name="signature_file"
+
+                            placeholder="Upload Signature" onchange="previewFile('signature_file', 'signature64')" accept="image/*"/>
+
+                        <span class="with-icon"><i class="icon icon-upload"></i></span>
+
+                           {{-- <img id='image'> --}}
+
+                    </div>
+
+                    <textarea id="signature64" name="signed" style="opacity:0; height:0; position: absolute;"></textarea>
+
                 </div>
-                {{-- <div class="field-wrapper position-relative">
-                    <label for="customFile">Upload signature</label>
-                    <input type="file" class="" id="customFile" name="signature_file"
-                        placeholder="Upload Signature" required />
-                    <span class="with-icon"><i class="icon icon-upload"></i></span>
-                </div> --}}
+
+                
+
             </div>
+            <div class="form-wrapper">
+                <div class="field-wrapper position-relative">
+
+                    <label for="customFile">Upload Resume</label>
+    
+                    <input type="file" class="" id="customFile" name="resume"
+    
+                    placeholder="Upload Signature" accept=".doc, .docx, .pdf" required/>
+    
+                     <span class="with-icon"><i class="icon icon-upload"></i></span>  
+    
+                </div>
+            </div>
+            
             <h3 class="heading-bg">Position Information</h3>
             <div class="form-wrapper single_row">
                 <div class="field-wrapper w-25">
                     <label for="start_date">Date you can start</label><span class="mandate">*</span>
                     <div id="start_date" class="date" data-date-format="dd/mm/yyyy">
-                        <input type="text" readonly required name="start_date" value="{{ $user->start_date }}" />
+                        <input type="text" placeholder="Date" readonly required name="start_date" value="{{  @update_date_format($user->start_date) }}" />
                         <span class="input-group-addon">
                             <i class="icon icon-eye"></i>
                         </span>
@@ -306,36 +380,253 @@
                 </div>
 
             </div>
+            <h3 class="heading-bg">Education</h3>
+            <div class="form-wrapper four_grid ">
+                <!-- Education 1-->
+                <div class="field-wrapper">
+                    <label for="education_type">Type</label><span class="mandate">*</span>
+                    <select required name="education_type[0]" class="select-control">
+                        <option value="">Select Type</option>
+                        
+                        @foreach (get_education_type_list() as $type)
+                            
+                            <option value="{{ $type['id'] }}" >{{ @$type['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="field-wrapper">
+                    <label for="education_name">Name</label><span class="mandate">*</span>
+                    <input type="text" id="education_name" value=""
+                        placeholder="Name" name="education_name[0]" />
+                </div>
+                <div class="field-wrapper">
+                    <label for="education_date_completed">Date Completed</label><span class="mandate">*</span>
+                    
+                    <div id="date_completed" class="date" data-date-format="dd/mm/yyyy">
+                        <input type="text" placeholder="Date" readonly required name="education_date_completed[0]"/>
+                        <span class="input-group-addon">
+                            <i class="icon icon-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="field-wrapper">
+                    <label for="education_degree">Degree</label><span class="mandate">*</span>
+                    <select required name="education_degree[0]" class="select-control">
+                        <option value="">Select Degree</option>
+                        
+                        @foreach (get_education_degree_list() as $degree)
+                            
+                            <option value="{{ $degree['id'] }}" >{{ @$degree['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Education 1-->
+                <!-- Education 2-->
+                <div class="field-wrapper">
+                    <label for="education_type">Type</label>
+                    <select name="education_type[1]" class="select-control">
+                        <option value="">Select Type</option>
+                        
+                        @foreach (get_education_type_list() as $type)
+                            
+                            <option value="{{ $type['id'] }}" >{{ @$type['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="field-wrapper">
+                    <label for="education_name">Name</label>
+                    <input type="text" id="education_name" value=""
+                        placeholder="Name" name="education_name[1]" />
+                </div>
+                <div class="field-wrapper">
+                    <label for="education_date_completed">Date Completed</label>
+                    
+                    <div id="date_completed" class="date" data-date-format="dd/mm/yyyy">
+                        <input type="text" placeholder="Date" readonly  name="education_date_completed[1]"/>
+                        <span class="input-group-addon">
+                            <i class="icon icon-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="field-wrapper">
+                    <label for="education_degree">Degree</label>
+                    <select  name="education_degree[1]" class="select-control">
+                        <option value="">Select Degree</option>
+                        
+                        @foreach (get_education_degree_list() as $degree)
+                            
+                            <option value="{{ $degree['id'] }}" >{{ @$degree['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Education 2-->
+                <!-- Education 3-->
+                <div class="field-wrapper">
+                    <label for="education_type">Type</label>
+                    <select  name="education_type[2]" class="select-control">
+                        <option value="">Select Type</option>
+                        
+                        @foreach (get_education_type_list() as $type)
+                            
+                            <option value="{{ $type['id'] }}" >{{ @$type['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="field-wrapper">
+                    <label for="education_name">Name</label>
+                    <input type="text" id="education_name" value=""
+                        placeholder="Name" name="education_name[2]" />
+                </div>
+                <div class="field-wrapper">
+                    <label for="education_date_completed">Date Completed</label>
+                    
+                    <div id="date_completed" class="date" data-date-format="dd/mm/yyyy">
+                        <input type="text" placeholder="Date" readonly  name="education_date_completed[2]"/>
+                        <span class="input-group-addon">
+                            <i class="icon icon-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="field-wrapper">
+                    <label for="education_degree">Degree</label>
+                    <select  name="education_degree[2]" class="select-control">
+                        <option value="">Select Degree</option>
+                        
+                        @foreach (get_education_degree_list() as $degree)
+                            
+                            <option value="{{ $degree['id'] }}" >{{ @$degree['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Education 3-->
+            </div>
+            <h3 class="heading-bg">Professional References</h3>
+            <div class="form-wrapper four_grid ">
+                <!-- References 1-->
+                <div class="field-wrapper">
+                    <label for="employer">Relationship</label><span class="mandate">*</span>
+                    <select required name="reference_relationship[0]" class="select-control">
+                        <option value="">Select Relationship</option>
+                        
+                        @foreach (get_professional_relationships_list() as $relationship)
+                            
+                            <option value="{{ $relationship['id'] }}" >{{ @$relationship['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="field-wrapper">
+                    <label for="reference_name">Name</label><span class="mandate">*</span>
+                    <input type="text"  value="{{ @$user->work_history[0]->position }}"
+                        placeholder="Name" name="reference_name[0]" />
+                </div>
+                <div class="field-wrapper">
+                    <label for="reference_email">Email</label><span class="mandate">*</span>
+                    <input type="email"  value="{{ @$user->work_history[0]->supervisor_name }}"
+                        placeholder="Email" name="reference_email[0]" />
+                </div>
+                <div class="field-wrapper">
+                    <label for="reference_phone">Phone</label><span class="mandate">*</span>
+                    <input type="text"  value="{{ @$user->work_history[0]->employer_email }}"
+                        name="reference_phone[0]" placeholder="Phone" />
+                </div>
+
+                <!-- References 1-->
+
+                <!-- References 2-->
+                <div class="field-wrapper">
+                    <label for="employer">Relationship</label><span class="mandate">*</span>
+                    <select required name="reference_relationship[1]" class="select-control">
+                        <option value="">Select Relationship</option>
+                        
+                        @foreach (get_professional_relationships_list() as $relationship)
+                            
+                            <option value="{{ $relationship['id'] }}" >{{ @$relationship['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="field-wrapper">
+                    <label for="reference_name">Name</label><span class="mandate">*</span>
+                    <input type="text" id="reference_name" value="{{ @$user->work_history[0]->position }}"
+                        placeholder="Name" name="reference_name[1]" />
+                </div>
+                <div class="field-wrapper">
+                    <label for="reference_email">Email</label><span class="mandate">*</span>
+                    <input type="email" id="reference_email" value="{{ @$user->work_history[0]->supervisor_name }}"
+                        placeholder="Email" name="reference_email[1]" />
+                </div>
+                <div class="field-wrapper">
+                    <label for="reference_phone">Phone</label><span class="mandate">*</span>
+                    <input type="text" id="reference_phone" value="{{ @$user->work_history[0]->employer_email }}"
+                        name="reference_phone[1]" placeholder="Phone" />
+                </div>
+
+                <!-- References 2-->
+
+                <!-- References 3-->
+                <div class="field-wrapper">
+                    <label for="employer">Relationship</label>
+                    <select  name="reference_relationship[3]" class="select-control">
+                        <option value="">Select Relationship</option>
+                        
+                        @foreach (get_professional_relationships_list() as $relationship)
+                            
+                            <option value="{{ $relationship['id'] }}" >{{ @$relationship['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="field-wrapper">
+                    <label for="reference_name">Name</label>
+                    <input type="text" id="reference_name" value="{{ @$user->work_history[0]->position }}"
+                        placeholder="Name" name="reference_name[3]" />
+                </div>
+                <div class="field-wrapper">
+                    <label for="reference_email">Email</label>
+                    <input type="text" id="reference_email" value="{{ @$user->work_history[0]->supervisor_name }}"
+                        placeholder="Email" name="reference_email[3]" />
+                </div>
+                <div class="field-wrapper">
+                    <label for="reference_phone">Phone</label>
+                    <input type="email" id="reference_phone" value="{{ @$user->work_history[0]->employer_email }}"
+                        name="reference_phone[3]" placeholder="Phone" />
+                </div>
+
+                <!-- References 3-->
+
+
+            </div>
             <h3 class="heading-bg">Work History (Last 3 years)</h3>
             <div class="form-wrapper six_grid ">
                 <!-- Employer 1-->
                 <div class="field-wrapper">
-                    <label for="employer">Employer</label><span class="mandate">*</span>
+                    <label for="employer">Employer</label>
                     <input type="text" id="employer" value="{{ @$user->work_history[0]->employer_name }}"
-                        name="employer[0]" placeholder="Employer" required class="employer" />
+                        name="employer[0]" placeholder="Employer" class="employer" />
                 </div>
                 <div class="field-wrapper">
-                    <label for="position">Position</label><span class="mandate">*</span>
+                    <label for="position">Position</label>
                     <input type="text" id="position" value="{{ @$user->work_history[0]->position }}"
                         placeholder="Position" name="prev_position[0]" />
                 </div>
                 <div class="field-wrapper">
-                    <label for="supervisor">Supervisors Name</label><span class="mandate">*</span>
+                    <label for="supervisor">Supervisors Name</label>
                     <input type="text" id="supervisor" value="{{ @$user->work_history[0]->supervisor_name }}"
                         placeholder="Supervisors Name" name="supervisor[0]" />
                 </div>
                 <div class="field-wrapper">
-                    <label for="email">Email</label><span class="mandate">*</span>
+                    <label for="email">Email</label>
                     <input type="email" id="email" value="{{ @$user->work_history[0]->employer_email }}"
                         name="employer_email[0]" placeholder="Email" />
                 </div>
                 <div class="field-wrapper">
-                    <label for="Fax">Fax</label><span class="mandate">*</span>
+                    <label for="Fax">Fax</label>
                     <input type="text" id="Fax" value="{{ @$user->work_history[0]->employer_fax }}"
                         name="employer_fax[0]" placeholder="Fax" />
                 </div>
                 <div class="field-wrapper">
-                    <label for="Phone no">Phone no</label><span class="mandate">*</span>
+                    <label for="Phone no">Phone no</label>
                     <input type="number" id="Phone_no" value="{{ @$user->work_history[0]->employer_phone }}"
                         placeholder="Phone no" name="employer_phone[0]" />
                 </div>
@@ -369,7 +660,7 @@
                         name="employer_fax[1]" placeholder="Fax" />
                 </div>
                 <div class="field-wrapper">
-                    <label for="Phone no">Phone no</label><span class="mandate">*</span>
+                    <label for="Phone no">Phone no</label>
                     <input type="number" id="Phone_no" value="{{ @$user->work_history[1]->employer_phone }}"
                         placeholder="Phone no" name="employer_phone[1]" />
                 </div>
@@ -402,7 +693,7 @@
                         name="employer_fax[2]" placeholder="Fax" />
                 </div>
                 <div class="field-wrapper">
-                    <label for="Phone no">Phone no</label><span class="mandate">*</span>
+                    <label for="Phone no">Phone no</label>
                     <input type="number" id="Phone_no" value="{{ @$user->work_history[2]->employer_phone }}"
                         placeholder="Phone no" name="employer_phone[2]" />
                 </div>
@@ -423,33 +714,47 @@
             </div>
             <h3 class="heading-bg">Emergency Contacts</h3>
             <div class="form-wrapper four_grid">
-                @foreach (@$user->emergency_contacts as $emergency_contact)
                     <div class="field-wrapper">
                         <label for="Relationship">Relationship</label><span class="mandate">*</span>
-                        <input type="text" id="Relationship" value="{{ $emergency_contact->relationship }}"
-                            placeholder="Relationship" name="relationship[0]" required />
+                        <!-- <input type="text" id="Relationship" value="{{ @$emergency_contact->relationship }}"
+                            placeholder="Relationship" name="relationship[0]" required /> -->
+                        <select  name="relationship[0]" class="select-control">
+                            <option value="">Select Relationship</option>
+                            
+                            @foreach (get_emergency_contact_list() as $relationship)
+                                
+                                <option value="{{ $relationship['id'] }}" >{{ @$relationship['name'] }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="field-wrapper">
                         <label for="name">Name </label><span class="mandate">*</span>
-                        <input type="text" id="name" value="{{ $emergency_contact->relationship_name }}"
+                        <input type="text" value="{{ @$emergency_contact->relationship_name }}"
                             placeholder="Name" name="relationship_name[0]" required />
                     </div>
                     <div class="field-wrapper">
                         <label for="name">Email </label><span class="mandate">*</span>
-                        <input type="email" id="name" value="{{ $emergency_contact->relationship_email }}"
+                        <input type="email" value="{{ @$emergency_contact->relationship_email }}"
                             placeholder="Email" name="relationship_email[0]" required />
                     </div>
                     <div class="field-wrapper">
                         <label for="phone">Phone </label><span class="mandate">*</span>
-                        <input type="number" id="phone" value="{{ $emergency_contact->relationship_phone }}"
+                        <input type="number" id="phone" value="{{ @$emergency_contact->relationship_phone }}"
                             placeholder="Phone" name="relationship_phone[0]" required />
                     </div>
-                @endforeach
 
                 <div class="field-wrapper">
                     <label for="Relationship">Relationship</label>
-                    <input type="text" id="Relationship" value="" placeholder="Relationship"
-                        name="relationship[1]" />
+                    <!-- <input type="text" id="Relationship" value="" placeholder="Relationship"
+                        name="relationship[1]" /> -->
+                        <select  name="relationship[1]" class="select-control">
+                            <option value="">Select Relationship</option>
+                            
+                            @foreach (get_emergency_contact_list() as $relationship)
+                                
+                                <option value="{{ $relationship['id'] }}" >{{ @$relationship['name'] }}</option>
+                            @endforeach
+                        </select>
                 </div>
                 <div class="field-wrapper">
                     <label for="relationship_name">Name</label>
@@ -497,12 +802,9 @@
                     <label for="influeza_vaccine_date">Vaccinated Date<span class="mandate">*</span></label>
 
                     <div id="influeza_vaccine_date" class="date" data-date-format="mm/dd/yyyy">
-                        @php
-                            $influeza_vaccine_date = strtotime($user->influeza_vaccine_date);
-                            $influeza_vaccine_date = date('m/d/Y', $influeza_vaccine_date);
-                        @endphp
+                        
                         <input type="text" readonly name="influeza_vaccine_date"
-                            value="{{ $influeza_vaccine_date }}" />
+                            value="{{ @update_date_format($user->influeza_vaccine_date) }}" />
                         <span class="input-group-addon">
                             <i class="icon icon-eye"></i>
                         </span>
@@ -538,11 +840,8 @@
                 <div class="field-wrapper w-25 hepatitis_date">
                     <label for="hepatitis_vaccine_date">Vaccinated date<span class="mandate">*</span></label>
                     <div id="hepatitis_vaccine_date" class="date" data-date-format="mm/dd/yyyy">
-                        @php
-                            $hepatitis_vaccine_date = strtotime($user->hepatitis_vaccine_date);
-                            $hepatitis_vaccine_date = date('m/d/Y', $hepatitis_vaccine_date);
-                        @endphp
-                        <input type="text" readonly name="hepatitis_vaccine_date" value="{{ $hepatitis_vaccine_date }}" />
+                        
+                        <input type="text" readonly name="hepatitis_vaccine_date" value="{{ @update_date_format($user->hepatitis_vaccine_date) }}" />
                         <span class="input-group-addon">
                             <i class="icon icon-eye"></i>
                         </span>

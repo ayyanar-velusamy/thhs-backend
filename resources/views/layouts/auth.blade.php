@@ -33,7 +33,7 @@
           <div class="row d-flex justify-content-center">
             <div class="content-wrapper col-xl-5 text-center">
               <a href="#">Release Notes</a>
-              <p>version 21.02.24</p>
+              <p>Version 1.0</p>
               <p>Copyright © 2024-Designed by TrendHHS</p>
             </div>
           </div>

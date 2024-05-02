@@ -391,6 +391,12 @@ form .form-wrapper .field-wrapper .with-icon {
   right: 20px;
   top: 40px;
 }
+form .form-wrapper .field-wrapper .upload_sign .with-icon {
+  position: absolute;
+  right: 20px;
+  top: 60px;
+}
+
 
 form .form-wrapper .field-wrapper input[type="file"] {
   color: #666666;
@@ -461,3 +467,27 @@ form .form-wrapper .field-wrapper textarea {
 /* .cta_wrapper > * + * { */
   /* margin-left: 45px; */
 /* } */
+ .custom_btn_toggle .btn-outline-primary.toggle::before{
+   content: none;
+}
+.custom_btn_toggle .btn-outline-primary.toggle::after{
+  content: none;
+}
+.custom_btn_toggle{
+  width: 100%;
+}
+.custom_btn_toggle .btn-outline-primary.toggle{ 
+  padding: 10px;
+  /* background-color: #0cd0a2; */
+  color: #000000;
+  border-color: #cccccc;
+ 
+} 
+.custom_btn_toggle .btn-outline-primary.toggle:hover{
+  background-color: #0cd0a2;
+  color: #ffffff;
+}
+.btn-check:checked+.btn-outline-primary.toggle{
+  background-color: #0cd0a2;
+  color: #ffffff;
+}

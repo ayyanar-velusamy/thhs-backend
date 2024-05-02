@@ -1,27 +1,18 @@
 @extends('layouts.auth')
 @section('content')
+
     <section class="register-page-wrapper login">
-        @if(session()->has('error'))
-        <div id="myToast" class="toast failure align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-              <div class="toast-body">
-                {{ session()->get('error') }}
-              </div>
-              <button onclick="hideToast()" type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-          </div>
-    @endif
-    @if(session()->has('message'))
-        <div id="myToast" class="toast success align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-              <div class="toast-body">
-                {{ session()->get('message') }}
-              </div>
-              <button onclick="hideToast()" type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-          </div>
-    @endif
         <div class="container">
+            @if(session()->has('message'))
+                <div class="alert alert-success" role="alert">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+            @if(session()->has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session()->get('error') }}
+            </div>
+            @endif
             <div class="register-page-parent">
                 <div class="position-relative">
                     <div id="carouselExampleControls" class="carousel slide position-unset" data-bs-ride="carousel">
@@ -64,7 +55,7 @@
                         </div>
                         <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
                         @error('g-recaptcha-response')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            <span class="error">{{ $message }}</span>
                         @enderror 
                         <div class="forgot-password-wrapper d-flex align-items-center justify-content-between">
                             <div class="checkbox-tick-wrapper d-flex align-items-center">

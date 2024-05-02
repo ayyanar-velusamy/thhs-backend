@@ -2,6 +2,12 @@ body {
   font-family: "Poppins", sans-serif !important;
 }
 
+@font-face {
+  font-family: 'SignatureFont'; /*a name to be used later*/
+  src: url('../fonts/sign1.otf') format('otf'); /*URL to font*/
+
+}
+
 .container {
   max-width: 1130px !important;
 }
@@ -538,7 +544,7 @@ button:focus {
 
 /* Footer Start */
 footer {
-  padding-top: 120px;
+  padding-top: 220px;
   padding-bottom: 25px;
 }
 
@@ -749,6 +755,7 @@ span.error {
   z-index: 1;
   padding: 10px 5px;
   border-radius: 5px;
+  width: 500px !important;
 }
 
 .btn-close   {
@@ -760,19 +767,29 @@ span.error {
   background-color: unset !important;
 }
 
+.alert {
+  width: 50%;
+  margin: auto;
+  margin-bottom: 5rem !important;
+  text-align: center !important;
+}
 
 .toast.success {
   background-color: #22b27d;
 }
-
 .toast.warn {
   background-color: #ffc107;
 }
-
 .toast.failure {
   background-color: #eb3b3b;
 }
-
 .toast .toast-success{
   background-color: #22b27d !important;
+}
+
+.large_text_ellipsis{
+  overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
 }
