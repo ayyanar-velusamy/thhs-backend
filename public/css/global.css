@@ -535,10 +535,36 @@ button:focus {
   background-color: #0cd0a2 !important;
 }
 
+
+/* Datetime picker css */
+.xdsoft_datetimepicker * {
+  font-family: "Poppins", sans-serif;
+}
+
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div:hover,
+.xdsoft_time.xdsoft_current,
+.xdsoft_time.xdsoft_current:hover,
+.xdsoft_datetimepicker .xdsoft_label>.xdsoft_select>div>.xdsoft_option.xdsoft_current,
+.xdsoft_datetimepicker .xdsoft_label>.xdsoft_select>div>.xdsoft_option.xdsoft_current:hover,
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current,
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current:hover {
+  background-color: #0cd0a2 !important;
+  color: white !important;
+  box-shadow: unset;
+}
+
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_today,
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_today:hover,
 .datepicker table tr td.today {
   background-image: unset !important;
   background-color: #373ccb !important;
   color: white !important;
+}
+
+.xdsoft_datetimepicker .xdsoft_label>.xdsoft_select>div>.xdsoft_option:hover,
+.xdsoft_datetimepicker .xdsoft_calendar td:hover{
+  background: #eee !important;
+  color: black !important;
 }
 
 /* Footer Start */
@@ -814,8 +840,4 @@ span.error {
 }
 .userimage.male {
   padding: 5px 10px;
-}
-
-.xdsoft_datetimepicker .xdsoft_calendar td:hover{
-  background: #eee !important;
 }

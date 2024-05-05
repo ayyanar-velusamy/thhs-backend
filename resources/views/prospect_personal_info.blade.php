@@ -82,7 +82,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="ssn">SSN :</label><span class="mandate">*</span>
-                    <input type="text" id="ssn" id="ssn" value="{{ @$user->ssn }}" required name="ssn"
+                    <input type="text" id="ssn" value="{{ @$user->ssn }}" required name="ssn"
                         placeholder="SSN" />
                 </div>
                 <div class="field-wrapper">
@@ -146,7 +146,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="phone_home">Phone home:</label>
-                    <input type="number" id="phone_home" name="phone_home" placeholder="Phone home"
+                    <input type="text" class="phone" id="phone_home" name="phone_home" placeholder="Phone home"
                         value="{{ @$user->phone_home }}" />
                 </div>
                 <div class="field-wrapper address">
@@ -156,7 +156,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="cellular">Cellular:</label><span class="mandate">*</span>
-                    <input type="text" id="cellular" required name="cellular" placeholder="Cellular"
+                    <input type="text" class="phone" id="cellular" required name="cellular" placeholder="Cellular"
                         value="{{ @$user->cellular }}" />
                 </div>
             </div>
@@ -538,7 +538,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="reference_phone">Phone</label><span class="mandate">*</span>
-                    <input type="text"  value="{{ @$user->work_history[0]->employer_email }}"
+                    <input type="text" class="phone" value="{{ @$user->work_history[0]->employer_email }}"
                         name="reference_phone[0]" placeholder="Phone" />
                 </div>
 
@@ -568,7 +568,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="reference_phone">Phone</label><span class="mandate">*</span>
-                    <input type="text" id="reference_phone" value="{{ @$user->work_history[0]->employer_email }}"
+                    <input type="text" class="phone" id="reference_phone" value="{{ @$user->work_history[0]->employer_email }}"
                         name="reference_phone[1]" placeholder="Phone" />
                 </div>
 
@@ -598,7 +598,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="reference_phone">Phone</label>
-                    <input type="email" id="reference_phone" value="{{ @$user->work_history[0]->employer_email }}"
+                    <input type="email" class="phone" id="reference_phone" value="{{ @$user->work_history[0]->employer_email }}"
                         name="reference_phone[3]" placeholder="Phone" />
                 </div>
 
@@ -636,7 +636,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="Phone no">Phone no</label>
-                    <input type="number" id="Phone_no" value="{{ @$user->work_history[0]->employer_phone }}"
+                    <input type="number" class="phone" id="Phone_no" value="{{ @$user->work_history[0]->employer_phone }}"
                         placeholder="Phone no" name="employer_phone[0]" />
                 </div>
 
@@ -670,7 +670,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="Phone no">Phone no</label>
-                    <input type="number" id="Phone_no" value="{{ @$user->work_history[1]->employer_phone }}"
+                    <input type="number" class="phone" id="Phone_no" value="{{ @$user->work_history[1]->employer_phone }}"
                         placeholder="Phone no" name="employer_phone[1]" />
                 </div>
                 <!-- Employer 2-->
@@ -703,7 +703,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="Phone no">Phone no</label>
-                    <input type="number" id="Phone_no" value="{{ @$user->work_history[2]->employer_phone }}"
+                    <input type="number" class="phone" id="Phone_no" value="{{ @$user->work_history[2]->employer_phone }}"
                         placeholder="Phone no" name="employer_phone[2]" />
                 </div>
                 <!-- Employer 3-->
@@ -748,7 +748,7 @@
                     </div>
                     <div class="field-wrapper">
                         <label for="phone">Phone </label><span class="mandate">*</span>
-                        <input type="number" id="phone" value="{{ @$emergency_contact->relationship_phone }}"
+                        <input type="text" class="phone" id="phone" value="{{ @$emergency_contact->relationship_phone }}"
                             placeholder="Phone" name="relationship_phone[0]" required />
                     </div>
 
@@ -777,7 +777,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="relationship_phone">Phone </label>
-                    <input type="number" id="relationship_phone" value="" placeholder="Phone"
+                    <input type="text" class="phone" id="relationship_phone" value="" placeholder="Phone"
                         name="relationship_phone[1]" />
                 </div>
             </div>

@@ -1,5 +1,8 @@
 $(function () {
-  $("#dob , #submit_date")
+  $("#ssn").inputmask({"mask": "999-99-9999"});
+  $(".phone").inputmask({"mask": "(999)-999-9999"});
+
+  $("#dob , #submit_date, #termination_date")
     .datepicker({
     format: "mm/dd/yyyy",
       autoclose: true,
@@ -140,5 +143,4 @@ $('#datatable').dataTable( {
 }
 });
 
-$("#ssn").inputmask({"mask": "999-99-9999"});
-$(".phone").inputmask({"mask": "(999)-999-9999"});
+

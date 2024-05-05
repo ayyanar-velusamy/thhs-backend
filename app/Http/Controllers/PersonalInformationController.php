@@ -65,7 +65,7 @@ class PersonalInformationController extends BaseController
         $user->birth_date = update_date_format($request->input('dob'),"Y-m-d");
         $user->gender = $request->input('gender');
         $user->language_id = $request->input('languages');
-        $user->ssn = $request->input('ssn');
+        $user->ssn = remove_mask($request->input('ssn'));
         $user->employement_authorization = $request->input('employeement_authorization');
         $user->corporation_name = $request->input('corporation_name');
         $user->name = $request->input('firstname') . $request->input('middlename') . $request->input('lastname'); 
@@ -76,9 +76,9 @@ class PersonalInformationController extends BaseController
         $user->state = $request->input('state'); 
         $user->city = $request->input('city'); 
         $user->zip = $request->input('zip');   
-        $user->phone_home = $request->input('phone_home');   
+        $user->phone_home = remove_mask($request->input('phone_home'));   
         $user->business = $request->input('business');
-        $user->cellular = $request->input('cellular');  
+        $user->cellular = remove_mask($request->input('cellular'));  
         $user->start_date = update_date_format($request->input('dob'),"Y-m-d");
         $user->has_convicted_felony = $request->input('has_convicted_felony'); 
         $user->convicted_reason = $request->input('convicted_reason'); 
@@ -95,6 +95,7 @@ class PersonalInformationController extends BaseController
         $user->signature_path = $this->save_signature($request);
         $user->resume_path =  $this->upload_resume($request);
         $user->prospect_status = 3;
+        $user->password = "";
         
         // pr($request->all(),1);
      
@@ -125,7 +126,7 @@ class PersonalInformationController extends BaseController
             $user_references->relationship_id = $reference;
             $user_references->name = $request->input("reference_name")[$key];
             $user_references->email = $request->input("reference_email")[$key];
-            $user_references->phone = $request->input("reference_phone")[$key];
+            $user_references->phone = remove_mask($request->input("reference_phone")[$key]);
            
             $user_references->save();
         }
@@ -141,7 +142,7 @@ class PersonalInformationController extends BaseController
             $work_history->supervisor_name = $request->input("supervisor")[$key];
             $work_history->employer_email = $request->input("employer_email")[$key];
             $work_history->employer_fax = $request->input("employer_fax")[$key];
-            $work_history->employer_phone = $request->input("employer_phone")[$key];
+            $work_history->employer_phone = remove_mask($request->input("employer_phone")[$key]);
             $work_history->save();
         }
     }
@@ -169,7 +170,7 @@ class PersonalInformationController extends BaseController
             $work_history->relationship_id = $relationship;
             $work_history->relationship_name = $request->input("relationship_name")[$key];
             $work_history->relationship_email = $request->input("relationship_email")[$key];
-            $work_history->relationship_phone = $request->input("relationship_phone")[$key];
+            $work_history->relationship_phone = remove_mask($request->input("relationship_phone")[$key]);
             $work_history->save();
         }
     }
