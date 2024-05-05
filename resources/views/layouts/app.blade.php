@@ -25,6 +25,17 @@
       href="{{ asset('css/lib/dataTables.dataTables.css') }}"
       rel="stylesheet"
     />
+    @php
+      if(in_array("demographics",request()->segments())){
+    @endphp
+        <link href="{{ asset('css/personal_info.css') }}" rel="stylesheet" />
+    @php
+      }else{
+    @endphp
+        <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />
+    @php
+      }
+    @endphp
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -46,7 +57,6 @@
 
 <body>
 
-
     <script src="{{ asset('js/lib/popper.min.js') }}"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
@@ -54,6 +64,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <script src="{{ asset('js/lib/bootstrap-datepicker.min.js') }}"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
     <script>
         function showToast() {
             var toast = new bootstrap.Toast(document.getElementById("myToast"));
@@ -88,12 +99,10 @@
                             <i class="icon icon-staffs-logo"></i>
                             <p>Staff Manager</p>
                         </a>
-                        <a href="{{ route('prospects') }}" class="{{ request()->is('thhs/app/prospects/*') ? 'active' : '' }}" aria-current="true">
+                        <a href="{{ route('prospects') }}" class="{{ request()->routeIs(['prospects','prospects.*']) ? 'active' : '' }}" aria-current="true">
                             <i class="icon icon-prospects-logo"></i>
                             <p>Prospect Manager</p>
                         </a>
-
-
                     </div>
                 </nav>
             </div>
@@ -190,7 +199,6 @@
       </div>
   </body>
   <script type="text/javascript" src="{{ asset('js/lib/jquery.datetimepicker.full.min.js') }}"></script>
-  <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
   <script src="{{ asset('js/lib/moment.js') }}" ></script>
   <script src="{{ asset('js/common.js') }}"></script>
    <script type="text/javascript" src="{{ asset('js/lib/toastr.min.js') }}"></script> 

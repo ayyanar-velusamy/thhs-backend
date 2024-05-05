@@ -5,8 +5,7 @@
     $languages = $data["languages"];
     $positions = $data["positions"];
 @endphp
-<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
-<link href="{{ asset('css/personal_info.css') }}" rel="stylesheet" />
+
 <section class="form-section bg-white">
   <form id="demographics_form" method="POST" class="ajax-form"  action="{{route('update_demographics', [$user->id])}}" role="form" enctype="multipart/form-data" >
  

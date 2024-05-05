@@ -2,7 +2,6 @@
 @section('content')
     <!-- Dashboard Table -->
 
-    <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />
     <section class="table-wrapper bg-white">
         <div class="dropdowns-section d-flex justify-content-end align-items-center">
 
@@ -63,7 +62,6 @@
                                     $image = "female.svg";
                                 }
                             @endphp
-                            <!-- <i class="icon {{ $class }}"></i> -->
                             <img class="userimage {{$class}}" src="{{ asset('images/'.$image) }}">
                         </td>
                         <td>

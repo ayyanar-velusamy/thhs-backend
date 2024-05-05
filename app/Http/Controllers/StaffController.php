@@ -90,7 +90,7 @@ class StaffController extends BaseController
         $user->name = $request->input('firstname') . " " . $request->input('lastname'); 
         $user->position = $request->input('position'); 
         $user->hire_date = update_date_format($request->input('submit_date'), "Y-m-d"); 
-        $user->ssn = $request->input('ssn');   
+        $user->ssn = remove_mask($request->input('ssn'));
         $user->gender = $request->input('gender');   
         $user->language_id = $request->input('language');    
         $user->staff_status = $request->input('staff_status');     
@@ -181,12 +181,12 @@ class StaffController extends BaseController
         
         if($user->save()){  
             $this->response['status'] = true;
-            $this->response['message'] = "Staff Terminated Successfully";
+            $this->response['message'] = "Staff deleted Successfully";
             
             
         }else{
             $this->response['status'] = false;
-            $this->response['message'] = "Staff Terminated Failed";
+            $this->response['message'] = "Staff deleted Failed";
             
         }
         return $this->response(); 

@@ -2,7 +2,6 @@
 @section('content')
     <!-- Dashboard Table -->
 
-    <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />
     <section class="table-wrapper bg-white">
         <div class="dropdowns-section d-flex justify-content-end align-items-center">
             <div class="location-wrapper d-flex justify-content-center align-items-center">
@@ -37,8 +36,8 @@
         <table class="w-100" id="staff_datatable">
             <thead>
                 <tr>
-                    <th>Full Name</th>
                     <th>Gender</th>
+                    <th>Full Name</th>
                     <th>Date Hired</th>
                     <th>Phone</th>
                     <th>Position</th>
@@ -53,12 +52,22 @@
             <tbody>
                 @foreach ($staff_list as $staff)
                     <tr>
-                        <td class="d-flex align-items-center" style="gap: 7px">
-                            {{ $staff->name }}
+                        <td class="dt-center align-items-center" style="gap: 7px">
+                            @php
+                                if($staff->gender ==1){
+                                    $class = "male";
+                                    $image = "male.svg";
+                                }else{
+                                    $class = "female";
+                                    $image = "female.svg";
+                                }
+                            @endphp
+                            <img class="userimage {{$class}}" src="{{ asset('images/'.$image) }}">
+                           
                         </td>
 
                         <td>
-                            {{ $staff->gender == '1' ? 'Male' : 'Female' }}
+                            {{ $staff->name }}                           
                         </td>
                         <td>{{ update_date_format($staff->hire_date, 'm-d-Y') }}</td>
                         <td>{{ $staff->cellular }}</td>
