@@ -5,6 +5,7 @@
         $languages = $data['languages'];
         $positions = $data['positions'];
     @endphp
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
     <link href="{{ asset('css/personal_info.css') }}" rel="stylesheet" />
     <section class="form-section bg-white">
 
@@ -81,7 +82,7 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="ssn">SSN :</label><span class="mandate">*</span>
-                    <input type="text" id="ssn" value="{{ @$user->ssn }}" required name="ssn"
+                    <input type="text" id="ssn" id="ssn" value="{{ @$user->ssn }}" required name="ssn"
                         placeholder="SSN" />
                 </div>
                 <div class="field-wrapper">
@@ -218,42 +219,7 @@
                     </div>
                 </div>
 
-                <div class="field-wrapper position-relative">
-                    <div class="btn-group custom_btn_toggle" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="signature_type"
-                            onchange="toggle_sign(event.target.value)" id="btnradio1" autocomplete="off" value="1"
-                            >
-                        <label class="btn btn-outline-primary toggle" for="btnradio1">Type</label>
-
-                        <input type="radio" class="btn-check" name="signature_type"
-                            onchange="toggle_sign(event.target.value)" id="btnradio2" value="2" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary toggle" for="btnradio2">Draw</label>
-
-                        <input type="radio" class="btn-check" name="signature_type"
-                            onchange="toggle_sign(event.target.value)" id="btnradio3" value="3" autocomplete="off">
-                        <label class="btn btn-outline-primary toggle" for="btnradio3">Upload</label>
-                    </div>
-                    <div class="type_sign">
-                        <input type="text" class="" onkeyup="type_signature(event.target.value)" name="type_sign" id="type_sign" value="{{ @$user->firstname }}"  />
-                        <div class="typed sign_1" id="sign_1" onclick="text_to_image('sign_1')"></div>
-                        <div class="typed sign_2" id="sign_2" onclick="text_to_image('sign_2')"></div>
-                        <div class="typed sign_3" id="sign_3" onclick="text_to_image('sign_3')"></div>
-                        <div class="typed sign_4" id="sign_4" onclick="text_to_image('sign_4')"></div>
-                        {{-- <img id='image'> --}}
-                    </div>
-                    <div class="draw_sign">
-                        <div id="sig"></div>
-                        <br />
-                        <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
-                    </div> 
-                    <div class="upload_sign">
-                        <input type="file" class="" id="customFile" name="signature_file"
-                            placeholder="Upload Signature" onchange="previewFile('signature_file', 'signature64')" accept="image/*"/>
-                        <span class="with-icon"><i class="icon icon-upload"></i></span>
-                           {{-- <img id='image'> --}}
-                    </div>
-                    <textarea id="signature64" name="signed" style="opacity:0; height:0; position: absolute;"></textarea>
-                </div>
+                
                 <div class="field-wrapper position-relative">
 
                     <div class="btn-group custom_btn_toggle" role="group" aria-label="Basic radio toggle button group">

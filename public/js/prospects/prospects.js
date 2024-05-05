@@ -458,5 +458,3 @@ $('#filter_status').on('change', function() {
 		draw();
   });
 
-  $("#ssn").inputmask({"mask": "999-99-9999"});
-  $(".phone").inputmask({"mask": "(999)-999-9999"});

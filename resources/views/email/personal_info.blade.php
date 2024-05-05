@@ -14,53 +14,41 @@
 
 <body>
     <div class="email_temp_wrapper">
-        <div style="background-color: rgba(94, 99, 242, 1);height: 14px;"></div>
-        <img loading="lazy" src="../images/logo.svg" class="img" />
+        <div class="blue_line"></div>
+        <img loading="lazy" src="https://www.trendhhs.com/wp-content/uploads/2018/10/logo.png" class="img" />
         <div class="email_temp_content_wrapper">
-            <img loading="lazy" src="../images/email_temp_img.png" class="largeImg" />
+            <img loading="lazy" src="https://208.109.228.147/thhs/public/images/email_temp_img.png" class="largeImg" />
             <div class="text-content">
                 <div class="content">
                     <p class="sub_title" style="font-size: 22px">Dear {{ $user->name }}</p>
 
                     <p>
-                        Your application has been received!
+                        Please click on this link to complete your registration.
                         <br />
-                        Please wait for Interview date confirmation.
                         <br/>
-                        Please bring the following documents to your interview or you can email them to
+                        {{ $link }}
                         <br/>
+                        <br/>
+                        <br/>
+                        Username :
                         <span
                             style="
-                  font-weight: 30;
-                  font-size: 14px;
+                  font-weight: 500;
+                  font-size: 18px;
                   color: rgba(94, 99, 242, 1);
                 ">
-                            hr@trendhhs.com
+                            {{ $user->email }}
                         </span>
+                        <br />
+                        Temporary Password : {{$user->temp_pwd}}
                         <br>
                         <br>
                         <br>
+                        <br>
+                        <span style=" font-style: italic;">Note: Upon successful registration, your temporary password will expire automatically. </span>
 
-                        <span
-                            style="
-                  font-weight: 600;
-                  font-size: 22px;
-                  color: rgba(94, 99, 242, 1);
-                ">
-                            Documents
-                        </span>
-                        <br>
-                        <ul>
-                            <li>75 Hours HHA Certificate</li>
-                            <li>Alzheimer's</li>
-                            <li>Assitance with Self Medications</li>
-                            <li>CPR</li>
-                            <li>Domestic Voilence</li>
-                            <li>HIPPA</li>
-                            <li>HIV / AIDS Update</li>
-                            <li>OSHA</li>
-                            <li>Other Certificates</li>
-                        </ul>
+                        
+                        
                     </p>
                 </div>
                 <div style="width: 570px;margin: 48px 0 0 0;font: 16px Poppins, sans-serif;">

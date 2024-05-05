@@ -58,6 +58,7 @@ class CreateUsersTable extends Migration
             $table->date('hire_date')->nullable(); 
             $table->text('interview_cancellation_reason')->nullable(); 
             $table->integer('prospect_status')->nullable(); 
+            $table->integer('has_temp_password')->default(0)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

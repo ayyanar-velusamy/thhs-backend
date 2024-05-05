@@ -25,7 +25,12 @@
                     <p>
                         Please click on this link to Confirm your registration.
                         <br />
-                        Your user Name is your email
+                        <br/>
+                        {{ $link }}
+                        <br/>
+                        <br/>
+                        <br/>
+                        Username :
                         <span
                             style="
                   font-weight: 500;
@@ -34,10 +39,9 @@
                 ">
                             {{ $user->email }}
                         </span>
-                        and
                         <br />
-                        Password entered at signup.
-                        Link {{ $link }}
+                        Password : To be entered while Signup.
+                        
                     </p>
                 </div>
                 <div style="width: 570px;margin: 48px 0 0 0;font: 16px Poppins, sans-serif;">

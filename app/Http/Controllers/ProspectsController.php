@@ -16,6 +16,8 @@ use App\Models\UserEducation;
 use App\Models\WorkHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -81,10 +83,14 @@ class ProspectsController extends BaseController
         $user->position = $request->input('position'); 
         $user->created_at = update_date_format($request->input('submit_date'), "Y-m-d"); 
         $user->status = 1;  
-
+        $user->has_temp_password = 1;  
+        $temp_pwd = Str::random(8);
+        $user->password = bcrypt($temp_pwd);
+        
         // pr($request->all(),1);
 
         if ($user->save()) {   
+            $user->temp_pwd = $temp_pwd;
             Mail::to($user->email)->send(new PersonalInfoEmail($user));
             $this->response['status'] = true;
             $this->response['message'] = "Prospect added successfully"; 
