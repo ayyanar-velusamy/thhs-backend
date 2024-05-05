@@ -61,7 +61,6 @@ class LoginController extends Controller
         
         if ($this->guard()->attempt($credentials, $request->filled('remember'))) {
             
-			
 			//get user what attempting to login
             $user = User::where($this->username(), $credentials[$this->username()])->first();
 			
@@ -95,7 +94,7 @@ class LoginController extends Controller
             //         return back()->with('message', 'Your account is deactived');
             //     }
             // }else{
-                return back()->with('error', 'Please check the credentials');
+                return back()->with('error', 'Username or Password is wrong! Please check the credentials');
             // }
             
         }

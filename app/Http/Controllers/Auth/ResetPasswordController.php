@@ -33,15 +33,15 @@ class ResetPasswordController extends Controller
     public function verifyEmail(Request $request, $token = null)
     {
 		$valid = User::whereRememberToken($token)->first();
-		
 		//Check token exist in database and expire time
 		if($valid){ 
 			$valid->remember_token = null; 
 			$valid->status = 1; 
+      $valid->prospect_status = 2;
 			if($valid->save()){							
-				return redirect()->route('login')->with('message', 'Email Verification success'); 
+				return redirect()->route('login')->with('message', 'Email Verification successful'); 
 			}
-		} 
+		}
     }
 
 }

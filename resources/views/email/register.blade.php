@@ -15,9 +15,9 @@
 <body>
     <div class="email_temp_wrapper">
         <div class="blue_line"></div>
-        <!-- <img loading="lazy" src="../images/logo.svg" class="img" /> -->
+        <img loading="lazy" src="https://www.trendhhs.com/wp-content/uploads/2018/10/logo.png" class="img" />
         <div class="email_temp_content_wrapper">
-            <!-- <img loading="lazy" src="../images/email_temp_img.png" class="largeImg" /> -->
+            <img loading="lazy" src="https://208.109.228.147/thhs/public/images/email_temp_img.png" class="largeImg" />
             <div class="text-content">
                 <div class="content">
                     <p class="sub_title" style="font-size: 22px">Dear {{ $user->name }}</p>
@@ -40,7 +40,7 @@
                         Link {{ $link }}
                     </p>
                 </div>
-                <div class="best_regard_section">
+                <div style="width: 570px;margin: 48px 0 0 0;font: 16px Poppins, sans-serif;">
                     <p>
                         Best Regards,
                         <br />
@@ -60,7 +60,7 @@
                         Fax: 305-654-0409
                     </p>
                 </div>
-                <div class="email_temp_footer">
+                <div style="color: #000;align-self: end;margin-top: 44px;font: 300 12px/18px Poppins, sans-serif;">
                     <span style="font-weight: 500; color: #ee3030">CONFIDENTIALITY NOTICE:</span>
                     <span style="color: rgba(0, 0, 0, 1)">
                         The information contained in this message is confidential and is
@@ -77,13 +77,11 @@
                     </span>
                 </div>
                 <div class="footer">
-                    <div class="btn_wrap"><a href="#">hr@trendhhs.com</a></div>
-                    <div class="site_title">Trend Home Health Services</div>
-                    <div class="address">
-                        1111 Park Centre Blvd Suite 360 Miami Gardens FL, 33169
-                    </div>
-                    <div class="copy">Copyright © 2024</div>
-                </div>
+                    <div  style="text-align: center;padding-top: 60px;padding-bottom: 60px;"><a href="#" style="font: 300 14px Poppins, sans-serif;background-color: #5e63f2;padding: 10px 40px;display: inline-block;text-decoration: none;color: white;border-radius: 4px;">hr@trendhhs.com</a></div>
+                    <div style="color: #22b290;font: 500 24px Poppins, sans-serif;padding-top: 25px;padding-bottom: 25px;text-align: center;border-top: 1px solid #00000020;border-bottom: 1px solid #00000020;">Trend Home Health Services</div>
+                    <div  style="color: #333333;font: 300 14px Poppins, sans-serif;margin-top: 25px;margin-bottom: 25px;text-align: center;">1111 Park Centre Blvd Suite 360 Miami Gardens FL, 33169</div>
+                    <div style="color: #999999;font: 300 12px Poppins, sans-serif;text-align: center;">Copyright © 2024</div>
+                  </div>
             </div>
         </div>
     </div>

@@ -309,4 +309,143 @@ function back_url($url = ""){
 		
 	}
 
+	function get_professional_relationships_list(){
+		return $relationships = array(
+			[
+				"id" => 1,
+				"name" => "Attorney"
+			],
+			[
+				"id" => 2,
+				"name" => "Business"
+			],
+			[
+				"id" => 3,
+				"name" => "Associate"
+			],
+			[
+				"id" => 4,
+				"name" => "CPA"
+			],
+			[
+				"id" => 5,
+				"name" => "Employer"
+			],
+			[
+				"id" => 6,
+				"name" => "Friend"
+			],
+			[
+				"id" => 7,
+				"name" => "Other"
+			],
+			
+		);
+	}
+
+	function get_emergency_contact_list(){
+		return $emergency_contact = array(
+			[
+				"id" => 1,
+				"name" => "Brother"
+			],
+			[
+				"id" => 2,
+				"name" => "Daughter"
+			],
+			[
+				"id" => 3,
+				"name" => "Father"
+			],
+			[
+				"id" => 4,
+				"name" => "Friend"
+			],
+			[
+				"id" => 5,
+				"name" => "Mother"
+			],
+			[
+				"id" => 6,
+				"name" => "Other"
+			],
+			[
+				"id" => 7,
+				"name" => "Significant Other"
+			],
+			[
+				"id" => 8,
+				"name" => "Sister"
+			],
+			[
+				"id" => 9,
+				"name" => "Spouse"
+			],
+			[
+				"id" => 10,
+				"name" => "Son"
+			],
+			
+		);
+	}
+
+	function get_education_type_list(){
+		return $education_type = array(
+			[
+				"id" => 1,
+				"name" => "College"
+			],
+			[
+				"id" => 2,
+				"name" => "High School"
+			],
+			[
+				"id" => 3,
+				"name" => "Nursing School"
+			],
+			[
+				"id" => 4,
+				"name" => "Professional School"
+			],
+			[
+				"id" => 5,
+				"name" => "School"
+			],
+			[
+				"id" => 6,
+				"name" => "University"
+			],
+			[
+				"id" => 7,
+				"name" => "Vocational School"
+			],
+		);
+	}
+
+	
+	function get_education_degree_list(){
+		return $degree = array(
+			[
+				"id" => 1,
+				"name" => "Associate"
+			],
+			[
+				"id" => 2,
+				"name" => "Bachelor of Science"
+			],
+			[
+				"id" => 3,
+				"name" => "Diploma"
+			],
+			[
+				"id" => 4,
+				"name" => "Nursing Diploma"
+			],
+			[
+				"id" => 5,
+				"name" => "Other"
+			]
+		);
+	}
+
 //**********************************************//

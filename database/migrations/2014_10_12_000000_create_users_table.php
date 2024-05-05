@@ -54,11 +54,12 @@ class CreateUsersTable extends Migration
             $table->integer('is_admin')->default('0'); 
             $table->integer('role')->default('1'); 
             $table->integer('status')->default('0'); 
-            $table->integer('organization')->default('1');  
-            $table->date('interview_schedule_date')->nullable(); 
+            $table->integer('organization')->default('1');   
+            $table->date('termination_date')->nullable(); 
+            $table->dateTime('interview_schedule_date')->nullable(); 
             $table->date('interview_confirm_date')->nullable(); 
             $table->date('hire_date')->nullable(); 
-            $table->date('termination_date')->nullable(); 
+            $table->integer('prospect_status')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
         });

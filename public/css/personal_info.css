@@ -467,7 +467,6 @@ form .form-wrapper .field-wrapper textarea {
 /* .cta_wrapper > * + * { */
   /* margin-left: 45px; */
 /* } */
-
  .custom_btn_toggle .btn-outline-primary.toggle::before{
    content: none;
 }
@@ -492,4 +491,3 @@ form .form-wrapper .field-wrapper textarea {
   background-color: #0cd0a2;
   color: #ffffff;
 }
-

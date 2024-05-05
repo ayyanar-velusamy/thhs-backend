@@ -3,17 +3,19 @@
 
     
     <section class="register-page-wrapper position-relative">
-        @if(session()->has('message'))
-            <div id="myToast" class="toast success align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="d-flex">
-                <div class="toast-body">
+       
+        <div class="container">
+
+            @if(session()->has('message'))
+                <div class="alert alert-success" role="alert">
                     {{ session()->get('message') }}
                 </div>
-                <button onclick="hideToast()" type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
+            @endif
+            @if(session()->has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session()->get('error') }}
             </div>
-        @endif
-        <div class="container">
+            @endif
             <div class="register-page-parent">
                 <div class="position-relative">
                     <div id="" class="carousel slide">

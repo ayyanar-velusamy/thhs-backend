@@ -8,63 +8,27 @@
 
             <div class="status-wrapper d-flex justify-content-center align-items-center">
                 <label class="me-3">Status: </label>
-                <select class="form-control">
-                    <option>Active</option>
-                    <option>Deactive</option>
+                <select class="form-control" id="filter_status">
+                    <option value="">All</option>
+                    <option value="Registered">Registered</option>
+                    <option value="Verified">Verified</option>
+                    <option value="Waiting for Documents">Waiting for Documents</option>
+                    <option value="Interview Scheduled">Interview Scheduled</option>
+                    <option value="Interview Confirmed">Interview Confirmed</option>
+                    <option value="Interview Cancelled">Interview Cancelled</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Archived">Archived</option>
+                    <option value="Re Apply">Re Apply</option>
+                    <option value="Hired">Hired</option>
                 </select>
             </div>
         </div>
         <div class="table-heading-data d-flex align-items-center justify-content-between">
             <h5>Prospect Manager</h5>
             <div class="table-center-heading-data d-flex align-items-center justify-content-between">
-                <!-- <div class="forms-report d-flex align-items-center"> -->
-                <!-- <i class="icon icon-form-report"></i> -->
-                <!-- <div class="div-5">Expiring Forms Report</div> -->
-                <!-- </div> -->
-                <!-- <div -->
-                <!-- class="expired-docs d-flex align-items-center justify-content-center" -->
-                <!-- > -->
-                <!-- <div class="div-7">View Expired docs:</div> -->
-                <!-- <div class="checkbox-tick-wrapper d-flex align-items-center"> -->
-                <!-- <label class="d-flex align-items-center"> -->
-                <!-- <input type="checkbox" value="" /> -->
-                <!-- <span class="cr" -->
-                <!-- ><i class="icon icon-tick-white"></i -->
-                <!-- ></span> -->
-                <!-- All -->
-                <!-- </label> -->
-                <!-- </div> -->
-                <!-- <div class="checkbox-tick-wrapper d-flex align-items-center"> -->
-                <!-- <label class="d-flex align-items-center"> -->
-                <!-- <input type="checkbox" value="" /> -->
-                <!-- <span class="cr" -->
-                <!-- ><i class="icon icon-tick-white"></i -->
-                <!-- ></span> -->
-                <!-- 07 -->
-                <!-- </label> -->
-                <!-- </div> -->
-                <!-- <div class="checkbox-tick-wrapper d-flex align-items-center"> -->
-                <!-- <label class="d-flex align-items-center"> -->
-                <!-- <input type="checkbox" value="" /> -->
-                <!-- <span class="cr" -->
-                <!-- ><i class="icon icon-tick-white"></i -->
-                <!-- ></span> -->
-                <!-- 14 -->
-                <!-- </label> -->
-                <!-- </div> -->
-                <!-- <div class="checkbox-tick-wrapper d-flex align-items-center"> -->
-                <!-- <label class="d-flex align-items-center"> -->
-                <!-- <input type="checkbox" value="" /> -->
-                <!-- <span class="cr" -->
-                <!-- ><i class="icon icon-tick-white"></i -->
-                <!-- ></span> -->
-                <!-- 30 -->
-                <!-- </label> -->
-                <!-- </div> -->
-                <!-- </div> -->
                 <div class="add-staff-field d-flex align-items-center">
                     <i class="icon icon-plus"></i>
-                    <p data-toggle="modal" data-target="#myModal">Add Prospect Manager</p>
+                    <p data-toggle="modal" data-target="#myModal">Add Prospect</p>
                 </div>
             </div>
         </div>
@@ -88,23 +52,26 @@
             <tbody>
                 @foreach ($prospect_list as $prospect)
                     <tr>
-                        <td class="d-flex align-items-center" style="gap: 7px">
+                        <td>
                             {{ $prospect->name }}
                         </td>
                        
                         <td>{{$prospect->email}}</td>
-                        <td>{{ $prospect->position }}</td>
+                        <td title="{{ $prospect->position }}">{{ $prospect->short_name }}</td>
                         <td>{{ $prospect->cellular }}</td>
-                        <td>
-                            {{ $prospect->address }}<br>{{ $prospect->state, $prospect->city }}
+                        @php
+                            $address = @implode(", ",array_filter([$prospect->address,$prospect->city,$prospect->state]));
+                        @endphp
+                        <td class="large_text_ellipsis" title="{{ @$address }}">
+                            {{ @$address }}
                         </td>
                         <td>{{ $prospect->zip }}</td>
-                        <td><span class="tag active">Applied</span></td>
+                        <td><span class="tag active">{{@$prospect->prospect_status}}</span></td>
                         <td>{{ update_date_format($prospect->created_at,"m-d-Y") }}</td>
                         
                         <td>{{ update_date_format($prospect->hire_date,"m-d-Y") }}</td>
                         <td>{{ update_date_format($prospect->interview_schedule_date,"m-d-Y") }}</td>
-                        <td>{{ update_date_format($prospect->interview_schedule_date,"m-d-Y") }}</td>
+                        <td>{{ update_date_format($prospect->interview_confirm_date,"m-d-Y") }}</td>
                         
                         
                         <td class="icons">
@@ -112,9 +79,9 @@
                                     class="icon icon-eye-green"></i></a>
                             <a title="Hire Prospect" href="#" onclick="openHireProspectModal({{$prospect->id}})">
                                 <i class="icon icon-hire"></i></a>
-                                <a title="Reject Prospect" href="#">
+                                <a title="Reject Prospect" href="#"  id="reject_prospect_btn" data-url="{{@route('prospects.reject_prospect',[$prospect->id])}}" onclick="confirm_reject_prospect()">
                                     <i class="icon icon-delete"></i></a>
-                                    <a title="Archive Prospect" href="#">
+                                    <a title="Archive Prospect" href="#" id="archive_prospect_btn" data-url="{{@route('prospects.archive_prospect',[$prospect->id])}}" onclick="confirm_archive_prospect()">
                                         <i class="icon icon-archive"></i></a>
                             
                         </td>
@@ -122,10 +89,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="pagination-wrapper with-data-table d-flex justify-content-center align-items-center pt-0">
-            <!-- <div class="count-text">
-                        <p>Showing data 1 to 8 of 256 entries</p>
-                      </div> -->
+        <!-- <div class="pagination-wrapper with-data-table d-flex justify-content-center align-items-center pt-0">
             <div class="data-section d-flex justify-content-between align-items-center gap-4">
                 <div class="green d-flex justify-content-center align-items-center">
                     <span></span>
@@ -141,7 +105,7 @@
                 </div>
             </div>
            
-        </div>
+        </div> -->
     </section>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">

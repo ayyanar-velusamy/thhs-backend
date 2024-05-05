@@ -40,7 +40,6 @@ class PersonalInfoRequest extends FormRequest
             'state' => ['required'],
             'city' => ['required'],
             'start_date' => ['required'],
-            'influeza_vaccine_date' => ['required'],
         ];
     }
 

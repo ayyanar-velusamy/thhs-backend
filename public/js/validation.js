@@ -230,24 +230,6 @@ $(document).on('click','#personal_info_submit' ,function(){
 			start_date:{
 				required: true,
 			},
-			"employer[0]":{
-				required:true,
-			},
-			"prev_position[0]":{
-				required: true,
-			},
-			"supervisor[0]":{
-				required: true,
-			},
-			"employer_email[0]":{
-				required: true,
-			},
-			"employer_fax[0]":{
-				required: true,
-			},
-			"employer_phone[0]":{
-				required: true,
-			},
 			"relationship[0]":{
 				required:true,
 			},
@@ -260,9 +242,57 @@ $(document).on('click','#personal_info_submit' ,function(){
 			"relationship_phone[0]":{
 				required: true,
 			},
+			"reference_relationship[0]":{
+				required:true,
+			},
+			"reference_name[0]":{
+				required: true,
+			},
+			"reference_email[0]":{
+				required: true,
+			},
+			"reference_phone[0]":{
+				required: true,
+			},
+			
+			"reference_relationship[1]":{
+				required:true,
+			},
+			"reference_name[1]":{
+				required: true,
+			},
+			"reference_email[1]":{
+				required: true,
+			},
+			"reference_phone[1]":{
+				required: true,
+			},
+<<<<<<< HEAD
+
+			
+			"education_type[0]":{
+				required:true,
+			},
+			"education_name[0]":{
+				required: true,
+			},
+			"education_date_completed[0]":{
+				required: true,
+			},
+			"education_degree[0]":{
+				required: true,
+			},
 			resume:{
 				required: true,	
 			},
+			// signature_file:{
+			// 	required: true,	
+			// },
+=======
+			resume:{
+				required: true,	
+			},
+>>>>>>> f6a7fb030765a20ca93888b69a587566bc21ee81
 			signed:{
 				required: true,	
 			}
@@ -319,24 +349,6 @@ $(document).on('click','#personal_info_submit' ,function(){
 			start_date:{
 				required:"Start date cannot be empty",
 			},
-			"employer[0]":{
-				required: "Employer cannot be empty"
-			},
-			"prev_position[0]":{
-				required: "Position cannot be empty"
-			},
-			"supervisor[0]":{
-				required: "Supervisor cannot be empty"
-			},
-			"employer_email[0]":{
-				required: "Email cannot be empty"
-			},
-			"employer_fax[0]":{
-				required: "Fax cannot be empty"
-			},
-			"employer_phone[0]":{
-				required: "Phone cannot be empty"
-			},
 			
 			"relationship[0]":{
 				required: "Relationship cannot be empty"
@@ -351,6 +363,47 @@ $(document).on('click','#personal_info_submit' ,function(){
 			"relationship_phone[0]":{
 				required: "Phone cannot be empty"
 			},
+			"reference_relationship[0]":{
+				required: "Relationship cannot be empty"
+
+			},
+			"reference_name[0]":{
+				required: "Name cannot be empty"
+			},
+			"reference_email[0]":{
+				required: "Email cannot be empty"
+			},
+			"reference_phone[0]":{
+				required: "Phone cannot be empty"
+			},
+			
+			"reference_relationship[1]":{
+				required: "Relationship cannot be empty"
+
+			},
+			"reference_name[1]":{
+				required: "Name cannot be empty"
+			},
+			"reference_email[1]":{
+				required: "Email cannot be empty"
+			},
+			"reference_phone[1]":{
+				required: "Phone cannot be empty"
+			},
+			
+			"education_type[0]":{
+				required: "Education Type cannot be empty"
+
+			},
+			"education_name[0]":{
+				required: "Education Name cannot be empty"
+			},
+			"education_date_completed[0]":{
+				required: "Date cannot be empty"
+			},
+			"education_degree[0]":{
+				required: "Degree cannot be empty"
+			},
 			// signature_file:{
 			// 	required: "Signature cannot be empty"
 			// },
@@ -361,6 +414,7 @@ $(document).on('click','#personal_info_submit' ,function(){
 				required: "Resume cannot be empty"
 			}
 			
+
 
 			// password:{
 			// 	required:"Password cannot be empty",
@@ -437,24 +491,6 @@ $(document).on('click','#demographics_submit' ,function(){
 			start_date:{
 				required: true,
 			},
-			"employer[0]":{
-				required:true,
-			},
-			"prev_position[0]":{
-				required: true,
-			},
-			"supervisor[0]":{
-				required: true,
-			},
-			"employer_email[0]":{
-				required: true,
-			},
-			"employer_fax[0]":{
-				required: true,
-			},
-			"employer_phone[0]":{
-				required: true,
-			},
 			"relationship[0]":{
 				required:true,
 			},
@@ -465,6 +501,45 @@ $(document).on('click','#demographics_submit' ,function(){
 				required: true,
 			},
 			"relationship_phone[0]":{
+				required: true,
+			},
+			
+			"reference_relationship[0]":{
+				required:true,
+			},
+			"reference_name[0]":{
+				required: true,
+			},
+			"reference_email[0]":{
+				required: true,
+			},
+			"reference_phone[0]":{
+				required: true,
+			},
+			
+			"reference_relationship[1]":{
+				required:true,
+			},
+			"reference_name[1]":{
+				required: true,
+			},
+			"reference_email[1]":{
+				required: true,
+			},
+			"reference_phone[1]":{
+				required: true,
+			},
+			
+			"education_type[0]":{
+				required:true,
+			},
+			"education_name[0]":{
+				required: true,
+			},
+			"education_date_completed[0]":{
+				required: true,
+			},
+			"education_degree[0]":{
 				required: true,
 			},
 			// signature_file:{
@@ -520,24 +595,6 @@ $(document).on('click','#demographics_submit' ,function(){
 			start_date:{
 				required:"Start date cannot be empty",
 			},
-			"employer[0]":{
-				required: "Employer cannot be empty"
-			},
-			"prev_position[0]":{
-				required: "Position cannot be empty"
-			},
-			"supervisor[0]":{
-				required: "Supervisor cannot be empty"
-			},
-			"employer_email[0]":{
-				required: "Email cannot be empty"
-			},
-			"employer_fax[0]":{
-				required: "Fax cannot be empty"
-			},
-			"employer_phone[0]":{
-				required: "Phone cannot be empty"
-			},
 			
 			"relationship[0]":{
 				required: "Relationship cannot be empty"
@@ -553,6 +610,47 @@ $(document).on('click','#demographics_submit' ,function(){
 				required: "Phone cannot be empty"
 			},
 
+			"reference_relationship[0]":{
+				required: "Relationship cannot be empty"
+
+			},
+			"reference_name[0]":{
+				required: "Name cannot be empty"
+			},
+			"reference_email[0]":{
+				required: "Email cannot be empty"
+			},
+			"reference_phone[0]":{
+				required: "Phone cannot be empty"
+			},
+			
+			"reference_relationship[1]":{
+				required: "Relationship cannot be empty"
+
+			},
+			"reference_name[1]":{
+				required: "Name cannot be empty"
+			},
+			"reference_email[1]":{
+				required: "Email cannot be empty"
+			},
+			"reference_phone[1]":{
+				required: "Phone cannot be empty"
+			},
+			
+			"education_type[0]":{
+				required: "Education Type cannot be empty"
+
+			},
+			"education_name[0]":{
+				required: "Education Name cannot be empty"
+			},
+			"education_date_completed[0]":{
+				required: "Date cannot be empty"
+			},
+			"education_degree[0]":{
+				required: "Degree cannot be empty"
+			},
 			// password:{
 			// 	required:"Password cannot be empty",
 			// },	

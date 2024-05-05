@@ -7,7 +7,9 @@ use App\Mail\PersonalInfoEmail;
 use App\Models\EmergencyContacts;
 use App\Models\Language;
 use App\Models\Position;
+use App\Models\ProfessionalReferences;
 use App\Models\User;
+use App\Models\UserEducation;
 use App\Models\WorkHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,13 +94,15 @@ class PersonalInformationController extends BaseController
         $user->status = 2; // Personal Infor Form submitted.
         $user->signature_path = $this->save_signature($request);
         $user->resume_path =  $this->upload_resume($request);
-       
+        $user->prospect_status = 3;
         
         // pr($request->all(),1);
      
         if($user->save()){ 
            
            
+            $this->save_user_education($request);
+            $this->save_professional_references($request);
             $this->save_work_history_data($request);
             $this->save_emergency_contacts($request);
             
@@ -111,6 +115,20 @@ class PersonalInformationController extends BaseController
             $this->response['message']  = "Personal information update failed";
         } 
         return $this->response();
+    }
+
+    public function save_professional_references($request){
+        $references = array_filter($request->input("reference_relationship"));
+        foreach($references as $key => $reference){
+            $user_references = new ProfessionalReferences;
+            $user_references->user_id = Auth::user()->id;
+            $user_references->relationship_id = $reference;
+            $user_references->name = $request->input("reference_name")[$key];
+            $user_references->email = $request->input("reference_email")[$key];
+            $user_references->phone = $request->input("reference_phone")[$key];
+           
+            $user_references->save();
+        }
     }
 
     public function save_work_history_data($request){
@@ -128,12 +146,27 @@ class PersonalInformationController extends BaseController
         }
     }
 
+    public function save_user_education($request){
+        $education_types = array_filter($request->input("education_type"));
+        // pr($education_types,1);
+        foreach($education_types as $key => $education_type){
+            $user_education = new UserEducation;
+            $user_education->user_id = Auth::user()->id;
+            $user_education->type_id = $education_type;
+            $user_education->name = $request->input("education_name")[$key];
+            $user_education->date_completed =  update_date_format($request->input("education_date_completed")[$key],"Y-m-d");
+            $user_education->degree_id = $request->input("education_degree")[$key];
+           
+            $user_education->save();
+        }
+    }
+
     public function save_emergency_contacts($request){
         $relationships = array_filter($request->input("relationship"));
         foreach($relationships as $key => $relationship){
             $work_history = new EmergencyContacts;
             $work_history->user_id = Auth::user()->id;
-            $work_history->relationship = $relationship;
+            $work_history->relationship_id = $relationship;
             $work_history->relationship_name = $request->input("relationship_name")[$key];
             $work_history->relationship_email = $request->input("relationship_email")[$key];
             $work_history->relationship_phone = $request->input("relationship_phone")[$key];
@@ -163,7 +196,7 @@ class PersonalInformationController extends BaseController
         $file = $request->file('resume');  
         //Move Uploaded File
         $destinationPath = 'uploads/resume/';
-        $file->move($destinationPath,$file->getClientOriginalName());   
-       return $destinationPath.$file->getClientOriginalName();
+        $file->move($destinationPath,time()."_".$file->getClientOriginalName());   
+       return $destinationPath.time()."_".$file->getClientOriginalName();
     }
 }
