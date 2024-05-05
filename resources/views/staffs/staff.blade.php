@@ -5,15 +5,15 @@
     <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />
     <section class="table-wrapper bg-white">
         <div class="dropdowns-section d-flex justify-content-end align-items-center">
-            {{-- <div class="location-wrapper d-flex justify-content-center align-items-center">
+            <div class="location-wrapper d-flex justify-content-center align-items-center">
                 <label class="me-3">Location: </label>
                 <select class="form-control"  id="filter_organization">
                     @foreach ($organizations as $organization)
-                        <option value="{{ $organization->id }}" {{ @$selected }}>{{ @$organization->name }}
+                        <option value="{{ $organization->name }}" {{ @$selected }}>{{ @$organization->name }}
                         </option>
                     @endforeach
                 </select>
-            </div> --}}
+            </div>
             <div class="status-wrapper d-flex justify-content-center align-items-center">
                 <label class="me-3">Status: </label>
                 <select class="form-control" id="filter_status">
@@ -46,6 +46,7 @@
                     <th>Zip Code</th>
                     <th>Status</th>
                     <th>Employment Type</th>
+                    <th>Organization</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -66,8 +67,9 @@
                             {{ $staff->address }}<br>{{ $staff->state, $staff->city }}
                         </td>
                         <td>{{ $staff->zip }}</td>
-                        <td><span class="tag active">{{ $staff->staff_status }}</span></td>
+                        <td><span class="tag {{ $staff->staff_status_id == 6 ? 'deactivate' : 'active' }}">{{ $staff->staff_status }}</span></td>
                         <td>{{ $staff->role }}</td>
+                        <td>{{ $staff->organization }}</td>
                         <td class="icons">
                             <a title="View Staff" href="{{ route('prospects.demographics', [$staff->id]) }}"><i
                                     class="icon icon-eye-green"></i></a>
@@ -208,7 +210,7 @@
                     <div class="field-wrapper">
                         <label for="fname">Termination Date</label>
                         <div id="termination_date" class="date" data-date-format="dd/mm/yyyy">
-                            <input required type="text" name="termination_date" id="termination_date" readonly
+                            <input type="text" name="termination_date" id="termination_date" readonly
                                 placeholder="Termination Date" />
                             <span class="input-group-addon d-none">
                                 <i class="icon icon-eye"></i>

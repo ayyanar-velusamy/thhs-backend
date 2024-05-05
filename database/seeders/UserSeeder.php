@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
         $user->position 	= 1;
         $user->is_admin 	= 1;
         $user->status 	= 1;
+        $user->staff_status 	= 1;
 		$user->save(); 
     }
 }

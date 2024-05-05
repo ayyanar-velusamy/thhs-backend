@@ -42,7 +42,7 @@ class StaffController extends BaseController
         // if($status){
         //     $staff_list = User::where(['status' => $status])->select('*')->orderBy('id', 'desc')->get();
         // }
-        $staff_list = User::all()->sortByDesc("id");
+        $staff_list =  User::where(['is_admin' => 0])->select('*')->orderBy('id', 'desc')->get();
         $positions = Position::all();
         $roles = UserRole::all();
         $languages = Language::all();
@@ -52,11 +52,12 @@ class StaffController extends BaseController
         foreach ($staff_list as $staff) {
             $position = Position::where("id", $staff->position)->first()->position;
             $role = UserRole::where("id", $staff->role)->first()->role;
-            $organization = Organization::where("id", $staff->organization)->first()->name;
-            $staff_status = StaffStatus::where("id", $staff->organization)->first()->status;
+            $organization = Organization::where("id", $staff->organization)->first()->name;  
+            $staff_status = StaffStatus::where("id", $staff->staff_status)->first()->status; 
             $staff->position = $position;
             $staff->role = $role;
             $staff->organization = $organization;
+            $staff->staff_status_id = $staff->staff_status;
             $staff->staff_status = $staff_status;
         }
         return view('staffs/staff', compact("staff_list", "positions", "roles", "languages", "organizations", "staff_statuses"));
@@ -176,7 +177,7 @@ class StaffController extends BaseController
     public function delete_staff(Request $request, $id)
     {
             $user = User::find($id);
-            $user->staff_status = 4; 
+            $user->staff_status = 6; 
         
         if($user->save()){  
             $this->response['status'] = true;
