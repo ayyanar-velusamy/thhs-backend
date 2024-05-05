@@ -9,6 +9,7 @@ use App\Models\EmergencyContacts;
 use App\Models\Language;
 use App\Models\Position;
 use App\Models\Organization;
+use App\Models\StaffStatus;
 use App\Models\UserRole;
 use App\Models\User;
 use App\Models\WorkHistory;
@@ -36,25 +37,29 @@ class StaffController extends BaseController
      */
     public function index(Request $request)
     {
-        $status = $request->query("status");
+        // $status = $request->query("status");
+        // $staff_list = User::all()->sortByDesc("id");
+        // if($status){
+        //     $staff_list = User::where(['status' => $status])->select('*')->orderBy('id', 'desc')->get();
+        // }
         $staff_list = User::all()->sortByDesc("id");
-        if($status){
-            $staff_list = User::where(['status' => $status])->select('*')->orderBy('id', 'desc')->get();
-        }
-       
         $positions = Position::all();
         $roles = UserRole::all();
         $languages = Language::all();
         $organizations = Organization::all();
+        $staff_statuses = StaffStatus::all();
+        
         foreach ($staff_list as $staff) {
             $position = Position::where("id", $staff->position)->first()->position;
             $role = UserRole::where("id", $staff->role)->first()->role;
             $organization = Organization::where("id", $staff->organization)->first()->name;
+            $staff_status = StaffStatus::where("id", $staff->organization)->first()->status;
             $staff->position = $position;
             $staff->role = $role;
             $staff->organization = $organization;
+            $staff->staff_status = $staff_status;
         }
-        return view('staffs/staff', compact("staff_list", "positions", "roles", "languages", "organizations"));
+        return view('staffs/staff', compact("staff_list", "positions", "roles", "languages", "organizations", "staff_statuses"));
     }
 
     public function table()
@@ -86,8 +91,8 @@ class StaffController extends BaseController
         $user->hire_date = update_date_format($request->input('submit_date'), "Y-m-d"); 
         $user->ssn = $request->input('ssn');   
         $user->gender = $request->input('gender');   
-        $user->language_id = $request->input('language');   
-        $user->status = $request->input('status');   
+        $user->language_id = $request->input('language');    
+        $user->staff_status = $request->input('staff_status');     
         $user->role = $request->input('employment_type');   
         $user->termination_date = update_date_format($request->input('termination_date'), "Y-m-d"); 
         $user->corporation_name = $request->input('corporation_name');   
@@ -166,5 +171,23 @@ class StaffController extends BaseController
         $file = base_path($folderPath) . $filename; 
         file_put_contents($file, $image_base64);
        return $folderPath.$filename;
+    }
+
+    public function delete_staff(Request $request, $id)
+    {
+            $user = User::find($id);
+            $user->staff_status = 4; 
+        
+        if($user->save()){  
+            $this->response['status'] = true;
+            $this->response['message'] = "Staff Terminated Successfully";
+            
+            
+        }else{
+            $this->response['status'] = false;
+            $this->response['message'] = "Staff Terminated Failed";
+            
+        }
+        return $this->response(); 
     }
 }

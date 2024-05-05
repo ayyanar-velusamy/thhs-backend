@@ -1,7 +1,7 @@
 
 var formTitle = $('#formTitle');
-var formname = "save_staff_form"; 
-// new DataTable('#datatable');
+var formname = "save_staff_form";
+/**DataTable */
 $('#staff_datatable').dataTable({
 	"lengthChange": false,
 	"order": [],
@@ -33,6 +33,21 @@ $('#staff_datatable').dataTable({
 	}
 });
 
+/**Table filter */ 
+$('#filter_status').on('change', function () {
+	var table = $('#staff_datatable').DataTable();
+	table.column(7).
+		search(this.value && `^${this.value}$`, true, false).
+		draw();
+});
+// $('#filter_organization').on('change', function() {
+// 	var table = $('#staff_datatable').DataTable();
+// 	table.column(7).
+// 	  search(this.value && `^${this.value}$`, true, false).
+// 		draw();
+// });
+
+/**Form validation */
 $(document).on('click', '#save_staff_btn', function () {
 	jQuery(`#${formname}`).validate({
 		rules: {
@@ -57,6 +72,9 @@ $(document).on('click', '#save_staff_btn', function () {
 			submit_date: {
 				required: true,
 			},
+			termination_date: {
+				required: true,
+			},
 			ssn: {
 				required: true,
 			},
@@ -75,7 +93,7 @@ $(document).on('click', '#save_staff_btn', function () {
 			employment_type: {
 				required: true,
 			},
-			status: {
+			staff_status: {
 				required: true,
 			}
 		},
@@ -102,6 +120,10 @@ $(document).on('click', '#save_staff_btn', function () {
 			submit_date: {
 				required: "Date hired cannot be empty",
 			},
+			termination_date: {
+				required: "Terminatio Date hired cannot be empty",
+			},
+
 			ssn: {
 				required: "SSN cannot be empty",
 			},
@@ -114,7 +136,7 @@ $(document).on('click', '#save_staff_btn', function () {
 			language: {
 				required: "Language cannot be empty",
 			},
-			status: {
+			staff_status: {
 				required: "Status cannot be empty",
 			},
 			corporation_name: {
@@ -147,13 +169,9 @@ $(document).on('click', '#save_staff_btn', function () {
 			}
 		}
 	});
-});
-$(function () {
-	$(".cancel_btn").click(function () {
-		$('.offcanvas').offcanvas('hide');
-	});
-});
+}); 
 
+/**Form Submit */
 $(document).on('submit', `#${formname}`, function (e) {
 	var form = $(`#${formname}`);
 	var formBtnId = 'save_staff_btn';
@@ -179,7 +197,7 @@ $(document).on('submit', `#${formname}`, function (e) {
 				} else {
 					toastr.error(data.message)
 				}
-				
+
 			},
 			error: function (err) {
 				unloadingButton(formBtnId)
@@ -196,67 +214,85 @@ $(document).on('submit', `#${formname}`, function (e) {
 	}
 });
 
-/*
+
+/**Delete Popup */ 
+$(function () {
+	$(".cancel_btn").click(function () {
+		$('.offcanvas').offcanvas('hide');
+	});
+});
 $(document).on('click', 'button', function (e) {
 	if ($(this).attr("data-dismiss") == "modal") {
 		$(".modal").modal("hide");
 	}
 })
- 
-
-
 $(document).on('click', '#confirm_btn', function (e) {
 	eval($("#function_name").val() + "()");
 });
-
-function confirm_cancel_interview() {
-	$("#modal_msg").text("Are you sure want cancel the Interview ?");
-	$("#function_name").val("cancel_interview");
+function delete_staff_confirmation() {
+	$("#modal_msg").text("Are you sure want delete the Staff?");
+	$("#function_name").val("delete_staff");
 	$("#ConfirmModal").modal("show");
-}*/
-
-function openStaffPopup(){
-	formTitle.text('Add new Staff'); 
-	$('.hideField').show();
-	$('.offcanvas').offcanvas('show'); 
-	$(`#${formname}`).trigger("reset")
-	$(`#${formname} [name=id]`).val('');
 }
 
-function get_staff(id) { 
+
+
+/**Open Popup */  
+function openStaffPopup() {
+	formTitle.text('Add new Staff');
+	$('.hideField').show();
+	$('.offcanvas').offcanvas('show');
+	$(`#${formname}`).trigger("reset")
+	$(`#${formname} [name=id]`).val('');
+	uploadClear();
+}
+
+/**Upload Clear */  
+function uploadClear() {
+	const preview = document.getElementById("signature_image");
+	preview.src = "";
+	$(`#signature_image`).hide()
+	$(`#signature64`).val("")
+	$(`#upload_button`).text("Upload your e signature")
+} 
+
+/**Get Details */  
+function get_staff(id) {
 	formTitle.text('Edit Staff');
 	$('.hideField').hide();
 	$.ajax({
 		url: `${location.pathname}/get_staff/${id}`,
-		type: "GET", 
-		contentType: false, 
-		dataType: 'json', 
+		type: "GET",
+		contentType: false,
+		dataType: 'json',
 		success: function (response) {
-			$('.offcanvas').offcanvas('show'); 
-			let  staff  = response.data.staff 
+			$('.offcanvas').offcanvas('show');
+			uploadClear();
+			let staff = response.data.staff
 			$(`#${formname} [name=id]`).val(staff.id);
 			$(`#${formname} [name=firstname]`).val(staff.firstname);
 			$(`#${formname} [name=middlename]`).val(staff.middlename);
-			$(`#${formname} [name=lastname]`).val(staff.lastname); 
+			$(`#${formname} [name=lastname]`).val(staff.lastname);
 			$(`#${formname} [name=dob]`).val(moment(staff.birth_date).format('MM/DD/YYYY'));
-			$(`#${formname} [name=submit_date]`).val(moment(staff.hire_date).format('MM/DD/YYYY')); 
-			$(`#${formname} [name=ssn]`).val(staff.ssn); 
-			$(`#${formname} [name=organization]`).val(staff.organization); 
-			$(`#${formname} [name=position]`).val(staff.position); 
-			$(`#${formname} [name=gender]`).val(staff.gender); 
-			$(`#${formname} [name=email]`).val(staff.email); 
-			$(`#${formname} [name=language]`).val(staff.language_id); 
-			$(`#${formname} [name=status]`).val(staff.status); 
-			$(`#${formname} [name=employment_type]`).val(staff.role); 
-			$(`#${formname} [name=termination_date]`).val(moment(staff.termination_date).format('MM/DD/YYYY')); 
-			$(`#${formname} [name=corporation_name]`).val(staff.corporation_name); 
-			$(`#${formname} [name=tax_id]`).val(staff.tax_id); 
-			if(staff.signature_path){
+			$(`#${formname} [name=submit_date]`).val(moment(staff.hire_date).format('MM/DD/YYYY'));
+			$(`#${formname} [name=ssn]`).val(staff.ssn);
+			$(`#${formname} [name=organization]`).val(staff.organization);
+			$(`#${formname} [name=position]`).val(staff.position);
+			$(`#${formname} [name=gender]`).val(staff.gender);
+			$(`#${formname} [name=email]`).val(staff.email);
+			$(`#${formname} [name=language]`).val(staff.language_id);
+			$(`#${formname} [name=staff_status]`).val(staff.staff_status);
+			$(`#${formname} [name=employment_type]`).val(staff.role);
+			$(`#${formname} [name=termination_date]`).val(moment(staff.termination_date).format('MM/DD/YYYY'));
+			$(`#${formname} [name=corporation_name]`).val(staff.corporation_name);
+			$(`#${formname} [name=tax_id]`).val(staff.tax_id);
+			if (staff.signature_path) {
 				document.getElementById('signature_image').src = `${window.location.origin}/thhs-backend/${staff.signature_path}`;
-			} 
+				$(`#signature_image`).show()
+			}
 		},
 		error: function (err) {
-			toastr.error("Data getting failed") 
+			toastr.error("Data getting failed")
 		}
 	});
 }
@@ -297,33 +333,69 @@ function cancel_interview() {
 }
 
 function previewFile(name, target, image) {
-	const preview = document.getElementById(image); 
+	const preview = document.getElementById(image);
 	const file = document.querySelector(`input[name=${name}]`).files[0];
 	const reader = new FileReader();
- 
+
 	reader.addEventListener(
-	  "load",
-	  () => {
-		// convert image file to base64 string
-	
-	 
-
-		if((file.size/1000) > 999){ 
-			$(`#${formname} [name=signature_file]`).val(""); 
-			toastr.error('File too Big, please select a file less than 1mb') 
-		}else{
-			preview.src = reader.result;
-			$(`#${target}`).val(reader.result)
-		}
-
-
-		 
-	  },
-	  false,
+		"load",
+		() => {
+			// convert image file to base64 string 
+			if ((file.size / 1000) > 999) {
+				$(`#${formname} [name=signature_file]`).val("");
+				toastr.error('File too Big, please select a file less than 1mb')
+				uploadClear();
+			} else {
+				preview.src = reader.result;
+				$(`#${target}`).val(reader.result)
+				$(`#upload_button`).text(file.name)
+				$(`#signature_image`).show()
+			}
+		},
+		false,
 	);
-  
+
 	if (file) {
-	  reader.readAsDataURL(file);
+		reader.readAsDataURL(file);
 	}
-  }
-  
+}
+
+/**Delete */  
+function delete_staff() {
+	var formBtnId = 'confirm_btn';
+	let url = $("#delete_staff_btn").attr('data-url');
+	let target = ('#' + $(this).attr('id') == '#undefined') ? 'body' : '#' + $(this).attr('id');
+	loadingButton(formBtnId)
+	$.ajax({
+		url: url,
+		type: "GET",
+		contentType: false,
+		dataType: 'json',
+		processData: false,
+		success: function (data) {
+			unloadingButton(formBtnId)
+			if (data.status) {
+				toastr.success(data.message)
+			} else {
+				toastr.error(data.message)
+			}
+			reload_page();
+		},
+		error: function (err) {
+			unloadingButton(formBtnId)
+			if (err.responseJSON) {
+				toastr.error(err.responseJSON.message)
+			}
+			handleFail(err.responseJSON, {
+				container: target,
+				errorPosition: "field"
+			})
+			// reload_page();
+		}
+	});
+
+}
+
+function thisFileUpload() {
+	document.getElementById("customFile").click();
+}

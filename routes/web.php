@@ -56,6 +56,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/thhs/app/staffs', [App\Http\Controllers\StaffController::class, 'index'])->name('staffs');
     Route::post('/thhs/app/staffs/save_staff',[App\Http\Controllers\StaffController::class, 'save_staff'])->name('save_staff');
     Route::get('/thhs/app/staffs/get_staff/{id}',[App\Http\Controllers\StaffController::class, 'get_staff'])->name('get_staff'); 
+    Route::get('/thhs/app/staffs/delete_staff/{id}',[App\Http\Controllers\StaffController::class, 'delete_staff'])->name('delete_staff'); 
 
     
 });

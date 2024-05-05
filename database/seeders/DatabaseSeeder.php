@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             UserRoleSeeder::class,
             OrganizationSeeder::class,
-            ProspectStatusSeeder::class
+            ProspectStatusSeeder::class,
+            StaffStatusSeeder::class
         ]);
     }
 }

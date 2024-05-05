@@ -615,3 +615,37 @@ div.dt-container .dt-paging .dt-paging-button.current  {
   padding: 50px 100px;
 }
 
+
+.userimage {
+  background-color: #B3C6ED;
+  padding: 5px 12px;
+  border-radius: 50%;
+  overflow: unset;
+}
+
+.userimage.male {
+  padding: 5px 10px;
+}
+
+::file-selector-button {
+  display: none;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  display: none;
+}
+
+.sign-left {
+  flex: 0.3;
+  position: relative;
+  padding-left: 25px;
+}
+
+.sign-left::before {
+  position: absolute;
+  content: "";
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='28' height='105' viewBox='0 0 28 105' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 103.407H17.5717C8.73935 103.407 1.54953 96.0137 1.54953 86.9317V18.0683C1.54953 8.98634 8.73935 1.59332 17.5717 1.59332H28V0H17.5717C7.87161 0 0 8.09408 0 18.0683V86.9476C0 96.9059 7.87161 105.016 17.5717 105.016H28V103.423V103.407Z' fill='%235E63F2'/%3E%3C/svg%3E%0A");
+  width: 28px;
+  height: 105px;
+  left: 0;
+}
