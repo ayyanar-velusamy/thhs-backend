@@ -173,8 +173,7 @@ $(document).ready(function () {
 
 
 
-$(document).on('click','#add_prospect_btn' ,function(){ 
-	alert();
+$(document).on('click','#add_prospect_btn' ,function(){  
 	jQuery("#add_prospect_form, #userEditForm").validate({
 		rules: {
 			firstname: {

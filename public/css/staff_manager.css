@@ -162,7 +162,6 @@
   padding: 0px 10px !important;
 }
 
-.dt-layout-row .dt-search label,
 .status-wrapper label,
 .location-wrapper label {
   font-weight: 500;
@@ -588,3 +587,31 @@ div.dt-container .dt-paging .dt-paging-button.current  {
 }
 
 /* Data table css */
+
+
+/* popup */
+
+.form-wrapper >*+* {
+  margin-top: 16px;
+}
+
+.form-wrapper .field-wrapper label {
+  color: #666666;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.offcanvas.offcanvas-end {
+  width: 40%;
+}
+
+.offcanvas .offcanvas-body h5 {
+  margin-bottom: 32px;
+  font-size: 25px;
+}
+
+.offcanvas .offcanvas-body {
+  padding: 50px 100px;
+}
+

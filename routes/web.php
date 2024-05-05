@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProspectsController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\MailController;
 
 /*
@@ -47,6 +48,12 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/thhs/app/prospects/cancel_interview/{id}', [App\Http\Controllers\ProspectsController::class, 'cancel_interview'])->name('prospects.cancel_interview'); 
     Route::post('/thhs/app/prospects/hire_prospect', [App\Http\Controllers\ProspectsController::class, 'hire_prospect'])->name('prospects.hire_prospect'); 
     Route::post('/thhs/app/prospects/add_prospect',[App\Http\Controllers\ProspectsController::class, 'add_prospect'])->name('add_prospect');
+
+    /* Staff Routing */
+    Route::get('/thhs/app/staffs', [App\Http\Controllers\StaffController::class, 'index'])->name('staffs');
+    Route::post('/thhs/app/staffs/save_staff',[App\Http\Controllers\StaffController::class, 'save_staff'])->name('save_staff');
+    Route::get('/thhs/app/staffs/get_staff/{id}',[App\Http\Controllers\StaffController::class, 'get_staff'])->name('get_staff'); 
+
     
 });
 	

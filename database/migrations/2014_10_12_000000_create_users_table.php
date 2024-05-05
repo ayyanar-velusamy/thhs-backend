@@ -52,10 +52,13 @@ class CreateUsersTable extends Migration
             $table->string('hepatitis_vaccine_reason')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('is_admin')->default('0'); 
+            $table->integer('role')->default('1'); 
             $table->integer('status')->default('0'); 
+            $table->integer('organization')->default('1');  
             $table->date('interview_schedule_date')->nullable(); 
             $table->date('interview_confirm_date')->nullable(); 
             $table->date('hire_date')->nullable(); 
+            $table->date('termination_date')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
         });

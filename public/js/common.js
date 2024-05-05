@@ -1,5 +1,5 @@
 $(function () {
-  $("#dob , #submit_date")
+  $("#dob , #submit_date, #termination_date")
     .datepicker({
     format: "mm/dd/yyyy",
       autoclose: true,
