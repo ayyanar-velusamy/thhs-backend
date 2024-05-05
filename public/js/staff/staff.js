@@ -1,4 +1,3 @@
-
 var formTitle = $('#formTitle');
 var formname = "save_staff_form";
 /**DataTable */
@@ -6,7 +5,7 @@ $('#staff_datatable').dataTable({
 	"lengthChange": false,
 	"order": [],
 	"columnDefs": [{
-		"targets": 9,
+		"targets": 10,
 		"bSort": false,
 		"orderable": false
 	}],
@@ -40,12 +39,12 @@ $('#filter_status').on('change', function () {
 		search(this.value && `^${this.value}$`, true, false).
 		draw();
 });
-// $('#filter_organization').on('change', function() {
-// 	var table = $('#staff_datatable').DataTable();
-// 	table.column(7).
-// 	  search(this.value && `^${this.value}$`, true, false).
-// 		draw();
-// });
+$('#filter_organization').on('change', function() {
+	var table = $('#staff_datatable').DataTable();
+	table.column(9).
+	  search(this.value && `^${this.value}$`, true, false).
+		draw();
+});
 
 /**Form validation */
 $(document).on('click', '#save_staff_btn', function () {
@@ -72,9 +71,9 @@ $(document).on('click', '#save_staff_btn', function () {
 			submit_date: {
 				required: true,
 			},
-			termination_date: {
-				required: true,
-			},
+			// termination_date: {
+			// 	required: true,
+			// },
 			ssn: {
 				required: true,
 			},
@@ -120,10 +119,9 @@ $(document).on('click', '#save_staff_btn', function () {
 			submit_date: {
 				required: "Date hired cannot be empty",
 			},
-			termination_date: {
-				required: "Terminatio Date hired cannot be empty",
-			},
-
+			// termination_date: {
+			// 	required: "Terminatio Date hired cannot be empty",
+			// },
 			ssn: {
 				required: "SSN cannot be empty",
 			},
@@ -149,7 +147,7 @@ $(document).on('click', '#save_staff_btn', function () {
 				required: "Position cannot be empty",
 			},
 			submit_date: {
-				required: "Submit Date cannot be empty",
+				required: "Date Hired cannot be empty",
 
 			},
 		},
@@ -335,26 +333,35 @@ function cancel_interview() {
 function previewFile(name, target, image) {
 	const preview = document.getElementById(image);
 	const file = document.querySelector(`input[name=${name}]`).files[0];
-	const reader = new FileReader();
+	const reader = new FileReader();   
 
 	reader.addEventListener(
 		"load",
 		() => {
 			// convert image file to base64 string 
-			if ((file.size / 1000) > 999) {
-				$(`#${formname} [name=signature_file]`).val("");
-				toastr.error('File too Big, please select a file less than 1mb')
-				uploadClear();
-			} else {
-				preview.src = reader.result;
-				$(`#${target}`).val(reader.result)
-				$(`#upload_button`).text(file.name)
-				$(`#signature_image`).show()
-			}
+			let newImage = new Image(); 
+			newImage.src = URL.createObjectURL(file); 
+			newImage.onload = function () { 
+					let w = newImage.width; 
+					let h = newImage.height;  
+					if ((file.size / 1000) > 999) {
+						$(`#${formname} [name=signature_file]`).val("");
+						toastr.error('File too Big, please select a file less than 1mb')
+						uploadClear();
+					}else if(w > 500 || h > 200){
+						$(`#${formname} [name=signature_file]`).val("");
+						toastr.error('File dimention too Big, please select a image dimention width less than 500px and height less than 200px')
+						uploadClear();
+					} else {
+						preview.src = reader.result;
+						$(`#${target}`).val(reader.result)
+						$(`#upload_button`).text(file.name)
+						$(`#signature_image`).show()
+					}
+			};  
 		},
 		false,
-	);
-
+	); 
 	if (file) {
 		reader.readAsDataURL(file);
 	}
@@ -374,6 +381,7 @@ function delete_staff() {
 		processData: false,
 		success: function (data) {
 			unloadingButton(formBtnId)
+			$(".modal").modal("hide");
 			if (data.status) {
 				toastr.success(data.message)
 			} else {
@@ -383,6 +391,7 @@ function delete_staff() {
 		},
 		error: function (err) {
 			unloadingButton(formBtnId)
+			$(".modal").modal("hide");
 			if (err.responseJSON) {
 				toastr.error(err.responseJSON.message)
 			}

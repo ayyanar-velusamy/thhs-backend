@@ -29,7 +29,10 @@ class StaffStatusSeeder extends Seeder
             ],
             [
                 'status' => 'Vacation',
-            ] 
+            ], 
+            [
+                'status' => 'Deleted', 
+            ],
         ];
         foreach ($createMultipleStaffStatus as $data) {
             $StaffStatus = new StaffStatus();
