@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\PasswordReset;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordController extends Controller
 {
@@ -43,5 +45,20 @@ class ResetPasswordController extends Controller
 			}
 		}
     }
+
+    // protected function resetPassword($user, $password)
+    // {
+    //     $user->password = Hash::make($password);
+    
+    //     $user->setRememberToken(Str::random(60));
+    
+    //     $user->save();
+    
+    //     event(new PasswordReset($user));
+    
+    //     //you should comment below and redirect any route you want like:
+    //       return redirect('login');
+    //     // $this->guard()->login($user);
+    // }
 
 }

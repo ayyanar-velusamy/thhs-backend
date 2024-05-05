@@ -90,30 +90,46 @@ $(document).on('click','#signin_submit, #forget_submit' ,function(){
 	});
 });
 
-
-$(document).on('click','#register_submit' ,function(){  
-	// alert($("#authorize_to_us").is(":checked"));
-	jQuery("#register_form").validate({
+$(document).on('click','#signin_submit, #forget_submit' ,function(){  
+	jQuery("#signin-form, #forget_form").validate({
 		rules: {
-			authorize_to_us:{
-				required: true,
-			},
-			firstname:{
+			username:{
 				required: true,
 				maxlength: 64,
 			},
-			lastname:{
-				required: true,
-				maxlength: 64,
-			},
-			position:{
+			password:{
 				required: true,
 			},
-			email:{
-				required: true,
-				validmail:true,
-				maxlength: 64,
+		},
+		messages: {
+			username:{
+				required:"Username cannot be empty",
+				
+				
+				
 			},
+			password:{
+				required:"Password cannot be empty",
+			},	
+
+		},
+		errorElement: "span",
+		errorPlacement: function(error, element) {
+			$('span.removeclass-valid').remove();
+            var placement = $(element).data('error');
+			if (placement) {
+				$(placement).append(error)
+			 } else {
+				error.insertAfter(element);
+			}
+		}
+	});
+});
+
+$(document).on('click','#reset-submit' ,function(){  
+	// alert($("#authorize_to_us").is(":checked"));
+	jQuery("#reset-form").validate({
+		rules: {
 			password:{
 				required: true,
 				minlength:8,
@@ -128,21 +144,6 @@ $(document).on('click','#register_submit' ,function(){
 			},
 		},
 		messages: {
-			authorize_to_us:{
-				required:"You should be authorized to work in US",
-			},
-			firstname:{
-				required:"Firstname cannot be empty",
-			},
-			lastname:{
-				required:"Lastname cannot be empty",
-			},
-			position:{
-				required:"Position cannot be empty",
-			},
-			email:{
-				required:"Email cannot be empty",
-			},
 			password:{
 				required:"Password cannot be empty",
 				minlength:"Password cannot be less than 8 characters",
@@ -267,7 +268,6 @@ $(document).on('click','#personal_info_submit' ,function(){
 			"reference_phone[1]":{
 				required: true,
 			},
-<<<<<<< HEAD
 
 			
 			"education_type[0]":{
@@ -288,11 +288,6 @@ $(document).on('click','#personal_info_submit' ,function(){
 			// signature_file:{
 			// 	required: true,	
 			// },
-=======
-			resume:{
-				required: true,	
-			},
->>>>>>> f6a7fb030765a20ca93888b69a587566bc21ee81
 			signed:{
 				required: true,	
 			}
