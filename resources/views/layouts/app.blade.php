@@ -88,7 +88,7 @@
                             <i class="icon icon-staffs-logo"></i>
                             <p>Staff Manager</p>
                         </a>
-                        <a href="{{ route('prospects') }}" class="{{ request()->is('thhs/app/prospects') ? 'active' : '' }}" aria-current="true">
+                        <a href="{{ route('prospects') }}" class="{{ request()->is('thhs/app/prospects/*') ? 'active' : '' }}" aria-current="true">
                             <i class="icon icon-prospects-logo"></i>
                             <p>Prospect Manager</p>
                         </a>
