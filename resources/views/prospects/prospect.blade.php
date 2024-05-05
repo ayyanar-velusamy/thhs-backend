@@ -35,6 +35,7 @@
         <table class="w-100" id="datatable">
             <thead>
                 <tr>
+                    <th>Gender</th>
                     <th>Full Name</th>
                     <th>Email</th>
                     <th>Position</th>
@@ -52,6 +53,19 @@
             <tbody>
                 @foreach ($prospect_list as $prospect)
                     <tr>
+                        <td>
+                            @php
+                                if($prospect->gender ==1){
+                                    $class = "male";
+                                    $image = "male.svg";
+                                }else{
+                                    $class = "female";
+                                    $image = "female.svg";
+                                }
+                            @endphp
+                            <!-- <i class="icon {{ $class }}"></i> -->
+                            <img class="userimage {{$class}}" src="{{ asset('images/'.$image) }}">
+                        </td>
                         <td>
                             {{ $prospect->name }}
                         </td>

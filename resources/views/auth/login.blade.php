@@ -58,14 +58,14 @@
                             <span class="error">{{ $message }}</span>
                         @enderror 
                         <div class="forgot-password-wrapper d-flex align-items-center justify-content-between">
-                            <div class="checkbox-tick-wrapper d-flex align-items-center">
+                            <!-- <div class="checkbox-tick-wrapper d-flex align-items-center">
                                 <label class="d-flex align-items-center">
                                     <input type="checkbox" value="" />
                                     <span class="cr"><i class="icon icon-tick-white"></i></span>
                                     <p>Remember</p>
                                 </label>
-                            </div>
-                            <a href="#">Forgot password?</a>
+                            </div> -->
+                            <a href="{{ route('password.request') }}">Forgot password?</a>
                         </div>
                         <div class="btn-wrap">
                             <button class="login-btn-wrap" type="submit" id="signin_submit">Login</button>

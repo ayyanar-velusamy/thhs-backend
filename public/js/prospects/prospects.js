@@ -221,14 +221,20 @@ $(document).on('submit','#hire_prospect_form',function(e){
 
 
 
+$(document).on('click','#cancel_confirm_btn',function(e){
+	console.log($("#cancel_function_name").val());
+	eval($("#cancel_function_name").val() + "()");
+});
+
 $(document).on('click','#confirm_btn',function(e){
+	console.log($("#function_name").val());
 	eval($("#function_name").val() + "()");
 });
 
 function confirm_cancel_interview(){
-	$("#modal_msg").text("Are you sure want cancel the Interview?");
-	$("#function_name").val("cancel_interview");
-	$("#ConfirmModal").modal("show");
+	$("#cancel_modal_msg").text("Are you sure want cancel the Interview?");
+	$("#cancel_function_name").val("cancel_interview");
+	$("#CancelInterviewModal").modal("show");
 }
 
 function confirm_reject_prospect(){
@@ -262,13 +268,21 @@ function openHireProspectModal(user_id){
 }
 
 function cancel_interview(){
-	var formBtnId = 'confirm_btn';
+	$(".error").remove();
+	if($("#cancellation_reason").val() == ""){
+		$("#cancellation_reason").parent("div").append("<span class='error'>Cancellatoin Reason cannot be empty</span>");
+		return false;
+	}
+	var formBtnId = 'cancel_confirm_btn';
 	let url = $("#cancel_interview_btn").attr('data-url'); 
 	let target = ('#'+$(this).attr('id') == '#undefined') ? 'body' : '#'+$(this).attr('id');
+	var formData = new FormData();  
+	formData.append("cancellation_reason",$("#cancellation_reason").val());
 	loadingButton(formBtnId)
 	$.ajax({
-		url: url, 
-		type: "GET", 
+		url: url+"sds", 
+		type: "POST", 
+		data:formData,
 		contentType: false,
 		dataType:'json',
 		processData: false,
@@ -443,3 +457,6 @@ $('#filter_status').on('change', function() {
 	  search(this.value && `^${this.value}$`, true, false).
 		draw();
   });
+
+  $("#ssn").inputmask({"mask": "999-99-9999"});
+  $(".phone").inputmask({"mask": "(999)-999-9999"});

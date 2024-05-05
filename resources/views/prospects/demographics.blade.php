@@ -5,6 +5,7 @@
     $languages = $data["languages"];
     $positions = $data["positions"];
 @endphp
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 <link href="{{ asset('css/personal_info.css') }}" rel="stylesheet" />
 <section class="form-section bg-white">
   <form id="demographics_form" method="POST" class="ajax-form"  action="{{route('update_demographics', [$user->id])}}" role="form" enctype="multipart/form-data" >
@@ -142,7 +143,7 @@
         </div>
         <div class="field-wrapper">
             <label for="phone_home">Phone home:</label>
-            <input type="number" id="phone_home"  name="phone_home" placeholder="Phone home" value="{{ @$user->phone_home }}" />
+            <input type="text" class="phone" id="phone_home"  name="phone_home" placeholder="Phone home" value="{{ @$user->phone_home }}" />
         </div>
         <div class="field-wrapper address">
             <label for="business">Business:</label>
@@ -150,7 +151,7 @@
         </div>
         <div class="field-wrapper">
             <label for="cellular">Cellular:</label><span class="mandate">*</span>
-            <input type="text" id="cellular" required name="cellular" placeholder="Cellular"
+            <input type="text" id="cellular" class="phone" required name="cellular" placeholder="Cellular"
                 value="{{ @$user->cellular }}" />
         </div>
     </div>
@@ -511,7 +512,7 @@
         </div>
         <div class="field-wrapper">
             <label for="reference_phone">Phone</label><span class="mandate">*</span>
-            <input type="text"  value="{{ @$user->professional_references[0]->phone }}"
+            <input type="text" class="phone" value="{{ @$user->professional_references[0]->phone }}"
                 name="reference_phone[0]" placeholder="Phone" />
         </div>
 
@@ -549,7 +550,7 @@
         </div>
         <div class="field-wrapper">
             <label for="reference_phone">Phone</label><span class="mandate">*</span>
-            <input type="text" id="reference_phone" value="{{ @$user->professional_references[1]->phone }}"
+            <input type="text" class="phone" id="reference_phone" value="{{ @$user->professional_references[1]->phone }}"
                 name="reference_phone[1]" placeholder="Phone" />
         </div>
 
@@ -587,7 +588,7 @@
         </div>
         <div class="field-wrapper">
             <label for="reference_phone">Phone</label>
-            <input type="email" id="reference_phone" value="{{ @$user->professional_references[2]->phone }}"
+            <input type="text" class="phone" id="reference_phone" value="{{ @$user->professional_references[2]->phone }}"
                 name="reference_phone[3]" placeholder="Phone" />
         </div>
 
@@ -625,7 +626,7 @@
         </div>
         <div class="field-wrapper">
             <label for="Phone no">Phone no</label>
-            <input type="number" id="Phone_no" value="{{ @$user->work_history[0]->employer_phone }}"
+            <input type="text" id="Phone_no"  class="phone" value="{{ @$user->work_history[0]->employer_phone }}"
                 placeholder="Phone no" name="employer_phone[0]" />
         </div>
 
@@ -658,8 +659,8 @@
                 name="employer_fax[1]" placeholder="Fax" />
         </div>
         <div class="field-wrapper">
-            <label for="Phone no">Phone no</label><span class="mandate">*</span>
-            <input type="number" id="Phone_no" value="{{ @$user->work_history[1]->employer_phone }}"
+            <label for="Phone no">Phone no</label>
+            <input type="text" class="phone" id="Phone_no" value="{{ @$user->work_history[1]->employer_phone }}"
                 placeholder="Phone no" name="employer_phone[1]" />
         </div>
         <!-- Employer 2-->
@@ -692,7 +693,7 @@
         </div>
         <div class="field-wrapper">
             <label for="Phone no">Phone no</label>
-            <input type="number" id="Phone_no" value="{{ @$user->work_history[2]->employer_phone }}"
+            <input type="text" class="phone" id="Phone_no" value="{{ @$user->work_history[2]->employer_phone }}"
                 placeholder="Phone no" name="employer_phone[2]" />
         </div>
         <!-- Employer 3-->
@@ -745,7 +746,7 @@
         </div>
         <div class="field-wrapper">
             <label for="phone">Phone </label><span class="mandate">*</span>
-            <input type="number" id="phone" value="{{ @$user->emergency_contacts[0]->relationship_phone }}"
+            <input type="text" class="phone" id="phone" value="{{ @$user->emergency_contacts[0]->relationship_phone }}"
                 placeholder="Phone" name="relationship_phone[0]" required />
         </div>
 
@@ -782,7 +783,7 @@
     </div>
     <div class="field-wrapper">
         <label for="relationship_phone">Phone </label>
-        <input type="number" id="relationship_phone" value="{{@$user->emergency_contacts[1]->relationship_phone}}" placeholder="Phone"
+        <input type="text" class="phone" id="relationship_phone" value="{{@$user->emergency_contacts[1]->relationship_phone}}" placeholder="Phone"
             name="relationship_phone[1]" />
     </div>
 </div>
@@ -958,5 +959,34 @@
         </div>
       </div>
 
-      
+      <div
+        class="modal fade"
+        id="CancelInterviewModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Confirm
+              </h5>
+            </div>
+            <div class="modal-body">
+              <p id="cancel_modal_msg"></p>
+                <div class="field-wrapper w-100" id="">
+                    <textarea style="height:100px" placeholder="Cancellation Reason" id="cancellation_reason" name="cancellation_reason"></textarea>
+                </div>
+              <input type="hidden" id="cancel_function_name" value="">
+            </div>
+            <div class="cta_wrapper d-flex justify-content-center gap-5">
+              <button class="danger" data-dismiss="modal">Clear</button>
+              <button class="success" id="cancel_confirm_btn">Confirm</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
 @endsection

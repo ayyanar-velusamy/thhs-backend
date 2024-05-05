@@ -59,6 +59,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('interview_schedule_date')->nullable(); 
             $table->date('interview_confirm_date')->nullable(); 
             $table->date('hire_date')->nullable(); 
+            $table->text('interview_cancellation_reason')->nullable(); 
             $table->integer('prospect_status')->nullable(); 
             $table->rememberToken();
             $table->timestamps();

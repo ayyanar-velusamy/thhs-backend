@@ -448,4 +448,16 @@ function back_url($url = ""){
 		);
 	}
 
+
+function remove_mask($input){
+	if($input){
+		$str = str_replace("-","",$input);
+		$str = str_replace("(","",$str);
+		$str = str_replace(")","",$str);
+		return $str;
+	}
+	return null;
+	
+}
+
 //**********************************************//

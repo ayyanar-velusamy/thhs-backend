@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> 
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/lib/jquery.datetimepicker.min.css') }}" />
     <link href="{{ asset('css/global.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/lib/bootstrap-datepicker.min.css') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -188,8 +189,7 @@
         </div>
       </div>
   </body>
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/lib/jquery.datetimepicker.min.css') }}" />
-<script type="text/javascript" src="{{ asset('js/lib/jquery.datetimepicker.full.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/lib/jquery.datetimepicker.full.min.js') }}"></script>
   <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
   <script src="{{ asset('js/lib/moment.js') }}" ></script>
   <script src="{{ asset('js/common.js') }}"></script>

@@ -101,7 +101,7 @@ class ProspectsController extends BaseController
     }
     public function update_demographics(Request $request, $id)
     {
-        
+        $request->request->add(['user_id' => $id]);
         $user = User::find($id);
         $user->firstname = $request->input('firstname');
         $user->middlename = $request->input('middlename');
@@ -109,7 +109,7 @@ class ProspectsController extends BaseController
         $user->birth_date = update_date_format($request->input('dob'),"Y-m-d");
         $user->gender = $request->input('gender');
         $user->language_id = $request->input('languages');
-        $user->ssn = $request->input('ssn');
+        $user->ssn = remove_mask($request->input('ssn'));
         $user->employement_authorization = $request->input('employeement_authorization');
         $user->corporation_name = $request->input('corporation_name');
         $user->name = $request->input('firstname') . " " . $request->input('lastname'); 
@@ -120,9 +120,9 @@ class ProspectsController extends BaseController
         $user->state = $request->input('state'); 
         $user->city = $request->input('city'); 
         $user->zip = $request->input('zip');   
-        $user->phone_home = $request->input('phone_home');   
+        $user->phone_home = remove_mask($request->input('phone_home'));   
         $user->business = $request->input('business');
-        $user->cellular = $request->input('cellular');  
+        $user->cellular = remove_mask($request->input('cellular'));  
         $user->start_date = update_date_format($request->input('dob'),"Y-m-d");
         $user->has_convicted_felony = $request->input('has_convicted_felony'); 
         $user->convicted_reason = $request->input('convicted_reason'); 
@@ -216,6 +216,7 @@ class ProspectsController extends BaseController
     {
             $user = User::find($id);
             $user->prospect_status = 7;
+            $user->interview_cancellation_reason = $request->input('cancellation_reason');
         // $user->interview_confirm_date = update_date_format($request->input('interview_date'), "Y-m-d");
         
         if($user->save()){ 
@@ -324,11 +325,11 @@ class ProspectsController extends BaseController
         $references = array_filter($request->input("reference_relationship"));
         foreach($references as $key => $reference){
             $user_references = new ProfessionalReferences;
-            $user_references->user_id = Auth::user()->id;
+            $user_references->user_id = $request->input("user_id");;
             $user_references->relationship_id = $reference;
             $user_references->name = $request->input("reference_name")[$key];
             $user_references->email = $request->input("reference_email")[$key];
-            $user_references->phone = $request->input("reference_phone")[$key];
+            $user_references->phone = remove_mask($request->input("reference_phone")[$key]);
            
             $user_references->save();
         }
@@ -338,13 +339,13 @@ class ProspectsController extends BaseController
         $employers = array_filter($request->input("employer"));
         foreach($employers as $key => $employer){
             $work_history = new WorkHistory;
-            $work_history->user_id = Auth::user()->id;
+            $work_history->user_id = $request->input("user_id");;
             $work_history->employer_name = $employer;
             $work_history->position = $request->input("prev_position")[$key];
             $work_history->supervisor_name = $request->input("supervisor")[$key];
             $work_history->employer_email = $request->input("employer_email")[$key];
             $work_history->employer_fax = $request->input("employer_fax")[$key];
-            $work_history->employer_phone = $request->input("employer_phone")[$key];
+            $work_history->employer_phone = remove_mask($request->input("employer_phone")[$key]);
             $work_history->save();
         }
     }
@@ -354,7 +355,7 @@ class ProspectsController extends BaseController
         // pr($education_types,1);
         foreach($education_types as $key => $education_type){
             $user_education = new UserEducation;
-            $user_education->user_id = Auth::user()->id;
+            $user_education->user_id = $request->input("user_id");
             $user_education->type_id = $education_type;
             $user_education->name = $request->input("education_name")[$key];
             $user_education->date_completed =  update_date_format($request->input("education_date_completed")[$key],"Y-m-d");
@@ -368,11 +369,11 @@ class ProspectsController extends BaseController
         $relationships = array_filter($request->input("relationship"));
         foreach($relationships as $key => $relationship){
             $work_history = new EmergencyContacts;
-            $work_history->user_id = Auth::user()->id;
+            $work_history->user_id = $request->input("user_id");;
             $work_history->relationship_id = $relationship;
             $work_history->relationship_name = $request->input("relationship_name")[$key];
             $work_history->relationship_email = $request->input("relationship_email")[$key];
-            $work_history->relationship_phone = $request->input("relationship_phone")[$key];
+            $work_history->relationship_phone = remove_mask($request->input("relationship_phone")[$key]);
             $work_history->save();
         }
     }
