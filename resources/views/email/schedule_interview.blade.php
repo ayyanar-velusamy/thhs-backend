@@ -20,13 +20,32 @@
             <!-- <img loading="lazy" src="../images/email_temp_img.png" class="largeImg" /> -->
             <div class="text-content">
                 <div class="content">
-                    <p class="sub_title" style="font-size: 22px">Dear {{ $user->firstname ." ".$user->lastname }}</p>
+                    <p class="sub_title" style="font-size: 22px">Dear <span style="color: rgba(94, 99, 242, 1);">{{ $user->firstname ." ".$user->lastname }}</span></p>
 
                     <p>
-                        Good day!! Your Interview has been scheduled on <b>{{ @update_date_format($user->interview_schedule_date, "m-d-Y") }} at {{ @update_date_format($user->interview_schedule_date, "H:i")}}</b>
+                        Your Interview has been scheduled on <span style="color: rgba(94, 99, 242, 1);">{{ @update_date_format($user->interview_schedule_date, "m-d-Y") }} at {{ @update_date_format($user->interview_schedule_date, "H:i")}}</span>
                         <br />
-                        You will receive the time confirmation soon.
-                        
+                        Please confirm your availability.
+                        <br/>
+                        <br/>
+                        Please bring the following documents to your Interview or you can email them to
+                        <br/>
+                        <p style="color: rgba(94, 99, 242, 1);">hr@trenhhs.com</p>
+                        <br/>
+                        <br/>
+                        <p class="sub_title" style="font-size: 22px; font-weight: bold; color: rgba(94, 99, 242, 1);">Documents</p>
+                        <ul>
+                            <li>75 Hours HHA Certificate</li>
+                            <li>Alzheimer's</li>
+                            <li>Assitance with Self Medications</li>
+                            <li>CPR</li>
+                            <li>Domestic Voilence</li>
+                            <li>HIPPA</li>
+                            <li>HIV / AIDS Update</li>
+                            <li>OSHA</li>
+                            <li>Other Certificates</li>
+                        </ul>
+                    
                     </p>
                 </div>
                 <div style="width: 570px;margin: 48px 0 0 0;font: 16px Poppins, sans-serif;">

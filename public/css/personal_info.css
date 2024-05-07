@@ -491,3 +491,9 @@ form .form-wrapper .field-wrapper textarea {
   background-color: #0cd0a2;
   color: #ffffff;
 }
+.table-wrapper.contact-info .table-heading-data h5 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: auto 0;
+}
+

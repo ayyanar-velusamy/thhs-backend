@@ -20,10 +20,10 @@
             <!-- <img loading="lazy" src="../images/email_temp_img.png" class="largeImg" /> -->
             <div class="text-content">
                 <div class="content">
-                    <p class="sub_title" style="font-size: 22px">Dear {{ $user->firstname ." ".$user->lastname }}</p>
+                    <p class="sub_title" style="font-size: 22px">Dear <span style="color: rgba(94, 99, 242, 1);">{{ $user->firstname ." ".$user->lastname }}</span></p>
 
                     <p>
-                        Good day!! Your Interview has been <b>Cancelled.<b>
+                        Your Interview has been <span style="color: rgba(94, 99, 242, 1);">Cancelled.</span>
                         <br />
                         Please wait for further updates.
                         

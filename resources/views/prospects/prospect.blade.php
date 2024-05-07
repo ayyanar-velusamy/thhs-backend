@@ -86,13 +86,13 @@
                         <td>{{ update_date_format($prospect->interview_confirm_date,"m-d-Y") }}</td>
                         
                         
-                        <td class="icons">
+                        <td class="icons" style="padding-top:20px">
                             <a title="View Prospect" href="{{ route('prospects.demographics',[$prospect->id]) }}"><i
                                     class="icon icon-eye-green"></i></a>
                             <a title="Hire Prospect" href="#" onclick="openHireProspectModal({{$prospect->id}})">
                                 <i class="icon icon-hire"></i></a>
                                 <a title="Reject Prospect" href="#"  id="reject_prospect_btn" data-url="{{@route('prospects.reject_prospect',[$prospect->id])}}" onclick="confirm_reject_prospect()">
-                                    <i class="icon icon-delete"></i></a>
+                                    <i class="icon icon-reject"></i></a>
                                     <a title="Archive Prospect" href="#" id="archive_prospect_btn" data-url="{{@route('prospects.archive_prospect',[$prospect->id])}}" onclick="confirm_archive_prospect()">
                                         <i class="icon icon-archive"></i></a>
                             
@@ -125,7 +125,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">
-                        Add Prospect manager
+                        Add Prospect
                     </h5>
                 </div>
                 <div class="modal-body">
@@ -208,7 +208,7 @@
               <input type="hidden" name="user_id" id="user_id">
               <div class="field-wrapper">
                 <label for="fname">Hire Date/Time</label>
-                <div id="interview_date_div" class="date" data-date-format="mm/dd/yyyy H:i:s">
+                <div id="hire_date_div" class="date" data-date-format="mm/dd/yyyy H:i:s">
                   <input required type="text" name="hire_date" id="hire_date" readonly placeholder="Hire Date" />
                   <span class="input-group-addon d-none">
                     <i class="icon icon-eye"></i>

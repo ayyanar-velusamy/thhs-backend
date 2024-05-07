@@ -63,6 +63,7 @@ class CreateUsersTable extends Migration
             $table->integer('prospect_status')->nullable(); 
             $table->integer('has_temp_password')->default(0)->nullable();
             $table->integer('staff_status')->nullable();  
+            $table->integer('user_type')->default(1)->nullable();  
             $table->rememberToken();
             $table->timestamps();
         });

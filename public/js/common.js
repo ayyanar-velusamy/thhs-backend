@@ -1,6 +1,12 @@
 $(function () {
   $("#ssn").inputmask({"mask": "999-99-9999"});
   $(".phone").inputmask({"mask": "(999)-999-9999"});
+  // $(".phone_text").text($(".phone_text").text().replace(/(\d{3})(\d{3})(\d{2})/,"($1)-$2-$3")
+  $('.phone_text').each(function() {
+    $(this).text($(this).text().replace(/(\d{3})(\d{3})(\d{2})/,"($1)-$2-$3"));
+  });
+  
+  
 
   $("#dob , #submit_date, #termination_date")
     .datepicker({
@@ -8,6 +14,7 @@ $(function () {
       autoclose: true,
       todayHighlight: true,
       onSelect: function(value, date) {
+        $(this).find(".error").remove();
       date.dpDiv.find('.ui-datepicker-current-day a')
           .css('background-color', 'green');
       },
@@ -22,13 +29,14 @@ $(function () {
 });
 
 $(function () {
-  $("#datepicker , #start_date , #influeza_vaccine_date, #hepatitis_vaccine_date, #date_completed")
+  $("#datepicker , #start_date , #influeza_vaccine_date, #hepatitis_vaccine_date, #date_completed, #hire_date, #terminated_date,  #hire_date_div")
     .datepicker({
       format: "mm/dd/yyyy",
       autoclose: true,
       todayHighlight: true,
-      onSelect: function(value, date) {
-      date.dpDiv.find('.ui-datepicker-current-day a')
+      onSelect: function(date) {
+        // alert();
+        date.dpDiv.find('.ui-datepicker-current-day a')
           .css('background-color', 'green');
       }
     })
@@ -37,6 +45,8 @@ $(function () {
       format: "m/d/Y H:i",
       autoclose: true,
       todayHighlight: true,
+      minDate:new Date(),
+      step:30,
       onSelect: function(value, date) {
       date.dpDiv.find('.ui-datepicker-current-day a')
           .css('background-color', 'green');
@@ -44,6 +54,9 @@ $(function () {
     })
     // .datepicker("update", new Date());
 
+    $(".date").on("change", function() { 
+      // $(this).find(".error").remove();
+  }); 
    
     if($("input[name='has_convicted_felony']:checked").val() == 1){
       $("#no_textarea").show();
@@ -120,20 +133,27 @@ function reload_page($url){
   }
   
 }
+DataTable.types().forEach(type => {
+	DataTable.type(type, 'detect', () => false);
+});
 
 // new DataTable('#datatable');
 $('#datatable').dataTable( {
   "lengthChange": false,
   "order": [],
   "columnDefs": [ {
-    "targets": 9,
-    "bSort": false,
-    "orderable": false
-    } ],
-    "columnDefs": [
+      "targets": 0,
+      "bSort": false,
+      "orderable": false,
+      "className": "dt-center"
+      }, {
+      "targets": 12,
+      "bSort": false,
+      "orderable": false
+      },
       {"className": "dt-center", "targets": "_all"}
     ],
-    autoWidth: false,
+  autoWidth: false,
   initComplete: function () {
     this.api()
         .columns()

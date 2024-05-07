@@ -63,7 +63,7 @@ if(!function_exists('GetActionMethodName')){
 
 if(!function_exists('includeJs')){
     function includeJs($dir,$file){ 
-		echo $dir."/".$file."-----";
+		// echo $dir."/".$file."-----";
         if (file_exists(public_path('js/'.$dir.'/'.$file.'.js'))){
             return "<script src=".asset('js/'.$dir.'/'.$file.'.js')."></script>";
         }
@@ -301,6 +301,7 @@ function back_url($url = ""){
 	} 
 
 	function update_date_format($date,$format="m/d/Y"){
+		
 		if($date){
 			return date($format, strtotime($date));
 		}else{

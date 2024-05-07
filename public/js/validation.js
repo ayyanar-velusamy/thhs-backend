@@ -126,12 +126,97 @@ $(document).on('click','#signin_submit, #forget_submit' ,function(){
 	});
 });
 
+$(document).on('click','#register_submit' ,function(){  
+	// alert($("#authorize_to_us").is(":checked"));
+	jQuery("#register_form").validate({
+		rules: {
+			authorize_to_us:{
+				required: true,
+			},
+			firstname:{
+				required: true,
+				maxlength: 64,
+			},
+			lastname:{
+				required: true,
+				maxlength: 64,
+			},
+			position:{
+				required: true,
+			},
+			email:{
+				required: true,
+				validmail:true,
+				maxlength: 64,
+			},
+			password:{
+				required: true,
+				newpassword:true,
+				minlength:8,
+				maxlength:16, 
+				
+			},
+			password_confirmation: {
+				required: true,
+				confirmpassword:true,
+				minlength:8,
+				maxlength:16,
+			},
+		},
+		messages: {
+			authorize_to_us:{
+				required:"You must be authoried to work in US",
+			},
+			firstname:{
+				required:"Firstname cannot be empty",
+			},
+			lastname:{
+				required:"Lastname cannot be empty",
+			},
+			position:{
+				required:"Position cannot be empty",
+			},
+			email:{
+				required:"Email cannot be empty",
+			},			
+			password:{
+				required:"Password cannot be empty",
+				minlength:"Password cannot be less than 8 characters",
+				maxlength:"Password cannot exceed 16 characters",
+				newpassword:"Password must contain at least 1 digit, 1 lowercase letter,1 uppercase letter and 1 special character",
+			
+			},	
+			password_confirmation:{
+				required:"Confirm Password cannot be empty",
+				confirmpassword:"Password mismatch! Retry",
+			}, 
+		},
+		errorElement: "span",
+		errorPlacement: function(error, element) {
+			console.log(element);
+			$('span.removeclass-valid').remove();
+            var placement = $(element).data('error');
+			if (placement) {
+				$(placement).append(error)
+			 } else {
+				if($(element).hasClass("authorize_to_us_checbox")){
+					$(element).parents(".form-check").append(error);
+				}else{
+					error.insertAfter(element);	
+				}
+				
+			}
+		}
+	});
+});
+
 $(document).on('click','#reset-submit' ,function(){  
 	// alert($("#authorize_to_us").is(":checked"));
 	jQuery("#reset-form").validate({
 		rules: {
 			password:{
 				required: true,
+				newpassword:true,
 				minlength:8,
 				maxlength:16, 
 				
@@ -239,6 +324,7 @@ $(document).on('click','#personal_info_submit' ,function(){
 			},
 			"relationship_email[0]":{
 				required: true,
+				validmail:true,
 			},
 			"relationship_phone[0]":{
 				required: true,
@@ -251,6 +337,7 @@ $(document).on('click','#personal_info_submit' ,function(){
 			},
 			"reference_email[0]":{
 				required: true,
+				validmail:true,
 			},
 			"reference_phone[0]":{
 				required: true,
@@ -264,6 +351,7 @@ $(document).on('click','#personal_info_submit' ,function(){
 			},
 			"reference_email[1]":{
 				required: true,
+				validmail:true,
 			},
 			"reference_phone[1]":{
 				required: true,
@@ -494,6 +582,7 @@ $(document).on('click','#demographics_submit' ,function(){
 			},
 			"relationship_email[0]":{
 				required: true,
+				validmail:true,
 			},
 			"relationship_phone[0]":{
 				required: true,
@@ -507,6 +596,7 @@ $(document).on('click','#demographics_submit' ,function(){
 			},
 			"reference_email[0]":{
 				required: true,
+				validmail:true,
 			},
 			"reference_phone[0]":{
 				required: true,
@@ -520,6 +610,225 @@ $(document).on('click','#demographics_submit' ,function(){
 			},
 			"reference_email[1]":{
 				required: true,
+				validmail:true,
+			},
+			"reference_phone[1]":{
+				required: true,
+			},
+			
+			"education_type[0]":{
+				required:true,
+			},
+			"education_name[0]":{
+				required: true,
+			},
+			"education_date_completed[0]":{
+				required: true,
+			},
+			"education_degree[0]":{
+				required: true,
+			},
+			// signature_file:{
+			// 	required: true,	
+			// },
+			
+		},
+		messages: {
+			firstname:{
+				required:"Firstname cannot be empty",
+			},			
+			lastname:{
+				required:"Lastname cannot be empty",
+			},
+			dob: {
+				required:"Date of birth cannot be empty",
+				
+			},
+			gender: {
+				required:"Gender cannot be empty",
+				
+			},
+			languages: {
+				required:"Language cannot be empty",
+				
+			},
+			ssn: {
+				required:"SSN cannot be empty",
+				
+			},
+			email:{
+				required:"Email cannot be empty",
+			},			
+			position:{
+				required:"Position cannot be empty",
+			},
+						
+			address:{
+				required:"Address cannot be empty",
+			},
+			state:{
+				required:"State cannot be empty",
+			},
+			city:{
+				required:"City cannot be empty",
+			},	
+			zip:{
+				required:"Zipcode cannot be empty",
+			},			
+			cellular:{
+				required:"Cellular cannot be empty",
+			},
+			start_date:{
+				required:"Start date cannot be empty",
+			},
+			
+			"relationship[0]":{
+				required: "Relationship cannot be empty"
+
+			},
+			"relationship_name[0]":{
+				required: "Name cannot be empty"
+			},
+			"relationship_email[0]":{
+				required: "Email cannot be empty"
+			},
+			"relationship_phone[0]":{
+				required: "Phone cannot be empty"
+			},
+
+			"reference_relationship[0]":{
+				required: "Relationship cannot be empty"
+
+			},
+			"reference_name[0]":{
+				required: "Name cannot be empty"
+			},
+			"reference_email[0]":{
+				required: "Email cannot be empty"
+			},
+			"reference_phone[0]":{
+				required: "Phone cannot be empty"
+			},
+			
+			"reference_relationship[1]":{
+				required: "Relationship cannot be empty"
+
+			},
+			"reference_name[1]":{
+				required: "Name cannot be empty"
+			},
+			"reference_email[1]":{
+				required: "Email cannot be empty"
+			},
+			"reference_phone[1]":{
+				required: "Phone cannot be empty"
+			},
+			
+			"education_type[0]":{
+				required: "Education Type cannot be empty"
+
+			},
+			"education_name[0]":{
+				required: "Education Name cannot be empty"
+			},
+			"education_date_completed[0]":{
+				required: "Date cannot be empty"
+			},
+			"education_degree[0]":{
+				required: "Degree cannot be empty"
+			},
+			// password:{
+			// 	required:"Password cannot be empty",
+			// },	
+
+		},
+		errorElement: "span",
+		errorPlacement: function(error, element) {
+			console.log($(element).parent().parent().hasClass("work_history"));
+			$('span.removeclass-valid').remove();
+            var placement = $(element).data('error');
+			if (placement) {
+				$(placement).append(error)
+			 } else {
+				if($(element).parent().parent().hasClass("work_history")){
+					error.insertAfter(element);
+				}else{
+					error.insertAfter(element);
+				}
+				
+			}
+		}
+	});
+});
+
+$(document).on('click','#staff_demographics_submit' ,function(){  
+	jQuery("#staff_demographics_form").validate({
+		rules: {
+			firstname:{
+				required: true,
+				maxlength: 64,
+			},
+			lastname:{
+				required: true,
+				maxlength: 64,
+			},
+			dob:{
+				required: true,
+			},
+			gender:{
+				required: true,
+			},
+			languages:{
+				required: true,
+			},
+			ssn:{
+				required: true,
+			},
+			email:{
+				required: true,
+				validmail:true,
+				maxlength: 64,
+			},
+			position:{
+				required: true,
+			},
+			"relationship[0]":{
+				required:true,
+			},
+			"relationship_name[0]":{
+				required: true,
+			},
+			"relationship_email[0]":{
+				required: true,
+				validmail:true,
+			},
+			"relationship_phone[0]":{
+				required: true,
+			},
+			
+			"reference_relationship[0]":{
+				required:true,
+			},
+			"reference_name[0]":{
+				required: true,
+			},
+			"reference_email[0]":{
+				required: true,
+				validmail:true,
+			},
+			"reference_phone[0]":{
+				required: true,
+			},
+			
+			"reference_relationship[1]":{
+				required:true,
+			},
+			"reference_name[1]":{
+				required: true,
+			},
+			"reference_email[1]":{
+				required: true,
+				validmail:true,
 			},
 			"reference_phone[1]":{
 				required: true,

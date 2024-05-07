@@ -20,22 +20,21 @@
             <!-- <img loading="lazy" src="../images/email_temp_img.png" class="largeImg" /> -->
             <div class="text-content">
                 <div class="content">
-                    <p class="sub_title" style="font-size: 22px">Dear User</p>
+                    <p class="sub_title" style="font-size: 22px">Dear <span style="color: rgba(94, 99, 242, 1);">User</span></p>
 
                     <p>
-                        Please click on this link to reset your password.
-                        
+                        You recently requested to reset your password, please use the link below to reset it.
+                        <br>
                         <span
                             style="
-                  font-weight: 500;
-                  font-size: 18px;
+                  
                   color: rgba(94, 99, 242, 1);
                 ">
-                            
+                        <a href="{{ $link }}">[Reset Password Link]</a>    
                         </span>
-                       
-                        Password entered at signup.
-                        Link {{ $link }}
+                        <br>
+                        <p>If you did not request a password reset, please ignore this email.This Link is valid for 24 hrs.</p>
+                        
                     </p>
                 </div>
                 <div style="width: 570px;margin: 48px 0 0 0;font: 16px Poppins, sans-serif;">

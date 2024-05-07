@@ -453,8 +453,10 @@ function archive_prospect(){
 
 $('#filter_status').on('change', function() {
 	var table = $('#datatable').DataTable();
-	table.column(6).
-	  search(this.value && `^${this.value}$`, true, false).
+	console.log((table.column(7).data()));
+	// oTable.fnFilter("^"+selectedValue+"$", 0, true); //Exact value, column, reg
+	table.column(7).
+	  search(this.value, true, false).
 		draw();
   });
 

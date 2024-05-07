@@ -114,8 +114,9 @@
                             </span>
                         @enderror
                         <div class="password-wrapper position-relative">
-                            <input type="password" name="password" placeholder="Password"
-                                class="@error('password') is-invalid @enderror" required /><i class="icon icon-eye"></i>
+                            <input type="password" name="password" id="password" placeholder="Password"
+                                class="@error('password') is-invalid @enderror" required />
+                                <!-- <i class="icon icon-eye"></i> -->
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -124,8 +125,9 @@
                             <!-- <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"> -->
                         </div>
                         <div class="password-wrapper position-relative">
-                            <input id="password_confirmation" type="password" placeholder="Confirm Password"
-                                name="password_confirmation" required><i class="icon icon-eye"></i>
+                            <input id="password-confirm" type="password" placeholder="Confirm Password"
+                                name="password_confirmation" required>
+                                <!-- <i class="icon icon-eye"></i> -->
                         </div>
 
                         <div class="btn-wrap">

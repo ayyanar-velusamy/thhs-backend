@@ -100,6 +100,7 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         $user->position = $data['position'];
         $user->prospect_status = 1;
+        $user->user_type = 2; 
  
         if ($user->save()) {
             Mail::to($data['email'])->send(new RegisterEmail($user));

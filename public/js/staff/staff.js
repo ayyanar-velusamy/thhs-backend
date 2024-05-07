@@ -1,42 +1,41 @@
 var formTitle = $('#formTitle');
 var formname = "save_staff_form";
+
 /**DataTable */
-$('#staff_datatable').dataTable({
+var staff_table = $('#staff_datatable').dataTable({
 	"lengthChange": false,
 	"order": [],
 	"columnDefs": [{
+		"targets": 0,
+		"bSort": false,
+		"orderable": false,
+		"className": "dt-center"	
+	},
+	{
 		"targets": 10,
 		"bSort": false,
 		"orderable": false
-	}],
+	},
+	{"className": "dt-center", "targets": "_all"}],
 	autoWidth: false,
 	initComplete: function () {
+		$('#filter_status').trigger("change");
 		this.api()
 			.columns()
 			.every(function () {
 				let column = this;
-				// let title = column.footer().textContent;
-
-				// Create input element
-				// let input = document.createElement('input');
-				// input.placeholder = title;
-				// column.footer().replaceChildren(input);
-
-				// Event listener for user input
-				// input.addEventListener('keyup', () => {
-				//     if (column.search() !== this.value) {
-				//         column.search(input.value).draw();
-				//     }
-				// });
+				
 			});
 	}
 });
 
+
 /**Table filter */ 
 $('#filter_status').on('change', function () {
+	alert();
 	var table = $('#staff_datatable').DataTable();
 	table.column(7).
-		search(this.value && `^${this.value}$`, true, false).
+		search(this.value, true, false).
 		draw();
 });
 $('#filter_organization').on('change', function() {
@@ -281,7 +280,9 @@ function get_staff(id) {
 			$(`#${formname} [name=language]`).val(staff.language_id);
 			$(`#${formname} [name=staff_status]`).val(staff.staff_status);
 			$(`#${formname} [name=employment_type]`).val(staff.role);
-			$(`#${formname} [name=termination_date]`).val(moment(staff.termination_date).format('MM/DD/YYYY'));
+			let termination_date = (staff.termination_date != null) ? moment(staff.termination_date).format('MM/DD/YYYY') : "";
+			console.log(termination_date);
+			$(`#${formname} [name=termination_date]`).val(termination_date);
 			$(`#${formname} [name=corporation_name]`).val(staff.corporation_name);
 			$(`#${formname} [name=tax_id]`).val(staff.tax_id);
 			if (staff.signature_path) {
@@ -295,40 +296,6 @@ function get_staff(id) {
 	});
 }
 
-function cancel_interview() {
-	var formBtnId = 'confirm_btn';
-	let url = $("#cancel_interview_btn").attr('data-url');
-	let target = ('#' + $(this).attr('id') == '#undefined') ? 'body' : '#' + $(this).attr('id');
-	loadingButton(formBtnId)
-	$.ajax({
-		url: url,
-		type: "GET",
-		contentType: false,
-		dataType: 'json',
-		processData: false,
-		success: function (data) {
-			unloadingButton(formBtnId)
-			if (data.status) {
-				toastr.success(data.message)
-			} else {
-				toastr.error(data.message)
-			}
-			location.reload();
-		},
-		error: function (err) {
-			unloadingButton(formBtnId)
-			if (err.responseJSON) {
-				toastr.error(err.responseJSON.message)
-			}
-			handleFail(err.responseJSON, {
-				container: target,
-				errorPosition: "field"
-			})
-			location.reload();
-		}
-	});
-
-}
 
 function previewFile(name, target, image) {
 	const preview = document.getElementById(image);
@@ -408,3 +375,48 @@ function delete_staff() {
 function thisFileUpload() {
 	document.getElementById("customFile").click();
 }
+$(document).on('submit','#staff_demographics_form',function(e){
+	// $(this).validate();
+	
+	var btn = $("#staff_demographics_submit");
+	var btn_text = btn.text();
+	if($(this).hasClass('ajax-form')){
+		e.preventDefault()
+		let url = $(this).attr('action');
+		let target = ('#'+$(this).attr('id') == '#undefined') ? 'body' : '#'+$(this).attr('id');
+		// let myEle = document.getElementById("inputFile");
+		var formData = new FormData(this);   
+		btn.text("Loading..");
+		btn.prop('disabled', true);
+		$.ajax({
+			url: url,
+			// container	: target,
+			type: "POST",
+			// redirect: true,
+			// disableButton: true,
+			// file: true,
+			data: formData, 
+			contentType: false,
+			dataType:'json',
+			processData: false,
+			success: function(data){
+			
+				if(data.status){
+					toastr.success(data.message)
+					if(data.redirect_url != ""){
+						// location.href = data.redirect_url;
+						reload_page(data.redirect_url);
+					}else{
+						reload_page();
+						// location.reload();
+					}
+				}else{
+					toastr.error(data.message)
+					// location.reload();
+					reload_page();
+				}
+				
+			}
+		});
+	}
+});

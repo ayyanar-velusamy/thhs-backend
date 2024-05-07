@@ -15,9 +15,9 @@
 <body>
     <div class="email_temp_wrapper">
         <div class="blue_line"></div>
-        <img loading="lazy" src="https://www.trendhhs.com/wp-content/uploads/2018/10/logo.png" class="img" />
+        <!-- <img loading="lazy" src="https://www.trendhhs.com/wp-content/uploads/2018/10/logo.png" class="img" /> -->
         <div class="email_temp_content_wrapper">
-            <img loading="lazy" src="https://208.109.228.147/thhs/public/images/email_temp_img.png" class="largeImg" />
+            <!-- <img loading="lazy" src="https://208.109.228.147/thhs/public/images/email_temp_img.png" class="largeImg" /> -->
             <div class="text-content">
                 <div class="content">
                     <p class="sub_title" style="font-size: 22px">Dear {{ $user->name }}</p>

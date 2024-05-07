@@ -40,7 +40,8 @@ class ProspectsController extends BaseController
      */
     public function index()
     {
-        $prospect_list = User::all()->sortByDesc("id");
+        // $prospect_list = User::all()->sortByDesc("id");
+        $prospect_list = User::where(['is_admin' => 0,'user_type' => 2])->select('*')->orderBy('id', 'desc')->get();
         $positions = Position::all();
         $prospect_statuses = ProspectStatus::all();
         foreach ($prospect_list as $prospect) {
@@ -86,6 +87,7 @@ class ProspectsController extends BaseController
         $user->has_temp_password = 1;  
         $temp_pwd = Str::random(8);
         $user->password = bcrypt($temp_pwd);
+        $user->user_type = 2; 
         
         // pr($request->all(),1);
 
@@ -141,7 +143,6 @@ class ProspectsController extends BaseController
         $user->had_hepatitis_vaccine = $request->input('had_hepatitis_vaccine');
         $user->hepatitis_vaccine_date = update_date_format($request->input('hepatitis_vaccine_date'),"Y-m-d");
         $user->hepatitis_vaccine_reason = $request->input('hepatitis_vaccine_reason');
-        // $user->status = 2; // Personal Infor Form submitted.
         // $user->signature_path = $this->save_signature($request);
         
         // pr($request->all(),1);
@@ -244,7 +245,7 @@ class ProspectsController extends BaseController
     public function reject_prospect(Request $request, $id)
     {
             $user = User::find($id);
-            $user->prospect_status = 9;
+            $user->prospect_status = 8;
         // $user->interview_confirm_date = update_date_format($request->input('interview_date'), "Y-m-d");
         
         if($user->save()){ 
@@ -265,7 +266,7 @@ class ProspectsController extends BaseController
     public function reapply_prospect(Request $request, $id)
     {
             $user = User::find($id);
-            $user->prospect_status = 11;
+            $user->prospect_status = 10;
         // $user->interview_confirm_date = update_date_format($request->input('interview_date'), "Y-m-d");
         
         if($user->save()){ 
@@ -287,7 +288,7 @@ class ProspectsController extends BaseController
     public function archive_prospect(Request $request, $id)
     {
             $user = User::find($id);
-            $user->prospect_status = 10;
+            $user->prospect_status = 9;
         // $user->interview_confirm_date = update_date_format($request->input('interview_date'), "Y-m-d");
         
         if($user->save()){ 
@@ -314,6 +315,9 @@ class ProspectsController extends BaseController
         $user = User::find($request->input('user_id'));
         $user->hire_date = update_date_format($request->input('hire_date'), "Y-m-d");
         $user->prospect_status = 12;
+        $user->user_type = 1;
+        $user->status = 1;
+        $user->staff_status = 1;
         
         if($user->save()){ 
             $this->response['status'] = true;
@@ -329,8 +333,13 @@ class ProspectsController extends BaseController
 
     public function save_professional_references($request){
         $references = array_filter($request->input("reference_relationship"));
+        // pr($request->input("reference_relationship_id"),1);
         foreach($references as $key => $reference){
             $user_references = new ProfessionalReferences;
+            if(@$request->input("reference_relationship_id")[$key] != ""){
+                $user_references = ProfessionalReferences::find($request->input("reference_relationship_id")[$key]);
+                $user_references->id = $request->input("reference_relationship_id")[$key];    
+            }
             $user_references->user_id = $request->input("user_id");;
             $user_references->relationship_id = $reference;
             $user_references->name = $request->input("reference_name")[$key];
@@ -338,6 +347,7 @@ class ProspectsController extends BaseController
             $user_references->phone = remove_mask($request->input("reference_phone")[$key]);
            
             $user_references->save();
+            
         }
     }
 
@@ -345,6 +355,10 @@ class ProspectsController extends BaseController
         $employers = array_filter($request->input("employer"));
         foreach($employers as $key => $employer){
             $work_history = new WorkHistory;
+            if(@$request->input("employer_id")[$key] != ""){
+                $work_history = WorkHistory::find($request->input("employer_id")[$key]);
+                $work_history->id = $request->input("employer_id")[$key];    
+            }
             $work_history->user_id = $request->input("user_id");;
             $work_history->employer_name = $employer;
             $work_history->position = $request->input("prev_position")[$key];
@@ -358,9 +372,13 @@ class ProspectsController extends BaseController
 
     public function save_user_education($request){
         $education_types = array_filter($request->input("education_type"));
-        // pr($education_types,1);
+        
         foreach($education_types as $key => $education_type){
             $user_education = new UserEducation;
+            if(@$request->input("education_id")[$key] != ""){
+                $user_education = UserEducation::find($request->input("education_id")[$key]);
+                $user_education->id = $request->input("education_id")[$key];    
+            }
             $user_education->user_id = $request->input("user_id");
             $user_education->type_id = $education_type;
             $user_education->name = $request->input("education_name")[$key];
@@ -369,18 +387,23 @@ class ProspectsController extends BaseController
            
             $user_education->save();
         }
+        
     }
 
     public function save_emergency_contacts($request){
         $relationships = array_filter($request->input("relationship"));
         foreach($relationships as $key => $relationship){
-            $work_history = new EmergencyContacts;
-            $work_history->user_id = $request->input("user_id");;
-            $work_history->relationship_id = $relationship;
-            $work_history->relationship_name = $request->input("relationship_name")[$key];
-            $work_history->relationship_email = $request->input("relationship_email")[$key];
-            $work_history->relationship_phone = remove_mask($request->input("relationship_phone")[$key]);
-            $work_history->save();
+            $emergency_contact = new EmergencyContacts;
+            if(@$request->input("emergency_contact_id")[$key] != ""){
+                $emergency_contact = EmergencyContacts::find($request->input("emergency_contact_id")[$key]);
+                $emergency_contact->id = $request->input("emergency_contact_id")[$key];    
+            }
+            $emergency_contact->user_id = $request->input("user_id");;
+            $emergency_contact->relationship_id = $relationship;
+            $emergency_contact->relationship_name = $request->input("relationship_name")[$key];
+            $emergency_contact->relationship_email = $request->input("relationship_email")[$key];
+            $emergency_contact->relationship_phone = remove_mask($request->input("relationship_phone")[$key]);
+            $emergency_contact->save();
         }
     }
 }

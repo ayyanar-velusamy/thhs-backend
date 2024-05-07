@@ -16,6 +16,7 @@
             <div class="status-wrapper d-flex justify-content-center align-items-center">
                 <label class="me-3">Status: </label>
                 <select class="form-control" id="filter_status">
+                    <option value="">All</option>
                     @foreach ($staff_statuses as $staff_status)
                         <option value="{{ $staff_status->status }}">{{ @$staff_status->status }}</option>
                     @endforeach
@@ -52,8 +53,7 @@
             <tbody>
                 @foreach ($staff_list as $staff)
                     <tr>
-                        <td class="dt-center align-items-center" style="gap: 7px">
-                            @php
+                        @php
                                 if($staff->gender ==1){
                                     $class = "male";
                                     $image = "male.svg";
@@ -62,15 +62,15 @@
                                     $image = "female.svg";
                                 }
                             @endphp
+                        <td class="dt-center align-items-center" style="gap: 7px">
                             <img class="userimage {{$class}}" src="{{ asset('images/'.$image) }}">
-                           
                         </td>
 
                         <td>
                             {{ $staff->name }}                           
                         </td>
                         <td>{{ update_date_format($staff->hire_date, 'm-d-Y') }}</td>
-                        <td>{{ $staff->cellular }}</td>
+                        <td class="phone_text">{{ $staff->cellular }}</td>
                         <td>{{ $staff->position }}</td>
                         <td>
                             {{ $staff->address }}<br>{{ $staff->state, $staff->city }}
@@ -79,8 +79,8 @@
                         <td><span class="tag {{ $staff->staff_status_id == 6 ? 'deactivate' : 'active' }}">{{ $staff->staff_status }}</span></td>
                         <td>{{ $staff->role }}</td>
                         <td>{{ $staff->organization }}</td>
-                        <td class="icons">
-                            <a title="View Staff" href="{{ route('prospects.demographics', [$staff->id]) }}"><i
+                        <td class="icons" style="padding-top:20px">
+                            <a title="View Staff" href="{{ route('staffs.demographics', [$staff->id]) }}"><i
                                     class="icon icon-eye-green"></i></a>
                             <a title="Edit Staff" href="#" onclick="get_staff({{ $staff->id }})">
                                 <i class="icon icon-edit"></i></a>
@@ -243,7 +243,7 @@
                             </div>
                             <button id="upload_button" name="button" type="button" value="Upload" onclick="thisFileUpload();"
                                 style="background-color: #606060; flex: 0.7">
-                                Upload your e signature
+                                Upload signature
                             </button>
                             
                         </div> 

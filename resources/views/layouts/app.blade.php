@@ -95,7 +95,7 @@
                         <a href="#" class="" aria-current="true">
                             <i class="icon icon-logo"></i><span></span>
                         </a>
-                        <a href="{{ route('staffs') }}" class="{{ request()->is('thhs/app/staffs') ? 'active' : '' }}" aria-current="true">
+                        <a href="{{ route('staffs') }}" class="{{ request()->routeIs(['staffs','staffs.*']) ? 'active' : '' }}" aria-current="true">
                             <i class="icon icon-staffs-logo"></i>
                             <p>Staff Manager</p>
                         </a>
@@ -143,6 +143,19 @@
                         <div class="content">
                             <h1>Welcome to Trend Home Health Services Team</h1>
                             <p>We've Custom Healthcare HR Software Services</p>
+                            @php
+                              if(request()->routeIs(['staffs.*'])){
+                            @endphp
+                            <div class="top_ctas d-flex gap-4 mt-3">
+                              <button class="defult-button">
+                                Contact Information
+                              </button>
+                              <button class="defult-button {{ request()->routeIs('staffs.demographics') ? 'active' : '' }}">Demographics</button>
+                              <button class="defult-button">HR</button>
+                            </div>
+                            @php
+                              }
+                            @endphp
                         </div>
                         <div class="dashboard-tabs-wrapper d-flex justify-content-end">
                             <div class="dashboard-tabs">
@@ -200,8 +213,9 @@
   </body>
   <script type="text/javascript" src="{{ asset('js/lib/jquery.datetimepicker.full.min.js') }}"></script>
   <script src="{{ asset('js/lib/moment.js') }}" ></script>
+  <script type="text/javascript" src="{{ asset('js/lib/toastr.min.js') }}"></script> 
   <script src="{{ asset('js/common.js') }}"></script>
-   <script type="text/javascript" src="{{ asset('js/lib/toastr.min.js') }}"></script> 
+   
    <script src="{{ asset('js/helper.js') }}"></script>
   <script type="text/javascript"> 
       toastr.options = {
@@ -212,14 +226,14 @@
       "positionClass": "toast-top-center",
       "preventDuplicates": false,
       "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
+      "showDuration": "10000",
+      "hideDuration": "5000",
       "timeOut": "5000",
       "extendedTimeOut": "1000",
       "showEasing": "swing",
-      "hideEasing": "linear",
+    //   "hideEasing": "linear",
       "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
+    //   "hideMethod": "fadeOut",
     }
   </script>  
   {{  moduleJs() }}

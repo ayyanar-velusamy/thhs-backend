@@ -20,12 +20,13 @@
             <!-- <img loading="lazy" src="../images/email_temp_img.png" class="largeImg" /> -->
             <div class="text-content">
                 <div class="content">
-                    <p class="sub_title" style="font-size: 22px">Dear {{ $user->firstname ." ".$user->lastname }}</p>
+                    <p class="sub_title" style="font-size: 22px">Dear <span style="color: rgba(94, 99, 242, 1);">{{ $user->firstname ." ".$user->lastname }}</span></p>
 
                     <p>
-                        Good day!! Your Interview has been <b>Confirmed<b> on <b>{{ @update_date_format($user->interview_confirm_date, "m-d-Y") }} at {{ @update_date_format($user->interview_confirm_date, "H:i")}}</b>
+                        Your Interview has been scheduled on <span style="color: rgba(94, 99, 242, 1);">{{ @update_date_format($user->interview_confirm_date, "m-d-Y") }} at {{ @update_date_format($user->interview_confirm_date, "H:i")}}</span>
                         <br />
-                        All the best!
+                        Please confirm your availability.
+                        <br/>
                         
                     </p>
                 </div>
