@@ -189,24 +189,28 @@
     <!--Main layout-->
     <!-- Confirm dailog-->
 
-    <div class="modal fade" id="ConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <div class="modal fade confirm_modal" id="ConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">
-                        Confirm
-                    </h5>
+                <div>
+                    <img src="{{ asset('images/confirm_popup.svg') }}" />
                 </div>
-                <div class="modal-body">
-                    <p id="modal_msg"></p>
-                    <input type="hidden" id="function_name" value="">
+                <div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">
+                            Confirm
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modal_msg"></p>
+                        <input type="hidden" id="function_name" value="">
+                    </div>
+                    <div class="cta_wrapper d-flex justify-content-center gap-5">
+                        <button class="danger" data-dismiss="modal">Clear</button>
+                        <button class="success" id="confirm_btn">Confirm</button>
+                    </div>
                 </div>
-                <div class="cta_wrapper d-flex justify-content-center gap-5">
-                    <button class="danger" data-dismiss="modal">Clear</button>
-                    <button class="success" id="confirm_btn">Confirm</button>
-                </div>
-
             </div>
         </div>
       </div>

@@ -57,9 +57,12 @@
                                 if($prospect->gender ==1){
                                     $class = "male";
                                     $image = "male.svg";
-                                }else{
+                                }else if($prospect->gender == 2){
                                     $class = "female";
                                     $image = "female.svg";
+                                }else{
+                                    $class = "others";
+                                    $image = "others.jpg";
                                 }
                             @endphp
                             <img class="userimage {{$class}}" src="{{ asset('images/'.$image) }}">
@@ -70,7 +73,7 @@
                        
                         <td>{{$prospect->email}}</td>
                         <td title="{{ $prospect->position }}">{{ $prospect->short_name }}</td>
-                        <td>{{ $prospect->cellular }}</td>
+                        <td class="phone_text">{{ $prospect->cellular }}</td>
                         @php
                             $address = @implode(", ",array_filter([$prospect->address,$prospect->city,$prospect->state]));
                         @endphp

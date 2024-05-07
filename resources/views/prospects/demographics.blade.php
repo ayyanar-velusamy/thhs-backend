@@ -56,11 +56,12 @@
                 <option value="">Gender</option>
                 <option value="1" @if ($user->gender == '1') selected @endif>Male</option>
                 <option value="2" @if ($user->gender == '2') selected @endif>Female</option>
+                <option value="3" @if ($user->gender == '3') selected @endif>Others</option>
             </select>
         </div>
         <div class="field-wrapper">
             <label for="mname">Languages :</label><span class="mandate">*</span>
-            <select class="select-control" name="languages" value="{{ @$user->language_id }}" required>
+            <select class="select-control" multiple name="languages" value="{{ @$user->language_id }}" required>
                 <option value="">Languages</option>
                 @foreach ($languages as $language)
                     @if (@$user->language_id == $language->id)
@@ -972,7 +973,7 @@
       </div>
 
       <div
-        class="modal fade"
+        class="modal fade confirm_modal"
         id="CancelInterviewModal"
         tabindex="-1"
         role="dialog"
@@ -980,24 +981,28 @@
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Confirm
-              </h5>
+          <div class="modal-content align-items-center">
+            <div>
+                <img src="{{ asset('images/confirm_popup.svg') }}" class="pb-4"/>
             </div>
-            <div class="modal-body">
-              <p id="cancel_modal_msg"></p>
-                <div class="field-wrapper w-100" id="">
-                    <textarea style="height:100px" placeholder="Cancellation Reason" id="cancellation_reason" name="cancellation_reason"></textarea>
+            <div>
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    Confirm
+                </h5>
                 </div>
-              <input type="hidden" id="cancel_function_name" value="">
+                <div class="modal-body">
+                <p id="cancel_modal_msg" class="pb-3"></p>
+                    <div class="field-wrapper w-100" id="">
+                        <textarea style="height:100px" placeholder="Cancellation Reason" id="cancellation_reason" name="cancellation_reason"></textarea>
+                    </div>
+                <input type="hidden" id="cancel_function_name" value="">
+                </div>
+                <div class="cta_wrapper d-flex justify-content-center gap-5">
+                <button class="danger" data-dismiss="modal">Clear</button>
+                <button class="success" id="cancel_confirm_btn">Confirm</button>
+                </div>
             </div>
-            <div class="cta_wrapper d-flex justify-content-center gap-5">
-              <button class="danger" data-dismiss="modal">Clear</button>
-              <button class="success" id="cancel_confirm_btn">Confirm</button>
-            </div>
-            
           </div>
         </div>
       </div>

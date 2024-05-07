@@ -57,9 +57,12 @@
                                 if($staff->gender ==1){
                                     $class = "male";
                                     $image = "male.svg";
-                                }else{
+                                }elseif($staff->gender == 2){
                                     $class = "female";
                                     $image = "female.svg";
+                                }else{
+                                    $class = "other";
+                                    $image = "others.jpg";
                                 }
                             @endphp
                         <td class="dt-center align-items-center" style="gap: 7px">
@@ -180,6 +183,7 @@
                             <option value="">Gender</option>
                             <option value="1">Male</option>
                             <option value="2">Female</option>
+                            <option value="3">Others</option>
                         </select>
                     </div>
 
