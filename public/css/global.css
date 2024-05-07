@@ -656,6 +656,28 @@ form .form-wrapper .field-wrapper input {
   padding: 25px 75px;
 }
 
+.confirm_modal .modal-header {
+  padding: 0;
+}
+
+.confirm_modal .modal-header .modal-title {
+  color: #0cd0a2;
+}
+
+.confirm_modal .modal-content {
+  flex-direction: row;
+  padding: 40px 30px;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.confirm_modal .modal-content .modal-body p {
+  color: #000;
+}
+
+.confirm_modal .modal-content .cta_wrapper {
+  margin-top: 20px !important;
+}
 
 .cta_wrapper {
   margin-top: 20px;
