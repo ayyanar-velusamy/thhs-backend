@@ -540,6 +540,12 @@ button:focus {
 .xdsoft_datetimepicker * {
   font-family: "Poppins", sans-serif;
 }
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div,
+.xdsoft_datetimepicker .xdsoft_calendar th,
+.xdsoft_datetimepicker .xdsoft_calendar tbody tr td {
+  background-color: white;
+  color: #000;
+}
 
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div:hover,
 .xdsoft_time.xdsoft_current,
@@ -565,6 +571,16 @@ button:focus {
 .xdsoft_datetimepicker .xdsoft_calendar td:hover{
   background: #eee !important;
   color: black !important;
+}
+
+.xdsoft_datetimepicker .xdsoft_calendar td, .xdsoft_datetimepicker .xdsoft_calendar th {
+  border: none;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.xdsoft_datetimepicker .xdsoft_calendar td>div {
+  padding-right: 0px;
 }
 
 /* Footer Start */
@@ -654,29 +670,6 @@ form .form-wrapper .field-wrapper input {
 .modal-content {
   background-color: #F7F9FC !important;
   padding: 25px 75px;
-}
-
-.confirm_modal .modal-header {
-  padding: 0;
-}
-
-.confirm_modal .modal-header .modal-title {
-  color: #0cd0a2;
-}
-
-.confirm_modal .modal-content {
-  flex-direction: row;
-  padding: 40px 30px;
-  justify-content: space-between;
-  gap: 35px;
-}
-
-.confirm_modal .modal-content .modal-body p {
-  color: #000;
-}
-
-.confirm_modal .modal-content .cta_wrapper {
-  margin-top: 20px !important;
 }
 
 .cta_wrapper {
@@ -862,4 +855,27 @@ span.error {
 }
 .userimage.male {
   padding: 5px 10px;
+}
+
+.confirm_modal .modal-header {
+  padding: 0;
+}
+
+.confirm_modal .modal-header .modal-title {
+  color: #0cd0a2;
+}
+
+.confirm_modal .modal-content {
+  flex-direction: row;
+  padding: 40px 30px;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.confirm_modal .modal-content .modal-body p {
+  color: #000;
+}
+
+.confirm_modal .modal-content .cta_wrapper {
+  margin-top: 20px !important;
 }
