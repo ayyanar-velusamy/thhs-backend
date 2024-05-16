@@ -30,6 +30,10 @@
     @endphp
         <link href="{{ asset('css/personal_info.css') }}" rel="stylesheet" />
     @php
+    }elseif(in_array("charts",request()->segments())){
+    @endphp
+         <link href="{{ asset('css/chart_manager.css') }}" rel="stylesheet" />
+    @php
       }else{
     @endphp
         <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />
@@ -95,6 +99,16 @@
                         <a href="#" class="" aria-current="true">
                             <i class="icon icon-logo"></i><span></span>
                         </a>
+                        @php                      
+                        if(request()->routeIs(['charts'])){                            
+                        @endphp
+                            <a href="{{ route('charts') }}" class="{{ request()->routeIs(['charts','charts.*']) ? 'active' : '' }}" aria-current="true">
+                                <i class="icon icon-staffs-logo"></i>
+                                <p>Chart Manager</p>
+                            </a>
+                        @php
+                        }else{
+                        @endphp
                         <a href="{{ route('staffs') }}" class="{{ request()->routeIs(['staffs','staffs.*']) ? 'active' : '' }}" aria-current="true">
                             <i class="icon icon-staffs-logo"></i>
                             <p>Staff Manager</p>
@@ -103,6 +117,9 @@
                             <i class="icon icon-prospects-logo"></i>
                             <p>Prospect Manager</p>
                         </a>
+                        @php
+                        }
+                        @endphp
                     </div>
                 </nav>
             </div>
@@ -165,10 +182,11 @@
                                 <i class="icon icon-teams"></i>
                                 <p class="mt-1">HR management</p>
                             </div>
-                            <div class="dashboard-tabs green">
-                                <i class="icon icon-settings"></i>
-
-                                <p class="mt-1">System application</p>
+                            <div  class="dashboard-tabs green {{ request()->routeIs(['charts','charts.*']) ? 'active' : '' }}">
+                                <a href="{{ route('charts') }}" class="{{ request()->routeIs(['charts','charts.*']) ? 'active' : '' }}" aria-current="true">
+                                <i class="icon icon-settings"></i> 
+                                <p class="mt-1">Setup</p>
+                                </a>
                             </div>
                             <div class="dashboard-tabs yellow">
                                 <i class="icon icon-file-logo"></i>

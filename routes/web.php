@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProspectsController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\MailController;
 
 /*
@@ -54,6 +55,7 @@ Route::group(['middleware'=>'auth'], function(){
 
 
     /* Staff Routing */
+    /*Staffs Routing */
     Route::get('/thhs/app/staffs', [App\Http\Controllers\StaffController::class, 'index'])->name('staffs');
     Route::get('/thhs/app/staffs/demographics/{id}', [App\Http\Controllers\StaffController::class, 'demographics'])->name('staffs.demographics'); 
     Route::post('/thhs/app/staffs/update_demographics/{id}',[App\Http\Controllers\StaffController::class, 'update_demographics'])->name('staffs.update_demographics');
@@ -81,6 +83,14 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/thhs/app/staffs/delete_email/{id}',[App\Http\Controllers\StaffController::class, 'delete_email'])->name('staffs.delete_email'); 
     
 
+     /*Charts Routing */
+     Route::get('/thhs/app/charts', [App\Http\Controllers\ChartController::class, 'index'])->name('charts');
+     Route::post('/thhs/app/charts/save_chart',[App\Http\Controllers\ChartController::class, 'save_chart'])->name('save_chart');
+     Route::get('/thhs/app/charts/get_chart/{id}',[App\Http\Controllers\ChartController::class, 'get_chart'])->name('get_chart');  
+     Route::get('/thhs/app/charts/delete_chart/{id}',[App\Http\Controllers\ChartController::class, 'delete_chart'])->name('delete_chart');  
+     Route::post('/thhs/app/charts/save_chart_category',[App\Http\Controllers\ChartController::class, 'save_chart_category'])->name('save_chart_category');
+
+     
     
 });
 	

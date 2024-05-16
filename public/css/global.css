@@ -39,6 +39,19 @@ a:hover {
   border-bottom: 1px solid transparent;
 }
 
+.select-control {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='15' height='7' viewBox='0 0 15 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 1L7.5 6L13.5 1' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position-x: 96%;
+  background-position-y: 20px;
+  top: 20px;
+  right: 18px;
+}
+
 .select-control,
 textarea,
 input {
