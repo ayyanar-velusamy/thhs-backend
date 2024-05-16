@@ -147,15 +147,18 @@
                               if(request()->routeIs(['staffs.*'])){
                             @endphp
                             <div class="top_ctas d-flex gap-4 mt-3">
-                              <button class="defult-button">
-                                Contact Information
+                              <button class="defult-button {{ request()->routeIs('staffs.contact_information') ? 'active' : '' }}"">
+                                <a class="sub-menu" href="{{ @route('staffs.contact_information',  @request()->id) }}">Contact Information</a>
                               </button>
-                              <button class="defult-button {{ request()->routeIs('staffs.demographics') ? 'active' : '' }}">Demographics</button>
+                              <button class="defult-button {{ request()->routeIs('staffs.demographics') ? 'active' : '' }}">
+                                <a class="sub-menu" href="{{ @route('staffs.demographics', @request()->id) }}">Demographics</a></button>
                               <button class="defult-button">HR</button>
                             </div>
                             @php
                               }
                             @endphp
+
+
                         </div>
                         <div class="dashboard-tabs-wrapper d-flex justify-content-end">
                             <div class="dashboard-tabs">

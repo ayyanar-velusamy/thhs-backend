@@ -107,6 +107,8 @@ class ProspectsController extends BaseController
         $data = $this->getPersonalInfoData($id);
         return view('prospects/demographics', compact("data"));
     }
+    
+   
     public function update_demographics(Request $request, $id)
     {
         $request->request->add(['user_id' => $id]);

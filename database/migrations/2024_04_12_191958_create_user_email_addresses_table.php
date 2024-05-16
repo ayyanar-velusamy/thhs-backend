@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserEmergencyContactsTable extends Migration
+class CreateUserEmailAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateUserEmergencyContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_emergency_contacts', function (Blueprint $table) {
+        Schema::create('user_email_addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id");
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('relationship_id');
-            $table->string('relationship_name');
-            $table->text('relationship_address')->nullable();
-            $table->string('relationship_email')->nullable();
-            $table->text('relationship_notes')->nullable();
-            $table->bigInteger('relationship_phone');
+            $table->integer('email_type');
+            $table->string('email');
+            $table->integer('is_default')->nullable()->default(0);
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ class CreateUserEmergencyContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_emergency_contacts');
+        Schema::dropIfExists('user_email_addresses');
     }
 }

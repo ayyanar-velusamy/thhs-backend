@@ -917,3 +917,14 @@ span.error {
 .confirm_modal .modal-content .cta_wrapper {
   margin-top: 20px !important;
 }
+
+.sub-menu {
+  color: inherit !important;
+  border-bottom: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sub-menu:hover{
+  text-decoration: none !important; 
+}

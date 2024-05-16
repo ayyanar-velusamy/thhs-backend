@@ -16,6 +16,9 @@ use App\Models\User;
 use App\Models\UserEducation;
 use App\Models\WorkHistory;
 use App\Models\TerminationHistory;
+use App\Models\UserAddresses;
+use App\Models\UserEmailAdresses;
+use App\Models\UserPhoneNumbers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -194,6 +197,16 @@ class StaffController extends BaseController
         $data = $this->getPersonalInfoData($id);
         return view('staffs/demographics', compact("data"));
     }
+
+     
+    public function contact_information(Request $request, $id)
+    {
+        $data = $this->getContactInformationData($id);
+        $data->position = Position::find($data->position)->short_name;
+        return view('staffs/contact_information',compact('data'));
+    }
+
+
     public function update_demographics(Request $request, $id)
     {
         $request->request->add(['user_id' => $id]);
@@ -245,7 +258,19 @@ class StaffController extends BaseController
         return ["languages" => $languages, "user" => $user, "positions" => $positions];
     }
 
-    
+
+    public function getContactInformationData($id)
+    {
+        
+        $user = User::with("emergency_contacts")
+                    ->with("addresses")
+                    ->with("phone_numbers")
+                    ->with("email_addresses")
+                    ->findOrFail($id);
+        // pr($user->name,1);
+        return $user;
+    }
+
     public function save_professional_references($request){
         $references = array_filter($request->input("reference_relationship"));
         // pr($request->input("reference_relationship_id"),1);
@@ -319,4 +344,270 @@ class StaffController extends BaseController
             $termination_history->save();
         }
     }
+
+
+
+    public function add_emergency_contact(Request $request){
+       
+        if($request->input("id") != ""){
+            return $this->update_emergency_contact($request, $request->input("id"));
+        }
+        $emergency_contact = new EmergencyContacts;
+        $emergency_contact->user_id = $request->input("user_id");
+        $emergency_contact->relationship_id = $request->input("relationship_id");
+        $emergency_contact->relationship_name = $request->input("relationship_name");
+        $emergency_contact->relationship_address = $request->input("relationship_address");
+        $emergency_contact->relationship_phone = remove_mask($request->input("relationship_phone"));
+        $emergency_contact->relationship_email = $request->input("relationship_email");
+        $emergency_contact->relationship_notes = $request->input("relationship_notes");
+        if ($emergency_contact->save()) {   
+            $this->response['status'] = true;
+            $this->response['message'] = "Emergency Contact saved successfully"; 
+        } else {
+            $this->response['status'] = false;
+            $this->response['message'] = "Emergency Contact saving failed";
+        }
+        return $this->response();
+        
+    }
+   
+
+    public function get_emergency_contact($id){
+        $data = EmergencyContacts::find($id);
+        $this->response = compact("data");  
+        return $this->response();
+    }
+
+    public function update_emergency_contact(Request $request, $id)
+    {
+        
+        $emergency_contact = EmergencyContacts::find($id);
+        $emergency_contact->relationship_id = $request->input("relationship_id");
+        $emergency_contact->relationship_name = $request->input("relationship_name");
+        $emergency_contact->relationship_address = $request->input("relationship_address");
+        $emergency_contact->relationship_phone = remove_mask($request->input("relationship_phone"));
+        $emergency_contact->relationship_email = $request->input("relationship_email");
+        $emergency_contact->relationship_notes = $request->input("relationship_notes");
+        if($emergency_contact->save()){   
+            $this->response['status']   = true;
+            $this->response['message']  = "Emergency Contact updated successfully"; 
+        }else{
+            $this->response['status']   = false;
+            $this->response['message']  = "Emergency Contact update failed";
+        } 
+        return $this->response();
+    }
+
+    public function delete_emergency_contact($id)
+    {
+        $emergency_contact = EmergencyContacts::find($id);
+        if($emergency_contact->delete()){   
+            $this->response['status']   = true;
+            $this->response['message']  = "Emergency Contact deleted successfully"; 
+        }else{
+            $this->response['status']   = false;
+            $this->response['message']  = "Emergency Contact delete failed";
+        } 
+        return $this->response();
+    }
+
+
+    
+
+    public function add_address(Request $request){
+       
+        if($request->input("id") != ""){
+            return $this->update_address($request, $request->input("id"));
+        }
+        $address = new UserAddresses;
+        $address->user_id = $request->input("user_id");
+        $address->address_type = $request->input("address_type");
+        $address->address = $request->input("address");
+        $address->country = $request->input("country");
+        $address->state = remove_mask($request->input("state"));
+        $address->city = $request->input("city");
+        $address->zip = $request->input("zip");
+        $address->is_default = $request->input("is_default");
+        if ($address->save()) {   
+            $this->response['status'] = true;
+            $this->response['message'] = "Address saved successfully"; 
+        } else {
+            $this->response['status'] = false;
+            $this->response['message'] = "Address saving failed";
+        }
+        return $this->response();
+        
+    }
+    public function get_address($id){
+        $data = UserAddresses::find($id);
+        $this->response = compact("data");  
+        return $this->response();
+    }
+
+    public function update_address(Request $request, $id)
+    {
+        if($request->input("is_default") == 1){
+            UserAddresses::where('is_default', 1)->update(['is_default' => 0]);
+        }
+        $address = UserAddresses::find($id);
+        $address->user_id = $request->input("user_id");
+        $address->address_type = $request->input("address_type");
+        $address->address = $request->input("address");
+        $address->country = $request->input("country");
+        $address->state = $request->input("state");
+        $address->city = $request->input("city");
+        $address->zip = $request->input("zip");
+        $address->is_default = $request->input("is_default");
+        
+        if($address->save()){   
+            $this->response['status']   = true;
+            $this->response['message']  = "Address updated successfully"; 
+        }else{
+            $this->response['status']   = false;
+            $this->response['message']  = "Address update failed";
+        } 
+        return $this->response();
+    }
+
+    public function delete_address($id)
+    {
+        $emergency_contact = UserAddresses::find($id);
+        if($emergency_contact->delete()){   
+            $this->response['status']   = true;
+            $this->response['message']  = "Address deleted successfully"; 
+        }else{
+            $this->response['status']   = false;
+            $this->response['message']  = "Address delete failed";
+        } 
+        return $this->response();
+    }
+
+    
+    
+
+    public function add_phone(Request $request){
+       
+        if($request->input("id") != ""){
+            return $this->update_phone($request, $request->input("id"));
+        }
+        $phone = new UserPhoneNumbers;
+        $phone->user_id = $request->input("user_id");
+        $phone->phone_type = $request->input("phone_type");
+        $phone->extension = $request->input("extension");
+        $phone->phone_number = remove_mask($request->input("phone_number"));
+        $phone->is_default = $request->input("is_default");
+        if ($phone->save()) {   
+            $this->response['status'] = true;
+            $this->response['message'] = "Phone number saved successfully"; 
+        } else {
+            $this->response['status'] = false;
+            $this->response['message'] = "Phone number saving failed";
+        }
+        return $this->response();
+        
+    }
+    public function get_phone($id){
+        $data = UserPhoneNumbers::find($id);
+        $this->response = compact("data");  
+        return $this->response();
+    }
+
+    public function update_phone(Request $request, $id)
+    {
+        if($request->input("is_default") == 1){
+            UserPhoneNumbers::where('is_default', 1)->update(['is_default' => 0]);
+        }
+        $phone = UserPhoneNumbers::find($id);
+        $phone->user_id = $request->input("user_id");
+        $phone->phone_type = $request->input("phone_type");
+        $phone->extension = $request->input("extension");
+        $phone->phone_number = remove_mask($request->input("phone_number"));
+        $phone->is_default = $request->input("is_default");
+        
+        if($phone->save()){   
+            $this->response['status']   = true;
+            $this->response['message']  = "Phone number updated successfully"; 
+        }else{
+            $this->response['status']   = false;
+            $this->response['message']  = "Phone number update failed";
+        } 
+        return $this->response();
+    }
+
+    public function delete_phone($id)
+    {
+        $phone = UserPhoneNumbers::find($id);
+        if($phone->delete()){   
+            $this->response['status']   = true;
+            $this->response['message']  = "Phone number deleted successfully"; 
+        }else{
+            $this->response['status']   = false;
+            $this->response['message']  = "Phone number delete failed";
+        } 
+        return $this->response();
+    }
+
+    
+
+    public function add_email(Request $request){
+       
+        if($request->input("id") != ""){
+            return $this->update_email($request, $request->input("id"));
+        }
+        $email = new UserEmailAdresses;
+        $email->user_id = $request->input("user_id");
+        $email->email_type = $request->input("email_type");
+        $email->email = $request->input("email");
+        $email->is_default = $request->input("is_default");
+        if ($email->save()) {   
+            $this->response['status'] = true;
+            $this->response['message'] = "Email Address saved successfully"; 
+        } else {
+            $this->response['status'] = false;
+            $this->response['message'] = "Email Addres saving failed";
+        }
+        return $this->response();
+        
+    }
+    public function get_email($id){
+        $data = UserEmailAdresses::find($id);
+        $this->response = compact("data");  
+        return $this->response();
+    }
+
+    public function update_email(Request $request, $id)
+    {
+        
+        if($request->input("is_default") == 1){
+            UserEmailAdresses::where('is_default', 1)->update(['is_default' => 0]);
+        }
+        $email = UserEmailAdresses::find($id);
+        $email->user_id = $request->input("user_id");
+        $email->email_type = $request->input("email_type");
+        $email->email = $request->input("email");
+        $email->is_default = $request->input("is_default");
+        
+        if($email->save()){   
+            $this->response['status']   = true;
+            $this->response['message']  = "Email Address updated successfully"; 
+        }else{
+            $this->response['status']   = false;
+            $this->response['message']  = "Email Address update failed";
+        } 
+        return $this->response();
+    }
+
+    public function delete_email($id)
+    {
+        $email = UserEmailAdresses::find($id);
+        if($email->delete()){   
+            $this->response['status']   = true;
+            $this->response['message']  = "Email Address deleted successfully"; 
+        }else{
+            $this->response['status']   = false;
+            $this->response['message']  = "Email Address delete failed";
+        } 
+        return $this->response();
+    }
+
 }

@@ -31,6 +31,18 @@ class User extends Authenticatable
         return $this->hasMany(ProfessionalReferences::class);
     }
 
+    public function addresses(): HasMany {
+        return $this->hasMany(UserAddresses::class);
+    }
+
+    public function phone_numbers(): HasMany {
+        return $this->hasMany(UserPhoneNumbers::class);
+    }
+
+    public function email_addresses(): HasMany {
+        return $this->hasMany(UserEmailAdresses::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

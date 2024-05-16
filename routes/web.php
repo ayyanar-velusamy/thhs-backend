@@ -40,7 +40,7 @@ Route::group(['middleware'=>'auth'], function(){
  
 
     Route::get('/thhs/app/prospects', [App\Http\Controllers\ProspectsController::class, 'index'])->name('prospects');
-    Route::get('/thhs/app/prospects2', [App\Http\Controllers\ProspectsController::class, 'table'])->name('prospects_table');
+    // Route::get('/thhs/app/prospects2', [App\Http\Controllers\ProspectsController::class, 'table'])->name('prospects_table');
     Route::get('/thhs/app/prospects/demographics/{id}', [App\Http\Controllers\ProspectsController::class, 'demographics'])->name('prospects.demographics'); 
     Route::post('/thhs/app/prospects/update_demographics/{id}',[App\Http\Controllers\ProspectsController::class, 'update_demographics'])->name('update_demographics');
     Route::post('/thhs/app/prospects/schedule_interview/{id}', [App\Http\Controllers\ProspectsController::class, 'schedule_interview'])->name('prospects.schedule_interview'); 
@@ -52,6 +52,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/thhs/app/prospects/hire_prospect', [App\Http\Controllers\ProspectsController::class, 'hire_prospect'])->name('prospects.hire_prospect'); 
     Route::post('/thhs/app/prospects/add_prospect',[App\Http\Controllers\ProspectsController::class, 'add_prospect'])->name('add_prospect');
 
+
     /* Staff Routing */
     Route::get('/thhs/app/staffs', [App\Http\Controllers\StaffController::class, 'index'])->name('staffs');
     Route::get('/thhs/app/staffs/demographics/{id}', [App\Http\Controllers\StaffController::class, 'demographics'])->name('staffs.demographics'); 
@@ -59,6 +60,26 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/thhs/app/staffs/save_staff',[App\Http\Controllers\StaffController::class, 'save_staff'])->name('save_staff');
     Route::get('/thhs/app/staffs/get_staff/{id}',[App\Http\Controllers\StaffController::class, 'get_staff'])->name('get_staff'); 
     Route::get('/thhs/app/staffs/delete_staff/{id}',[App\Http\Controllers\StaffController::class, 'delete_staff'])->name('delete_staff'); 
+    Route::get('/thhs/app/staffs/contact_information/{id}', [App\Http\Controllers\StaffController::class, 'contact_information'])->name('staffs.contact_information'); 
+    // Staff - Emergency Contact
+    Route::post('/thhs/app/staffs/add_emergency_contact',[App\Http\Controllers\StaffController::class, 'add_emergency_contact'])->name('staffs.add_emergency_contact');
+    Route::get('/thhs/app/staffs/get_emergency_contact/{id}',[App\Http\Controllers\StaffController::class, 'get_emergency_contact'])->name('staffs.get_emergency_contact'); 
+    Route::get('/thhs/app/staffs/delete_emergency_contact/{id}',[App\Http\Controllers\StaffController::class, 'delete_emergency_contact'])->name('staffs.delete_emergency_contact'); 
+    // Staff - Address
+    Route::post('/thhs/app/staffs/add_address',[App\Http\Controllers\StaffController::class, 'add_address'])->name('staffs.add_address');
+    Route::get('/thhs/app/staffs/get_address/{id}',[App\Http\Controllers\StaffController::class, 'get_address'])->name('staffs.get_address'); 
+    Route::get('/thhs/app/staffs/delete_address/{id}',[App\Http\Controllers\StaffController::class, 'delete_address'])->name('staffs.delete_address'); 
+
+    // Staff - Phone
+    Route::post('/thhs/app/staffs/add_phone',[App\Http\Controllers\StaffController::class, 'add_phone'])->name('staffs.add_phone');
+    Route::get('/thhs/app/staffs/get_phone/{id}',[App\Http\Controllers\StaffController::class, 'get_phone'])->name('staffs.get_phone'); 
+    Route::get('/thhs/app/staffs/delete_phone/{id}',[App\Http\Controllers\StaffController::class, 'delete_phone'])->name('staffs.delete_phone'); 
+    
+    // Staff - Email
+    Route::post('/thhs/app/staffs/add_email',[App\Http\Controllers\StaffController::class, 'add_email'])->name('staffs.add_email');
+    Route::get('/thhs/app/staffs/get_email/{id}',[App\Http\Controllers\StaffController::class, 'get_email'])->name('staffs.get_email'); 
+    Route::get('/thhs/app/staffs/delete_email/{id}',[App\Http\Controllers\StaffController::class, 'delete_email'])->name('staffs.delete_email'); 
+    
 
     
 });

@@ -450,6 +450,62 @@ function back_url($url = ""){
 	}
 
 
+	function get_address_type_list(){
+		return array(
+			[
+				"id" => 1,
+				"name" => "Home Address"
+			],
+			[
+				"id" => 2,
+				"name" => "Work Place"
+			],
+			
+		);
+	}
+	
+	function get_phone_numbers_type_list(){
+		return array(
+			[
+				"id" => 1,
+				"name" => "Cell"
+			],
+			[
+				"id" => 2,
+				"name" => "Fax"
+			],
+			[
+				"id" => 3,
+				"name" => "Home"
+			],			
+			[
+				"id" => 4,
+				"name" => "Work Place"
+			],
+			
+		);
+	}
+	
+		
+	function get_email_addresses_type_list(){
+		return array(
+			[
+				"id" => 1,
+				"name" => "Direct"
+			],
+			[
+				"id" => 2,
+				"name" => "Personal"
+			],
+			[
+				"id" => 3,
+				"name" => "Work Place"
+			]
+			
+		);
+	}
+
+
 function remove_mask($input){
 	if($input){
 		$str = str_replace("-","",$input);
@@ -459,6 +515,27 @@ function remove_mask($input){
 	}
 	return null;
 	
+}
+
+function get_emergency_contact_details_by_id($id){
+	$key = array_search($id, array_column(get_emergency_contact_list(), 'id'));
+	return get_emergency_contact_list()[$key];
+}
+
+function get_address_by_id($id){
+	$key = array_search($id, array_column(get_address_type_list(), 'id'));
+	return get_address_type_list()[$key];
+}
+
+
+function get_phone_numbers_by_id($id){
+	$key = array_search($id, array_column(get_phone_numbers_type_list(), 'id'));
+	return get_phone_numbers_type_list()[$key];
+}
+
+function get_email_addresses_by_id($id){
+	$key = array_search($id, array_column(get_email_addresses_type_list(), 'id'));
+	return get_email_addresses_type_list()[$key];
 }
 
 //**********************************************//
