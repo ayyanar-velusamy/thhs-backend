@@ -30,6 +30,10 @@
     @endphp
         <link href="{{ asset('css/personal_info.css') }}" rel="stylesheet" />
     @php
+    }elseif(in_array("charts",request()->segments())){
+    @endphp
+         <link href="{{ asset('css/chart_manager.css') }}" rel="stylesheet" />
+    @php
       }else{
     @endphp
         <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />

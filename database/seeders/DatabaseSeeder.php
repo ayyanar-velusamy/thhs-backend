@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             UserRoleSeeder::class,
             OrganizationSeeder::class,
             ProspectStatusSeeder::class,
-            StaffStatusSeeder::class
+            StaffStatusSeeder::class,
+            IntervalSeeder::class,
+            HandlingSeeder::class,
         ]);
     }
 }
