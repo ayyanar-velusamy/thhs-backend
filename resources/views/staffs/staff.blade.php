@@ -61,8 +61,8 @@
                                     $class = "female";
                                     $image = "female.svg";
                                 }else{
-                                    $class = "other";
-                                    $image = "others.jpg";
+                                    $class = "others";
+                                    $image = "others.png";
                                 }
                             @endphp
                         <td class="dt-center align-items-center" style="gap: 7px">

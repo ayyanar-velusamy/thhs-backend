@@ -69,6 +69,9 @@
     </script>
     <script src="{{ asset('js/lib/bootstrap-datepicker.min.js') }}"></script>
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         function showToast() {
             var toast = new bootstrap.Toast(document.getElementById("myToast"));
@@ -178,9 +181,12 @@
 
                         </div>
                         <div class="dashboard-tabs-wrapper d-flex justify-content-end">
-                            <div class="dashboard-tabs">
-                                <i class="icon icon-teams"></i>
-                                <p class="mt-1">HR management</p>
+                            <div class="dashboard-tabs {{ request()->routeIs(['prospects','prospects.*','staffs','staffs.*']) ? 'active' : '' }}">
+                                
+                                <a href="{{ route('prospects') }}" class="{{ request()->routeIs(['prospects','prospects.*','staffs','staffs.*']) ? 'active' : '' }}" aria-current="true">
+                                    <i class="icon icon-teams"></i>
+                                    <p class="mt-1">HR management</p>
+                                </a>
                             </div>
                             <div  class="dashboard-tabs green {{ request()->routeIs(['charts','charts.*']) ? 'active' : '' }}">
                                 <a href="{{ route('charts') }}" class="{{ request()->routeIs(['charts','charts.*']) ? 'active' : '' }}" aria-current="true">

@@ -62,7 +62,7 @@
                                     $image = "female.svg";
                                 }else{
                                     $class = "others";
-                                    $image = "others.jpg";
+                                    $image = "others.png";
                                 }
                             @endphp
                             <img class="userimage {{$class}}" src="{{ asset('images/'.$image) }}">

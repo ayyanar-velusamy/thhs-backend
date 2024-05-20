@@ -81,6 +81,7 @@ class ProspectsController extends BaseController
         $user->birth_date = update_date_format($request->input('dob'), "Y-m-d"); 
         $user->name = $request->input('firstname') . " " . $request->input('lastname');
         $user->email = $request->input('email');
+        $user->gender = 3;
         $user->position = $request->input('position'); 
         $user->created_at = update_date_format($request->input('submit_date'), "Y-m-d"); 
         $user->status = 1;  

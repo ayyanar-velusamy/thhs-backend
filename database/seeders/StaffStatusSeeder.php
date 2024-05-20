@@ -28,9 +28,6 @@ class StaffStatusSeeder extends Seeder
                 'status' => 'Terminate',
             ],
             [
-                'status' => 'Vacation',
-            ], 
-            [
                 'status' => 'Deleted', 
             ],
         ];

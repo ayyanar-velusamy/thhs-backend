@@ -32,11 +32,11 @@ a {
   font-size: 12px;
   font-weight: 600;
   text-decoration: none !important;
-  border-bottom: 1px solid;
+  /* border-bottom: 1px solid; */
   transition: 0.4s ease-in-out all;
 }
 a:hover {
-  border-bottom: 1px solid transparent;
+  /* border-bottom: 1px solid transparent; */
 }
 
 .select-control {
@@ -898,6 +898,10 @@ span.error {
   overflow: unset;
 }
 .userimage.male {
+  padding: 5px 10px;
+}
+
+.userimage.others {
   padding: 5px 10px;
 }
 

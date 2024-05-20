@@ -6,6 +6,7 @@ $(function () {
     $(this).text($(this).text().replace(/(\d{3})(\d{3})(\d{2})/,"($1)-$2-$3"));
   });
   
+  $('.select2').select2();
   
 
   $("#dob , #submit_date, #termination_date")

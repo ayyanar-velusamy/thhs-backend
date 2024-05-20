@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->date('birth_date')->nullable();
             $table->integer('gender')->default('1');
-            $table->integer('language_id')->nullable();
+            $table->string('language_id')->nullable();
             $table->integer('ssn')->nullable();
             $table->string('employement_authorization')->nullable();
             $table->string('corporation_name')->nullable();
