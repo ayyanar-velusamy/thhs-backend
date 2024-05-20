@@ -82,7 +82,7 @@
                         </td>
                         <td>{{ $chart->renewal_number }} {{ $chart->renewal_interval }}</td>
                         <td>{{ $chart->provide_number }} {{ $chart->provide_interval }}</td>
-                        <td class="icons" style="padding-top:20px">
+                        <td class="icons d-block" style="padding-top:10px; top: -2px">
                             {{-- <a title="View Staff" href="{{ route('staffs.demographics', [$chart->id]) }}"><i
                                     class="icon icon-eye-green"></i></a> --}}
                             <a title="Edit Chart" href="#" onclick="get_chart({{ $chart->id }})">
