@@ -1,10 +1,9 @@
 var formTitle = $('#formTitle');
-var formname = "save_role_form";
-var catformname = "chart_category_form";
+var formname = "save_user_form"; 
 
 
 /**DataTable */
-var staff_table = $('#role_datatable').dataTable({
+var staff_table = $('#user_datatable').dataTable({
 	"lengthChange": false,
 	"order": [],
 	"columnDefs": [{
@@ -14,7 +13,7 @@ var staff_table = $('#role_datatable').dataTable({
 		"className": "dt-center"	
 	},
 	{
-		"targets": 2,
+		"targets": 7,
 		"bSort": false,
 		"orderable": false
 	},
@@ -34,40 +33,105 @@ var staff_table = $('#role_datatable').dataTable({
 
 /**Table filter */ 
 $('#filter_status').on('change', function () { 
-	var table = $('#role_datatable').DataTable();
+	var table = $('#user_datatable').DataTable();
 	// search(this.value, true, false).
-	table.column(1). 
+	table.column(6). 
 		search( this.value , {exact: true}).
 		draw();
 }); 
 
 /**Form validation */
-$(document).on('click', '#save_role_btn', function () { 
+$(document).on('click', '#save_user_btn', function () { 
 	jQuery(`#${formname}`).validate({
 		rules: {
-			role: {
+			firstname: {
 				required: true,
-				minlength: 1,
+				minlength:1,
 				maxlength: 40,
-				lettersonly: true
-			},  
+				lettersonly:true
+			},
+			
+			lastname: {
+				required: true,
+				minlength:1,
+				maxlength: 40,
+				lettersonly:true,
+			},
+			email: {
+				required: true,
+				maxlength: 64,
+				validmail:true,
+				noSpace:true,
+			},
+			phone_number:{
+				required: true,
+			},
+			password:{
+				required: true,
+				newpassword:true,
+				minlength:8,
+				maxlength:16, 
+				
+			},
+			password_confirmation: {
+				required: true,
+				confirmpassword:true,
+				minlength:8,
+				maxlength:16,
+			}, 
+			// account_expire_date:{
+			// 	required: true,
+			// },
+			// password_expire_date:{
+			// 	required: true,
+			// },
 			status: {
 				required: true,
 			} 
 		},
 
 		messages: {
-			role: {
-				required: "Role Name cannot be empty",
-				maxlength: "Role Name cannot exceed 40 characters",
-				lettersonly: "Role Name should contain only alphabets",
+			firstname: {
+				required:"First Name cannot be empty",
+				maxlength:"First Name cannot exceed 40 characters",
+				lettersonly:"First Name should contain only alphabets", 
+			},
+			
+			lastname: {
+				required:"Last Name cannot be empty",
+				maxlength:"Last Name cannot exceed 40 characters",
+				lettersonly:"Last Name should contain only alphabets", 
+			},	
+			
+			email: {
+				required:"Email ID cannot be empty",
+				maxlength:"Email address cannot exceed 64 characters",
+				validmail:"Enter a valid Email ID", 
+				noSpace:"Space are not allowed",
+			},
+			phone_number:{
+				required:"Phone number cannot be empty",
+			},
+			password:{
+				required:"Password cannot be empty",
+				minlength:"Password cannot be less than 8 characters",
+				maxlength:"Password cannot exceed 16 characters",
+				newpassword:"Password must contain at least 1 digit, 1 lowercase letter,1 uppercase letter and 1 special character",
+			
+			},	
+			password_confirmation:{
+				required:"Confirm Password cannot be empty",
+				confirmpassword:"Password mismatch! Retry",
 			}, 
 			status: {
 				required: "Status cannot be empty",
 			},
-			valid_interval: {
-				required: "Valid For Interval cannot be empty",
-			} 
+			// account_expire_date:{
+			// 	required:"Account Expire date cannot be empty",
+			// },
+			// password_expire_date:{
+			// 	required:"Password Expire date cannot be empty",
+			// },
 		},
 		errorElement: "span",
 		errorPlacement: function (error, element) { 
@@ -89,7 +153,7 @@ $(document).on('click', '#save_role_btn', function () {
 /**Form Submit */
 $(document).on('submit', `#${formname}`, function (e) {
 	var form = $(`#${formname}`);
-	var formBtnId = 'save_role_btn';
+	var formBtnId = 'save_user_btn';
 	if ($(this).hasClass('ajax-form')) {
 		e.preventDefault()
 		let url = $(this).attr('action');
@@ -143,15 +207,15 @@ $(document).on('click', 'button', function (e) {
 $(document).on('click', '#confirm_btn', function (e) {
 	eval($("#function_name").val() + "()");
 });
-function delete_role_confirmation() {
-	$("#modal_msg").text("Are you sure want delete the role?");
-	$("#function_name").val("delete_role");
+function delete_user_confirmation() {
+	$("#modal_msg").text("Are you sure want delete the user?");
+	$("#function_name").val("delete_user");
 	$("#ConfirmModal").modal("show");
 } 
 
 /**Open Popup */  
 function openPopup(name) {
-		formTitle.text('Add Role'); 
+		formTitle.text('Add User'); 
 		$(`#${name}Modal`).modal('show');
 		$(`#${formname}`).trigger("reset")
 		$(`#${formname} [name=id]`).val('');
@@ -161,20 +225,26 @@ function openPopup(name) {
 
 /**Get Details */  
 function getData(id) {
-	formTitle.text('Edit Role');
-	$(`span.error`).hide();
+	formTitle.text('Edit User');
+	// $('.hideField').hide(); 	 
 	$.ajax({
-		url: `${location.pathname}/get_role/${id}`,
+		url: `${location.pathname}/get_user/${id}`,
 		type: "GET",
 		contentType: false,
 		dataType: 'json',
 		success: function (response) {
-			$(`#${formname}`).trigger("reset")
-			$(`#roleModal`).modal('show');
-			let data = response.data.role
-			$(`#${formname} [name=id]`).val(data.id); 
-			$(`#${formname} [name=status]`).val(data.status); 
-			$(`#${formname} [name=role]`).val(data.role);  
+			$(`#userModal`).modal('show');
+			let data = response.data.user
+			$(`#${formname} [name=id]`).val(data.id);  
+			$(`#${formname} [name=firstname]`).val(data.firstname);  
+			$(`#${formname} [name=lastname]`).val(data.lastname);  
+			$(`#${formname} [name=email]`).val(data.email);  
+			$(`#${formname} [name=phone_number]`).val(data.cellular);   
+			$(`#${formname} [name=status]`).val(data.app_user_status);  
+			$(`#${formname} [name=password]`).val("TextPassword#003");  
+			$(`#${formname} [name=password_confirmation]`).val("TextPassword#003");  
+			$(`#${formname} [name=account_expire_date]`).val(moment(data.account_expire_date).format('MM/DD/YYYY'));
+			$(`#${formname} [name=password_expire_date]`).val(moment(data.password_expire_date).format('MM/DD/YYYY'));
 		},
 		error: function (err) {
 			toastr.error("Data getting failed")
@@ -183,9 +253,9 @@ function getData(id) {
 } 
 
 /**Delete */  
-function delete_role() {
+function delete_user() {
 	var formBtnId = 'confirm_btn';
-	let url = $("#delete_role_btn").attr('data-url');
+	let url = $("#delete_user_btn").attr('data-url');
 	let target = ('#' + $(this).attr('id') == '#undefined') ? 'body' : '#' + $(this).attr('id');
 	loadingButton(formBtnId)
 	$.ajax({

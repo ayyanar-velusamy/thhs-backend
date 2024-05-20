@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\SaveUserRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 // use Illuminate\Support\Str;
 // use Illuminate\Support\Facades\Mail;
-
 
 class UserController extends BaseController
 {
@@ -25,48 +27,75 @@ class UserController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        return view('users/user');
+
+        $user_list = User::where(['is_admin' => 0, 'user_type' => 3, 'status' => 1])->select('*')->orderBy('id', 'desc')->get();
+
+        return view('users/user', compact("user_list"));
     }
 
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function save_user(SaveUserRequest $request)
+    {
+        // exit;
+        $user = new User();
+        if ($request->input('id')) {
+            $user = User::find($request->input('id'));
+        }
+        $user->firstname = $request->input('firstname');
+        $user->lastname = $request->input('lastname');
+        $user->name = $request->input('firstname') . $request->input('lastname');
+        $user->email = $request->input('email');
+        $user->cellular = remove_mask($request->input('phone_number'));  
+        $user->account_expire_date = update_date_format($request->input('account_expire_date'), "Y-m-d");
+        $user->password_expire_date = update_date_format($request->input('password_expire_date'), "Y-m-d");
+        $user->app_user_status = $request->input('status');
+        $user->role = 3;
+        $user->user_type = 3; 
+        $user->status = 1; 
 
-    // public function add_prospect(AddProspectRequest $request)
-    // {
-    //     $user = new User();
-    //     $user->firstname = $request->input('firstname');
-    //     $user->middlename = $request->input('middlename');
-    //     $user->lastname = $request->input('lastname');
-    //     $user->birth_date = update_date_format($request->input('dob'), "Y-m-d"); 
-    //     $user->name = $request->input('firstname') . " " . $request->input('lastname');
-    //     $user->email = $request->input('email');
-    //     $user->gender = 3;
-    //     $user->position = $request->input('position'); 
-    //     $user->created_at = update_date_format($request->input('submit_date'), "Y-m-d"); 
-    //     $user->status = 1;  
-    //     $user->has_temp_password = 1;  
-    //     $temp_pwd = Str::random(8);
-    //     $user->password = bcrypt($temp_pwd);
-    //     $user->user_type = 2; 
-        
-    //     // pr($request->all(),1);
+        if($request->input('password') && $request->input('password') !== "TextPassword#003"){
+            $user->password =  Hash::make($request->input('password'));
+        }
 
-    //     if ($user->save()) {   
-    //         $user->temp_pwd = $temp_pwd;
-    //         Mail::to($user->email)->send(new PersonalInfoEmail($user));
-    //         $this->response['status'] = true;
-    //         $this->response['message'] = "Prospect added successfully"; 
-    //     } else {
-    //         $this->response['status'] = false;
-    //         $this->response['message'] = "Prospect adding failed";
-    //     }
-    //     return $this->response();
-    // }
-    
+        // pr($request->all(),1);
+        if ($user->save()) {
+            $this->response['status'] = true;
+            $this->response['message'] = "User saved successfully";
+        } else {
+            $this->response['status'] = false;
+            $this->response['message'] = "User saving failed";
+        }
+        return $this->response();
+    }
+
+    public function get_user(Request $request, $id)
+    {
+        $data = $this->getUserInfoData($id);
+        $this->response = compact("data");
+        return $this->response();
+    }
+
+    public function getUserInfoData($id)
+    {
+        $user = User::findOrFail($id);
+        return ["user" => $user];
+    }
+
+    public function delete_user(Request $request, $id)
+    { 
+        $user = User::where('id', $id)->firstorfail()->delete(); 
+        if ($user) {
+            $this->response['status'] = true;
+            $this->response['message'] = "User deleted Successfully";
+
+        } else {
+            $this->response['status'] = false;
+            $this->response['message'] = "User deleted Failed";
+
+        }
+        return $this->response();
+    }  
+
 }

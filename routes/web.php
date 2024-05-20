@@ -6,6 +6,8 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -99,10 +101,9 @@ Route::group(['middleware'=>'auth'], function(){
 
      /*User Routing */
      Route::get('/thhs/app/users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
-    //  Route::post('/thhs/app/charts/add_user',[App\Http\Controllers\UserController::class, 'add_user'])->name('add_user');
-    //  Route::get('/thhs/app/charts/get_chart/{id}',[App\Http\Controllers\ChartController::class, 'get_chart'])->name('get_chart');  
-    //  Route::get('/thhs/app/charts/delete_chart/{id}',[App\Http\Controllers\ChartController::class, 'delete_chart'])->name('delete_chart');  
-    //  Route::post('/thhs/app/charts/save_chart_category',[App\Http\Controllers\ChartController::class, 'save_chart_category'])->name('save_chart_category');
+     Route::post('/thhs/app/users/save_user',[App\Http\Controllers\UserController::class, 'save_user'])->name('save_user');
+     Route::get('/thhs/app/users/get_user/{id}',[App\Http\Controllers\UserController::class, 'get_user'])->name('get_user');  
+     Route::get('/thhs/app/users/delete_user/{id}',[App\Http\Controllers\UserController::class, 'delete_user'])->name('delete_user');   
 
      
     

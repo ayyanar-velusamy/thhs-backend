@@ -114,11 +114,15 @@
                                 <p>Chart Manager</p>
                             </a>
                         @php
-                        }elseif(request()->routeIs(['roles'])){     
+                        }elseif(request()->routeIs(['roles']) || request()->routeIs(['users'])){     
                         @endphp
                             <a href="{{ route('roles') }}" class="{{ request()->routeIs(['roles','roles.*']) ? 'active' : '' }}" aria-current="true">
-                                <i class="icon icon-staffs-logo"></i>
+                                <i class="icon icon-prospects-logo"></i>
                                 <p>User Roles</p>
+                            </a>
+                            <a href="{{ route('users') }}" class="{{ request()->routeIs(['users','users.*']) ? 'active' : '' }}" aria-current="true">
+                                <i class="icon icon-staffs-logo"></i>
+                                <p>User Manager</p>
                             </a>
                         @php 
                         }else{
@@ -209,8 +213,8 @@
                                 <i class="icon icon-file-logo"></i>
                                 <p class="mt-1">EHR</p>
                             </div>
-                            <div class="dashboard-tabs purple {{ request()->routeIs(['roles','roles.*']) ? 'active' : '' }}">
-                                <a href="{{ route('roles') }}" class="{{ request()->routeIs(['roles','roles.*']) ? 'active' : '' }}" aria-current="true">
+                            <div class="dashboard-tabs purple {{ request()->routeIs(['roles','roles.*', 'users', 'users.*']) ? 'active' : '' }}">
+                                <a href="{{ route('users') }}" class="{{ request()->routeIs(['roles','roles.*', 'users', 'users.*']) ? 'active' : '' }}" aria-current="true">
                                     <i class="icon icon-settings-rotate"></i>
                                     <p class="mt-1">Settings</p>
                                 </a>
