@@ -945,3 +945,27 @@ span.error {
 .sub-menu:hover{
   text-decoration: none !important; 
 }
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: #0cd0a2 !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+  border: solid #cccccc 1px !important;
+  padding-top: 4px !important;
+  padding-bottom: 8px !important;
+
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice button {
+  box-shadow: unset !important;
+  height: unset !important;
+  width: unset !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice,
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  background-color: #0cd0a2 !important;
+  color: #fff !important;
+  border-color: #0cd0a2 !important;
+}
