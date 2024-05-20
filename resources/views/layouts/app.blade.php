@@ -32,9 +32,13 @@
     @php
     }elseif(in_array("charts",request()->segments())){
     @endphp
-         <link href="{{ asset('css/chart_manager.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/chart_manager.css') }}" rel="stylesheet" />
     @php
-      }else{
+    }elseif(in_array("roles",request()->segments())){
+    @endphp
+        <link href="{{ asset('css/role_info.css') }}" rel="stylesheet" />
+    @php
+    }else{
     @endphp
         <link href="{{ asset('css/staff_manager.css') }}" rel="stylesheet" />
     @php
@@ -110,6 +114,13 @@
                                 <p>Chart Manager</p>
                             </a>
                         @php
+                        }elseif(request()->routeIs(['roles'])){     
+                        @endphp
+                            <a href="{{ route('roles') }}" class="{{ request()->routeIs(['roles','roles.*']) ? 'active' : '' }}" aria-current="true">
+                                <i class="icon icon-staffs-logo"></i>
+                                <p>User Roles</p>
+                            </a>
+                        @php 
                         }else{
                         @endphp
                         <a href="{{ route('staffs') }}" class="{{ request()->routeIs(['staffs','staffs.*']) ? 'active' : '' }}" aria-current="true">
@@ -198,9 +209,11 @@
                                 <i class="icon icon-file-logo"></i>
                                 <p class="mt-1">EHR</p>
                             </div>
-                            <div class="dashboard-tabs purple">
-                                <i class="icon icon-settings-rotate"></i>
-                                <p class="mt-1">Settings</p>
+                            <div class="dashboard-tabs purple {{ request()->routeIs(['roles','roles.*']) ? 'active' : '' }}">
+                                <a href="{{ route('roles') }}" class="{{ request()->routeIs(['roles','roles.*']) ? 'active' : '' }}" aria-current="true">
+                                    <i class="icon icon-settings-rotate"></i>
+                                    <p class="mt-1">Settings</p>
+                                </a>
                             </div>
                         </div>
                     </div>
