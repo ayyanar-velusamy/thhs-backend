@@ -42,6 +42,19 @@ $(function () {
       }
     })
 
+    $("#account_expire_date , #password_expire_date ")
+    .datepicker({
+      format: "mm/dd/yyyy",
+      autoclose: true,
+      minDate: '0',
+      todayHighlight: true,
+      onSelect: function(date) {
+        // alert();
+        date.dpDiv.find('.ui-datepicker-current-day a')
+          .css('background-color', 'green');
+      }
+    })
+
     $("#interview_date, #interview_date_div").datetimepicker({
       format: "m/d/Y H:i",
       autoclose: true,

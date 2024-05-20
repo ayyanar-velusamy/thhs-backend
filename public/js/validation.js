@@ -210,6 +210,94 @@ $(document).on('click','#register_submit' ,function(){
 	});
 });
 
+
+
+$(document).on('click','#add_user_btn' ,function(){
+	// alert($("#authorize_to_us").is(":checked"));
+	jQuery("#add_user_form").validate({
+		rules: {
+			firstname:{
+				required: true,
+				maxlength: 64,
+			},
+			lastname:{
+				required: true,
+				maxlength: 64,
+			},
+			status:{
+				required: true,
+			},
+			phone_number:{
+				required: true,
+			},
+			email:{
+				required: true,
+				validmail:true,
+				maxlength: 64,
+			},
+			password:{
+				required: true,
+				newpassword:true,
+				minlength:8,
+				maxlength:16, 
+				
+			},
+			confirm_password: {
+				required: true,
+				confirmpassword:true,
+				minlength:8,
+				maxlength:16,
+			},
+		},
+		messages: {
+			
+			firstname:{
+				required:"Firstname cannot be empty",
+			},
+			lastname:{
+				required:"Lastname cannot be empty",
+			},
+			status:{
+				required:"Status cannot be empty",
+			},
+			phone_number:{
+				required:"Phone number cannot be empty",
+			},
+			email:{
+				required:"Email cannot be empty",
+			},			
+			password:{
+				required:"Password cannot be empty",
+				minlength:"Password cannot be less than 8 characters",
+				maxlength:"Password cannot exceed 16 characters",
+				newpassword:"Password must contain at least 1 digit, 1 lowercase letter,1 uppercase letter and 1 special character",
+			
+			},	
+			confirm_password:{
+				required:"Confirm Password cannot be empty",
+				confirmpassword:"Password mismatch! Retry",
+			}, 
+		},
+		errorElement: "span",
+		errorPlacement: function(error, element) {
+			console.log(element);
+			$('span.removeclass-valid').remove();
+            var placement = $(element).data('error');
+			if (placement) {
+				$(placement).append(error)
+			 } else {
+				if($(element).hasClass("authorize_to_us_checbox")){
+					$(element).parents(".form-check").append(error);
+				}else{
+					error.insertAfter(element);	
+				}
+				
+			}
+		}
+	});
+});
+
+
 $(document).on('click','#reset-submit' ,function(){  
 	// alert($("#authorize_to_us").is(":checked"));
 	jQuery("#reset-form").validate({
