@@ -66,7 +66,7 @@ class CreateUsersTable extends Migration
             $table->integer('user_type')->default(1)->nullable();  
             $table->integer('app_user_status')->default(1)->nullable();  
             $table->date('account_expire_date')->nullable(); 
-            $table->date('password_expire_expire_date')->nullable(); 
+            $table->date('password_expire_date')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
         });

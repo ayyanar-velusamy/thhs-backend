@@ -6,7 +6,7 @@ use App\Rules\AlphaSpace;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
-class SaveChartCategoryRequest extends FormRequest
+class SaveRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,17 @@ class SaveChartCategoryRequest extends FormRequest
      * @return array
      */
     public function rules(Request $request)
-    {   
+    { 
+        
         if($request->input('id')){ 
             return [ 
-                'category' => ['required', new AlphaSpace,  'unique:chart_categories,name,'.$request->input('id'),  'max:40'] 
+                'role' => ['required', new AlphaSpace,  'unique:user_roles,role,'.$request->input('id'),  'max:40'],  
+                'status' => ['required'],
             ]; 
         }else{
             return [ 
-                'category' => ['required', new AlphaSpace,  'unique:chart_categories,name',  'max:40'] 
+                'role' => ['required', new AlphaSpace,  'unique:user_roles,role',  'max:40'],  
+                'status' => ['required'],
             ];
         }
     }
@@ -39,9 +42,10 @@ class SaveChartCategoryRequest extends FormRequest
     public function messages()
     {
         return [ 
-            'category.required' => 'Name cannot be empty',
-            'category.alpha_spaces' => 'Name should contain only alphabets',
-            'category.max' => 'Name cannot exceed :max characters'                
+            'role.required' => 'Role Name cannot be empty',
+            'role.alpha_spaces' => 'Role Name should contain only alphabets',
+            'role.max' => 'Role Name cannot exceed :max characters', 
+            'status.required' => 'Status cannot be empty'         
         ];
     }
 }
