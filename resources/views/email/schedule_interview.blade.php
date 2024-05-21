@@ -17,7 +17,7 @@
         <div class="blue_line"></div>
         <!-- <img loading="lazy" src="../images/logo.svg" class="img" /> -->
         <div class="email_temp_content_wrapper">
-            <!-- <img loading="lazy" src="../images/email_temp_img.png" class="largeImg" /> -->
+            <img loading="lazy" src="{{asset('/images/register.png')}}" class="largeImg" />
             <div class="text-content">
                 <div class="content">
                     <p class="sub_title" style="font-size: 22px">Dear <span style="color: rgba(94, 99, 242, 1);">{{ $user->firstname ." ".$user->lastname }}</span></p>
