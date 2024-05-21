@@ -286,7 +286,7 @@ function get_staff(id) {
 			$(`#${formname} [name=corporation_name]`).val(staff.corporation_name);
 			$(`#${formname} [name=tax_id]`).val(staff.tax_id);
 			if (staff.signature_path) {
-				document.getElementById('signature_image').src = `${window.location.origin}/thhs/${staff.signature_path}`;
+				document.getElementById('signature_image').src = `${window.location.origin}/${staff.signature_path}`;
 				$(`#signature_image`).show()
 			}
 		},

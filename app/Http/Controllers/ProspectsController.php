@@ -231,7 +231,7 @@ class ProspectsController extends BaseController
         
         if($user->save()){ 
             $user->mail = "cancel_interview";
-            Mail::to($user->email)->send(new InterviewMail($user));
+            // Mail::to($user->email)->send(new InterviewMail($user));
             $this->response['status'] = true;
             $this->response['message'] = "Interview Cancelled";
             

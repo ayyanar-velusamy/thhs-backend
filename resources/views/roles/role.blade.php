@@ -64,7 +64,7 @@
             <!-- <div class="count-text">
                                                                                                                         <p>Showing data 1 to 8 of 256 entries</p>
                                                                                                                       </div> -->
-            <div class="data-section d-flex justify-content-between align-items-center gap-4">
+            <!-- <div class="data-section d-flex justify-content-between align-items-center gap-4">
                 <div class="green d-flex justify-content-center align-items-center">
                     <span></span>
                     <p>All clear</p>
@@ -77,7 +77,7 @@
                     <span></span>
                     <p>Already expired</p>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </section>
