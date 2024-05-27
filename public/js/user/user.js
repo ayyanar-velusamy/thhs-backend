@@ -220,7 +220,7 @@ function openPopup(name) {
 		$(`#${formname}`).trigger("reset")
 		$(`#${formname} [name=id]`).val('');
 		$(`span.error`).hide();
-		
+		$('#roles').val(null).trigger('change'); 
 }  
 
 /**Get Details */  
@@ -245,6 +245,7 @@ function getData(id) {
 			$(`#${formname} [name=password_confirmation]`).val("TextPassword#003");  
 			$(`#${formname} [name=account_expire_date]`).val(moment(data.account_expire_date).format('MM/DD/YYYY'));
 			$(`#${formname} [name=password_expire_date]`).val(moment(data.password_expire_date).format('MM/DD/YYYY'));
+			$('#roles').val(data.role.split(",")).trigger('change');
 		},
 		error: function (err) {
 			toastr.error("Data getting failed")

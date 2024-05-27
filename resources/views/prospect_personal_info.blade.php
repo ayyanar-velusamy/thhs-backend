@@ -62,11 +62,10 @@
                     </select>
                 </div>
                 <div class="field-wrapper">
-                    <label for="mname">Languages :</label><span class="mandate">*</span>
-                    <select class="select-control" name="languages" multiple value="{{ @$user->language_id }}" required>
-                        <option value="">Languages</option>
+                    <label for="mname">Languages :</label><span class="mandate">*</span> 
+                    <select class="select2 select-control" name="languages[]" id="languages" value="{{ @$user->language_id }}" placeholder="Select Languages" required multiple="multiple"> 
                         @foreach ($languages as $language)
-                            @if (@$user->language_id == $language->id)
+                            @if (@in_array($language->id,explode(",",$user->language_id)))
                                 @php
                                     $selected = 'selected';
                                 @endphp
@@ -77,7 +76,7 @@
                             @endif
                             <option value="{{ $language->id }}" {{ @$selected }}>{{ @$language->language_name }}</option>
                         @endforeach
-
+        
                     </select>
                 </div>
                 <div class="field-wrapper">

@@ -85,7 +85,7 @@ $(document).on('click', '#save_staff_btn', function () {
 			gender: {
 				required: true,
 			},
-			language: {
+			languages: {
 				required: true,
 			},
 			employment_type: {
@@ -130,7 +130,7 @@ $(document).on('click', '#save_staff_btn', function () {
 			gender: {
 				required: "Gender cannot be empty",
 			},
-			language: {
+			languages: {
 				required: "Language cannot be empty",
 			},
 			staff_status: {
@@ -276,10 +276,10 @@ function get_staff(id) {
 			$(`#${formname} [name=organization]`).val(staff.organization);
 			$(`#${formname} [name=position]`).val(staff.position);
 			$(`#${formname} [name=gender]`).val(staff.gender);
-			$(`#${formname} [name=email]`).val(staff.email);
-			$(`#${formname} [name=language]`).val(staff.language_id);
+			$(`#${formname} [name=email]`).val(staff.email);  
 			$(`#${formname} [name=staff_status]`).val(staff.staff_status);
 			$(`#${formname} [name=employment_type]`).val(staff.role);
+			$('#languages').val(staff.language_id.split(",")).trigger('change');
 			let termination_date = (staff.termination_date != null) ? moment(staff.termination_date).format('MM/DD/YYYY') : "";
 			console.log(termination_date);
 			$(`#${formname} [name=termination_date]`).val(termination_date);

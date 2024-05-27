@@ -147,6 +147,15 @@
                                         <i class="icon icon-eye"></i>
                                     </span>
                                 </div>
+                            </div> 
+                            <div class="field-wrapper ">
+                                <label for="roles">Role :</label> 
+                                <select id="roles" class="select2 select-control" name="roles[]" placeholder="Select Role" multiple="multiple"> 
+                                    @foreach ($user_roles as $role) 
+                                        <option value="{{ $role->id }}">{{ @$role->role }}</option>
+                                    @endforeach
+                    
+                                </select>
                             </div>
                             <div class="field-wrapper">
                                 <label for="mname">Status :<span class="mandate">*</span></label>

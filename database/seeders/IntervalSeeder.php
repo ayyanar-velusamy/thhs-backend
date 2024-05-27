@@ -16,8 +16,7 @@ class IntervalSeeder extends Seeder
     {
         $createMultiple = [
             ['name' => 'Day'],
-            ['name' => 'Hours'],
-            ['name' => 'Manual'],
+            ['name' => 'Hours'], 
             ['name' => 'Month'],
             ['name' => 'Week'],
             ['name' => 'Year'] 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveUserRequest;
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -32,8 +33,9 @@ class UserController extends BaseController
     {
 
         $user_list = User::where(['is_admin' => 0, 'user_type' => 3, 'status' => 1])->select('*')->orderBy('id', 'desc')->get();
+        $user_roles =  UserRole::where(['status' => 1])->select('*')->get();
 
-        return view('users/user', compact("user_list"));
+        return view('users/user', compact("user_list", "user_roles"));
     }
 
     public function save_user(SaveUserRequest $request)
@@ -42,6 +44,8 @@ class UserController extends BaseController
         $user = new User();
         if ($request->input('id')) {
             $user = User::find($request->input('id'));
+        }else{
+            $user->role = 3;
         }
         $user->firstname = $request->input('firstname');
         $user->lastname = $request->input('lastname');
@@ -50,10 +54,12 @@ class UserController extends BaseController
         $user->cellular = remove_mask($request->input('phone_number'));  
         $user->account_expire_date = update_date_format($request->input('account_expire_date'), "Y-m-d");
         $user->password_expire_date = update_date_format($request->input('password_expire_date'), "Y-m-d");
-        $user->app_user_status = $request->input('status');
-        $user->role = 3;
+        $user->app_user_status = $request->input('status'); 
         $user->user_type = 3; 
         $user->status = 1; 
+        if($request->input('roles')){
+            $user->role = implode(",",$request->input('roles'));
+        } 
 
         if($request->input('password') && $request->input('password') !== "TextPassword#003"){
             $user->password =  Hash::make($request->input('password'));
@@ -97,5 +103,7 @@ class UserController extends BaseController
         }
         return $this->response();
     }  
+
+    
 
 }

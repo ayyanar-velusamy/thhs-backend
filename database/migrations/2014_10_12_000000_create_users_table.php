@@ -52,7 +52,7 @@ class CreateUsersTable extends Migration
             $table->string('hepatitis_vaccine_reason')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('is_admin')->default('0'); 
-            $table->integer('role')->default('1'); 
+            $table->string('role')->default('1'); 
             $table->integer('status')->default('0'); 
             $table->integer('organization')->default('1');   
             $table->date('termination_date')->nullable(); 
@@ -65,6 +65,7 @@ class CreateUsersTable extends Migration
             $table->integer('staff_status')->nullable();  
             $table->integer('user_type')->default(1)->nullable();  
             $table->integer('app_user_status')->default(1)->nullable();  
+            $table->integer('employment_type')->nullable();  
             $table->date('account_expire_date')->nullable(); 
             $table->date('password_expire_date')->nullable(); 
             $table->rememberToken();

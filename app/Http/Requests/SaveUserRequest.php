@@ -32,8 +32,8 @@ class SaveUserRequest extends FormRequest
                 'firstname' => ['required', new AlphaSpace, 'max:40'],
                 'lastname' => ['required', new AlphaSpace, 'max:40'],
                 'email' => ['required', 'email', 'unique:users,email,' . $request->input('id'), 'max:64'],
-                'account_expire_date' => ['required'],
-                'password_expire_date' => ['required'],
+                // 'account_expire_date' => ['required'],
+                // 'password_expire_date' => ['required'],
                 'status' => ['required'],
                 'phone_number' => ['required'],
             ];
@@ -42,8 +42,8 @@ class SaveUserRequest extends FormRequest
                 'firstname' => ['required', new AlphaSpace, 'max:40'],
                 'lastname' => ['required', new AlphaSpace, 'max:40'],
                 'email' => ['required', 'email', 'unique:users,email', 'max:64'],
-                'account_expire_date' => ['required'],
-                'password_expire_date' => ['required'],
+                // 'account_expire_date' => ['required'],
+                // 'password_expire_date' => ['required'],
                 'status' => ['required'],
                 'phone_number' => ['required'],
             ];

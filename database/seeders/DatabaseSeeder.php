@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ProspectStatusSeeder::class,
             StaffStatusSeeder::class,
             IntervalSeeder::class,
+            EmploymentTypeSeeder::class,
             HandlingSeeder::class,
         ]);
     }
