@@ -52,6 +52,7 @@ $(function () {
         // alert();
         date.dpDiv.find('.ui-datepicker-current-day a')
           .css('background-color', 'green');
+        console.log($(this));
       }
     })
 
@@ -68,9 +69,7 @@ $(function () {
     })
     // .datepicker("update", new Date());
 
-    $(".date").on("change", function() { 
-      // $(this).find(".error").remove();
-  }); 
+    
    
     if($("input[name='has_convicted_felony']:checked").val() == 1){
       $("#no_textarea").show();
@@ -177,4 +176,11 @@ $('#datatable').dataTable( {
 }
 });
 
+
+$(".date").on("change",function(e){
+	var $this = $(e)[0].target;
+	if($this.value != ""){
+		$($this).next('.error').remove();
+	}
+  })
 

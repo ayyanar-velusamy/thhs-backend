@@ -7,11 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Mail\RegisterEmail;
+use App\Rules\Recaptcha;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use Session;
 
@@ -53,16 +55,31 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(Request $request)
     {
-        return Validator::make($data, [
+        return $request->validate( [
             'authorize_to_us' => ['required'],
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'position' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'g-recaptcha-response' => ['required', new Recaptcha],
+        ],$this->validationErrorMessages());
+    }
+
+
+    protected function validationErrorMessages()
+    {
+        return [
+			'authorize_to_us.required' 	=> "Email ID cannot be empty",
+			'firstname.required' 		=> "Firstname cannot be empty",
+			'lastname.required' 		=> "Lastname cannot be empty",
+			'position.required' 		=> "Position cannot be empty",
+			'email.exists' 		=> "Email address already exists",
+			// 'password.required' => "Password cannot be empty",
+            'g-recaptcha-response.required' => "Verify the Recaptcha"
+		];
     }
 
     /**
@@ -90,19 +107,23 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+
         $data = $request->all();
-        $this->validator($data)->validate(); 
+        $this->validator($request);
         $user = new User();
         $user->name = $data['firstname'] . " " . $data['lastname'];
         $user->firstname = $data['firstname'];
         $user->lastname = $data['lastname'];
         $user->email = $data['email'];
-        $user->password = Hash::make($data['password']);
+        // $user->password = Hash::make($data['password']);
         $user->position = $data['position'];
         $user->prospect_status = 1;
         $user->user_type = 2; 
- 
+        $temp_pwd = Str::random(8);
+        $user->password = bcrypt($temp_pwd);
+        
         if ($user->save()) {
+            $user->temp_pwd = $temp_pwd;
             Mail::to($data['email'])->send(new RegisterEmail($user));
             return back()->with('message', 'Registered successfully. Please verify your email.');
         } else {

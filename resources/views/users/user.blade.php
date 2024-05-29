@@ -51,8 +51,22 @@
                         <td>{{ $user->lastname }}</td>
                         <td>{{ $user->email }}</td>
                         <td class="phone_text">{{ $user->cellular }}</td>
-                        <td>{{ update_date_format($user->account_expire_date, 'm-d-Y') }}</td>
-                        <td>{{ update_date_format($user->password_expire_date, 'm-d-Y') }}</td>
+                        @php
+                            if($user->account_expire_date == null){
+                                $expiry_date = "No Expiry";
+                            }else{
+                                $expiry_date = update_date_format($user->account_expire_date, 'm-d-Y');
+                            }
+                        @endphp
+                        <td>{{ $expiry_date }}</td>
+                        @php
+                            if($user->password_expire_date == null){
+                                $pwd_expiry_date = "No Expiry";
+                            }else{
+                                $pwd_expiry_date = update_date_format($user->password_expire_date, 'm-d-Y');
+                            }
+                        @endphp
+                        <td>{{ $pwd_expiry_date }}</td>
                         <td><span
                                 class="tag {{ $user->app_user_status == 2 ? 'deactivate' : 'active' }}">{{ $status }}</span>
                         </td>
@@ -125,7 +139,7 @@
                             </div>
                             <div class="field-wrapper">
                                 <label for="mname">Phone<span class="mandate">*</span></label>
-                                <input type="number" id="phone" class="phone" name="phone_number"
+                                <input type="text" id="phone" class="phone" name="phone_number"
                                     placeholder="Phone number" required />
                             </div>
                             <div class="field-wrapper">

@@ -113,22 +113,26 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <div class="password-wrapper position-relative">
+                        <!-- <div class="password-wrapper position-relative">
                             <input type="password" name="password" id="password" placeholder="Password"
                                 class="@error('password') is-invalid @enderror" required />
-                                <!-- <i class="icon icon-eye"></i> -->
+                                
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            <!-- <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"> -->
-                        </div>
-                        <div class="password-wrapper position-relative">
+
+                        </div> -->
+                        <!-- <div class="password-wrapper position-relative">
                             <input id="password-confirm" type="password" placeholder="Confirm Password"
                                 name="password_confirmation" required>
-                                <!-- <i class="icon icon-eye"></i> -->
-                        </div>
+                              
+                        </div> -->
+                        <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+                        @error('g-recaptcha-response')
+                            <span class="error">{{ $message }}</span>
+                        @enderror 
 
                         <div class="btn-wrap">
                             <button class="login-btn-wrap" id="register_submit" type="submit">Register</button>

@@ -832,8 +832,8 @@ $(document).on('click','#demographics_submit' ,function(){
 		},
 		errorElement: "span",
 		errorPlacement: function(error, element) {
-			console.log($(element).parent().parent().hasClass("work_history"));
-			$('span.removeclass-valid').remove();
+			console.log($(element).parent().attr("class"));
+			// $('span.removeclass-valid').remove();
             var placement = $(element).data('error');
 			if (placement) {
 				$(placement).append(error)

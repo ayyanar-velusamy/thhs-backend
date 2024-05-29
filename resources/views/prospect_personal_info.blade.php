@@ -47,7 +47,7 @@
                 <div class="field-wrapper">
                     <label for="fname">Birth date</label><span class="mandate">*</span>
                     <div id="datepicker" class="date" data-date-format="dd/mm/yyyy" style="height: 0">
-                        <input type="text" name="dob" readonly value="{{@update_date_format($user->birth_date)}}" required />
+                        <input type="text" name="dob" class="date"readonly value="{{@update_date_format($user->birth_date)}}" required />
                         <span class="input-group-addon">
                             <i class="icon icon-eye"></i>
                         </span>

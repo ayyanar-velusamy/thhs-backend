@@ -15,7 +15,7 @@
 <body>
     <div class="email_temp_wrapper">
         <div class="blue_line"></div>
-        <img loading="lazy" src="https://www.trendhhs.com/wp-content/uploads/2018/10/logo.png" class="img" />
+        
         <div class="email_temp_content_wrapper">
             <img loading="lazy" src="{{asset('/images/email/register.png')}}" class="largeImg" />
             <div class="text-content">
@@ -40,8 +40,15 @@
                             {{ $user->email }}
                         </span>
                         <br />
-                        Password : To be entered while Signup.
-                        
+                        Temporary Password : <span
+                        style="
+              font-weight: 500;
+              font-size: 18px;
+              color: rgba(94, 99, 242, 1);
+            ">
+                        {{$user->temp_pwd}}
+
+                    </span>                        
                     </p>
                 </div>
                 <div style="width: 570px;margin: 48px 0 0 0;font: 16px Poppins, sans-serif;">
