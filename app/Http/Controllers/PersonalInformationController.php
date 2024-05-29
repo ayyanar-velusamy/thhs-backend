@@ -64,7 +64,7 @@ class PersonalInformationController extends BaseController
         $user->lastname = $request->input('lastname');
         $user->birth_date = update_date_format($request->input('dob'),"Y-m-d");
         $user->gender = $request->input('gender');
-        $user->language_id = $request->input('languages');
+        $user->language_id = implode(",",$request->input('languages'));
         $user->ssn = remove_mask($request->input('ssn'));
         $user->employement_authorization = $request->input('employeement_authorization');
         $user->corporation_name = $request->input('corporation_name');

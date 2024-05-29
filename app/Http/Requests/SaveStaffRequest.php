@@ -32,7 +32,7 @@ class SaveStaffRequest extends FormRequest
                 'submit_date' => ['required'], 
                 'ssn' => ['required'],
                 'gender' => ['required'], 
-                'language' => ['required'], 
+                'languages' => ['required'], 
                 'employment_type' => ['required'], 
                 'organization' => ['required'], 
                 'position' => ['required'] 
@@ -46,7 +46,7 @@ class SaveStaffRequest extends FormRequest
                 'submit_date' => ['required'], 
                 'ssn' => ['required'], 
                 'gender' => ['required'], 
-                'language' => ['required'], 
+                'languages' => ['required'], 
                 'employment_type' => ['required'], 
                 'organization' => ['required'], 
                 'position' => ['required'] 

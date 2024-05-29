@@ -66,8 +66,10 @@ class LoginController extends Controller
 			
             //check if user activated & activation required, make autoactivation
             if(!$user->is_admin){
-                if($user->status === 1) {  
+                if($user->status === 1 && $user->user_type === 2) {  
                     return redirect('/thhs/prospect_personal_info/'.$user->id);
+                }else if($user->status === 1 && $user->user_type === 1) {  
+                    return redirect('/thhs/app/staffs');
                 } else if($user->status === 2){
                     Auth::logout();
                     return back()->with('message', 'Your application is under Verification. Please check your email for further updates');

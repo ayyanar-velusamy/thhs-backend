@@ -969,3 +969,8 @@ span.error {
   color: #fff !important;
   border-color: #0cd0a2 !important;
 }
+
+.modal-open .select2-container{
+    display: block !important;
+    z-index: 9999; 
+}

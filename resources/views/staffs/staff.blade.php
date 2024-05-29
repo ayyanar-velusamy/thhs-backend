@@ -192,21 +192,29 @@
                         <input type="email" id="lname" name="email" placeholder="Email id" required />
                     </div>
                     <div class="field-wrapper">
-                        <label for="language">Preferred Language :<span class="mandate">*</span></label>
-                        <select required class="select-control" name="language" required>
-                            <option value="">Preferred Language</option>
+                        <label for="language">Preferred Language :<span class="mandate">*</span></label> 
+                        <select id="languages" class="select2 select-control" name="languages[]" value="{{ @$user->language_id }}" placeholder="Select Languages" required multiple="multiple"> 
                             @foreach ($languages as $language)
-                                <option value="{{ $language->id }}" {{ @$selected }}>{{ @$language->language_name }}
-                                </option>
+                                @if (@in_array($language->id,explode(",",$user->language_id)))
+                                    @php
+                                        $selected = 'selected';
+                                    @endphp
+                                @else
+                                    @php
+                                        $selected = '';
+                                    @endphp
+                                @endif
+                                <option value="{{ $language->id }}" {{ @$selected }}>{{ @$language->language_name }}</option>
                             @endforeach
+            
                         </select>
                     </div>
                     <div class="field-wrapper">
                         <label for="status">Employment Type :<span class="mandate">*</span></label>
                         <select required class="select-control" name="employment_type" required>
                             <option value="">Employment Type</option>
-                            @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ @$role->role }}</option>
+                            @foreach ($employments as $employment)
+                                <option value="{{ $employment->id }}">{{ @$employment->type }}</option>
                             @endforeach
                         </select>
                     </div>

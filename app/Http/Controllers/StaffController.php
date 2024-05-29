@@ -11,7 +11,7 @@ use App\Models\Position;
 use App\Models\Organization;
 use App\Models\ProfessionalReferences;
 use App\Models\StaffStatus;
-use App\Models\UserRole;
+use App\Models\EmploymentType;
 use App\Models\User;
 use App\Models\UserEducation;
 use App\Models\WorkHistory;
@@ -50,23 +50,23 @@ class StaffController extends BaseController
         // }
         $staff_list =  User::where(['is_admin' => 0,'user_type' => 1])->select('*')->orderBy('id', 'desc')->get();
         $positions = Position::all();
-        $roles = UserRole::all();
+        $employments = EmploymentType::all();
         $languages = Language::all();
         $organizations = Organization::all();
         $staff_statuses = StaffStatus::all();
         
         foreach ($staff_list as $staff) {
             $position = Position::where("id", $staff->position)->first()->position;
-            $role = UserRole::where("id", $staff->role)->first()->role;
+            $employment_type = @EmploymentType::where("id", $staff->employment_type)->first()->type;
             $organization = Organization::where("id", $staff->organization)->first()->name;  
             @$staff_status = @StaffStatus::where("id", $staff->staff_status)->first()->status; 
             $staff->position = $position;
-            $staff->role = $role;
+            $staff->employment_type = $employment_type;
             $staff->organization = $organization;
             $staff->staff_status_id = $staff->staff_status;
             @$staff->staff_status = $staff_status;
         }
-        return view('staffs/staff', compact("staff_list", "positions", "roles", "languages", "organizations", "staff_statuses"));
+        return view('staffs/staff', compact("staff_list", "positions", "employments", "languages", "organizations", "staff_statuses"));
     }
 
     /**
@@ -77,6 +77,7 @@ class StaffController extends BaseController
 
     public function save_staff(SaveStaffRequest $request)
     { 
+        
         // exit;
         $user = new User();
         if($request->input('id')){
@@ -93,9 +94,9 @@ class StaffController extends BaseController
         $user->hire_date = update_date_format($request->input('submit_date'), "Y-m-d"); 
         $user->ssn = remove_mask($request->input('ssn'));
         $user->gender = $request->input('gender');   
-        $user->language_id = $request->input('language');    
+        $user->language_id = implode(",",$request->input('languages'));    
         $user->staff_status = $request->input('staff_status');     
-        $user->role = $request->input('employment_type');   
+        $user->employment_type = $request->input('employment_type');   
         $user->termination_date = update_date_format($request->input('termination_date'), "Y-m-d"); 
         $user->corporation_name = $request->input('corporation_name');   
         $user->organization = $request->input('organization');    
@@ -134,9 +135,9 @@ class StaffController extends BaseController
         $user->hire_date = update_date_format($request->input('submit_date'), "Y-m-d"); 
         $user->ssn = $request->input('ssn');   
         $user->gender = $request->input('gender');   
-        $user->language_id = $request->input('language');   
+        $user->language_id = implode(",",$request->input('languages'));   
         $user->status = $request->input('status');   
-        $user->role = $request->input('employment_type');   
+        $user->employment_type = $request->input('employment_type');   
         $user->termination_date = update_date_format($request->input('termination_date'), "Y-m-d"); 
         $user->corporation_name = $request->input('corporation_name');   
         $user->organization = $request->input('organization');    
@@ -208,7 +209,7 @@ class StaffController extends BaseController
 
 
     public function update_demographics(Request $request, $id)
-    {
+    { 
         $request->request->add(['user_id' => $id]);
         $user = User::find($id);
         $user->firstname = $request->input('firstname');
@@ -486,16 +487,19 @@ class StaffController extends BaseController
     
 
     public function add_phone(Request $request){
-       
-        if($request->input("id") != ""){
-            return $this->update_phone($request, $request->input("id"));
+        $phone = new UserPhoneNumbers; 
+        $is_default = $request->input("is_default");
+        if($is_default){
+            UserPhoneNumbers::where('is_default', 1)->update(['is_default' => 0]);
         }
-        $phone = new UserPhoneNumbers;
+        if ($request->input('id')) {
+            $phone = UserPhoneNumbers::find($request->input('id'));
+        }  
         $phone->user_id = $request->input("user_id");
         $phone->phone_type = $request->input("phone_type");
         $phone->extension = $request->input("extension");
         $phone->phone_number = remove_mask($request->input("phone_number"));
-        $phone->is_default = $request->input("is_default");
+        $phone->is_default = $is_default;
         if ($phone->save()) {   
             $this->response['status'] = true;
             $this->response['message'] = "Phone number saved successfully"; 
@@ -509,28 +513,6 @@ class StaffController extends BaseController
     public function get_phone($id){
         $data = UserPhoneNumbers::find($id);
         $this->response = compact("data");  
-        return $this->response();
-    }
-
-    public function update_phone(Request $request, $id)
-    {
-        if($request->input("is_default") == 1){
-            UserPhoneNumbers::where('is_default', 1)->update(['is_default' => 0]);
-        }
-        $phone = UserPhoneNumbers::find($id);
-        $phone->user_id = $request->input("user_id");
-        $phone->phone_type = $request->input("phone_type");
-        $phone->extension = $request->input("extension");
-        $phone->phone_number = remove_mask($request->input("phone_number"));
-        $phone->is_default = $request->input("is_default");
-        
-        if($phone->save()){   
-            $this->response['status']   = true;
-            $this->response['message']  = "Phone number updated successfully"; 
-        }else{
-            $this->response['status']   = false;
-            $this->response['message']  = "Phone number update failed";
-        } 
         return $this->response();
     }
 
@@ -550,15 +532,20 @@ class StaffController extends BaseController
     
 
     public function add_email(Request $request){
-       
-        if($request->input("id") != ""){
-            return $this->update_email($request, $request->input("id"));
-        }
         $email = new UserEmailAdresses;
+        $is_default = $request->input("is_default");
+        if($is_default){
+            UserEmailAdresses::where('is_default', 1)->update(['is_default' => 0]);
+        }
+        if ($request->input('id')) {
+            $email = UserEmailAdresses::find($request->input('id'));
+        }
+
         $email->user_id = $request->input("user_id");
         $email->email_type = $request->input("email_type");
         $email->email = $request->input("email");
-        $email->is_default = $request->input("is_default");
+        $email->is_default =$is_default; 
+
         if ($email->save()) {   
             $this->response['status'] = true;
             $this->response['message'] = "Email Address saved successfully"; 
@@ -569,33 +556,12 @@ class StaffController extends BaseController
         return $this->response();
         
     }
+
     public function get_email($id){
         $data = UserEmailAdresses::find($id);
         $this->response = compact("data");  
         return $this->response();
-    }
-
-    public function update_email(Request $request, $id)
-    {
-        
-        if($request->input("is_default") == 1){
-            UserEmailAdresses::where('is_default', 1)->update(['is_default' => 0]);
-        }
-        $email = UserEmailAdresses::find($id);
-        $email->user_id = $request->input("user_id");
-        $email->email_type = $request->input("email_type");
-        $email->email = $request->input("email");
-        $email->is_default = $request->input("is_default");
-        
-        if($email->save()){   
-            $this->response['status']   = true;
-            $this->response['message']  = "Email Address updated successfully"; 
-        }else{
-            $this->response['status']   = false;
-            $this->response['message']  = "Email Address update failed";
-        } 
-        return $this->response();
-    }
+    } 
 
     public function delete_email($id)
     {

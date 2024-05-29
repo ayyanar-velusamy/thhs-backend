@@ -98,23 +98,33 @@
         }, 3000);
     </script>
     <main>
+        @php   
+        $is_staff = false;
+        $is_admin = false;
+        if( Auth::user()->user_type === 1){    
+           $is_staff = true;
+        }
+        if( Auth::user()->is_admin === 1){    
+           $is_admin = true;
+        }
+        @endphp
         <div class="container-fluid">
             <!-- Sidebar -->
             <div class="sidebar-column">
                 <nav id="sidebarMenu" class="collapse d-block sidebar collapse">
                     <div class="sidebar-list">
                         <a href="#" class="" aria-current="true">
-                            <i class="icon icon-logo"></i><span></span>
+                            <i class="icon icon-logo"></i><span></span> 
                         </a>
                         @php                      
-                        if(request()->routeIs(['charts'])){                            
+                        if(request()->routeIs(['charts']) && $is_admin){                            
                         @endphp
                             <a href="{{ route('charts') }}" class="{{ request()->routeIs(['charts','charts.*']) ? 'active' : '' }}" aria-current="true">
                                 <i class="icon icon-staffs-logo"></i>
                                 <p>Chart Manager</p>
                             </a>
                         @php
-                        }elseif(request()->routeIs(['roles']) || request()->routeIs(['users'])){     
+                        }elseif(request()->routeIs(['roles']) || request()->routeIs(['users']) && $is_admin){     
                         @endphp
                             <a href="{{ route('roles') }}" class="{{ request()->routeIs(['roles','roles.*']) ? 'active' : '' }}" aria-current="true">
                                 <i class="icon icon-prospects-logo"></i>
@@ -125,16 +135,24 @@
                                 <p>User Manager</p>
                             </a>
                         @php 
-                        }else{
+                        }else{     
                         @endphp
-                        <a href="{{ route('staffs') }}" class="{{ request()->routeIs(['staffs','staffs.*']) ? 'active' : '' }}" aria-current="true">
-                            <i class="icon icon-staffs-logo"></i>
-                            <p>Staff Manager</p>
-                        </a>
-                        <a href="{{ route('prospects') }}" class="{{ request()->routeIs(['prospects','prospects.*']) ? 'active' : '' }}" aria-current="true">
-                            <i class="icon icon-prospects-logo"></i>
-                            <p>Prospect Manager</p>
-                        </a>
+                         <> 
+                            <a href="{{ route('staffs') }}" class="{{ request()->routeIs(['staffs','staffs.*']) ? 'active' : '' }}" aria-current="true">
+                                <i class="icon icon-staffs-logo"></i>
+                                <p>Staff Manager</p>
+                            </a> 
+                            @php 
+                            if($is_admin){     
+                            @endphp
+                                <a href="{{ route('prospects') }}" class="{{ request()->routeIs(['prospects','prospects.*']) ? 'active' : '' }}" aria-current="true">
+                                    <i class="icon icon-prospects-logo"></i>
+                                    <p>Prospect Manager</p>
+                                </a>
+                            @php 
+                            }
+                            @endphp
+                         </>
                         @php
                         }
                         @endphp
@@ -181,20 +199,21 @@
                             @php
                               if(request()->routeIs(['staffs.*'])){
                             @endphp
-                            <div class="top_ctas d-flex gap-4 mt-3">
-                              <button class="defult-button {{ request()->routeIs('staffs.contact_information') ? 'active' : '' }}"">
-                                <a class="sub-menu" href="{{ @route('staffs.contact_information',  @request()->id) }}">Contact Information</a>
-                              </button>
-                              <button class="defult-button {{ request()->routeIs('staffs.demographics') ? 'active' : '' }}">
-                                <a class="sub-menu" href="{{ @route('staffs.demographics', @request()->id) }}">Demographics</a></button>
-                              <button class="defult-button">HR</button>
-                            </div>
+                                <div class="top_ctas d-flex gap-4 mt-3">
+                                <button class="defult-button {{ request()->routeIs('staffs.contact_information') ? 'active' : '' }}"">
+                                    <a class="sub-menu" href="{{ @route('staffs.contact_information',  @request()->id) }}">Contact Information</a>
+                                </button>
+                                <button class="defult-button {{ request()->routeIs('staffs.demographics') ? 'active' : '' }}">
+                                    <a class="sub-menu" href="{{ @route('staffs.demographics', @request()->id) }}">Demographics</a></button>
+                                <button class="defult-button">HR</button>
+                                </div>
                             @php
                               }
-                            @endphp
-
-
+                            @endphp  
                         </div>
+                        @php
+                            if($is_admin){
+                        @endphp
                         <div class="dashboard-tabs-wrapper d-flex justify-content-end">
                             <div class="dashboard-tabs {{ request()->routeIs(['prospects','prospects.*','staffs','staffs.*']) ? 'active' : '' }}">
                                 
@@ -220,6 +239,9 @@
                                 </a>
                             </div>
                         </div>
+                        @php
+                            }
+                        @endphp
                     </div>
                 </section>
                 @yield('content')

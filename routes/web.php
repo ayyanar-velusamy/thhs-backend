@@ -33,7 +33,7 @@ Route::get('/thhs/login', function () {
 
 
 Auth::routes();
-Route::get('/verify/email/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'verifyEmail']);
+Route::get('/verify/email/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'verifyEmail']); 
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
  
 Route::group(['middleware'=>'auth'], function(){	
