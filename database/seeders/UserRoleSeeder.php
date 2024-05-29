@@ -15,8 +15,6 @@ class UserRoleSeeder extends Seeder
     public function run()
     {
         $createMultipleRole = [
-            ['role' => 'Contract'],
-            ['role' => 'Employee'],
             ['role' => 'User'],
             ['role' => 'Admin']   
         ];

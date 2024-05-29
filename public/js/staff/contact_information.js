@@ -206,6 +206,7 @@ $(document).on('click', '#add_email_btn', function () {
 
 
 $(document).on('submit',".ajax-form",function (e) {
+	
     var form = $(this);
 	var formBtnId = $(this).find(".save-btn").attr("id");
     console.log(new FormData(this));

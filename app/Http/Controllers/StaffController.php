@@ -420,6 +420,9 @@ class StaffController extends BaseController
         if($request->input("id") != ""){
             return $this->update_address($request, $request->input("id"));
         }
+        if($request->input("is_default") == 1){
+            UserAddresses::where('is_default', 1)->update(['is_default' => 0]);
+        }
         $address = new UserAddresses;
         $address->user_id = $request->input("user_id");
         $address->address_type = $request->input("address_type");

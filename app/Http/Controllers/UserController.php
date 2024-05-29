@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AddUserEmail;
 
 // use Illuminate\Support\Str;
 // use Illuminate\Support\Facades\Mail;
@@ -64,9 +66,11 @@ class UserController extends BaseController
         if($request->input('password') && $request->input('password') !== "TextPassword#003"){
             $user->password =  Hash::make($request->input('password'));
         }
-
+        
         // pr($request->all(),1);
         if ($user->save()) {
+            $user->actual_password = $request->input('password');
+            Mail::to($user->email)->send(new AddUserEmail($user));
             $this->response['status'] = true;
             $this->response['message'] = "User saved successfully";
         } else {

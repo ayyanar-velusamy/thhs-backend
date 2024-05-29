@@ -137,7 +137,7 @@
                         @php 
                         }else{     
                         @endphp
-                         <> 
+                         
                             <a href="{{ route('staffs') }}" class="{{ request()->routeIs(['staffs','staffs.*']) ? 'active' : '' }}" aria-current="true">
                                 <i class="icon icon-staffs-logo"></i>
                                 <p>Staff Manager</p>
