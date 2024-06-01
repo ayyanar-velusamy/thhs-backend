@@ -222,7 +222,7 @@ function get_chart(id) {
 		dataType: 'json',
 		success: function (response) {
 			$('.offcanvas').offcanvas('show'); 
-			let data = response.data.chart
+			let data = response.data.chart; 
 			$(`#${formname} [name=id]`).val(data.id); 
 			$(`#${formname} [name=group]`).val(data.group); 
 			$(`#${formname} [name=name]`).val(data.name); 
@@ -234,7 +234,10 @@ function get_chart(id) {
 			$(`#${formname} [name=valid_interval]`).val(data.valid_interval); 
 			$(`#${formname} [name=valid_number]`).val(data.valid_number);  
 			$(`#${formname} [name=chart_handling]`).val(data.chart_handling);  
-			
+			if(data.positions && data.positions.length > 0){
+				let position_ids = [...new Set(data.positions.map(item => item.id))];  
+				$('#positions').val(position_ids).trigger('change');
+			} 
 			if(data.required == 1){
 				$(`#${formname} [name=required]`).attr('checked','checked');  
 			} 

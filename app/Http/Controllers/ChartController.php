@@ -6,6 +6,8 @@ use App\Http\Requests\SaveChartRequest;
 use App\Http\Requests\SaveChartCategoryRequest; 
 use App\Models\Chart;
 use App\Models\ChartCategory;
+use App\Models\ChartPosition;
+use App\Models\Position;
 use App\Models\Handling; 
 use App\Models\Interval;
 use App\Models\User;
@@ -33,24 +35,25 @@ class ChartController extends BaseController
 
         $chart_list = Chart::where(['status' => 1])->select('*')->orderBy('id', 'desc')->get();
         $intervals = Interval::all();
-        $handlings = Handling::all();
-        $handlings = Handling::all();
+        $handlings = Handling::all(); 
         $categories = ChartCategory::all();        
+        $positions = Position::all();        
 
         foreach ($chart_list as $chart) {
             $valid_interval = Interval::where("id", $chart->valid_interval)->first()->name;
             @$renewal_interval = @Interval::where("id", $chart->renewal_interval)->first()->name;
             @$provide_interval = @Interval::where("id", $chart->provide_interval)->first()->name;
             $chart_handling = Handling::where("id", $chart->chart_handling)->first()->name;
-            $category = ChartCategory::where("id", $chart->group)->first()->name;
-            
+            $category = ChartCategory::where("id", $chart->group)->first()->name; 
+
             $chart->valid_interval = $valid_interval;
             $chart->renewal_interval = @$renewal_interval;
             $chart->provide_interval = @$provide_interval;
             $chart->chart_handling = $chart_handling;
             $chart->category = $category;
+          
         }
-        return view('charts/chart', compact("chart_list", "intervals", "handlings", "categories"));
+        return view('charts/chart', compact("chart_list", "intervals", "handlings", "categories", "positions"));
     }
 
     /**
@@ -63,8 +66,9 @@ class ChartController extends BaseController
     {
         // exit;
         $chart = new Chart();
-        if ($request->input('id')) {
-            $chart = Chart::find($request->input('id'));
+        $chart_id = $request->input('id');
+        if ( $chart_id) {
+            $chart = Chart::find( $chart_id);
         }
         $chart->user_id = $request->user()->id;
         $chart->group = $request->input('group');
@@ -78,9 +82,14 @@ class ChartController extends BaseController
         $chart->provide_number = $request->input('provide_number');
         $chart->report = $request->input('report');
         $chart->chart_handling = $request->input('chart_handling'); 
-
         // pr($request->all(),1);
-        if ($chart->save()) {
+        if ($chart->save()) { 
+            // $this->save_chart_position($request, $chart->id); 
+            if ( $chart_id) {
+                $chart->positions()->sync($request->input('positions'));
+            }else{
+                $chart->positions()->attach($request->input('positions'));
+            }
             $this->response['status'] = true;
             $this->response['message'] = "Chart saved successfully";
         } else {
@@ -98,7 +107,7 @@ class ChartController extends BaseController
 
     public function getChartInfoData($id)
     {
-        $chart = Chart::findOrFail($id);
+        $chart = Chart::findOrFail($id)->with('positions')->first(); 
         return ["chart" => $chart];
     }
 
@@ -133,6 +142,16 @@ class ChartController extends BaseController
             $this->response['message'] = "Chart Category saving failed";
         }
         return $this->response();
+    }
+    public function save_chart_position($request, $chart_id){ 
+        $positions = array_filter($request->input("positions")); 
+        foreach($positions as $key => $position){
+            $chart_position = new ChartPosition(); 
+            $chart_position->chart_id = $chart_id;
+            $chart_position->position_id = $position;  
+            $chart_position->save();
+        }
+        
     }
 
 }

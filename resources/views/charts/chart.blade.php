@@ -99,22 +99,22 @@
         </table>
         <div class="pagination-wrapper with-data-table d-flex justify-content-center align-items-center pt-0">
             <!-- <div class="count-text">
-                                                                                                                <p>Showing data 1 to 8 of 256 entries</p>
-                                                                                                              </div> -->
+                                                                                                                        <p>Showing data 1 to 8 of 256 entries</p>
+                                                                                                                      </div> -->
             <!-- <div class="data-section d-flex justify-content-between align-items-center gap-4">
-                <div class="green d-flex justify-content-center align-items-center">
-                    <span></span>
-                    <p>All clear</p>
-                </div>
-                <div class="yellow d-flex justify-content-center align-items-center">
-                    <span></span>
-                    <p>Doc about to expire</p>
-                </div>
-                <div class="red d-flex justify-content-center align-items-center">
-                    <span></span>
-                    <p>Already expired</p>
-                </div>
-            </div> -->
+                        <div class="green d-flex justify-content-center align-items-center">
+                            <span></span>
+                            <p>All clear</p>
+                        </div>
+                        <div class="yellow d-flex justify-content-center align-items-center">
+                            <span></span>
+                            <p>Doc about to expire</p>
+                        </div>
+                        <div class="red d-flex justify-content-center align-items-center">
+                            <span></span>
+                            <p>Already expired</p>
+                        </div>
+                    </div> -->
 
         </div>
     </section>
@@ -237,6 +237,19 @@
                                 @foreach ($handlings as $handling)
                                     <option value="{{ $handling->id }}">{{ @$handling->name }}</option>
                                 @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field-wrapper">
+                        <label for="positions">Assign Position :</label>
+                        <div class="flex-field">
+                            <select id="positions" class="select2 select-control" name="positions[]"
+                                placeholder="Select Positions" required multiple="multiple">
+                                @foreach ($positions as $position)
+                                    <option value="{{ $position->id }}">{{ @$position->short_name }}
+                                    </option>
+                                @endforeach
+
                             </select>
                         </div>
                     </div>
