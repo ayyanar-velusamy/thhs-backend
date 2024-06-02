@@ -577,6 +577,6 @@ class StaffController extends BaseController
             $this->response['message']  = "Email Address delete failed";
         } 
         return $this->response();
-    }
+    } 
 
 }

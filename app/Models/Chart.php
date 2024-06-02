@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Position;
+use App\Models\ChartCategory;
 
 class Chart extends Model
 {
@@ -14,4 +15,5 @@ class Chart extends Model
     {
         return $this->belongsToMany(Position::class);
     }
+   
 }

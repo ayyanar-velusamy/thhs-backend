@@ -96,7 +96,9 @@
             var toast = bootstrap.Toast.getInstance(toastElement);
             toast.hide();
         }, 3000);
+        {{base_path()}}
     </script>
+
     <main>
         @php   
         $is_staff = false;
@@ -205,7 +207,9 @@
                                 </button>
                                 <button class="defult-button {{ request()->routeIs('staffs.demographics') ? 'active' : '' }}">
                                     <a class="sub-menu" href="{{ @route('staffs.demographics', @request()->id) }}">Demographics</a></button>
-                                <button class="defult-button">HR</button>
+                                <button class="defult-button {{ request()->routeIs('staffs.hr') ? 'active' : '' }}">
+                                    <a class="sub-menu" href="{{ @route('staffs.hr', @request()->id) }}">HR</a></button>
+                                    </button>
                                 </div>
                             @php
                               }

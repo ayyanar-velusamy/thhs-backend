@@ -7,6 +7,8 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DocumentController;
+
 
 
 /*
@@ -66,6 +68,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/thhs/app/staffs/get_staff/{id}',[App\Http\Controllers\StaffController::class, 'get_staff'])->name('get_staff'); 
     Route::get('/thhs/app/staffs/delete_staff/{id}',[App\Http\Controllers\StaffController::class, 'delete_staff'])->name('delete_staff'); 
     Route::get('/thhs/app/staffs/contact_information/{id}', [App\Http\Controllers\StaffController::class, 'contact_information'])->name('staffs.contact_information'); 
+   
     // Staff - Emergency Contact
     Route::post('/thhs/app/staffs/add_emergency_contact',[App\Http\Controllers\StaffController::class, 'add_emergency_contact'])->name('staffs.add_emergency_contact');
     Route::get('/thhs/app/staffs/get_emergency_contact/{id}',[App\Http\Controllers\StaffController::class, 'get_emergency_contact'])->name('staffs.get_emergency_contact'); 
@@ -104,6 +107,10 @@ Route::group(['middleware'=>'auth'], function(){
      Route::post('/thhs/app/users/save_user',[App\Http\Controllers\UserController::class, 'save_user'])->name('save_user');
      Route::get('/thhs/app/users/get_user/{id}',[App\Http\Controllers\UserController::class, 'get_user'])->name('get_user');  
      Route::get('/thhs/app/users/delete_user/{id}',[App\Http\Controllers\UserController::class, 'delete_user'])->name('delete_user');   
+
+      /*HR Routing */
+     Route::get('/thhs/app/staffs/hr/{id}', [App\Http\Controllers\DocumentController::class, 'hr'])->name('staffs.hr'); 
+     Route::post('/thhs/app/upload_document', [App\Http\Controllers\DocumentController::class, 'upload_document'])->name('upload_document'); 
 
      
     

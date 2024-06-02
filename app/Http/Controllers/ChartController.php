@@ -83,8 +83,7 @@ class ChartController extends BaseController
         $chart->report = $request->input('report');
         $chart->chart_handling = $request->input('chart_handling'); 
         // pr($request->all(),1);
-        if ($chart->save()) { 
-            // $this->save_chart_position($request, $chart->id); 
+        if ($chart->save()) {  
             if ( $chart_id) {
                 $chart->positions()->sync($request->input('positions'));
             }else{
@@ -142,16 +141,5 @@ class ChartController extends BaseController
             $this->response['message'] = "Chart Category saving failed";
         }
         return $this->response();
-    }
-    public function save_chart_position($request, $chart_id){ 
-        $positions = array_filter($request->input("positions")); 
-        foreach($positions as $key => $position){
-            $chart_position = new ChartPosition(); 
-            $chart_position->chart_id = $chart_id;
-            $chart_position->position_id = $position;  
-            $chart_position->save();
-        }
-        
-    }
-
+    } 
 }

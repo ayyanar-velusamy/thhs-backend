@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChartPosition extends Model
 {
+    
     use HasFactory;
+ 
 }

@@ -672,3 +672,129 @@ input[type="file"]::-webkit-file-upload-button {
   height: 105px;
   left: 0;
 }
+
+.hrdetail-wrapper {
+  padding: 50px 30px;
+  border-radius: 8px;
+}
+
+.hrdetail-wrapper .hrdetail-header {
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.button {
+  background-color: unset !important;
+  box-shadow: none !important;
+  border: 1px solid #373ccb !important;
+  font-weight: 300 !important;
+  color: #000 !important;
+  border-radius: 4px !important;
+  width: max-content !important;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+input[type="checkbox"] {
+  padding: 0 !important;
+  height: 24px !important;
+  width: 24px !important;
+}
+
+.field-wrapper .form-check-input {
+  border: 1px solid #373ccb !important;
+  border-radius: 4px !important;
+  /* width: 50px !important;
+    height: 40px !important; */
+}
+
+.form-check-input:checked[type="checkbox"] {
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='17' height='13' viewBox='-7 0 30 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.1 9.652L1.3 5.852L0 7.138L5.1 12.238L16.048 1.286L14.761 0L5.1 9.652Z' fill='black'/%3E%3C/svg%3E%0A") !important;
+  width: 17px;
+  height: 13px;
+}
+
+.form-check-input:focus {
+  box-shadow: unset !important;
+}
+
+.form-check-input:checked {
+  background-color: transparent !important;
+  border-color: #0d6efd;
+}
+
+.hrdetail-table th {
+  margin-top: 0px !important;
+  padding: 16px 20px;
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+.hrdetail-table td {
+  padding: 7px 20px !important;
+}
+
+.hrdetail-table tr {
+  width: 100%;
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+.hrdetail-table .th {
+  flex: 0.5;
+}
+
+.hrdetail-table .sm-th {
+  flex: 0.3;
+}
+
+.accordion > * + * {
+  margin-top: 24px;
+}
+
+.accordion .accordion-body {
+  padding-left: 0;
+  padding-right: 0;
+}
+.accordion-item:first-of-type {
+  border-radius: 0px !important;
+}
+.accordion .accordion-item {
+  border: none !important;
+}
+
+.accordion-button {
+  color: #000;
+  font-weight: 300;
+  background-color: #f5f5f5 !important;
+  border: none !important;
+  box-shadow: unset !important;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #000 !important;
+  font-weight: 600;
+}
+
+table tbody tr td {
+  font-weight: 300 !important;
+  font-size: 16px !important;
+}
+
+.attachment-wrapper h3 {
+  color: #5e63f2 !important;
+  font-size: 20px !important;
+}
+
+.deleted-files-wrapper {
+  max-height: 225px;
+  overflow-x: scroll;
+} 
+
+.document_preview{
+  display: none;
+
+}
+.chart_name{
+  cursor: pointer;
+}
