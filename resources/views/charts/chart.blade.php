@@ -227,7 +227,7 @@
                                 <option value="1">Report 1</option>
                                 <option value="2">Report 2</option>
                             </select> --}}
-                            <input type="text" id="report" name="report" placeholder="Report Name" required />
+                            <input type="text" id="report" name="report" placeholder="Report Name" />
                         </div>
                     </div>
                     <div class="field-wrapper">

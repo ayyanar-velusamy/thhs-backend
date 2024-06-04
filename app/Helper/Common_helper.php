@@ -538,4 +538,41 @@ function get_email_addresses_by_id($id){
 	return get_email_addresses_type_list()[$key];
 }
 
+function get_document_renewal_date($renewal_type, $renewal_number, $issue_date){
+	
+	switch ($renewal_type) {
+		case "1":
+			$renewal_date = get_renewal_date($issue_date,$renewal_number,"days");
+			break;
+		case "2":
+			$days = (round($renewal_number/24) < 0) ? $renewal_number : round($renewal_number/24);
+			$renewal_date = get_renewal_date($issue_date,$days,"days");
+			break;
+		case "3":
+			$renewal_date = get_renewal_date($issue_date,$renewal_number,"month");
+			$renewal_date;
+			break;
+		case "4":
+			$renewal_date = get_renewal_date($issue_date,$renewal_number,"week");
+			$renewal_date;
+			break;
+		case "5":
+			$renewal_date = get_renewal_date($issue_date,$renewal_number,"year");
+			$renewal_date;
+			break;
+		default:
+			$days = $renewal_number;
+			$renewal_date = date("m/d/Y", strtotime($issue_date));
+	  }
+	  return $renewal_date;
+}
+
+function get_renewal_date($issue_date,$renewal_number,$type){
+// 	$issue_date = date_create($issue_date);
+	return date("m/d/Y", strtotime("+$renewal_number $type", strtotime($issue_date)));
+}
+
+
+
+
 //**********************************************//

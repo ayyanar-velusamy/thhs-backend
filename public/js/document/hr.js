@@ -41,13 +41,33 @@ function toggleAllAccordions() {
 		});
 	}
 }
-function openDocument(chart) { 
+function openDocument(chart,e) {
+	$(".tr_active").removeClass("tr_active");
+	$(e.target).parent("tr").addClass("tr_active"); 
 	$('.document_preview').show();
-	
+	console.log(chart.document);
+	$('#document').attr('src',"");
 	$('#chart_id').val(chart.id)
-	$('#document').attr('src', `${window.location.origin}/thhs-backend/${chart.document}`)
+	console.log(chart.document);
+	$('#delete_document_btn').attr("data-id",chart.document.id);
+	
+	if(chart.document){
+		$('#document_text').text("");
+		$('#document').attr('src', PROJECT_URL+`/${chart.document.document_path}`)
+	}else{
+		$('#document_text').text("No Document");
+	}
+	
+
 	// embed.setAttribute('src', embedUrl);
 
+}
+
+
+function openEditDocumentDetail(id){
+	
+	$("#hidden_id").val(id);
+	$("#editDocumentDetail").modal("show");
 }
 
 $(document).on('click', 'button', function (e) {

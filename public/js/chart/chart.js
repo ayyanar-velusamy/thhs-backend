@@ -48,7 +48,6 @@ $(document).on('click', '#save_chart_btn', function () {
 				required: true,
 				minlength: 1,
 				maxlength: 40,
-				lettersonly: true
 			},  
 			group: {
 				required: true,
@@ -83,7 +82,6 @@ $(document).on('click', '#save_chart_btn', function () {
 			name: {
 				required: "Name cannot be empty",
 				maxlength: "Name cannot exceed 40 characters",
-				lettersonly: "Name should contain only alphabets",
 			}, 
 			group: {
 				required: "Group cannot be empty",
@@ -352,9 +350,11 @@ $(document).on('click', '#save_chart_category_btn', function () {
 		},
 		errorElement: "span",
 		errorPlacement: function (error, element) {
-
+			console.log(error);
 			$('span.removeclass-valid').remove();
 			var placement = $(element).data('error');
+			console.log(element);
+
 			if (placement) {
 				$(placement).append(error)
 			} else {

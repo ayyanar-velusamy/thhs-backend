@@ -7,6 +7,7 @@ use App\Http\Requests\SaveChartCategoryRequest;
 use App\Models\Chart;
 use App\Models\ChartCategory;
 use App\Models\ChartPosition;
+use App\Models\Document;
 use App\Models\Position;
 use App\Models\Handling; 
 use App\Models\Interval;
@@ -100,13 +101,15 @@ class ChartController extends BaseController
     public function get_chart(Request $request, $id)
     {
         $data = $this->getChartInfoData($id);
+        // pr($id,1);
         $this->response = compact("data");
         return $this->response();
     }
 
     public function getChartInfoData($id)
     {
-        $chart = Chart::findOrFail($id)->with('positions')->first(); 
+        $chart = Chart::with("positions")->findOrFail($id); 
+        // pr($chart,1);
         return ["chart" => $chart];
     }
 

@@ -709,7 +709,7 @@ input[type="checkbox"] {
 }
 
 .form-check-input:checked[type="checkbox"] {
-  background-image: url("data:image/svg+xml,%0A%3Csvg width='17' height='13' viewBox='-7 0 30 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.1 9.652L1.3 5.852L0 7.138L5.1 12.238L16.048 1.286L14.761 0L5.1 9.652Z' fill='black'/%3E%3C/svg%3E%0A") !important;
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='17' height='13' viewBox='0 0 17 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.1 9.652L1.3 5.852L0 7.138L5.1 12.238L16.048 1.286L14.761 0L5.1 9.652Z' fill='white'/%3E%3C/svg%3E%0A") !important;
   width: 17px;
   height: 13px;
 }
@@ -719,8 +719,8 @@ input[type="checkbox"] {
 }
 
 .form-check-input:checked {
-  background-color: transparent !important;
-  border-color: #0d6efd;
+  background-color: #0CD0A2 !important;
+  border-color: #0CD0A2 !important;
 }
 
 .hrdetail-table th {

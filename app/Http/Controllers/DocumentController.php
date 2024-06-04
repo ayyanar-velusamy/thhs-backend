@@ -31,6 +31,7 @@ class DocumentController extends BaseController
     public function hr(Request $request, $id)
     { 
         $charts = $this->getChartInformationData($id);  
+        // pr($charts,1);
         return view('staffs/hr', compact("charts"));
     }
 
@@ -45,8 +46,8 @@ class DocumentController extends BaseController
             @$provide_interval = @Interval::where("id", $chart->provide_interval)->first()->name;
             $chart_handling = Handling::where("id", $chart->chart_handling)->first()->name;
             $category = ChartCategory::where("id", $chart->group)->first()->name; 
-            $document = @Document::where("chart_id", $chart->id)->orderBy('id', 'DESC')->first()->document_path;  
-
+            $document = @Document::where(["chart_id" => $chart->id,"is_deleted" => "0"])->orderBy('id', 'DESC')->first();  
+            
             $chart->valid_interval = $valid_interval;
             $chart->renewal_interval = @$renewal_interval;
             $chart->provide_interval = @$provide_interval;
@@ -56,7 +57,7 @@ class DocumentController extends BaseController
             $arr[$chart->category][$key] = $chart->toArray(); 
         }
         $data->category_chart = $arr;
-        // pr($arr, 1);
+        // pr($data, 1);
         // pr($chart_list->toArray(), 1);
         // exit;
 
@@ -65,8 +66,13 @@ class DocumentController extends BaseController
     public function upload_document(UploadDocumentRequest $request)
     {  
             $document = new Document(); 
+
             $document->chart_id = $request->input('chart_id');
             $document->document_path =  $this->upload_resume($request);
+            $document->user_id =  $request->input('user_id');
+            $document->issue_date =  @$this->getDocumetDetails(["user_id"=>$request->input('user_id'),"chart_id"=>$request->input('chart_id')])->issue_date;
+            $document->renewal_date =  @$this->getDocumetDetails(["user_id"=>$request->input('user_id'),"chart_id"=>$request->input('chart_id')])->renewal_date;
+
             // exit;
             if ($document->save()) {   
                 $this->response['status'] = true;
@@ -78,12 +84,71 @@ class DocumentController extends BaseController
             return $this->response();
     }
 
+    public function getDocumetDetails($where){
+        $document = Document::where($where)->first();
+        return $document;
+    }
+
     private function upload_resume($request){ 
         $file = $request->file('document');  
         //Move Uploaded File
         $destinationPath = 'uploads/document/';
         $file->move($destinationPath,time()."_".$file->getClientOriginalName());   
        return $destinationPath.time()."_".$file->getClientOriginalName();
+    }
+
+
+    public function update_details(Request $request){ 
+        $id = $request->input('id');
+        $document = Document::find($id);
+        if($document){
+            $document->user_id =  $request->input('user_id');
+            $document->issue_date =  @update_date_format($request->input('issue_date'), "Y-m-d");
+            $document->renewal_date = @update_date_format($this->get_document_renewal_date($document->chart_id,$document->issue_date), "Y-m-d");
+            
+            if ($document->save()) {   
+                $this->response['status'] = true;
+                $this->response['message'] = "Document issue date updated successfully"; 
+            } else {
+                $this->response['status'] = false;
+                $this->response['message'] = "Document issue date update failed";
+            }
+        }else{
+            $this->response['status'] = false;
+            $this->response['message'] = "No Document added yet";
+        }
+        
+        return $this->response();
+    }
+
+
+    private function get_document_renewal_date($id,$issue_date){
+        $chart = Chart::find($id);
+        // pr($chart);
+        return get_document_renewal_date($chart->valid_interval, $chart->valid_number,$issue_date);
+        
+        
+    }
+
+    public function delete_document(Request $request){ 
+        $id = $request->input('document_id');
+        $document = Document::find($id);
+        if($document){
+            $document->is_deleted =  1;
+            
+            if ($document->save()) {   
+                $this->response['status'] = true;
+                $this->response['message'] = "Document deleted successfully"; 
+            } else {
+                $this->response['status'] = false;
+                $this->response['message'] = "Document deletion failed";
+            }
+        }else{
+            $this->response['status'] = false;
+            $this->response['message'] = "No Document added yet";
+        }
+        
+        return $this->response();
     }
     
 }

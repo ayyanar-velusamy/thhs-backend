@@ -28,7 +28,7 @@ class SaveChartRequest extends FormRequest
       
             return [
                 'group' => ['required'],
-                'name' => ['required', new AlphaSpace, 'max:40'], 
+                'name' => ['required', 'max:40'], 
                 'valid_interval' => ['required'], 
                 'valid_number' => ['required'],
                 'renewal_interval' => ['required'], 

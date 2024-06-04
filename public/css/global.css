@@ -1099,4 +1099,10 @@ span.error {
   border: none !important;
 } 
 
+.tr_active{
+  background-color: #373ccb !important;
+}
+.tr_active > td {
+  color: white !important;
+}
  

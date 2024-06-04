@@ -111,6 +111,8 @@ Route::group(['middleware'=>'auth'], function(){
       /*HR Routing */
      Route::get('/thhs/app/staffs/hr/{id}', [App\Http\Controllers\DocumentController::class, 'hr'])->name('staffs.hr'); 
      Route::post('/thhs/app/upload_document', [App\Http\Controllers\DocumentController::class, 'upload_document'])->name('upload_document'); 
+     Route::post('/thhs/app/document/update_details', [App\Http\Controllers\DocumentController::class, 'update_details'])->name('document.update_details'); 
+     Route::post('/thhs/app/document/delete_document', [App\Http\Controllers\DocumentController::class, 'delete_document'])->name('document.delete_document'); 
 
      
     

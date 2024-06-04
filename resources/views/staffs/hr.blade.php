@@ -36,7 +36,7 @@
                         <div class="field-wrapper d-flex align-items-center">
                             <label class="form-check-label me-2" for="">
                                 <i class="icon icon-scan me-2"></i>
-                                Print All:
+                                Print All
                             </label>
                             <!-- <input
                 class="form-check-input mt-0"
@@ -54,7 +54,7 @@
                             <th class="text-start" style="width: 43%">Form Name</th>
                             <th class="">Issue Date</th>
                             <th class="">Exp. Date</th>
-                            <th class="">Verify</th>
+                            <th class="">Required</th>
                             <th style="width: 4%">
                                 <!-- <i class="icon icon-edit"></i>
                   <i class="icon icon-delete"></i> -->
@@ -79,17 +79,25 @@
                                             <tbody class="w-100">
                                                 @foreach ($data as $chart)
                                                     <tr>
-                                                        <td class="text-start chart_name"
-                                                            onclick="openDocument({{ json_encode($chart) }})">
+                                                        <td class="text-start chart_name" style="width: 41%"
+                                                            onclick="openDocument({{ json_encode($chart) }},event)">
                                                             {{ $chart['name'] }}
                                                         </td>
-                                                        <td class="">03/07/2023</td>
-                                                        <td class="">03/07/2023</td>
-                                                        <td class="field-wrapper">
-                                                            <input type="checkbox" class="form-check-input" />
+                                                        <td class="" style="width: 20%" >{{ @update_date_format($chart['document']['issue_date']) }}</td>
+                                                        <td class="" style="width: 20%" >{{ @update_date_format($chart['document']['renewal_date']) }}</td>
+                                                        <td style="width: 20%" >
+                                                            @php   
+                                                            
+                                                                if($chart['required'] == 1){
+                                                                    $is_required = "Y";
+                                                                }else{
+                                                                    $is_required = "N";
+                                                                }
+                                                            @endphp
+                                                            {{$is_required}}
                                                         </td>
                                                         <td class="">
-                                                            <i class="icon icon-edit"></i>
+                                                            <i class="icon icon-edit" onclick="openEditDocumentDetail({{ $chart['id'] }})"></i>
                                                             <!-- <i class="icon icon-delete"></i> -->
                                                         </td>
                                                     </tr>
@@ -115,22 +123,26 @@
                                 <label class="form-check-label me-2" for="">
                                     Show deleted files:
                                 </label>
-                                <input class="form-check-input mt-0" type="checkbox" value="" id=""
-                                    onclick="toggleVisibility()" />
+                                <div class="flex-field">
+                                    <input class="form-check-input mt-0" type="checkbox" value="" id=""
+                                        onclick="toggleVisibility()" />
+                                </div>
                             </div>
+                            
                             <button class="btn-with-text">
-                                <i class="icon icon-scan me-2"></i> Print All:
+                                <i class="icon icon-scan me-2"></i> Print
                             </button>
                         </div>
                     </div>
                     <div class="mt-3 cta-wrapper d-flex justify-content-between">
                         <div>
-                            <button class="sm-button me-3">Download</button>
+                            
                             <button class="sm-button" onclick="uploadForm()">Upload</button>
+                            <button class="sm-button me-3">Download</button>
                         </div>
                         <div>
                             <!-- <button class="sm-button primary me-3">Scan forms</button> -->
-                            <button class="sm-button danger">Delete</button>
+                            <button class="sm-button danger" id="delete_document_btn" data-id="" data-url="{{route('document.delete_document')}}" onclick="open_delete_document()">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -195,6 +207,7 @@
                     </table>
                 </div>
                 <div class="pdf-view-wrapper mt-4 document_preview">
+                    <span id="document_text"></span>
                     <embed src="../sample.pdf" type="application/pdf" id="document" width="100%" height="800px" />
                 </div>
             </div>
@@ -228,6 +241,8 @@
                                 onchange="previewFile('document', 'upload_button')"
                                 accept=".pdf"  style="opacity:0; height:0; position: absolute;"/>
                             
+                                <input type="hidden" name="user_id" id="hidden_user_id" value="{{ request()->id }}">
+
                             </div>
                             <div class="cta_wrapper d-flex justify-content-center gap-5">
                                 <button class="danger cancel_btn" type="button" data-dismiss="modal">Cancel</button>
@@ -240,4 +255,57 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Edit Document Modal-->
+
+<div
+class="modal fade"
+id="editDocumentDetail"
+tabindex="-1"
+role="dialog"
+aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="add_phone_form_title">
+        Edit Document Detail
+      </h5>
+    </div>
+    <form id="edit_document_form" action="{{route('document.update_details')}}" class="ajax-form">
+    <div class="modal-body">
+      
+        <div class="form-wrapper">
+          
+        <input type="hidden" name="user_id" value="{{@request()->id}}">
+        <input type="hidden" id="hidden_id" name="id">
+        
+          
+          <div class="field-wrapper">
+            <label for="fname">Issue Date</label>
+            <div  class="date" data-date-format="mm/dd/yyyy">
+                <input required type="text" name="issue_date" id="issue_date" readonly placeholder="Issue Date" />
+                <span class="input-group-addon d-none">
+                    <i class="icon icon-eye"></i>
+                </span>
+            </div>
+          </div>
+          
+        </div>
+     
+    </div>
+    <div class="cta_wrapper d-flex justify-content-center gap-5">
+      <button class="danger"  type="button" data-dismiss="modal">
+        Clear
+      </button>
+      <button class="success save-btn" id="add_document_detail">Save</button>
+    </div>
+  </form>
+  </div>
+</div>
+</div>
+
+<!---End---->
 @endsection

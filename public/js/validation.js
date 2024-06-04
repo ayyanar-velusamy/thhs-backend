@@ -1890,8 +1890,11 @@ $("#groupAddForm, #groupEditForm").validate({
 	},
 	errorElement: "span",
 	errorPlacement: function(error, element) {
+		console.log(error);
+		
 		$('span.removeclass-valid').remove();
 		var placement = $(element).data('error');
+		console.log(placement);
 		if (placement) {
 			$(placement).append(error)
 		 } else {
@@ -1905,6 +1908,44 @@ $("#groupAddForm, #groupEditForm").validate({
 		}
 	} 
 });
+
+/* Edit Document Detail Form */
+$(document).on('click','#add_document_detail' ,function(){  
+$("#edit_document_form").validate({
+	rules: {
+		issue_date: {
+			required: true,
+			
+			
+		},
+	},
+	messages: {
+		issue_date: {
+			required:"Issue Date cannot be empty",
+			
+		},
+	},
+	errorElement: "span",
+	errorPlacement: function(error, element) {
+		console.log(error);
+		$('span.removeclass-valid').remove();
+		var placement = $(element).data('error');
+		console.log(element);
+		if (placement) {
+			$(placement).append(error)
+		 } else {
+			if(element.hasClass('select2') && element.next('.select2-container').length) {
+				error.insertAfter(element.next('.select2-container'));
+			}else if(element.hasClass('tagsInput') && element.next('.select2-container').length) {
+				error.insertAfter(element.next('.select2-container'));
+			}else{
+				error.insertAfter(element); 
+			}
+		}
+	} 
+});
+});
+
 
 /*Assign New Admin*/
 $("#assignAdminModalForm").validate({
