@@ -20,6 +20,7 @@ class CreateDocumentsTable extends Migration
             $table->date('issue_date')->nullable(); 
             $table->date('renewal_date')->nullable();; 
             $table->string('document_path'); 
+            $table->integer('is_verified')->default(0); 
             $table->integer('is_deleted')->default(0); 
             $table->timestamps();
             // $table->foreign('chart_id')->references('id')

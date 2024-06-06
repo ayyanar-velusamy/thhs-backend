@@ -55,6 +55,7 @@
                             <th class="">Issue Date</th>
                             <th class="">Exp. Date</th>
                             <th class="">Required</th>
+                            <th class="">Verified</th>
                             <th style="width: 4%">
                                 <!-- <i class="icon icon-edit"></i>
                   <i class="icon icon-delete"></i> -->
@@ -79,13 +80,13 @@
                                             <tbody class="w-100">
                                                 @foreach ($data as $chart)
                                                     <tr>
-                                                        <td class="text-start chart_name" style="width: 41%"
+                                                        <td class="text-start chart_name" style="width: 40%"
                                                             onclick="openDocument({{ json_encode($chart) }},event)">
                                                             {{ $chart['name'] }}
                                                         </td>
                                                         <td class="" style="width: 20%" >{{ @update_date_format($chart['document']['issue_date']) }}</td>
-                                                        <td class="" style="width: 20%" >{{ @update_date_format($chart['document']['renewal_date']) }}</td>
-                                                        <td style="width: 20%" >
+                                                        <td class="" style="width: 15%" >{{ @update_date_format($chart['document']['renewal_date']) }}</td>
+                                                        <td style="width: 10%" >
                                                             @php   
                                                             
                                                                 if($chart['required'] == 1){
@@ -95,6 +96,18 @@
                                                                 }
                                                             @endphp
                                                             {{$is_required}}
+                                                        </td>
+                                                        <td style="width: 10%" >
+                                                            @php   
+                                                            
+                                                            if($chart['document']['is_verified'] == 1){
+                                                                $is_verified = "Y";
+                                                            }else{
+                                                                $is_verified = "N";
+                                                            }
+                                                        @endphp
+                                                        {{$is_verified}}
+                                                            
                                                         </td>
                                                         <td class="">
                                                             <i class="icon icon-edit" onclick="openEditDocumentDetail({{ $chart['id'] }})"></i>
@@ -291,6 +304,17 @@ aria-hidden="true"
                     <i class="icon icon-eye"></i>
                 </span>
             </div>
+          </div>
+
+          <div class="field-wrapper">
+            <label for="mname">Verified</label>
+            <div class="checkbox-tick-wrapper default d-flex align-items-center">
+              <label class="d-flex align-items-center">
+                  <input type="checkbox" name="is_verified" value="1"/>
+                  <span class="cr me-3"><i class="icon icon-tick-white"></i></span>
+                  
+              </label>
+          </div>
           </div>
           
         </div>
