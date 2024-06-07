@@ -156,6 +156,7 @@ function openPopup(name) {
 		$(`#${formname}`).trigger("reset")
 		$(`#${formname} [name=id]`).val('');
 		$(`span.error`).hide();
+		$(`#${formname} [name=is_admin]`).attr('checked', false); 
 		
 }  
 
@@ -174,6 +175,11 @@ function getData(id) {
 			let data = response.data.role
 			$(`#${formname} [name=id]`).val(data.id); 
 			$(`#${formname} [name=status]`).val(data.status); 
+			let isAdmin = false
+			if(data.is_admin){
+				isAdmin = true
+			} 
+			$(`#${formname} [name=is_admin]`).attr('checked', isAdmin); 
 			$(`#${formname} [name=role]`).val(data.role);  
 		},
 		error: function (err) {

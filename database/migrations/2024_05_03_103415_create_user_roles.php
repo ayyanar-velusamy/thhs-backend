@@ -16,7 +16,8 @@ class CreateUserRoles extends Migration
         Schema::create('user_roles', function (Blueprint $table) {
             $table->id();
             $table->string('role');
-            $table->integer('status')->default('0'); 
+            $table->integer('is_admin')->default('0'); 
+            $table->integer('status')->default('0');            
             $table->timestamps();
         });
     }

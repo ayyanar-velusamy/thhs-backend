@@ -69,12 +69,13 @@ class LoginController extends Controller
                 if($user->status === 1 && $user->user_type === 2) {  
                     return redirect('/thhs/prospect_personal_info/'.$user->id);
                 }else if($user->status === 1 && $user->user_type === 1) {  
-                    return redirect('/thhs/app/staffs');
+                    // return redirect('/thhs/app/staffs');
+                    Auth::logout();
+                    return back()->with('message', 'Your account is deactived. Please contact admin');
                 } else if($user->status === 2){
                     Auth::logout();
                     return back()->with('message', 'Your application is under Verification. Please check your email for further updates');
-                }
-                else{
+                } else{
                     Auth::logout();
                     return back()->with('error', 'Your account is deactived');
                 }

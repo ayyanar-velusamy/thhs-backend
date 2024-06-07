@@ -48,12 +48,15 @@ function openDocument(chart,e) {
 	console.log(chart.document);
 	$('#document').attr('src',"");
 	$('#chart_id').val(chart.id)
-	console.log(chart.document);
-	$('#delete_document_btn').attr("data-id",chart.document.id);
+	console.log(chart.document); 
+	
+	sessionStorage.setItem("open_chart", chart.id)
 	
 	if(chart.document){
 		$('#document_text').text("");
 		$('#document').attr('src', PROJECT_URL+`/${chart.document.document_path}`)
+		$('#delete_document_btn').attr("data-id",chart.document.id);
+		
 	}else{
 		$('#document_text').text("No Document");
 	}
@@ -75,6 +78,12 @@ $(document).on('click', 'button', function (e) {
 		$(".modal").modal("hide");
 	}
 })
+
+$( document ).ready(function() {
+    console.log( "ready!" );
+	let open_chart_id = sessionStorage.getItem("open_chart");
+	$(`#open_chart_${open_chart_id}`).trigger("click");
+});
  
 
 

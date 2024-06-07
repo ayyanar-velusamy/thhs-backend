@@ -44,7 +44,9 @@ class UserRoleController extends BaseController
             $role = UserRole::find($request->input('id'));
         } 
         $role->role = $request->input('role');
+        $role->is_admin = $request->input('is_admin'); 
         $role->status = $request->input('status'); 
+        
 
         // pr($request->all(),1);
         if ($role->save()) {

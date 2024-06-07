@@ -79,8 +79,8 @@
                                             <tbody class="w-100">
                                                 @foreach ($data as $chart)
                                                     <tr>
-                                                        <td class="text-start chart_name" style="width: 41%"
-                                                            onclick="openDocument({{ json_encode($chart) }},event)">
+                                                        <td class="text-start chart_name" id="open_chart_{{ $chart['id'] }}" style="width: 41%"
+                                                            onclick="openDocument({{ json_encode($chart) }},event)"> 
                                                             {{ $chart['name'] }}
                                                         </td>
                                                         <td class="" style="width: 20%" >{{ @update_date_format($chart['document']['issue_date']) }}</td>

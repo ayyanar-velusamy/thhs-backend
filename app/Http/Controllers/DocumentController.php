@@ -77,6 +77,7 @@ class DocumentController extends BaseController
             if ($document->save()) {   
                 $this->response['status'] = true;
                 $this->response['message'] = "Document uploaded successfully"; 
+                $this->response['document'] = $document; 
             } else {
                 $this->response['status'] = false;
                 $this->response['message'] = "Document uploading failed";

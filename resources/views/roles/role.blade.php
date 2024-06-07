@@ -111,6 +111,16 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="field-wrapper  d-block">
+                                <label for="mname">Is Admin</label>
+                                <div class="checkbox-tick-wrapper default d-flex align-items-center">
+                                  <label class="d-flex align-items-center">
+                                      <input type="checkbox" name="is_admin" value="1"/>
+                                      <span class="cr me-3"><i class="icon icon-tick-white"></i></span>
+                                      
+                                  </label>
+                              </div>
+                              </div>
                             <div class="cta_wrapper d-flex justify-content-center gap-5">
                                 <button class="danger cancel_btn" type="button" data-dismiss="modal">Cancel</button>
                                 <button class="success" id="save_role_btn">Save</button>

@@ -49,8 +49,8 @@ $(document).on('submit', `#${formname}`, function (e) {
 				unloadingButton(formBtnId)
 				form.trigger("reset");
 				if (data.status) {
-					toastr.success(data.message)
-					location.reload();
+					toastr.success(data.message) 
+					location.reload(); 
 				} else {
 					toastr.error(data.message)
 				}
