@@ -31,7 +31,7 @@ class DocumentController extends BaseController
     public function hr(Request $request, $id)
     { 
         $charts = $this->getChartInformationData($id);  
-        // pr($charts,1);
+        // pr($charts->toArray(),1);
         return view('staffs/hr', compact("charts"));
     }
 
@@ -46,7 +46,7 @@ class DocumentController extends BaseController
             @$provide_interval = @Interval::where("id", $chart->provide_interval)->first()->name;
             $chart_handling = Handling::where("id", $chart->chart_handling)->first()->name;
             $category = ChartCategory::where("id", $chart->group)->first()->name; 
-            $document = @Document::where(["chart_id" => $chart->id,"is_deleted" => "0"])->orderBy('id', 'DESC')->first();  
+            $document = @Document::where(["user_id"=>$id,"chart_id" => $chart->id,"is_deleted" => "0"])->orderBy('id', 'DESC')->first();  
             
             $chart->valid_interval = $valid_interval;
             $chart->renewal_interval = @$renewal_interval;
@@ -65,6 +65,9 @@ class DocumentController extends BaseController
     }
     public function upload_document(UploadDocumentRequest $request)
     {  
+        if($this->delete_existing_documents($request)){
+
+        
             $document = new Document(); 
 
             $document->chart_id = $request->input('chart_id');
@@ -82,12 +85,37 @@ class DocumentController extends BaseController
                 $this->response['message'] = "Document uploading failed";
             }
             return $this->response();
+        }
     }
+
+    public function delete_existing_documents(Request $request){
+        $user_id = $request->input('user_id');
+        $chart_id = $request->input('chart_id');
+        $documents = $this->getAllDocumetDetails(["user_id"=>$user_id,"chart_id"=>$chart_id]);
+        // pr($documents->toArray(),1);
+        if($documents){
+            foreach($documents as $document){
+                $request->request->add(["document_id"=>$document['id']]);
+                $delete_document = $this->delete_document($request);
+            }
+            
+            
+        }
+        return true;
+    }
+
+
 
     public function getDocumetDetails($where){
         $document = Document::where($where)->first();
         return $document;
     }
+
+    public function getAllDocumetDetails($where){
+        $documents = Document::where($where)->get();
+        return $documents;
+    }
+    
 
     private function upload_resume($request){ 
         $file = $request->file('document');  
@@ -100,10 +128,14 @@ class DocumentController extends BaseController
 
     public function update_details(Request $request){ 
         $id = $request->input('id');
-        $document = Document::find($id);
+        $user_id = $request->input('user_id');
+        
+        $document = Document::where(["user_id"=>$user_id,"chart_id"=>$id,"is_deleted"=>0])->first();
+        // pr($document,1);
         if($document){
             $document->user_id =  $request->input('user_id');
             $document->issue_date =  @update_date_format($request->input('issue_date'), "Y-m-d");
+            $document->is_verified =  (!$request->input('is_verified')?0:1);
             $document->renewal_date = @update_date_format($this->get_document_renewal_date($document->chart_id,$document->issue_date), "Y-m-d");
             
             if ($document->save()) {   
@@ -151,4 +183,15 @@ class DocumentController extends BaseController
         return $this->response();
     }
     
+    public function get_deleted_documents(Request $request){
+        $user_id = $request->input('user_id');
+        $chart_id = $request->input('chart_id');
+        $deleted_documents = $this->getAllDocumetDetails(["user_id"=>$user_id,"chart_id"=>$chart_id,"is_deleted"=>1 ]);
+        $data = $deleted_documents->toArray();
+        $this->response['status'] = false;
+        $this->response['data'] = $data;
+        return $this->response();
+
+    }
+
 }

@@ -84,8 +84,12 @@
                                                             onclick="openDocument({{ json_encode($chart) }},event)">
                                                             {{ $chart['name'] }}
                                                         </td>
-                                                        <td class="" style="width: 20%" >{{ @update_date_format($chart['document']['issue_date']) }}</td>
-                                                        <td class="" style="width: 15%" >{{ @update_date_format($chart['document']['renewal_date']) }}</td>
+                                                        @php
+                                                            $issue_date = update_date_format($chart['document']['issue_date']);
+                                                            $renewal_date = update_date_format($chart['document']['renewal_date']);
+                                                        @endphp
+                                                        <td class="" style="width: 20%" >{{ @$issue_date }}</td>
+                                                        <td class="" style="width: 15%" >{{ @$renewal_date }}</td>
                                                         <td style="width: 10%" >
                                                             @php   
                                                             
@@ -99,8 +103,8 @@
                                                         </td>
                                                         <td style="width: 10%" >
                                                             @php   
-                                                            
-                                                            if($chart['document']['is_verified'] == 1){
+                                                            $is_document_verified = $chart['document']['is_verified'];
+                                                            if($is_document_verified == 1){
                                                                 $is_verified = "Y";
                                                             }else{
                                                                 $is_verified = "N";
@@ -110,7 +114,7 @@
                                                             
                                                         </td>
                                                         <td class="">
-                                                            <i class="icon icon-edit" onclick="openEditDocumentDetail({{ $chart['id'] }})"></i>
+                                                            <i class="icon icon-edit" onclick="openEditDocumentDetail({{ $chart['id']}},'{{$issue_date}}','{{$is_document_verified }}')"></i>
                                                             <!-- <i class="icon icon-delete"></i> -->
                                                         </td>
                                                     </tr>
@@ -137,8 +141,9 @@
                                     Show deleted files:
                                 </label>
                                 <div class="flex-field">
-                                    <input class="form-check-input mt-0" type="checkbox" value="" id=""
-                                        onclick="toggleVisibility()" />
+
+                                    <input data-url="{{route('document.get_deleted_documents')}}" class="form-check-input mt-0" type="checkbox" value="1" id="show_deleted_documents"
+                                        onclick="showDeletedDocuments(this.checked)" />
                                 </div>
                             </div>
                             
@@ -161,13 +166,9 @@
                 </div>
                 <div id="deleted-files" class="deleted-files-wrapper d-none w-100 gap-3 mt-4 document_preview">
                     <table class="w-100">
-                        <tbody class="w-100">
-                            <tr>
-                                <td class="text-start">
-                                    <i class="icon icon-doc me-2"></i>Document 1
-                                </td>
-                            </tr>
-                            <tr>
+                        <tbody class="w-100 deleted_files">
+                            
+                            <!-- <tr>
                                 <td class="text-start">
                                     <i class="icon icon-doc me-2"></i>Document 2
                                 </td>
@@ -186,38 +187,11 @@
                                 <td class="text-start">
                                     <i class="icon icon-doc me-2"></i>Document 5
                                 </td>
-                            </tr>
+                            </tr> -->
+                            
                         </tbody>
                     </table>
-                    <table class="w-100">
-                        <tbody class="w-100">
-                            <tr>
-                                <td class="text-start">
-                                    <i class="icon icon-doc me-2"></i>Document 6
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-start">
-                                    <i class="icon icon-doc me-2"></i>Document 7
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-start">
-                                    <i class="icon icon-doc me-2"></i>Document 8
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-start">
-                                    <i class="icon icon-doc me-2"></i>Document 9
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-start">
-                                    <i class="icon icon-doc me-2"></i>Document 10
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    
                 </div>
                 <div class="pdf-view-wrapper mt-4 document_preview">
                     <span id="document_text"></span>
@@ -310,7 +284,7 @@ aria-hidden="true"
             <label for="mname">Verified</label>
             <div class="checkbox-tick-wrapper default d-flex align-items-center">
               <label class="d-flex align-items-center">
-                  <input type="checkbox" name="is_verified" value="1"/>
+                  <input type="checkbox" name="is_verified" id="is_verified" value="1"/>
                   <span class="cr me-3"><i class="icon icon-tick-white"></i></span>
                   
               </label>

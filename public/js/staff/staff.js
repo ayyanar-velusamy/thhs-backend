@@ -32,7 +32,7 @@ var staff_table = $('#staff_datatable').dataTable({
 
 /**Table filter */ 
 $('#filter_status').on('change', function () {
-	alert();
+	// alert();
 	var table = $('#staff_datatable').DataTable();
 	table.column(7).
 		search(this.value, true, false).

@@ -6,6 +6,8 @@ use App\Http\Requests\AddProspectRequest;
 
 use App\Mail\InterviewMail;
 use App\Mail\PersonalInfoEmail;
+use App\Models\ChartPosition;
+use App\Models\Document;
 use App\Models\EmergencyContacts;
 use App\Models\Language;
 use App\Models\Position;
@@ -58,9 +60,11 @@ class ProspectsController extends BaseController
             }
             
         }
+
         return view('prospects/prospect', compact("prospect_list", "positions"));
     }
 
+   
     public function table()
     {
         return view('prospects/prospect2');
@@ -316,24 +320,55 @@ class ProspectsController extends BaseController
     public function hire_prospect(Request $request)
     {
         $user = User::find($request->input('user_id'));
-        $user->hire_date = update_date_format($request->input('hire_date'), "Y-m-d");
-        $user->prospect_status = 12;
-        $user->user_type = 1;
-        $user->status = 1;
-        $user->staff_status = 1;
-        
-        if($user->save()){ 
-            $this->response['status'] = true;
-            $this->response['message'] = "Hire date updated successsfully";
+
+        $verify_documents = $this->verify_documents($request);
+
+        if($verify_documents){
+            $user->hire_date = update_date_format($request->input('hire_date'), "Y-m-d");
+            $user->prospect_status = 12;
+            $user->user_type = 1;
+            $user->status = 1;
+            $user->staff_status = 1;
             
+            if($user->save()){ 
+                $this->response['status'] = true;
+                $this->response['message'] = "Hire date updated successsfully";
+                
+            }else{
+                $this->response['status'] = false;
+                $this->response['message'] = "Interview Confirmation Failed";
+            }
+    
         }else{
             $this->response['status'] = false;
-            $this->response['message'] = "Interview Confirmation Failed";
+            $this->response['message'] = "You must verify all the mandatory documents!";
         }
-        return $this->response();
+
+                return $this->response();
         
     }
 
+    public function verify_documents(Request $request){
+        $user_id = $request->input('user_id');
+        $user = User::find($user_id);
+        $user_position_mandatory_documents = Position::with(["charts" => function($q){
+            $q->where('charts.required', '=', 1);
+        }])->where(['id' => $user->position])->first();
+        // pr($user_position_mandatory_documents->charts,1);
+
+        if($user_position_mandatory_documents->charts){
+            foreach($user_position_mandatory_documents->charts as $chart){
+                $user_document =  Document::where(["chart_id"=>$chart->id,"is_deleted"=>0,'is_verified'=>1])->get();
+                // pr($user_document->isEmpty(),1);
+                if($user_document->isEmpty()){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+        
+    }
     public function save_professional_references($request){
         $references = array_filter($request->input("reference_relationship"));
         // pr($request->input("reference_relationship_id"),1);

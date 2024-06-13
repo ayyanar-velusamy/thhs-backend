@@ -217,6 +217,22 @@
                             @php
                               }
                             @endphp  
+
+                            @php
+                              if(request()->routeIs(['prospects.*'])){
+                            @endphp
+                                <div class="top_ctas d-flex gap-4 mt-3">
+                                    
+                                <a class="sub-menu" href="{{ @route('prospects.demographics', @request()->id) }}">
+                                    <button class="defult-button {{ request()->routeIs('prospects.demographics') ? 'active' : '' }}">
+                                    Demographics</button></a>
+                                    <a class="sub-menu" href="{{ @route('prospects.hr', @request()->id) }}">
+                                        <button class="defult-button {{ request()->routeIs('prospects.hr') ? 'active' : '' }}">
+                                    Package Items</button></a>
+                                </div>
+                            @php
+                              }
+                            @endphp 
                         </div>
                         @php
                             if($is_admin){

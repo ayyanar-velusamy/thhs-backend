@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Mail\RegisterEmail;
+use App\Models\ChartPosition;
 use App\Rules\Recaptcha;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -122,8 +123,11 @@ class RegisterController extends Controller
         $temp_pwd = Str::random(8);
         $user->password = bcrypt($temp_pwd);
         
+
+        
         if ($user->save()) {
             $user->temp_pwd = $temp_pwd;
+              
             Mail::to($data['email'])->send(new RegisterEmail($user));
             return back()->with('message', 'Registered successfully. Please verify your email.');
         } else {
@@ -131,4 +135,5 @@ class RegisterController extends Controller
         }
 
     }
+
 }

@@ -59,6 +59,14 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/thhs/app/prospects/add_prospect',[App\Http\Controllers\ProspectsController::class, 'add_prospect'])->name('add_prospect');
 
 
+    /*Prospects HR Routing */
+    Route::get('/thhs/app/prospects/hr/{id}', [App\Http\Controllers\DocumentController::class, 'hr'])->name('prospects.hr'); 
+    Route::post('/thhs/app/upload_document', [App\Http\Controllers\DocumentController::class, 'upload_document'])->name('upload_document'); 
+    Route::post('/thhs/app/document/update_details', [App\Http\Controllers\DocumentController::class, 'update_details'])->name('document.update_details'); 
+    Route::post('/thhs/app/document/delete_document', [App\Http\Controllers\DocumentController::class, 'delete_document'])->name('document.delete_document'); 
+    Route::get('/thhs/app/document/get_deleted_documents', [App\Http\Controllers\DocumentController::class, 'get_deleted_documents'])->name('document.get_deleted_documents'); 
+
+
     /* Staff Routing */
     /*Staffs Routing */
     Route::get('/thhs/app/staffs', [App\Http\Controllers\StaffController::class, 'index'])->name('staffs');
@@ -108,14 +116,12 @@ Route::group(['middleware'=>'auth'], function(){
      Route::get('/thhs/app/users/get_user/{id}',[App\Http\Controllers\UserController::class, 'get_user'])->name('get_user');  
      Route::get('/thhs/app/users/delete_user/{id}',[App\Http\Controllers\UserController::class, 'delete_user'])->name('delete_user');   
 
-      /*HR Routing */
+    /*HR Routing */
      Route::get('/thhs/app/staffs/hr/{id}', [App\Http\Controllers\DocumentController::class, 'hr'])->name('staffs.hr'); 
      Route::post('/thhs/app/upload_document', [App\Http\Controllers\DocumentController::class, 'upload_document'])->name('upload_document'); 
      Route::post('/thhs/app/document/update_details', [App\Http\Controllers\DocumentController::class, 'update_details'])->name('document.update_details'); 
      Route::post('/thhs/app/document/delete_document', [App\Http\Controllers\DocumentController::class, 'delete_document'])->name('document.delete_document'); 
-
-     
-    
+     Route::get('/thhs/app/document/get_deleted_documents', [App\Http\Controllers\DocumentController::class, 'get_deleted_documents'])->name('document.get_deleted_documents'); 
 });
 	
 

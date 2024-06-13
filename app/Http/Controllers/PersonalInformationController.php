@@ -100,13 +100,11 @@ class PersonalInformationController extends BaseController
         // pr($request->all(),1);
      
         if($user->save()){ 
-           
-           
             $this->save_user_education($request);
             $this->save_professional_references($request);
             $this->save_work_history_data($request);
             $this->save_emergency_contacts($request);
-            
+            $user->position_documents = $this->get_position_documents($user->position)['charts'];
             Mail::to($user->email)->send(new PersonalInfoEmail($user));
             $this->response['status']   = true;
             $this->response['message']  = "Thanks for submission. Please wait for further notiication via email";
@@ -116,6 +114,15 @@ class PersonalInformationController extends BaseController
             $this->response['message']  = "Personal information update failed";
         } 
         return $this->response();
+    }
+
+    public function get_position_documents($position){
+        $data = Position::with(["charts" => function($q){
+            $q->where('charts.required', '=', 1);
+        }])->where(['id' => $position])->first()->toArray();
+        // pr($data,1);
+        return $data;
+
     }
 
     public function save_professional_references($request){
