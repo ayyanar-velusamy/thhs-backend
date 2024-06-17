@@ -80,8 +80,13 @@
                                             <tbody class="w-100">
                                                 @foreach ($data as $chart)
                                                     <tr>
+<<<<<<< HEAD
+                                                        <td class="text-start chart_name" id="open_chart_{{ $chart['id'] }}" style="width: 41%"
+                                                            onclick="openDocument({{ json_encode($chart) }},event)"> 
+=======
                                                         <td class="text-start chart_name" style="width: 40%"
                                                             onclick="openDocument({{ json_encode($chart) }},event)">
+>>>>>>> 160b622ceb4c4fe721542c952d5746ebe6dafcdb
                                                             {{ $chart['name'] }}
                                                         </td>
                                                         @php
