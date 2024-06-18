@@ -11,7 +11,7 @@ function showDeletedDocuments(checked) {
 		
 		if( deleted_documents != ""){
 			$.map(deleted_documents, function(val,i){
-				$(".deleted_files").append('<tr><td class="text-start"><i class="icon icon-doc me-2"></i>'+get_file_name(val.document_path)+'</td></tr>');
+				$(".deleted_files").append('<tr><td onclick="recover_document('+val.id+')" class="text-start"><i class="icon icon-doc me-2"></i>'+get_file_name(val.document_path)+'</td></tr>');
 			})
 			toggleDeletedView();
 		}
@@ -53,6 +53,46 @@ function get_file_name(path){
   	return ary[ary.length - 1];
 }
 
+
+function recover_document(document_id){
+	let url = PROJECT_URL+"/thhs/app/document/recover_deleted_document/"+document_id;
+	$.ajax({
+		url: url, 
+		type: "GET", 
+		contentType: false,
+		dataType:'json',
+		processData: false,
+		async: false,
+		success: function(data){
+			if(data.status){
+				toastr.success(data.message) 
+			}else{
+				toastr.error(data.message) 
+			} 
+			reload_page();
+		},
+		error: function(err){
+			unloadingButton(formBtnId)
+			if(err.responseJSON){  
+				toastr.error(err.responseJSON.message) 
+			}
+			handleFail(err.responseJSON,{
+				container : target,
+				errorPosition : "field"
+			})
+			reload_page();
+		}
+	});
+	
+}
+
+function downloadFile(){
+	var filePath = $("#document").attr("src");
+	var filename= filePath.split('/').pop()
+
+	$('#linkID').attr({target: '_blank', href : filePath, download: filename});
+	$('#linkID')[0].click();
+}
 function get_deleted_documents(user_id,chart_id){
 	let deleted_documents;
 	let url = $("#show_deleted_documents").attr('data-url')+'?user_id='+user_id+'&chart_id='+chart_id; 
@@ -82,6 +122,8 @@ function get_deleted_documents(user_id,chart_id){
 	});
 	return deleted_documents;
 }
+
+
 function toggleAllAccordions() {
 	var accordionHeaders = document.querySelectorAll(
 		".accordion-header button"

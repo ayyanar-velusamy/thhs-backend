@@ -98,6 +98,7 @@
         }, 3000);
         // {{base_path()}}
         let PROJECT_URL = "{{ Config::get('app.project_url') }}";
+        console.log(PROJECT_URL);
     </script>
 
     <main>

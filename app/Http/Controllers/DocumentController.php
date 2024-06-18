@@ -14,11 +14,8 @@ use App\Models\Chart;
 use App\Models\Interval; 
 use App\Models\Handling; 
 use App\Models\ChartCategory; 
-use App\Models\Document; 
-
-
-
-
+use App\Models\Document;
+use Carbon\Carbon;
 
 class DocumentController extends BaseController
 {
@@ -46,8 +43,12 @@ class DocumentController extends BaseController
             @$provide_interval = @Interval::where("id", $chart->provide_interval)->first()->name;
             $chart_handling = Handling::where("id", $chart->chart_handling)->first()->name;
             $category = ChartCategory::where("id", $chart->group)->first()->name; 
-            $document = @Document::where(["user_id"=>$id,"chart_id" => $chart->id,"is_deleted" => "0"])->orderBy('id', 'DESC')->first();  
+            $document = @Document::where(["user_id"=>$id,"chart_id" => $chart->id,"is_deleted" => "0"]);
             
+            
+            
+            $document = $document->orderBy('id', 'DESC')->first();  
+            // pr($document->toArray());
             $chart->valid_interval = $valid_interval;
             $chart->renewal_interval = @$renewal_interval;
             $chart->provide_interval = @$provide_interval;
@@ -90,18 +91,21 @@ class DocumentController extends BaseController
     }
 
     public function delete_existing_documents(Request $request){
-        $user_id = $request->input('user_id');
-        $chart_id = $request->input('chart_id');
+         $user_id = $request->input('user_id');
+         $chart_id = $request->input('chart_id');
+        // pr($request->all(),1);
+        // exit;
         $documents = $this->getAllDocumetDetails(["user_id"=>$user_id,"chart_id"=>$chart_id]);
-        // pr($documents->toArray(),1);
+        // pr($documents->toArray());
         if($documents){
             foreach($documents as $document){
-                $request->request->add(["document_id"=>$document['id']]);
+                $request->merge(["document_id"=>$document['id']]);
                 $delete_document = $this->delete_document($request);
             }
             
             
         }
+        // pr("deleted",1);
         return true;
     }
 
@@ -193,6 +197,32 @@ class DocumentController extends BaseController
         $this->response['data'] = $data;
         return $this->response();
 
+    }
+
+    public function recover_deleted_document(Request $request,$id){ 
+        
+        $document = Document::find($id);
+        if($document){
+            $request = new Request();
+            
+            $request->replace(['user_id' => $document->user_id,'chart_id' => $document->chart_id]);
+            
+            $this->delete_existing_documents($request);
+            $document->is_deleted =  0;
+            
+            if ($document->save()) {   
+                $this->response['status'] = true;
+                $this->response['message'] = "Document recovered successfully"; 
+            } else {
+                $this->response['status'] = false;
+                $this->response['message'] = "Document recovered failed";
+            }
+        }else{
+            $this->response['status'] = false;
+            $this->response['message'] = "No Document added yet";
+        }
+        
+        return $this->response();
     }
 
 }

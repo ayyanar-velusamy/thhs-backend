@@ -122,6 +122,7 @@ Route::group(['middleware'=>'auth'], function(){
      Route::post('/thhs/app/document/update_details', [App\Http\Controllers\DocumentController::class, 'update_details'])->name('document.update_details'); 
      Route::post('/thhs/app/document/delete_document', [App\Http\Controllers\DocumentController::class, 'delete_document'])->name('document.delete_document'); 
      Route::get('/thhs/app/document/get_deleted_documents', [App\Http\Controllers\DocumentController::class, 'get_deleted_documents'])->name('document.get_deleted_documents'); 
+     Route::get('/thhs/app/document/recover_deleted_document/{id}', [App\Http\Controllers\DocumentController::class, 'recover_deleted_document'])->name('document.recover_deleted_document'); 
 });
 	
 

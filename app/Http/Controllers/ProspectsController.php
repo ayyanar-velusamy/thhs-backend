@@ -190,6 +190,7 @@ class ProspectsController extends BaseController
         $user->interview_schedule_date = update_date_format($request->input('interview_date'), "Y-m-d H:i");
         $user->prospect_status = 5;
         if($user->save()){ 
+            $user->position_documents = $this->get_position_documents($user->position)['charts'];
             Mail::to($user->email)->send(new InterviewMail($user));
             $this->response['status'] = true;
             $this->response['message'] = "Interview Scheduled successfully";
@@ -202,6 +203,15 @@ class ProspectsController extends BaseController
         }
         
         return $this->response();
+    }
+
+    public function get_position_documents($position){
+        $data = Position::with(["charts" => function($q){
+            $q->where('charts.required', '=', 1);
+        }])->where(['id' => $position])->first()->toArray();
+        // pr($data,1);
+        return $data;
+
     }
 
     public function confirm_interview(Request $request, $id)
