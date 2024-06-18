@@ -120,14 +120,14 @@
                             <i class="icon icon-logo"></i><span></span> 
                         </a>
                         @php                      
-                        if(request()->routeIs(['charts']) && $is_admin){                            
+                        if(request()->routeIs(['charts'])){                            
                         @endphp
                             <a href="{{ route('charts') }}" class="{{ request()->routeIs(['charts','charts.*']) ? 'active' : '' }}" aria-current="true">
                                 <i class="icon icon-staffs-logo"></i>
                                 <p>Chart Manager</p>
                             </a>
                         @php
-                        }elseif(request()->routeIs(['roles']) || request()->routeIs(['users']) && $is_admin){     
+                        }elseif(request()->routeIs(['roles']) || request()->routeIs(['users'])){     
                         @endphp
                             <a href="{{ route('roles') }}" class="{{ request()->routeIs(['roles','roles.*']) ? 'active' : '' }}" aria-current="true">
                                 <i class="icon icon-prospects-logo"></i>
@@ -144,17 +144,11 @@
                             <a href="{{ route('staffs') }}" class="{{ request()->routeIs(['staffs','staffs.*']) ? 'active' : '' }}" aria-current="true">
                                 <i class="icon icon-staffs-logo"></i>
                                 <p>Staff Manager</p>
+                            </a>  
+                            <a href="{{ route('prospects') }}" class="{{ request()->routeIs(['prospects','prospects.*']) ? 'active' : '' }}" aria-current="true">
+                                <i class="icon icon-prospects-logo"></i>
+                                <p>Prospect Manager</p>
                             </a> 
-                            @php 
-                            if($is_admin){     
-                            @endphp
-                                <a href="{{ route('prospects') }}" class="{{ request()->routeIs(['prospects','prospects.*']) ? 'active' : '' }}" aria-current="true">
-                                    <i class="icon icon-prospects-logo"></i>
-                                    <p>Prospect Manager</p>
-                                </a>
-                            @php 
-                            }
-                            @endphp
                          </>
                         @php
                         }
@@ -218,9 +212,7 @@
                               }
                             @endphp  
                         </div>
-                        @php
-                            if($is_admin){
-                        @endphp
+                        
                         <div class="dashboard-tabs-wrapper d-flex justify-content-end">
                             <div class="dashboard-tabs {{ request()->routeIs(['prospects','prospects.*','staffs','staffs.*']) ? 'active' : '' }}">
                                 
@@ -246,9 +238,7 @@
                                 </a>
                             </div>
                         </div>
-                        @php
-                            }
-                        @endphp
+                         
                     </div>
                 </section>
                 @yield('content')

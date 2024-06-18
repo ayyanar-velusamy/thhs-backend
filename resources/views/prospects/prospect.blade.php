@@ -25,10 +25,16 @@
         <div class="table-heading-data d-flex align-items-center justify-content-between">
             <h5>Prospect Manager</h5>
             <div class="table-center-heading-data d-flex align-items-center justify-content-between">
+                @php                      
+                if(is_admin()){                            
+                @endphp
                 <div class="add-staff-field d-flex align-items-center">
                     <i class="icon icon-plus"></i>
                     <p data-toggle="modal" data-target="#myModal">Add Prospect</p>
                 </div>
+                @php                      
+                }                    
+            @endphp
             </div>
         </div>
         <table class="w-100" id="datatable">
@@ -92,12 +98,18 @@
                         <td class="icons" style="padding-top:20px">
                             <a title="View Prospect" href="{{ route('prospects.demographics',[$prospect->id]) }}"><i
                                     class="icon icon-eye-green"></i></a>
+                                    @php                      
+                                    if(is_admin()){                            
+                                    @endphp
                             <a title="Hire Prospect" href="#" onclick="openHireProspectModal({{$prospect->id}})">
                                 <i class="icon icon-hire"></i></a>
                                 <a title="Reject Prospect" href="#"  id="reject_prospect_btn" data-url="{{@route('prospects.reject_prospect',[$prospect->id])}}" onclick="confirm_reject_prospect()">
                                     <i class="icon icon-reject"></i></a>
                                     <a title="Archive Prospect" href="#" id="archive_prospect_btn" data-url="{{@route('prospects.archive_prospect',[$prospect->id])}}" onclick="confirm_archive_prospect()">
                                         <i class="icon icon-archive"></i></a>
+                                        @php                      
+                                      }                     
+            @endphp
                             
                         </td>
                     </tr>

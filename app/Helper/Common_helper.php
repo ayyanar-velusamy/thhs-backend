@@ -101,7 +101,11 @@ function user_id(){
 }
 
 function is_admin(){
-	return (Auth::user()->hasRole('Admin')) ? true : false;  
+
+	if( Auth::user()->is_admin === 1){
+		return true;
+	} 
+	return false;  
 }
 
 function is_group_admin($group_id = "", $user_id = ""){

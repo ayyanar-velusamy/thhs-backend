@@ -25,6 +25,9 @@
         </div>
         <div class="table-heading-data d-flex align-items-center justify-content-between">
             <h5>Staff Manager</h5>
+            @php                      
+            if(is_admin()){                            
+            @endphp
             <div class="table-center-heading-data d-flex align-items-center justify-content-between">
                 <div class="add-staff-field d-flex align-items-center">
                     <i class="icon icon-plus"></i>
@@ -33,6 +36,9 @@
                     </p>
                 </div>
             </div>
+            @php                      
+            }                       
+            @endphp
         </div>
         <table class="w-100" id="staff_datatable">
             <thead>
@@ -85,12 +91,17 @@
                         <td class="icons" style="padding-top:20px">
                             <a title="View Staff" href="{{ route('staffs.demographics', [$staff->id]) }}"><i
                                     class="icon icon-eye-green"></i></a>
+                            @php                      
+                            if(is_admin()){                            
+                            @endphp
                             <a title="Edit Staff" href="#" onclick="get_staff({{ $staff->id }})">
                                 <i class="icon icon-edit"></i></a>
                             <a title="Delete Staff" href="#" id="delete_staff_btn"
                                 data-url="{{ @route('delete_staff', [$staff->id]) }}" onclick="delete_staff_confirmation()">
                                 <i class="icon icon-delete"></i></a>
-
+                            @php                      
+                            }                  
+                            @endphp
                         </td>
                     </tr>
                 @endforeach

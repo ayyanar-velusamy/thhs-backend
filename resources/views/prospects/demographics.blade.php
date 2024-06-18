@@ -13,15 +13,22 @@
     class="form-headings-wrapper d-flex align-items-center justify-content-between demographics_head"
   >
     <a href="#" class="active"><h5>Demographics</h5></a>
+    @php                      
+    if(is_admin()){                            
+    @endphp
     <a href="#" data-toggle="modal" data-target="#scheduleIntModal">Schedule Interview</a>
     <a href="#" data-toggle="modal" data-target="#ConfirmIntModal">Confirm Interview</a>
     <a href="#" id="cancel_interview_btn" data-toggle="modal" data-url="{{@route('prospects.cancel_interview',[$user->id])}}" onclick="confirm_cancel_interview()">Cancel Interview</a>
     <a href="#" id="reject_prospect_btn" data-toggle="modal" data-url="{{@route('prospects.reject_prospect',[$user->id])}}" onclick="confirm_reject_prospect()">Reject</a>
     <a href="#" id="reapply_prospect_btn" data-toggle="modal" data-url="{{@route('prospects.reapply_prospect',[$user->id])}}" onclick="confirm_reapply_prospect()">Re-apply</a>
+   
 <!-- <a href="#">Save Information</a> -->
 <div class="btn-wrap">
         <button id="demographics_submit">Save Information</button>
 </div>
+@php                      
+     }                            
+            @endphp
   </div>
 
     <h3>Personal Information</h3>

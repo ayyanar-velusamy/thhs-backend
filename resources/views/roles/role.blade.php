@@ -15,12 +15,18 @@
         <div class="table-heading-data d-flex align-items-center justify-content-between">
             <h5>User Role</h5>
             <div class="table-center-heading-data d-flex align-items-center justify-content-between">
+                @php                      
+if(is_admin()){                            
+@endphp
                 <div class="add-staff-field d-flex align-items-center">
                     <i class="icon icon-plus"></i>
                     <p type="button" onclick="openPopup('role')">
                         Add Role
                     </p>
                 </div>
+                @php 
+            }                      
+@endphp
             </div>
         </div>
         <table class="w-100" id="role_datatable">
@@ -48,12 +54,18 @@
                         <td class="icons dt-center justify-content-center" style="padding-top:20px">
                             {{-- <a title="View Staff" href="{{ route('staffs.demographics', [$chart->id]) }}"><i
                                     class="icon icon-eye-green"></i></a> --}}
+                                    @php                      
+if(is_admin()){                            
+@endphp
                             <a title="Edit Role" href="#" onclick="getData({{ $role->id }})">
                                 <i class="icon icon-edit"></i></a>
                             <a title="Delete Chart" href="#" id="delete_role_btn"
                                 data-url="{{ @route('delete_role', [$role->id]) }}"
                                 onclick="delete_role_confirmation()">
                                 <i class="icon icon-delete"></i></a>
+                                @php     
+                            } 
+@endphp
 
                         </td>
                     </tr>

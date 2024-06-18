@@ -20,10 +20,16 @@
     <a href="#" id="reapply_prospect_btn" data-toggle="modal" data-url="{{@route('prospects.reapply_prospect',[$user->id])}}" onclick="confirm_reapply_prospect()">Re-apply</a> -->
 <!-- <a href="#">Save Information</a> -->
 <h6>Staff Demographics</h6>
+@php                      
+if(is_admin()){                            
+@endphp
 <div class="cta_wrapper d-flex">
     <button id="staff_demographics_submit" class="success">Save Information</button>
     <button class="danger">Clear</button>
 </div>
+@php                      
+}                           
+@endphp
   </div>
 
     <h3>Personal Information</h3>
