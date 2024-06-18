@@ -10,7 +10,7 @@
                 Email
               </button> -->
 
-                        <button class="button">Refresh All Forms</button>
+                        <button class="button" onclick="location.reload()">Refresh All Forms</button>
                         <div>
                             <span class="me-3">Generated :</span>
                             <button id="toggle-button" class="button" onclick="toggleAllAccordions()">
@@ -26,12 +26,12 @@
                                 </label>
                                 <input class="form-check-input mt-0" type="checkbox" value="" id="flexCheckDefault" />
                             </div>
-                            <div class="field-wrapper d-flex align-items-center">
+                            <!-- <div class="field-wrapper d-flex align-items-center">
                                 <label class="form-check-label me-2" for="">
                                     Show Archive:
                                 </label>
                                 <input class="form-check-input mt-0" type="checkbox" value="" id="" />
-                            </div>
+                            </div> -->
                         </div>
                         <div class="field-wrapper d-flex align-items-center">
                             <label class="form-check-label me-2" for="">
@@ -80,13 +80,8 @@
                                             <tbody class="w-100">
                                                 @foreach ($data as $chart)
                                                     <tr>
-<<<<<<< HEAD
                                                         <td class="text-start chart_name" id="open_chart_{{ $chart['id'] }}" style="width: 41%"
                                                             onclick="openDocument({{ json_encode($chart) }},event)"> 
-=======
-                                                        <td class="text-start chart_name" style="width: 40%"
-                                                            onclick="openDocument({{ json_encode($chart) }},event)">
->>>>>>> 160b622ceb4c4fe721542c952d5746ebe6dafcdb
                                                             {{ $chart['name'] }}
                                                         </td>
                                                         @php
@@ -161,7 +156,8 @@
                         <div>
                             
                             <button class="sm-button" onclick="uploadForm()">Upload</button>
-                            <button class="sm-button me-3">Download</button>
+                            <button class="sm-button me-3" onclick="downloadFile()">Download</button>
+                            <a id="linkID"></a>
                         </div>
                         <div>
                             <!-- <button class="sm-button primary me-3">Scan forms</button> -->

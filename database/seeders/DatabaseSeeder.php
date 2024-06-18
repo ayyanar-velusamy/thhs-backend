@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             IntervalSeeder::class,
             EmploymentTypeSeeder::class,
             HandlingSeeder::class,
+            ChartCategorySeeder::class,
         ]);
     }
 }

@@ -54,9 +54,9 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'asset_url' => env('ASSET_URL', env("APP_URL").'/thhs-backend/public'),
+    'asset_url' => env('ASSET_URL', env("APP_URL").'/thhs/public'),
 
-    'project_url' => env("APP_URL").'/thhs-backend',
+    'project_url' => env("APP_URL").'/thhs',
 
     /*
     |--------------------------------------------------------------------------

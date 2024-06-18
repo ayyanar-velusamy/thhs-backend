@@ -27,24 +27,25 @@
                         <br />
                         Please confirm your availability.
                         <br/>
+                        @php
+                        if(@$user->position_documents){
+                        @endphp
                         <br/>
                         Please bring the following documents to your Interview or you can email them to
                         <br/>
                         <p style="color: rgba(94, 99, 242, 1);">hr@trenhhs.com</p>
-                        <br/>
-                        <br/>
                         <p class="sub_title" style="font-size: 22px; font-weight: bold; color: rgba(94, 99, 242, 1);">Documents</p>
                         <ul>
-                            <li>75 Hours HHA Certificate</li>
-                            <li>Alzheimer's</li>
-                            <li>Assitance with Self Medications</li>
-                            <li>CPR</li>
-                            <li>Domestic Voilence</li>
-                            <li>HIPPA</li>
-                            <li>HIV / AIDS Update</li>
-                            <li>OSHA</li>
-                            <li>Other Certificates</li>
-                        </ul>
+                            @foreach ($user->position_documents as $document)
+                            <li>
+                                {{@$document['name']}}
+                            </li>
+                            @endforeach
+                        </ul>    
+                            
+                    @php
+                    }
+                    @endphp
                     
                     </p>
                 </div>
