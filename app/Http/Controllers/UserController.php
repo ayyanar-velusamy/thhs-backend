@@ -59,6 +59,7 @@ class UserController extends BaseController
         $user->app_user_status = $request->input('status'); 
         $user->user_type = 3; 
         $user->status = 1; 
+        $user->created_by = $request->user()->id;
         if($request->input('roles')){
             $user->role = implode(",",$request->input('roles'));
         } 

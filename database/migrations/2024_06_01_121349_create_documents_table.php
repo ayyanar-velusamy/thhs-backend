@@ -22,6 +22,7 @@ class CreateDocumentsTable extends Migration
             $table->string('document_path'); 
             $table->integer('is_verified')->default(0); 
             $table->integer('is_deleted')->default(0); 
+            $table->integer('created_by')->nullable()->default('1');   
             $table->timestamps();
             // $table->foreign('chart_id')->references('id')
             //      ->on('charts')->onDelete('cascade'); 

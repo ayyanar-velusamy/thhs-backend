@@ -93,7 +93,7 @@ class ProspectsController extends BaseController
         $temp_pwd = Str::random(8);
         $user->password = bcrypt($temp_pwd);
         $user->user_type = 2; 
-        
+        $user->created_by = $request->user()->id;
         // pr($request->all(),1);
 
         if ($user->save()) {   

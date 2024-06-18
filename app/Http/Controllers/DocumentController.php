@@ -75,7 +75,7 @@ class DocumentController extends BaseController
             $document->user_id =  $request->input('user_id');
             $document->issue_date =  @$this->getDocumetDetails(["user_id"=>$request->input('user_id'),"chart_id"=>$request->input('chart_id')])->issue_date;
             $document->renewal_date =  @$this->getDocumetDetails(["user_id"=>$request->input('user_id'),"chart_id"=>$request->input('chart_id')])->renewal_date;
-
+            $document->created_by = $request->user()->id;
             // exit;
             if ($document->save()) {   
                 $this->response['status'] = true;

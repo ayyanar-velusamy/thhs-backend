@@ -83,6 +83,7 @@ class ChartController extends BaseController
         $chart->provide_number = $request->input('provide_number');
         $chart->report = $request->input('report');
         $chart->chart_handling = $request->input('chart_handling'); 
+        $chart->created_by = $request->user()->id;
         // pr($request->all(),1);
         if ($chart->save()) {  
             if ( $chart_id) {
@@ -136,6 +137,7 @@ class ChartController extends BaseController
         $category = new ChartCategory(); 
       
         $category->name = $request->input('category'); 
+        $category->created_by = $request->user()->id;
         if ($category->save()) {
             $this->response['status'] = true;
             $this->response['message'] = "Chart Category saved successfully";

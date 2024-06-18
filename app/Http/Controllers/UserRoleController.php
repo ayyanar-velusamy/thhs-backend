@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers; 
-use App\Http\Requests\SaveRoleRequest; 
+namespace App\Http\Controllers;
+
+use App\Http\Requests\SaveRoleRequest;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class UserRoleController extends BaseController
     public function index(Request $request)
     {
 
-        $role_list = UserRole::where('status', '!=' , 0)->select('*')->orderBy('id', 'desc')->get(); 
+        $role_list = UserRole::where('status', '!=', 0)->select('*')->orderBy('id', 'desc')->get();
         return view('roles/role', compact("role_list"));
     }
 
@@ -42,11 +43,14 @@ class UserRoleController extends BaseController
         $role = new UserRole();
         if ($request->input('id')) {
             $role = UserRole::find($request->input('id'));
-        } 
+        }
         $role->role = $request->input('role');
-        $role->is_admin = $request->input('is_admin'); 
-        $role->status = $request->input('status'); 
-        
+        $role->is_admin = 0;
+        if ($request->input('is_admin')) {
+            $role->is_admin = $request->input('is_admin');
+        }
+        $role->status = $request->input('status');
+        $role->created_by = $request->user()->id;
 
         // pr($request->all(),1);
         if ($role->save()) {
@@ -86,5 +90,5 @@ class UserRoleController extends BaseController
 
         }
         return $this->response();
-    }  
+    }
 }
