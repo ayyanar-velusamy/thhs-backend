@@ -101,7 +101,23 @@ function user_id(){
 }
 
 function is_admin(){
-	return (Auth::user()->hasRole('Admin')) ? true : false;  
+	$role_list = \App\Models\UserRole::where(['is_admin' => 1])->select('id')->get();
+	 
+	
+	$role_ex = explode(",",Auth::user()->role);
+	 
+	$role_admin = false;
+	foreach($role_list as $role){ 
+		if (in_array($role->id, $role_ex)){ 
+			$role_admin = true;
+		}
+	} 
+	if( Auth::user()->is_admin === 1){
+		return true;
+	} else if($role_admin){
+		return true;
+	}
+	return false;  
 }
 
 function is_group_admin($group_id = "", $user_id = ""){

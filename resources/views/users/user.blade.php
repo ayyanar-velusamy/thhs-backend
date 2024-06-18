@@ -16,12 +16,18 @@
         </div>
         <div class="table-heading-data d-flex align-items-center justify-content-between">
             <h5>User Manager</h5>
+            @php                      
+            if(is_admin()){                            
+            @endphp
             <div class="table-center-heading-data d-flex align-items-center justify-content-between">
                 <div class="add-staff-field d-flex align-items-center">
                     <i class="icon icon-plus"></i>
                     <p onclick="openPopup('user')">Add User</p>
                 </div>
             </div>
+            @php                      
+                }                           
+        @endphp
         </div>
         <table class="w-100" id="user_datatable">
             <thead>
@@ -71,6 +77,9 @@
                                 class="tag {{ $user->app_user_status == 2 ? 'deactivate' : 'active' }}">{{ $status }}</span>
                         </td>
                         <td class="icons" style="padding-top:20px">
+                        @php                      
+                        if(is_admin()){                            
+                        @endphp
                             <a title="Edit User" href="#"  onclick="getData({{ $user->id }})"><i class="icon icon-edit"></i></a>
                             {{-- <a title="Add Photo" href="#">
                                 <i class="icon icon-hire"></i></a> --}}
@@ -78,6 +87,9 @@
                             data-url="{{ @route('delete_user', [$user->id]) }}"
                             onclick="delete_user_confirmation()">
                                 <i class="icon icon-reject"></i></a>
+                                @php                      
+                            }                         
+@endphp
 
                         </td>
                     </tr>

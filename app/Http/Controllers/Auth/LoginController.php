@@ -68,6 +68,8 @@ class LoginController extends Controller
             if(!$user->is_admin){
                 if($user->status === 1 && $user->user_type === 2) {  
                     return redirect('/thhs/prospect_personal_info/'.$user->id);
+                }if($user->status === 1 && $user->user_type === 3) {  
+                    return redirect('/thhs/app/prospects');
                 }else if($user->status === 1 && $user->user_type === 1) {  
                     // return redirect('/thhs/app/staffs');
                     Auth::logout();

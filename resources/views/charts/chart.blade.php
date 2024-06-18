@@ -25,6 +25,9 @@
         </div>
         <div class="table-heading-data d-flex align-items-center justify-content-between">
             <h5>Chart Manager</h5>
+            @php                      
+if(is_admin()){                            
+@endphp
             <div class="table-center-heading-data d-flex align-items-center justify-content-between">
                 <div class="add-staff-field d-flex align-items-center">
                     <i class="icon icon-plus"></i>
@@ -40,6 +43,9 @@
 
                 </div>
             </div>
+            @php                      
+        }                          
+@endphp
         </div>
         <table class="w-100" id="chart_datatable">
             <thead>
@@ -85,12 +91,18 @@
                         <td class="icons d-block" style="padding-top:10px; top: -2px">
                             {{-- <a title="View Staff" href="{{ route('staffs.demographics', [$chart->id]) }}"><i
                                     class="icon icon-eye-green"></i></a> --}}
+                                    @php                      
+if(is_admin()){                            
+@endphp
                             <a title="Edit Chart" href="#" onclick="get_chart({{ $chart->id }})">
                                 <i class="icon icon-edit"></i></a>
                             <a title="Delete Chart" href="#" id="delete_chart_btn"
                                 data-url="{{ @route('delete_chart', [$chart->id]) }}"
                                 onclick="delete_chart_confirmation()">
                                 <i class="icon icon-delete"></i></a>
+                                @php                      
+                            }                  
+@endphp
 
                         </td>
                     </tr>

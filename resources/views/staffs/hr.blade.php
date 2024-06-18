@@ -76,17 +76,17 @@
                                     class="accordion-collapse collapse show" aria-labelledby="headingTwo">
                                     <div class="accordion-body">
 
-                                        <table class="w-100">
+                                        <table class="w-100">hr
                                             <tbody class="w-100">
                                                 @foreach ($data as $chart)
                                                     <tr>
-                                                        <td class="text-start chart_name" id="open_chart_{{ $chart['id'] }}" style="width: 41%"
-                                                            onclick="openDocument({{ json_encode($chart) }},event)"> 
+                                                        <td class="text-start chart_name" style="width: 41%"
+                                                            onclick="openDocument({{ json_encode($chart) }},event)">
                                                             {{ $chart['name'] }}
                                                         </td>
                                                         @php
-                                                            $issue_date = update_date_format($chart['document']['issue_date']);
-                                                            $renewal_date = update_date_format($chart['document']['renewal_date']);
+                                                            $issue_date = $chart['document'] ? update_date_format($chart['document']['issue_date']) : "";
+                                                            $renewal_date = $chart['document'] ? update_date_format($chart['document']['renewal_date']) : "";
                                                         @endphp
                                                         <td class="" style="width: 20%" >{{ @$issue_date }}</td>
                                                         <td class="" style="width: 15%" >{{ @$renewal_date }}</td>
@@ -103,7 +103,7 @@
                                                         </td>
                                                         <td style="width: 10%" >
                                                             @php   
-                                                            $is_document_verified = $chart['document']['is_verified'];
+                                                            $is_document_verified = $chart['document'] ? $chart['document']['is_verified'] : 0;
                                                             if($is_document_verified == 1){
                                                                 $is_verified = "Y";
                                                             }else{
@@ -114,8 +114,14 @@
                                                             
                                                         </td>
                                                         <td class="">
+                                                            @php                      
+                                                            if(is_admin()){                            
+                                                            @endphp
                                                             <i class="icon icon-edit" onclick="openEditDocumentDetail({{ $chart['id']}},'{{$issue_date}}','{{$is_document_verified }}')"></i>
                                                             <!-- <i class="icon icon-delete"></i> -->
+                                                            @php       
+                                                            }
+                        @endphp
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -136,6 +142,9 @@
                     <div class="d-flex justify-content-between">
                         <h3>Attachments</h3>
                         <div class="right-side d-flex align-items-center">
+                            @php                      
+                            if(is_admin()){                            
+                            @endphp
                             <div class="field-wrapper d-flex align-items-center me-5">
                                 <label class="form-check-label me-2" for="">
                                     Show deleted files:
@@ -146,13 +155,18 @@
                                         onclick="showDeletedDocuments(this.checked)" />
                                 </div>
                             </div>
-                            
+                            @php                      
+                         }                     
+                        @endphp
                             <button class="btn-with-text">
                                 <i class="icon icon-scan me-2"></i> Print
                             </button>
                         </div>
                     </div>
                     <div class="mt-3 cta-wrapper d-flex justify-content-between">
+                        @php                      
+                        if(is_admin()){                            
+                        @endphp
                         <div>
                             
                             <button class="sm-button" onclick="uploadForm()">Upload</button>
@@ -163,6 +177,9 @@
                             <!-- <button class="sm-button primary me-3">Scan forms</button> -->
                             <button class="sm-button danger" id="delete_document_btn" data-id="" data-url="{{route('document.delete_document')}}" onclick="open_delete_document()">Delete</button>
                         </div>
+                        @php                      
+                    }                           
+                        @endphp
                     </div>
                 </div>
                 <div id="deleted-files" class="deleted-files-wrapper d-none w-100 gap-3 mt-4 document_preview">

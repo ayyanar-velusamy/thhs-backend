@@ -16,12 +16,18 @@
       <div
         class="table-center-heading-data d-flex align-items-center justify-content-between"
       >
+      @php                      
+      if(is_admin()){                            
+      @endphp
         <div class="add-staff-field d-flex align-items-center">
           <i class="icon icon-plus"></i>
           <p data-toggle="modal" onclick="openEmergencyContactModal()">
             Add Emergency contact
           </p>
         </div>
+      @php                      
+      }                      
+      @endphp
       </div>
     </div>
     <table class="w-100 contact-info" id="myTable">
@@ -49,8 +55,14 @@
           <td></td>
           <td class="">
             <!-- <i class="icon icon-eye-green"></i> -->
+            @php                      
+            if(is_admin()){                            
+            @endphp
             <a href="#" data-url="{{@route('staffs.get_emergency_contact',$emergency_contact->id)}}" onclick="get_emergency_contact(event)"><i class="icon icon-edit me-3" ></i></a>
             <a href="#" id="delete_emergency_contact_btn" data-url="{{@route('staffs.delete_emergency_contact',[$emergency_contact->id])}}" onclick="confirm_delete_emergency_contact()"><i class="icon icon-delete"></i></a>
+            @php                      
+            }                           
+            @endphp
           </td>
         </tr>
         @endforeach
@@ -71,10 +83,16 @@
       <div
         class="table-center-heading-data d-flex align-items-center justify-content-between"
       >
+      @php                      
+      if(is_admin()){                            
+      @endphp
         <div class="add-staff-field d-flex align-items-center">
           <i class="icon icon-plus"></i>
           <p data-toggle="modal" onclick="openAddressModal()">Add Address</p>
         </div>
+      @php                      
+      }                        
+      @endphp
       </div>
     </div>
     <table class="w-100 contact-info">
@@ -97,8 +115,14 @@
           <td class="large_text_ellipsis" title="{{ @$user_address }}">{{ @$user_address }}</td>
           <td class="">
             <!-- <i class="icon icon-eye-green"></i> -->
+            @php                      
+            if(is_admin()){                            
+            @endphp
             <a href="#" data-url="{{@route('staffs.get_address',$address->id)}}" onclick="get_address(event)"><i class="icon icon-edit me-3" ></i></a>
             <a href="#" id="delete_address_btn" data-url="{{@route('staffs.delete_address',[$address->id])}}" onclick="confirm_delete_address()"><i class="icon icon-delete"></i></a>
+            @php                      
+            }                     
+            @endphp
           </td>
         </tr>
         @endforeach
@@ -118,10 +142,16 @@
       <div
         class="table-center-heading-data d-flex align-items-center justify-content-between"
       >
+      @php                      
+      if(is_admin()){                            
+      @endphp
         <div class="add-staff-field d-flex align-items-center">
           <i class="icon icon-plus"></i>
           <p data-toggle="modal" onclick="openPhoneModal()">Add Phone</p>
         </div>
+        @php                      
+        }                  
+        @endphp
       </div>
     </div>
     
@@ -163,10 +193,16 @@
       <div
         class="table-center-heading-data d-flex align-items-center justify-content-between"
       >
+      @php                      
+      if(is_admin()){                            
+      @endphp
         <div class="add-staff-field d-flex align-items-center">
           <i class="icon icon-plus"></i>
           <p data-toggle="modal"onclick="openEmailModal()">Add Email</p>
         </div>
+        @php                      
+      }                         
+            @endphp
       </div>
     </div>
     <table class="w-100 contact-info">
@@ -186,8 +222,14 @@
           <td>{{ $email_address->email }}</td>
           <td class="">
             <!-- <i class="icon icon-eye-green"></i> -->
+            @php                      
+            if(is_admin()){                            
+            @endphp
             <a href="#" data-url="{{@route('staffs.get_email',$email_address->id)}}" onclick="get_email(event)"><i class="icon icon-edit me-3" ></i></a>
             <a href="#" id="delete_email_btn" data-url="{{@route('staffs.delete_email',[$email_address->id])}}" onclick="confirm_delete_email()"><i class="icon icon-delete"></i></a>
+            @php                      
+             }                            
+            @endphp
           </td>
         </tr>
         @endforeach
