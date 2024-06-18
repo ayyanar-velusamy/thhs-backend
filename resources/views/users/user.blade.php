@@ -77,9 +77,9 @@
                                 class="tag {{ $user->app_user_status == 2 ? 'deactivate' : 'active' }}">{{ $status }}</span>
                         </td>
                         <td class="icons" style="padding-top:20px">
-                            @php                      
-if(is_admin()){                            
-@endphp
+                        @php                      
+                        if(is_admin()){                            
+                        @endphp
                             <a title="Edit User" href="#"  onclick="getData({{ $user->id }})"><i class="icon icon-edit"></i></a>
                             {{-- <a title="Add Photo" href="#">
                                 <i class="icon icon-hire"></i></a> --}}
