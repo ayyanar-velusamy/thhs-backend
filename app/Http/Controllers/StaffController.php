@@ -179,7 +179,7 @@ class StaffController extends BaseController
     public function delete_staff(Request $request, $id)
     {
             $user = User::find($id);
-            $user->staff_status = 6; 
+            $user->staff_status = 5; 
         
         if($user->save()){  
             $this->response['status'] = true;

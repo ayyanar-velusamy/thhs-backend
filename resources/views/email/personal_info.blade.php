@@ -23,33 +23,48 @@
                     <p class="sub_title" style="font-size: 22px">Dear {{ $user->name }}</p>
 
                     <p>
-                        Please click on this link to complete your registration.
+                        Your application has been received received!.
                         <br />
-                        <br/>
-                        {{ $link }}
-                        <br/>
-                        <br/>
-                        <br/>
-                        Username :
-                        <span
-                            style="
-                  font-weight: 500;
-                  font-size: 18px;
-                  color: rgba(94, 99, 242, 1);
-                ">
-                            {{ $user->email }}
-                        </span>
-                        <br />
-                        Temporary Password : {{$user->temp_pwd}}
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <span style=" font-style: italic;">Note: Upon successful registration, your temporary password will expire automatically. </span>
+                        Please wait for Interview Date Confirmation.
+                        @php
+                        if(@$user->position_documents){
+                        @endphp
 
                         
+                        <br />
+                        Please bring the following documents to your Interview or you can email them to 
+                        <br>
+                        <span
+                            style="
+                  font-weight: 250;
+                  font-size: 15px;
+                  color: rgba(94, 99, 242, 1);
+                ">
+                        hr@trendhhs.com
+                        </span>
+                        <br>
+                        <br>
+                         
+                <span
+                        style="
+              font-weight: 600;
+              font-size: 18px;
+              color: rgba(94, 99, 242, 1);
+            ">
+                    Documents
+                    </span>
+
+                    <ul>
+                        @foreach ($user->position_documents as $document)
+                        <li>
+                            {{@$document['name']}}
+                        </li>
+                        @endforeach
+                    </ul>    
                         
-                    </p>
+                @php
+                }
+                @endphp
                 </div>
                 <div style="width: 570px;margin: 48px 0 0 0;font: 16px Poppins, sans-serif;">
                     <p>

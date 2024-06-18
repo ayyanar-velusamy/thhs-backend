@@ -1106,3 +1106,6 @@ span.error {
   color: white !important;
 }
  
+.deleted_files tr{
+  cursor: pointer;
+}

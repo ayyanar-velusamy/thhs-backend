@@ -85,7 +85,7 @@
                             {{ $staff->address }}<br>{{ $staff->state, $staff->city }}
                         </td>
                         <td>{{ $staff->zip }}</td>
-                        <td><span class="tag {{ $staff->staff_status_id == 6 ? 'deactivate' : 'active' }}">{{ $staff->staff_status }}</span></td>
+                        <td><span class="tag {{ $staff->staff_status_id == 5 ? 'deactivate' : 'active' }}">{{ $staff->staff_status }}</span></td>
                         <td>{{ $staff->role }}</td>
                         <td>{{ $staff->organization }}</td>
                         <td class="icons" style="padding-top:20px">

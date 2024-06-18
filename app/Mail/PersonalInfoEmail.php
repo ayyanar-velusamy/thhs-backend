@@ -29,24 +29,10 @@ class PersonalInfoEmail extends Mailable
      */
     public function build()
     {
-        $subject = 'THHS - Registered Successfully';
+        $subject = 'THHS - Application Submitted Successfully';
         return $this->view('email.personal_info')
-            ->with(['user' => $this->user, 'link' => $this->generateUrl()])
+            ->with(['user' => $this->user])
             ->subject($subject);
     }
-
-    private function generateToken()
-    {
-        //Generate a new reset password token
-        $token = app('auth.password.broker')->createToken($this->user);
-        User::where(['email' => $this->user->email])->update(['remember_token' => $token]);
-        return $token;
-
-    }
-
-    private function generateUrl()
-    {
-        return url('/verify/email/' . $this->generateToken());
-    }
-
+    
 }
