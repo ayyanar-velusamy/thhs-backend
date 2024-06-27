@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "stimulsoft/reports-php": "^2024.3",
         "symfony/http-client": "^5.4",
         "symfony/mailgun-mailer": "^5.4",
         "vinkla/hashids": "^9.1"

@@ -32,7 +32,14 @@ Route::get('/thhs/login', function () {
 });
 
 
+Route::get('/viewer', function () { 
+    return view('viewer');
+});
+Route::get('/designer', function () {
+    return view('designer');
+});
 
+Route::any('/handler', [HandlerController::class, 'process']);
 
 Auth::routes();
 Route::get('/verify/email/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'verifyEmail']); 
