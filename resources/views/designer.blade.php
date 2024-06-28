@@ -19,7 +19,7 @@
     <script type="text/javascript">
         <?php
         $handler = new \Stimulsoft\StiHandler();
-        $handler->options->url = '/handler';
+        $handler->options->url = 'handler';
         //$handler->license->setKey('6vJhGtLLLz2GNviWmUTrhSqnO...');
         //$handler->license->setFile('license.key');
         $handler->renderHtml();
@@ -39,7 +39,7 @@
 
         /** https://www.stimulsoft.com/en/documentation/online/programming-manual/index.html?reports_and_dashboards_for_php_web_designer_creating_editing_report.htm */
         $report = new \Stimulsoft\Report\StiReport();
-        $report->loadFile('reports/SimpleList.mrt');
+        $report->loadFile('public/reports/SimpleList.mrt');
         $report->onBeforeRender = "onBeforeRender";
 
         /*$var1 = new \Stimulsoft\Report\StiVariable('var1', \Stimulsoft\Report\StiVariableType::String, "abc");

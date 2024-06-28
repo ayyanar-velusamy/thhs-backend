@@ -14,6 +14,7 @@ class HandlerController extends BaseController
 {
     public function process()
     {
+		
         $handler = new StiHandler();
         $handler->onPrepareVariables = array($this, 'onPrepareVariables');
         $handler->onBeginProcessData = array($this, 'onBeginProcessData');
@@ -159,7 +160,7 @@ class HandlerController extends BaseController
             $reportFileName .= '.mrt';
 
         // For example, you can save a report to the 'reports' folder on the server-side.
-        file_put_contents('reports/' . $reportFileName, $args->reportJson);
+        file_put_contents('public/reports/' . $reportFileName, $args->reportJson);
 
         //return StiResult::success();
         return StiResult::success('Report file saved successfully as ' . $args->fileName);

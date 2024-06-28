@@ -39,7 +39,7 @@ Route::get('/designer', function () {
     return view('designer');
 });
 
-Route::any('/handler', [HandlerController::class, 'process']);
+Route::any('/handler', [App\Http\Controllers\HandlerController::class, 'process']);
 
 Auth::routes();
 Route::get('/verify/email/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'verifyEmail']); 
