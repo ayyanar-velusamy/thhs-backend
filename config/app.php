@@ -167,7 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+		Stimulsoft\Laravel\StiServiceProvider::class,
         /*
          * Application Service Providers...
          */

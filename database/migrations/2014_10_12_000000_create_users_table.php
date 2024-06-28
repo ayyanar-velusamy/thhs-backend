@@ -68,6 +68,7 @@ class CreateUsersTable extends Migration
             $table->integer('employment_type')->nullable();  
             $table->date('account_expire_date')->nullable(); 
             $table->date('password_expire_date')->nullable(); 
+            $table->integer('created_by')->nullable();  
             $table->rememberToken();
             $table->timestamps();
         });

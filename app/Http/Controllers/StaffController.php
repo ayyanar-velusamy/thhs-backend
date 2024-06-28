@@ -101,6 +101,7 @@ class StaffController extends BaseController
         $user->corporation_name = $request->input('corporation_name');   
         $user->organization = $request->input('organization');    
         $user->tax_id = $request->input('tax_id');  
+        $user->created_by = $request->user()->id;
         if($request->input('signed')){
             $user->signature_path = $this->save_signature($request);
         }
@@ -225,6 +226,7 @@ class StaffController extends BaseController
         // $user->email = $request->input('email');  
         $user->position = $request->input('position');  
         $user->tax_id = $request->input('tax_id');  
+        $user->created_by = $request->user()->id;
         // $user->signature_path = $this->save_signature($request);
         
         // pr($request->all(),1);
