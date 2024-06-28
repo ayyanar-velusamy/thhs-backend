@@ -76,7 +76,7 @@
                                     class="accordion-collapse collapse show" aria-labelledby="headingTwo">
                                     <div class="accordion-body">
 
-                                        <table class="w-100">hr
+                                        <table class="w-100">
                                             <tbody class="w-100">
                                                 @foreach ($data as $chart)
                                                     <tr>
