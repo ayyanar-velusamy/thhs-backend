@@ -499,6 +499,30 @@ button:focus {
   height: 24px;
 }
 
+.icon-folder {
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='22' height='16' viewBox='0 0 22 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 16C1.45 16 0.979167 15.8042 0.5875 15.4125C0.195833 15.0208 0 14.55 0 14V2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0H8L10 2H18C18.55 2 19.0208 2.19583 19.4125 2.5875C19.8042 2.97917 20 3.45 20 4H9.175L7.175 2H2V14L4.4 6H21.5L18.925 14.575C18.7917 15.0083 18.5458 15.3542 18.1875 15.6125C17.8292 15.8708 17.4333 16 17 16H2ZM4.1 14H17L18.8 8H5.9L4.1 14Z' fill='%23373CCB'/%3E%3C/svg%3E%0A");
+  width: 22px;
+  height: 16px;
+}
+
+.icon-caret-down {
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cmask id='mask0_255_2952' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23D9D9D9'/%3E%3C/mask%3E%3Cg mask='url(%23mask0_255_2952)'%3E%3Cpath d='M12 15.4L6 9.4L7.4 8L12 12.6L16.6 8L18 9.4L12 15.4Z' fill='%231C1B1F'/%3E%3C/g%3E%3C/svg%3E%0A");
+  width: 24px;
+  height: 24px;
+}
+
+.icon-file {
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cmask id='mask0_255_2910' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23D9D9D9'/%3E%3C/mask%3E%3Cg mask='url(%23mask0_255_2910)'%3E%3Cpath d='M7 17H14V15H7V17ZM7 13H17V11H7V13ZM7 9H17V7H7V9ZM5 21C4.45 21 3.97917 20.8042 3.5875 20.4125C3.19583 20.0208 3 19.55 3 19V5C3 4.45 3.19583 3.97917 3.5875 3.5875C3.97917 3.19583 4.45 3 5 3H19C19.55 3 20.0208 3.19583 20.4125 3.5875C20.8042 3.97917 21 4.45 21 5V19C21 19.55 20.8042 20.0208 20.4125 20.4125C20.0208 20.8042 19.55 21 19 21H5ZM5 19H19V5H5V19Z' fill='%231C1B1F'/%3E%3C/g%3E%3C/svg%3E%0A");
+  width: 24px;
+  height: 24px;
+}
+
+.icon-sidebar-folder {
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='56' height='45' viewBox='0 0 56 45' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d_255_2844)'%3E%3Cpath d='M44.1926 36.7314H4L11.8073 10.9019H52L44.1926 36.7314Z' fill='white'/%3E%3Cpath d='M10.0931 8.84843H44.1927V4.89321H24.111L22.0931 0.625488H4V29.0264L10.0931 8.84843Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_d_255_2844' x='0' y='0.625488' width='56' height='44.106' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='4'/%3E%3CfeGaussianBlur stdDeviation='2'/%3E%3CfeComposite in2='hardAlpha' operator='out'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_255_2844'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow_255_2844' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E%0A");
+  width: 56px;
+  height: 45px;
+}
+
 .tag {
   padding: 5px 15px;
   border-radius: 9px;

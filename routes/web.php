@@ -8,6 +8,7 @@ use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\ReportController;
 
 
 
@@ -38,6 +39,7 @@ Route::get('/viewer', function () {
 Route::get('/designer', function () {
     return view('designer');
 });
+// Route::get('/designer', [App\Http\Controllers\ReportController::class, 'designer'])->name('designer');
 
 Route::any('/handler', [App\Http\Controllers\HandlerController::class, 'process']);
 
@@ -130,6 +132,15 @@ Route::group(['middleware'=>'auth'], function(){
      Route::post('/thhs/app/document/delete_document', [App\Http\Controllers\DocumentController::class, 'delete_document'])->name('document.delete_document'); 
      Route::get('/thhs/app/document/get_deleted_documents', [App\Http\Controllers\DocumentController::class, 'get_deleted_documents'])->name('document.get_deleted_documents'); 
      Route::get('/thhs/app/document/recover_deleted_document/{id}', [App\Http\Controllers\DocumentController::class, 'recover_deleted_document'])->name('document.recover_deleted_document'); 
+
+       /*Report Routing */
+       Route::get('/thhs/app/reports', [App\Http\Controllers\ReportController::class, 'index'])->name('reports');
+       
+    //    Route::post('/thhs/app/charts/save_chart',[App\Http\Controllers\ChartController::class, 'save_chart'])->name('save_chart');
+    //    Route::get('/thhs/app/charts/get_chart/{id}',[App\Http\Controllers\ChartController::class, 'get_chart'])->name('get_chart');  
+    //    Route::get('/thhs/app/charts/delete_chart/{id}',[App\Http\Controllers\ChartController::class, 'delete_chart'])->name('delete_chart');  
+    //    Route::post('/thhs/app/charts/save_chart_category',[App\Http\Controllers\ChartController::class, 'save_chart_category'])->name('save_chart_category');
+  
 });
 	
 

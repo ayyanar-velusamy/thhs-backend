@@ -44,6 +44,14 @@
     @php
       }
     @endphp
+
+    @php
+    if(in_array("reports",request()->segments())){
+    @endphp
+    <link href="{{ asset('css/report.css') }}" rel="stylesheet" />
+    @php
+    }
+    @endphp
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -139,6 +147,13 @@
                                 <p>User Manager</p>
                             </a>
                         @php 
+                        }elseif(request()->routeIs(['reports'])){     
+                        @endphp 
+                            <a href="{{ route('reports') }}" class="{{ request()->routeIs(['reports','reports.*']) ? 'active' : '' }}" aria-current="true">
+                                <i class="icon icon-sidebar-folder"></i>
+                                <p>Reports</p>
+                            </a>
+                        @php 
                         }else{     
                         @endphp
                          
@@ -154,6 +169,7 @@
                         @php
                         }
                         @endphp
+                         
                     </div>
                 </nav>
             </div>
@@ -244,9 +260,11 @@
                                 <p class="mt-1">Setup</p>
                                 </a>
                             </div>
-                            <div class="dashboard-tabs yellow">
-                                <i class="icon icon-file-logo"></i>
-                                <p class="mt-1">EHR</p>
+                            <div class="dashboard-tabs yellow {{ request()->routeIs(['reports','reports.*']) ? 'active' : '' }}">                              
+                                <a href="{{ route('reports') }}" class="{{ request()->routeIs(['reports','reports.*']) ? 'active' : '' }}" aria-current="true">
+                                    <i class="icon icon-file-logo"></i>
+                                    <p class="mt-1">EHR</p>
+                                </a>
                             </div>
                             <div class="dashboard-tabs purple {{ request()->routeIs(['roles','roles.*', 'users', 'users.*']) ? 'active' : '' }}">
                                 <a href="{{ route('users') }}" class="{{ request()->routeIs(['roles','roles.*', 'users', 'users.*']) ? 'active' : '' }}" aria-current="true">

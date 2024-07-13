@@ -1,0 +1,89 @@
+.hrdetail-wrapper {
+  padding: 50px 30px;
+  border-radius: 8px;
+}
+
+.hrdetail-wrapper .hrdetail-header {
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.reports-heading {
+  padding: 12px 35px;
+  font-weight: 500;
+}
+
+.accordion > * + * {
+  margin-top: 24px;
+}
+
+.accordion .accordion-body {
+  padding-left: 50px;
+  padding-right: 0;
+}
+
+.accordion .accordion-body p {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.accordion-item:first-of-type {
+  border-radius: 0px !important;
+}
+.accordion .accordion-item {
+  border: none !important;
+}
+
+.accordion-button::after {
+  display: none;
+}
+
+
+ .table-heading-data {
+  border-radius: 10px;
+  border: 1px solid rgba(245, 245, 245, 1);
+  background-color: #f5f5f5;
+  padding: 8px;
+  gap: 20px;
+  color: #000;
+}
+ .table-heading-data h5 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: auto 0;
+}
+
+
+.accordion-button {
+  color: #000;
+  font-weight: 300;
+  background-color: #f5f5f5 !important;
+  border: none !important;
+  box-shadow: unset !important;
+}
+
+
+.accordion-button:not(.collapsed) {
+  color: #000 !important;
+  font-weight: 600;
+}
+
+table tbody tr td {
+  font-weight: 300 !important;
+  font-size: 16px !important;
+}
+
+.attachment-wrapper h3 {
+  color: #5e63f2 !important;
+  font-size: 20px !important;
+}
+
+.deleted-files-wrapper {
+  max-height: 225px;
+  overflow-x: scroll;
+}
+/* 
+.deleted-files-wrapper {
+  display: none;
+} */
