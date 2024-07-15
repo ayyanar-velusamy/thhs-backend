@@ -1,16 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Http\Requests\SaveChartRequest;
-use App\Http\Requests\SaveChartCategoryRequest; 
+namespace App\Http\Controllers; 
+ 
+use App\Http\Requests\SaveReportRequest; 
 use App\Models\Chart;
-use App\Models\ChartCategory;
-use App\Models\ChartPosition;
-use App\Models\Document;
-use App\Models\Position;
-use App\Models\Handling; 
-use App\Models\Interval;
+use App\Models\Report;
+use App\Models\ChartCategory; 
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -34,35 +29,28 @@ class ReportController extends BaseController
     public function index(Request $request)
     {
 
-        $chart_list = Chart::where(['status' => 1])->select('*')->orderBy('id', 'desc')->get();
-        $intervals = Interval::all();
-        $handlings = Handling::all(); 
-        $categories = ChartCategory::all();        
-        $positions = Position::all();        
-
-        foreach ($chart_list as $chart) {
-            $valid_interval = Interval::where("id", $chart->valid_interval)->first()->name;
-            @$renewal_interval = @Interval::where("id", $chart->renewal_interval)->first()->name;
-            @$provide_interval = @Interval::where("id", $chart->provide_interval)->first()->name;
-            $chart_handling = Handling::where("id", $chart->chart_handling)->first()->name;
-            $category = ChartCategory::where("id", $chart->group)->first()->name; 
-
-            $chart->valid_interval = $valid_interval;
-            $chart->renewal_interval = @$renewal_interval;
-            $chart->provide_interval = @$provide_interval;
-            $chart->chart_handling = $chart_handling;
-            $chart->category = $category;
-          
+      
+        $categories = ChartCategory::all();  
+        $report = new Report(); 
+        foreach ($categories as $category) {
+            $reports = @Report::where("category_id", $category->id)->get();  
+            foreach ($reports as $report) {
+                $report->report_exist = $this->reportExist($report->report_id);
+            }
+           
+            $category->reports = $reports;  
+           
         }
-        return view('reports/report', compact("chart_list", "intervals", "handlings", "categories", "positions"));
+       
+      
+        return view('reports/report', compact("categories"));
     }
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
-
+     */ 
     
  
     public function designer(Request $request)
@@ -70,9 +58,69 @@ class ReportController extends BaseController
         // $chart = Chart::find($id);
         // $chart->status = 2; 
         $report_data['id'] = $request->query('reportId');
+        $report_data['report_exist'] = $this->reportExist($report_data['id']);
  
         return view('designer', compact("report_data"));
      
     }  
+
+    public function viewer(Request $request)
+    {
+        // $chart = Chart::find($id);
+        // $chart->status = 2; 
+        $report_data['id'] = $request->query('reportId');
+        $report_data['report_exist'] = $this->reportExist($report_data['id']);
+ 
+        return view('viewer', compact("report_data"));
+     
+    }  
+
+    public function save_report(SaveReportRequest $request)
+    { 
+        $report = new Report(); 
+
+        $report_id = $request->input('id');
+        if ( $report_id) {
+            $report = Report::find( $report_id);
+        } 
+        $report->name = $request->input('name'); 
+        $report->report_id =  uniqid(); 
+        $report->category_id = $request->input('category');  
+        $report->created_by = $request->user()->id;
+        if ($report->save()) {
+            $this->response['status'] = true;
+            $this->response['message'] = "Report saved successfully";
+        } else {
+            $this->response['status'] = false;
+            $this->response['message'] = "Report saving failed";
+        }
+        return $this->response();
+    } 
+
+    public function get_report(Request $request, $id)
+    {
+        $data = $this->getReportInfoData($id);
+        // pr($id,1);
+        $this->response = compact("data");
+        return $this->response();
+    }
+
+    public function getReportInfoData($id)
+    {
+        $report = Report::findOrFail($id);   
+        // pr($chart,1);
+        return ["report" => $report];
+    }
+
+    public function reportExist($id)
+    {
+        if(file_exists(public_path('reports/' . $id . '.mrt'))){
+            return true;
+        }
+        return false;
+      
+    }
+
+   
    
 }

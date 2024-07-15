@@ -33,13 +33,14 @@ Route::get('/thhs/login', function () {
 });
 
 
-Route::get('/viewer', function () { 
-    return view('viewer');
-});
-Route::get('/designer', function () {
-    return view('designer');
-});
-// Route::get('/designer', [App\Http\Controllers\ReportController::class, 'designer'])->name('designer');
+// Route::get('/viewer', function () { 
+//     return view('viewer');
+// });
+// Route::get('/designer', function () {
+//     return view('designer');
+// });
+Route::get('/designer', [App\Http\Controllers\ReportController::class, 'designer'])->name('designer');
+Route::get('/viewer', [App\Http\Controllers\ReportController::class, 'viewer'])->name('viewer');
 
 Route::any('/handler', [App\Http\Controllers\HandlerController::class, 'process']);
 
@@ -134,10 +135,9 @@ Route::group(['middleware'=>'auth'], function(){
      Route::get('/thhs/app/document/recover_deleted_document/{id}', [App\Http\Controllers\DocumentController::class, 'recover_deleted_document'])->name('document.recover_deleted_document'); 
 
        /*Report Routing */
-       Route::get('/thhs/app/reports', [App\Http\Controllers\ReportController::class, 'index'])->name('reports');
-       
-    //    Route::post('/thhs/app/charts/save_chart',[App\Http\Controllers\ChartController::class, 'save_chart'])->name('save_chart');
-    //    Route::get('/thhs/app/charts/get_chart/{id}',[App\Http\Controllers\ChartController::class, 'get_chart'])->name('get_chart');  
+       Route::get('/thhs/app/reports', [App\Http\Controllers\ReportController::class, 'index'])->name('reports'); 
+       Route::post('/thhs/app/reports/save_report',[App\Http\Controllers\ReportController::class, 'save_report'])->name('save_report');
+       Route::get('/thhs/app/reports/get_report/{id}',[App\Http\Controllers\ReportController::class, 'get_report'])->name('get_report');  
     //    Route::get('/thhs/app/charts/delete_chart/{id}',[App\Http\Controllers\ChartController::class, 'delete_chart'])->name('delete_chart');  
     //    Route::post('/thhs/app/charts/save_chart_category',[App\Http\Controllers\ChartController::class, 'save_chart_category'])->name('save_chart_category');
   

@@ -9,12 +9,15 @@ use Stimulsoft\StiHandler;
 use Stimulsoft\StiReportEventArgs;
 use Stimulsoft\StiResult;
 use Stimulsoft\StiVariablesEventArgs;
+use Illuminate\Http\Request;
 
 class HandlerController extends BaseController
 {
-    public function process()
+    
+    public $reportId;
+    public function process(Request $request)
     {
-		
+        $this->reportId = $request->query('reportId');
         $handler = new StiHandler();
         $handler->onPrepareVariables = array($this, 'onPrepareVariables');
         $handler->onBeginProcessData = array($this, 'onBeginProcessData');
@@ -153,14 +156,18 @@ class HandlerController extends BaseController
     }
 
     public function onSaveReport(StiReportEventArgs $args): StiResult
-    {
+    { 
+       
         // Getting the correct file name of the report template.
         $reportFileName = strlen($args->fileName) > 0 ? $args->fileName : 'Report.mrt';
         if (strlen($reportFileName) < 5 || substr($reportFileName, -4) !== '.mrt')
             $reportFileName .= '.mrt';
 
+       
+
         // For example, you can save a report to the 'reports' folder on the server-side.
-        file_put_contents('public/reports/' . $reportFileName, $args->reportJson);
+        // file_put_contents('public/reports/' . $reportFileName, $args->reportJson);
+        file_put_contents('public/reports/' . $this->reportId.'.mrt', $args->reportJson);
 
         //return StiResult::success();
         return StiResult::success('Report file saved successfully as ' . $args->fileName);

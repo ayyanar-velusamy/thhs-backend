@@ -18,7 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->integer('user_id'); 
             $table->integer('chart_id'); 
             $table->date('issue_date')->nullable(); 
-            $table->date('renewal_date')->nullable();; 
+            $table->date('renewal_date')->nullable();
             $table->string('document_path'); 
             $table->integer('is_verified')->default(0); 
             $table->integer('is_deleted')->default(0); 

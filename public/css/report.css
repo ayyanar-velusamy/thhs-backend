@@ -83,6 +83,20 @@ table tbody tr td {
   max-height: 225px;
   overflow-x: scroll;
 }
+
+.accordion .accordion-body .file-data {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #cfcfcf;
+  margin-bottom: 8px;
+}
+.accordion .accordion-body .file-data .file{
+  width: 80%;
+  
+}
+#report_path{
+  display: none;
+}
 /* 
 .deleted-files-wrapper {
   display: none;

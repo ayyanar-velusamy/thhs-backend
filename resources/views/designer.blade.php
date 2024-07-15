@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Stimulsoft Reports.PHP - Designer</title>
     <style>
-        html, body {
+        html,
+        body {
             font-family: sans-serif;
         }
     </style>
@@ -22,37 +24,43 @@
         $handler->options->url = 'handler';
         //$handler->license->setKey('6vJhGtLLLz2GNviWmUTrhSqnO...');
         //$handler->license->setFile('license.key');
+        $handler->options->passQueryParameters = true;
+        
         $handler->renderHtml();
-
+        
         /** https://www.stimulsoft.com/en/documentation/online/programming-manual/index.html?reports_and_dashboards_for_php_web_designer_settings.htm */
         $options = new \Stimulsoft\Designer\StiDesignerOptions();
         $options->appearance->fullScreenMode = true;
-
+        
         /** https://www.stimulsoft.com/en/documentation/online/programming-manual/index.html?reports_and_dashboards_for_php_web_designer_deployment.htm */
         $designer = new \Stimulsoft\Designer\StiDesigner($options);
-
+        
         /** https://www.stimulsoft.com/en/documentation/online/programming-manual/index.html?reports_and_dashboards_for_php_engine_connecting_sql_data.htm */
         $designer->onBeginProcessData = true;
-
+        
         /** https://www.stimulsoft.com/en/documentation/online/programming-manual/index.html?reports_and_dashboards_for_php_web_designer_saving_report.htm */
         $designer->onSaveReport = true;
-
+        
         /** https://www.stimulsoft.com/en/documentation/online/programming-manual/index.html?reports_and_dashboards_for_php_web_designer_creating_editing_report.htm */
         $report = new \Stimulsoft\Report\StiReport();
-        $report->loadFile('public/reports/SimpleList.mrt');
-        $report->onBeforeRender = "onBeforeRender";
-
+        if ($report_data['report_exist']) { 
+            $report->loadFile('public/reports/' . $report_data['id'] . '.mrt');
+        }
+        
+        $report->onBeforeRender = 'onBeforeRender';
+        // $report->reportdescription=
         /*$var1 = new \Stimulsoft\Report\StiVariable('var1', \Stimulsoft\Report\StiVariableType::String, "abc");
         $report->dictionary->variables[] = $var1;
 
         $var2 = new \Stimulsoft\Report\StiVariable('var2', \Stimulsoft\Report\StiVariableType::Decimal, 4.34);
         $report->dictionary->variables[] = $var2;*/
-
+        
         $designer->report = $report;
         ?>
 
         function onBeforeRender(args) {
-            let var1 = new Stimulsoft.Report.Dictionary.StiVariable('', 'var1', 'var1', '', Stimulsoft.System.Decimal, '4.34');
+            let var1 = new Stimulsoft.Report.Dictionary.StiVariable('', 'var1', 'var1', '', Stimulsoft.System.Decimal,
+                '4.34');
             args.report.dictionary.variables.add(var1);
         }
 
@@ -64,7 +72,9 @@
         }
     </script>
 </head>
+
 <body onload="onLoad();">
-<div id="designerContent"></div>
+    <div id="designerContent"></div>
 </body>
+
 </html>
