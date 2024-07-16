@@ -184,7 +184,7 @@ function openDocument(chart,e) {
 	
 		// $('#delete_document_btn').attr("data-id",chart.document.id);
 		$('#document_text').text(""); 
-		$('#document').attr('src', `/thhs/viewer?reportId=${chart.report.report_id}&userId=${chart.staff_id}`) 
+		$('#document').attr('src', `/thhs-backend/viewer?reportId=${chart.report.report_id}&userId=${chart.staff_id}`) 
 		// $('#delete_document_btn').attr("data-id",chart.document.id);
 		
 	}else{

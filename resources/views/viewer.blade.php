@@ -73,11 +73,14 @@
             // args.val
             var report = args.report;  
             var user = report.dictionary.variables.getByName("userId");
-            if(user){
-                user.userId = '2';
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const userId = urlParams.get('userId')
+            if(user && userId){
+                user.value = userId;
             }
-            console.log('args report', variableString)
-            variableString.value = "Text value";
+          
+            // variableString.value = "Text value";
             // args.report.dictionary.variables.list[0].val = '2';
 
 
