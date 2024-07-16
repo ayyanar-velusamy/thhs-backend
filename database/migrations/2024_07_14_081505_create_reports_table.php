@@ -17,9 +17,11 @@ class CreateReportsTable extends Migration
             $table->id(); 
             $table->unsignedBigInteger("category_id");
             $table->foreign('category_id')->references('id')->on('chart_categories');
+            $table->unsignedBigInteger("chart_id");
+            $table->foreign('chart_id')->references('id')->on('charts');
             $table->string('name'); 
             $table->string('path')->nullable(); 
-            $table->string('report_id')->nullable(); 
+            $table->string('report_id')->nullable();  
             $table->integer('status')->default(1); 
             $table->integer('created_by')->nullable()->default('1');   
             $table->timestamps();

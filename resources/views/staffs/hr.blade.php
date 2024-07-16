@@ -9,7 +9,7 @@
                 <i class="icon icon-send-email me-3"></i>Send Reminder
                 Email
               </button> -->
-
+              
                         <button class="button" onclick="location.reload()">Refresh All Forms</button>
                         <div>
                             <span class="me-3">Generated :</span>

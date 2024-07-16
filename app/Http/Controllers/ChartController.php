@@ -88,7 +88,7 @@ class ChartController extends BaseController
         // pr($request->all(),1);
         if ($chart->save()) { 
             if($chart->chart_handling == "2"){
-                $this->save_report($request);
+                $this->save_report($request, $chart);
             }
             if ( $chart_id) {
                 $chart->positions()->sync($request->input('positions'));
@@ -104,7 +104,7 @@ class ChartController extends BaseController
         return $this->response();
     }
 
-    function save_report($request){
+    function save_report($request, $chart){
         $report = new Report(); 
 
         // $report_id = $request->input('id');
@@ -112,6 +112,7 @@ class ChartController extends BaseController
         //     $report = Report::find( $report_id);
         // } 
         $report->name = $request->input('name'); 
+        $report->chart_id =  $chart->id; 
         $report->report_id =  uniqid(); 
         $report->category_id = $request->input('group');  
         $report->created_by = $request->user()->id;

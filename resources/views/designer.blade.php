@@ -71,7 +71,7 @@
         ?>
        
         function onBeforeRender(args) { 
-            args.report.dictionary.variables.list[1].val = '1'; 
+            // args.report.dictionary.variables.list[1].val = '1'; 
         }
 
         

@@ -167,7 +167,7 @@ function openDocument(chart,e) {
 	$('#document').attr('src',"");
 	$('#chart_id').val(chart.id)
 	
-	console.log(chart.document); 
+	console.log('chart', chart); 
 	
 	sessionStorage.setItem("open_chart", chart.id)
 	
@@ -176,8 +176,16 @@ function openDocument(chart,e) {
 	
 		$('#delete_document_btn').attr("data-id",chart.document.id);
 		$('#document_text').text("");
-		$('#document').attr('src', PROJECT_URL+`/${chart.document.document_path}`)
+		$('#document').attr('src', PROJECT_URL+`/${chart.document.document_path}`) 
 		$('#delete_document_btn').attr("data-id",chart.document.id);
+		
+	}else if(chart.report){
+		// $('#hidden_user_id').val(chart.document.user_id)
+	
+		// $('#delete_document_btn').attr("data-id",chart.document.id);
+		$('#document_text').text(""); 
+		$('#document').attr('src', `/thhs/viewer?reportId=${chart.report.report_id}&userId=${chart.staff_id}`) 
+		// $('#delete_document_btn').attr("data-id",chart.document.id);
 		
 	}else{
 		$('#document_text').text("No Document");
@@ -186,7 +194,8 @@ function openDocument(chart,e) {
 
 	// embed.setAttribute('src', embedUrl);
 
-}
+} 
+ 
 
 
 function openEditDocumentDetail(id,issue_date,is_verified){

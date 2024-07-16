@@ -14,6 +14,7 @@ use App\Models\Chart;
 use App\Models\Interval; 
 use App\Models\Handling; 
 use App\Models\ChartCategory; 
+use App\Models\Report; 
 use App\Models\Document;
 use Carbon\Carbon;
 
@@ -43,6 +44,7 @@ class DocumentController extends BaseController
             @$provide_interval = @Interval::where("id", $chart->provide_interval)->first()->name;
             $chart_handling = Handling::where("id", $chart->chart_handling)->first()->name;
             $category = ChartCategory::where("id", $chart->group)->first()->name; 
+            $report = Report::where("chart_id", $chart->id)->first(); 
             $document = @Document::where(["user_id"=>$id,"chart_id" => $chart->id,"is_deleted" => "0"]);
             
             
@@ -55,6 +57,8 @@ class DocumentController extends BaseController
             $chart->chart_handling = $chart_handling;
             $chart->category = $category;  
             $chart->document = $document;  
+            $chart->report = $report;  
+            $chart->staff_id = $id;  
             $arr[$chart->category][$key] = $chart->toArray(); 
         }
         $data->category_chart = $arr;

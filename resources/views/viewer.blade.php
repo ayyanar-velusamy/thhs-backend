@@ -71,7 +71,14 @@
             // var2.value = 2
             // var2.allowUseAsSqlParameter = true
             // args.val
-            // args.report.dictionary.variables.list[1].val = '1';
+            var report = args.report;  
+            var user = report.dictionary.variables.getByName("userId");
+            if(user){
+                user.userId = '2';
+            }
+            console.log('args report', variableString)
+            variableString.value = "Text value";
+            // args.report.dictionary.variables.list[0].val = '2';
 
 
             // args.report.dictionary.variables.add(var2);
