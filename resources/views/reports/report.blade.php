@@ -4,7 +4,7 @@
         <div>
             <h5>Reports</h5>
         </div>
-        <div class="select-wrapper d-flex gap-4">
+        <!-- <div class="select-wrapper d-flex gap-4">
             <div class="add-staff-field d-flex align-items-center">
                 <i class="icon icon-plus"></i>
                 <p type="button" onclick="openPopup()">
@@ -12,7 +12,7 @@
                 </p>
 
             </div>
-        </div>
+        </div> -->
         {{-- <div class="select-wrapper d-flex gap-4">
             <div class="status-wrapper d-flex justify-content-center align-items-center">
                 <label class="me-3">Sort by: </label>
@@ -83,7 +83,7 @@
 
             <div class="col-lg-8">
                 <div class="pdf-view-wrapper mt-4">
-                    <iframe src="/thhs-backend/designer" width="100%" height="800px" id="report_path"></iframe>
+                    <iframe src="/thhs/designer" width="100%" height="800px" id="report_path"></iframe>
 
                 </div>
             </div>

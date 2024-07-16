@@ -34,6 +34,7 @@ class ReportController extends BaseController
         $report = new Report(); 
         foreach ($categories as $category) {
             $reports = @Report::where("category_id", $category->id)->get();  
+            // pr($reports,1);
             foreach ($reports as $report) {
                 $report->report_exist = $this->reportExist($report->report_id);
             }

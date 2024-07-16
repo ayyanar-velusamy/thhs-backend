@@ -11,6 +11,7 @@ use App\Models\Document;
 use App\Models\Position;
 use App\Models\Handling; 
 use App\Models\Interval;
+use App\Models\Report;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -81,11 +82,14 @@ class ChartController extends BaseController
         $chart->renewal_number = $request->input('renewal_number');
         $chart->provide_interval = $request->input('provide_interval');
         $chart->provide_number = $request->input('provide_number');
-        $chart->report = $request->input('report');
+        // $chart->report = $request->input('report');
         $chart->chart_handling = $request->input('chart_handling'); 
         $chart->created_by = $request->user()->id;
         // pr($request->all(),1);
-        if ($chart->save()) {  
+        if ($chart->save()) { 
+            if($chart->chart_handling == "2"){
+                $this->save_report($request);
+            }
             if ( $chart_id) {
                 $chart->positions()->sync($request->input('positions'));
             }else{
@@ -98,6 +102,28 @@ class ChartController extends BaseController
             $this->response['message'] = "Chart saving failed";
         }
         return $this->response();
+    }
+
+    function save_report($request){
+        $report = new Report(); 
+
+        // $report_id = $request->input('id');
+        // if ( $report_id) {
+        //     $report = Report::find( $report_id);
+        // } 
+        $report->name = $request->input('name'); 
+        $report->report_id =  uniqid(); 
+        $report->category_id = $request->input('group');  
+        $report->created_by = $request->user()->id;
+        if ($report->save()) {
+            $this->response['status'] = true;
+            $this->response['message'] = "Report saved successfully";
+        } else {
+            $this->response['status'] = false;
+            $this->response['message'] = "Report saving failed";
+        }
+        return $this->response();
+
     }
     public function get_chart(Request $request, $id)
     {
