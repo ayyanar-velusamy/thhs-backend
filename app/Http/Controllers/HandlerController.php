@@ -117,9 +117,11 @@ class HandlerController extends BaseController
 
     public function onEndExportReport(StiExportEventArgs $args): StiResult
     {
+       
         // Getting the file name with the extension.
         $reportName = $args->fileName . '.' . $args->fileExtension;
-
+        print_r($args->data);
+        exit;
         // By default, the exported file is saved to the 'reports' folder.
         // You can change this behavior if required.
         file_put_contents('reports/' . $reportName, base64_decode($args->data));

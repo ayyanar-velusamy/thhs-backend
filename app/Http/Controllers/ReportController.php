@@ -41,6 +41,21 @@ class ReportController extends BaseController
             $category->reports = $reports;  
            
         }
+
+        // $reportEx = new \Stimulsoft\Report\StiReport();
+       
+        // $reportEx->loadDocumentFile('public/reports/123.mrt'); 
+        // $reportEx->render();
+        // $dat =$reportEx->getHtml();
+        
+ 
+        // $reportEx->exportDocument(\Stimulsoft\StiExportFormat::Pdf);
+        
+        // $reportEx->renderHtml();
+    //    echo '<pre>';
+    //     print_r($reportEx);
+    //     exit;
+      
        
       
         return view('reports/report', compact("categories"));
@@ -117,10 +132,6 @@ class ReportController extends BaseController
         if(file_exists(public_path('reports/' . $id . '.mrt'))){
             return true;
         }
-        return false;
-      
-    }
-
-   
-   
+        return false; 
+    } 
 }
