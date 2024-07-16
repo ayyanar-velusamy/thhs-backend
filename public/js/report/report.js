@@ -118,7 +118,7 @@ function open_designer(report) {
 	// formTitle.text('Add new Chart'); 
 	$(`#report_path`).show();
 	// $(`#${formname}`).trigger("reset");
-	$('#report_path').attr('src', `/thhs-backend/designer?reportId=${report.report_id}`) 
+	$('#report_path').attr('src', `/thhs/designer?reportId=${report.report_id}`) 
 	 
 }
 function openFolder(reportFolder) {  
@@ -131,7 +131,7 @@ function open_viewer(report) {
 	// formTitle.text('Add new Chart'); 
 	$(`#report_path`).show();
 	// $(`#${formname}`).trigger("reset");
-	$('#report_path').attr('src', `/thhs-backend/viewer?reportId=${report.report_id}`) 
+	$('#report_path').attr('src', `/thhs/viewer?reportId=${report.report_id}`) 
 	 
 } 
 

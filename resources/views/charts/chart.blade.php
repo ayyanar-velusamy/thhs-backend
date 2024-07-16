@@ -232,7 +232,7 @@ if(is_admin()){
                     <div class="heading-wrapper d-flex justify-content-between">
                         <h5>Chart Property (For internal use)</h5>
                     </div>
-                    <div class="field-wrapper">
+                    <!-- <div class="field-wrapper">
                         <label for="report">Report :</label>
                         <div class="flex-field">
                             {{-- <select required class="select-control" name="report">
@@ -241,7 +241,7 @@ if(is_admin()){
                             </select> --}}
                             <input type="text" id="report" name="report" placeholder="Report Name" />
                         </div>
-                    </div>
+                    </div> -->
                     <div class="field-wrapper">
                         <label for="chart_handling">Chart Handling:<span class="mandate">*</span></label>
                         <div class="flex-field">
