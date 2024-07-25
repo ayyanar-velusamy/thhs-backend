@@ -18,6 +18,7 @@ class HandlerController extends BaseController
     public function process(Request $request)
     {
         $this->reportId = $request->query('reportId');
+       
         $handler = new StiHandler();
         $handler->onPrepareVariables = array($this, 'onPrepareVariables');
         $handler->onBeginProcessData = array($this, 'onBeginProcessData');
@@ -29,7 +30,7 @@ class HandlerController extends BaseController
         $handler->onCreateReport = array($this, 'onCreateReport');
         $handler->onSaveReport = array($this, 'onSaveReport');
         $handler->onSaveAsReport = array($this, 'onSaveAsReport');
-
+     
         $handler->process();
     }
 
@@ -120,8 +121,7 @@ class HandlerController extends BaseController
        
         // Getting the file name with the extension.
         $reportName = $args->fileName . '.' . $args->fileExtension;
-        print_r($args->data);
-        exit;
+        
         // By default, the exported file is saved to the 'reports' folder.
         // You can change this behavior if required.
         file_put_contents('reports/' . $reportName, base64_decode($args->data));

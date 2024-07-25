@@ -41,8 +41,8 @@
         // $viewer->onEndExportReport = true;
         
         /** https://www.stimulsoft.com/en/documentation/online/programming-manual/index.html?reports_and_dashboards_for_php_web_viewer_send_email.htm */
-        $viewer->onEmailReport = true;
-        
+        // $viewer->onEmailReport = true;
+        $viewer->onEndExportReport = true;
         /** https://www.stimulsoft.com/en/documentation/online/programming-manual/index.html?reports_and_dashboards_for_php_web_designer_creating_editing_report.htm */
         $report = new \Stimulsoft\Report\StiReport();
         
@@ -55,6 +55,7 @@
         $viewer->report = $report;
         // $report->exportDocument(\Stimulsoft\StiExportFormat::Pdf);
         // $report->renderHtml();
+        
         //print_r($report);
         ?>
 
@@ -70,20 +71,17 @@
             // var2.type = Stimulsoft.System.Int 
             // var2.value = 2
             // var2.allowUseAsSqlParameter = true
-            // args.val
-            var report = args.report;  
+            // args.val 
+            var report = args.report;
             var user = report.dictionary.variables.getByName("userId");
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const userId = urlParams.get('userId')
-            if(user && userId){
+            if (user && userId) {
                 user.value = userId;
             }
-          
             // variableString.value = "Text value";
-            // args.report.dictionary.variables.list[0].val = '2';
-
-
+            // args.report.dictionary.variables.list[0].val = '2'; 
             // args.report.dictionary.variables.add(var2);
         }
         // After loading the HTML page, display the visual part of the Viewer in the specified container.

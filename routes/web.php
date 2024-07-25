@@ -9,6 +9,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\DWTUploadController;
 
 
 
@@ -41,8 +42,14 @@ Route::get('/thhs/login', function () {
 // });
 Route::get('/designer', [App\Http\Controllers\ReportController::class, 'designer'])->name('designer');
 Route::get('/viewer', [App\Http\Controllers\ReportController::class, 'viewer'])->name('viewer');
+Route::get('/export', [App\Http\Controllers\ReportController::class, 'export'])->name('export');
 
 Route::any('/handler', [App\Http\Controllers\HandlerController::class, 'process']);
+
+//dynamsoft routes
+Route::get('/dwt_upload', 'App\Http\Controllers\DWTUploadController@page');
+Route::post('/dwt_upload/upload', [App\Http\Controllers\DWTUploadController::class, 'upload'])->name('dwtupload_upload'); 
+//dynamsoft routes
 
 Auth::routes();
 Route::get('/verify/email/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'verifyEmail']); 

@@ -41,23 +41,7 @@ class ReportController extends BaseController
            
             $category->reports = $reports;  
            
-        }
-
-        // $reportEx = new \Stimulsoft\Report\StiReport();
-       
-        // $reportEx->loadDocumentFile('public/reports/123.mrt'); 
-        // $reportEx->render();
-        // $dat =$reportEx->getHtml();
-        
- 
-        // $reportEx->exportDocument(\Stimulsoft\StiExportFormat::Pdf);
-        
-        // $reportEx->renderHtml();
-    //    echo '<pre>';
-    //     print_r($reportEx);
-    //     exit;
-      
-       
+        }  
       
         return view('reports/report', compact("categories"));
     }
@@ -70,9 +54,7 @@ class ReportController extends BaseController
     
  
     public function designer(Request $request)
-    {
-        // $chart = Chart::find($id);
-        // $chart->status = 2; 
+    { 
         $report_data['id'] = $request->query('reportId');
         $report_data['report_exist'] = $this->reportExist($report_data['id']);
  
@@ -81,13 +63,18 @@ class ReportController extends BaseController
     }  
 
     public function viewer(Request $request)
-    {
-        // $chart = Chart::find($id);
-        // $chart->status = 2; 
+    { 
         $report_data['id'] = $request->query('reportId');
-        $report_data['report_exist'] = $this->reportExist($report_data['id']);
- 
+        $report_data['report_exist'] = $this->reportExist($report_data['id']); 
         return view('viewer', compact("report_data"));
+     
+    }  
+
+    public function export(Request $request)
+    { 
+        $report_data['id'] = $request->query('reportId'); 
+        $report_data['report_exist'] = $this->reportExist($report_data['id']); 
+        return view('export', compact("report_data"));
      
     }  
 
