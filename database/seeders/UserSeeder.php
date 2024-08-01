@@ -22,10 +22,10 @@ class UserSeeder extends Seeder
     public function run()
     {
         if (env('DB_MIGRATION', 0) == 1) {
-            // $this->add_admin();
-            // $this->staff_table_migration();
-            // $this->address_table_migration();
-            // $this->email_table_migration();
+            $this->add_admin();
+            $this->staff_table_migration();
+            $this->address_table_migration();
+            $this->email_table_migration();
             $this->phone_table_migration();
 
         } else {
