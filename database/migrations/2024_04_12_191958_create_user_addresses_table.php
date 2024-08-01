@@ -19,10 +19,10 @@ class CreateUserAddressesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('address_type');
             $table->text('address');
-            $table->string('country');
-            $table->string('state');
-            $table->string('city');
-            $table->string('zip');
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('zip')->nullable();
             $table->integer('is_default')->default(0)->nullable();
             $table->timestamps();
         });

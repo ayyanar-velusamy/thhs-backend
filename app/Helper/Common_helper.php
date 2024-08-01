@@ -527,6 +527,7 @@ function remove_mask($input){
 		$str = str_replace("-","",$input);
 		$str = str_replace("(","",$str);
 		$str = str_replace(")","",$str);
+		$str = str_replace(" ","",$str);
 		return $str;
 	}
 	return null;

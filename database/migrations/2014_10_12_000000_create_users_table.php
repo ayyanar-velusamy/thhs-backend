@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->date('birth_date')->nullable();
             $table->integer('gender')->default('1');
             $table->string('language_id')->nullable();
-            $table->integer('ssn')->nullable();
+            $table->string('ssn')->nullable();
             $table->string('employement_authorization')->nullable();
             $table->string('corporation_name')->nullable();
             $table->string('name')->nullable();
@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
             $table->string('zip')->nullable(); 
             $table->bigInteger('phone_home')->nullable(); 
             $table->string('business')->nullable(); 
-            $table->bigInteger('cellular')->nullable();
+            $table->string('cellular')->nullable();
             $table->string('signature_path')->nullable();
             $table->string('resume_path')->nullable(); 
             $table->string('start_date')->nullable();
@@ -69,6 +69,7 @@ class CreateUsersTable extends Migration
             $table->date('account_expire_date')->nullable(); 
             $table->date('password_expire_date')->nullable(); 
             $table->integer('created_by')->nullable();  
+            $table->integer('old_id')->default('0'); 
             $table->rememberToken();
             $table->timestamps();
         });

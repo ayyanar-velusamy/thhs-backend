@@ -18,6 +18,7 @@ class CreateUserRoles extends Migration
             $table->string('role');
             $table->integer('is_admin')->default('0'); 
             $table->integer('status')->default('0'); 
+            $table->integer('old_id')->default('0'); 
             $table->integer('created_by')->nullable()->default('1');           
             $table->timestamps();
         });
