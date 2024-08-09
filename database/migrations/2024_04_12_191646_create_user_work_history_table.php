@@ -19,10 +19,10 @@ class CreateUserWorkHistoryTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('employer_name');
             $table->string('position');
-            $table->string('supervisor_name');
-            $table->string('employer_email');
-            $table->string('employer_fax');
-            $table->bigInteger('employer_phone');
+            $table->string('supervisor_name')->nullable();
+            $table->string('employer_email')->nullable();
+            $table->string('employer_fax')->nullable();
+            $table->bigInteger('employer_phone')->nullable();
             $table->timestamps();            
         });
     }

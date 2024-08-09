@@ -16,6 +16,7 @@ class CreateIntervalsTable extends Migration
         Schema::create('intervals', function (Blueprint $table) {
             $table->id(); 
             $table->string('name'); 
+            $table->string('uid')->nullable();  
             $table->integer('status')->default(1); 
             $table->timestamps();
         });

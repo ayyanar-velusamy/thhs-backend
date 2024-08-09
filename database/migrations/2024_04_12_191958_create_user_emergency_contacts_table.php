@@ -22,7 +22,7 @@ class CreateUserEmergencyContactsTable extends Migration
             $table->text('relationship_address')->nullable();
             $table->string('relationship_email')->nullable();
             $table->text('relationship_notes')->nullable();
-            $table->bigInteger('relationship_phone');
+            $table->bigInteger('relationship_phone')->nullable();
             $table->timestamps();
         });
     }

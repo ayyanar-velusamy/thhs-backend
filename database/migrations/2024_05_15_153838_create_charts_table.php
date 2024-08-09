@@ -27,6 +27,7 @@ class CreateChartsTable extends Migration
             $table->string('report')->nullable();
             $table->integer('chart_handling')->nullable(); 
             $table->integer('user_id')->nullable();
+            $table->integer('old_id')->nullable();
             $table->integer('status')->default(1);
             $table->integer('created_by')->nullable()->default('1');     
             $table->timestamps();

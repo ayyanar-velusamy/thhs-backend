@@ -14,6 +14,12 @@ function uploadForm() {
 	// $(`#${formname} [name=chart_id]`).val('');
 }
 
+function scanForm() {
+	// formTitle.text('Add new Chart'); 
+
+	$(`#scanModal`).modal('show'); 
+}
+
 function thisFileUpload() {
 	document.getElementById("customFile").click();
 }

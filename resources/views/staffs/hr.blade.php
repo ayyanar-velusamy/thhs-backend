@@ -67,12 +67,12 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#{{ preg_replace('/\s+/', '', $category) }}" aria-expanded="false">
+                                        data-bs-target="#{{ preg_replace('/[^a-zA-Z0-9\']/', '_', $category) }}" aria-expanded="false">
                                         Category: {{ $category }} ({{count($data)}})
 
                                     </button>
                                 </h2>
-                                <div id="{{ preg_replace('/\s+/', '', $category) }}"
+                                <div id="{{ preg_replace('/[^a-zA-Z0-9\']/', '_', $category) }}"
                                     class="accordion-collapse collapse show" aria-labelledby="headingTwo">
                                     <div class="accordion-body">
 
@@ -174,7 +174,7 @@
                             <a id="linkID"></a>
                         </div>
                         <div>
-                            <!-- <button class="sm-button primary me-3">Scan forms</button> -->
+                            
                             <button class="sm-button danger" id="delete_document_btn" data-id="" data-url="{{route('document.delete_document')}}" onclick="open_delete_document()">Delete</button>
                         </div>
                         @php                      
@@ -187,6 +187,7 @@
                         <tbody class="w-100 deleted_files">
                             
                             <!-- <tr>
+                               <button class="sm-button primary me-3"  onclick="scanForm()">Scan forms</button> 
                                 <td class="text-start">
                                     <i class="icon icon-doc me-2"></i>Document 2
                                 </td>
@@ -259,10 +260,58 @@
 
             </div>
         </div>
-    </div>
-
-
+    </div> 
     <!-- Edit Document Modal-->
+     <!-- Scan Form-->
+     <!--  <div class="modal fade" id="scanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLongTitle">
+                     Scan File
+                 </h5>
+             </div>
+             <div class="modal-body"> 
+                 <form id="upload" method="POST" class="ajax-form"
+                     action="{{ route('upload_document') }}" role="form">
+                     <input type="hidden" name="chart_id" id="chart_id"/>
+                     <div class="form-wrapper">
+                         {{-- <div class="field-wrapper"> 
+                             <div class="d-block"> 
+                                 <button id="upload_button" name="button" type="button" value="Upload"
+                                     onclick="thisFileUpload();" style="background-color: #606060; flex: 0.7">
+                                     Upload Document
+                                 </button> 
+                             </div>
+                             <input type="file" class="" id="customFile" name="document"
+                             placeholder="Upload Signature"
+                             onchange="previewFile('document', 'upload_button')"
+                             accept=".pdf"  style="opacity:0; height:0; position: absolute;"/>
+                         
+                             <input type="hidden" name="user_id" id="hidden_user_id" value="{{ request()->id }}">
+
+                         </div>
+                         <div class="cta_wrapper d-flex justify-content-center gap-5">
+                             <button class="danger cancel_btn" type="button" data-dismiss="modal">Cancel</button>
+                             <button class="success" id="upload_btn">Save</button>
+                         </div> --}}
+                         {{-- <select size="1" id="source" style="position:relative;" onchange="source_onchange()"> 
+                        </select> --}}
+                        <div id="dwtcontrolContainer"></div>
+                        <div class="cta_wrapper d-flex justify-content-center gap-5">
+                            <button type="button"  class="success" onclick="loadImage();" >Load Image</button>
+                            <button type="button"  class="success"  onclick="acquireImage();" >Scan</button>
+                            <button id="btnUpload"  class="success" type="button" onclick="upload()">Upload</button>
+                        </div>
+                    </div>
+                 </form>
+             </div>
+
+         </div>
+     </div>
+ </div> -->
+ <!-- Scan Modal-->
 
 <div
 class="modal fade"

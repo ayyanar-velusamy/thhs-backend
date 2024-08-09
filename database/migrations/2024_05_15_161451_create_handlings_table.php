@@ -16,6 +16,7 @@ class CreateHandlingsTable extends Migration
         Schema::create('handlings', function (Blueprint $table) {
             $table->id();
             $table->string('name'); 
+            $table->string('uid')->nullable();  
             $table->integer('status')->default(1); 
             $table->timestamps();
         });

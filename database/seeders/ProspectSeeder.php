@@ -19,7 +19,7 @@ use App\Models\EmergencyContacts;
 use DB;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class ProspectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -28,9 +28,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        if (env('DB_MIGRATION', 0) == 1) {
-            $this->add_admin();
-            $this->staff_table_migration();
+        if (env('DB_MIGRATION', 0) == 1) { 
+            
+            $this->prospect_table_migration();
             $this->address_table_migration();
             $this->email_table_migration();
             $this->phone_table_migration();
@@ -39,43 +39,12 @@ class UserSeeder extends Seeder
             $this->work_history_table_migration(); 
             $this->emergency_contact_table_migration(); 
 
-        } else {
-            $user = new User();
-            $user->firstname = "Admin";
-            $user->lastname = "";
-            $user->language_id = 1;
-            $user->name = "Adminstrator";
-            $user->email = "admin@gmail.com";
-            $user->password = bcrypt('Admin@123');
-            $user->position = 1;
-            $user->is_admin = 1;
-            $user->status = 1;
-            $user->staff_status = 1;
-            $user->save();
-        }
+        } 
 
         // SELECT * FROM `staff` LEFT JOIN staffstatus ON staffstatus.StaffId = staff.StaffId LEFT JOIN person ON person.PersonId = staff.StaffId LEFT JOIN staffrole ON staffrole.StaffRoleId = staff.StaffRoleId LEFT JOIN personaddress ON personaddress.PersonId = person.PersonId LEFT JOIN personphone ON personphone.PersonId = person.PersonId WHERE staff.OrganizationId = 64822 AND personphone.PhoneNumber != '' GROUP BY staff.StaffId;
-    }
-
-    public function add_admin()
-    {
-        /*Admin Data */
-        $user = new User();
-        $user->firstname = "Admin";
-        $user->lastname = "";
-        $user->language_id = 1;
-        $user->name = "Adminstrator";
-        $user->email = "admin@gmail.com";
-        $user->password = bcrypt('Admin@123');
-        $user->position = 1;
-        $user->is_admin = 1;
-        $user->status = 1;
-        $user->staff_status = 1;
-        $user->save();
-        /*Admin Data */
-    }
-
-    public function staff_table_migration()
+    }  
+ 
+    public function prospect_table_migration()
     {
         $old_record = DB::connection('mysql_old')->table('staff')
             ->leftJoin('staffstatus', 'staffstatus.StaffId', '=', 'staff.StaffId')
@@ -83,12 +52,13 @@ class UserSeeder extends Seeder
             ->leftJoin('staffrole', 'staffrole.StaffRoleId', '=', 'staff.StaffRoleId')
             ->leftJoin('personaddress', 'personaddress.PersonId', '=', 'person.PersonId')
             ->leftJoin('personphone', 'personphone.PersonId', '=', 'person.PersonId')
-            ->where('staffstatus.StatusId', '0b1c0351-0773-460a-8b83-28d4586c8641')
+            ->whereIn('staffstatus.StatusId', ['a651e513-11c8-4524-a8f6-42cf6544cb9d', '9419221f-9989-476a-940e-9310bb8b3258', '1d657b46-9db2-43eb-be37-46d2a2a4bcc4', "ba6122cd-b34f-4573-9ebf-b8a02abe53d0"])
             ->where('staff.OrganizationId', 64822)
-            ->where('personphone.PhoneNumber', '!=', '')
-        // ->where('staff.StaffId', 2716)
+            // ->where('personphone.PhoneNumber', '!=', '')
+        // ->where('staff.StaffId', 2563)
         // ->groupBy('staff_id')
             ->get();
+        
         $_tmp = array();
         foreach ($old_record as $key => $value) {
             if (!array_key_exists($value->Username, $_tmp)) {
@@ -98,6 +68,7 @@ class UserSeeder extends Seeder
         $users = array_values($_tmp);
         // print_r($users);
         // print_r(count($users));
+        // exit;
 
         foreach ($users as $data) {
             $gender = 3;
@@ -106,6 +77,15 @@ class UserSeeder extends Seeder
             } elseif ($data->Gender == "Male") {
                 $gender = 1;
             }
+            $prospect_status = 3;
+            if (strtolower($data->StatusId) == "9419221f-9989-476a-940e-9310bb8b3258") {
+                $prospect_status = 9;
+            } elseif (strtolower($data->StatusId) == "1d657b46-9db2-43eb-be37-46d2a2a4bcc4") {
+                $prospect_status = 12;
+            } elseif (strtolower($data->StatusId) == "ba6122cd-b34f-4573-9ebf-b8a02abe53d0") {
+                $prospect_status = 13;
+            }
+            
             $position_id = Position::where("old_id", $data->StaffRoleId)->first()->id;
             $user = new User();
             if ($data->Username != "admin@gmail.com") {
@@ -122,12 +102,15 @@ class UserSeeder extends Seeder
                 $user->address = $data->Address . " - " . $data->Country;
                 $user->state = $data->State;
                 $user->city = $data->City;
-                $user->cellular = $data->PhoneNumber;
+                $user->cellular = remove_mask($data->PhoneNumber);
                 $user->zip = $data->ZIP;
                 $user->gender = $gender;
                 $user->language_id = 1;
                 $user->employment_type = 2;
                 $user->old_id = $data->StaffId;
+                $user->status = 1;  
+                $user->user_type = 2; 
+                $user->prospect_status = $prospect_status; 
                 $user->save();
             }
         }

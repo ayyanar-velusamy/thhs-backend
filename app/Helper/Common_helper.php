@@ -330,31 +330,33 @@ function back_url($url = ""){
 		return $relationships = array(
 			[
 				"id" => 1,
-				"name" => "Attorney"
+				"name" => "Attorney",
+				"uid" => "8e1347e0-5d3c-443e-ae2c-c977de46605a"
 			],
 			[
 				"id" => 2,
-				"name" => "Business"
-			],
-			[
-				"id" => 3,
-				"name" => "Associate"
-			],
+				"name" => "Business",
+				"uid" => "3939292e-254e-4bb8-ada4-34fdee4510a1"
+			], 
 			[
 				"id" => 4,
-				"name" => "CPA"
+				"name" => "CPA",
+				"uid" => "58f83945-5c46-4a28-92ea-ef3ca6ff2895"
 			],
 			[
 				"id" => 5,
-				"name" => "Employer"
+				"name" => "Employer",
+				"uid" => "34a763fc-7e59-42a4-9c61-cf8a6c9019c5"
 			],
 			[
 				"id" => 6,
-				"name" => "Friend"
+				"name" => "Friend",
+				"uid" => "76e8f83b-0f49-485c-9d1e-66d83c2d1071"
 			],
 			[
 				"id" => 7,
-				"name" => "Other"
+				"name" => "Other",
+				"uid" => "7c4f34a3-a904-400a-bd6c-3de258a0354c"
 			],
 			
 		);
@@ -364,43 +366,54 @@ function back_url($url = ""){
 		return $emergency_contact = array(
 			[
 				"id" => 1,
-				"name" => "Brother"
+				"name" => "Brother",
+				"uid" => "a4debd1a-b32d-49a2-ac4b-8b05c03360b9"
+
 			],
 			[
 				"id" => 2,
-				"name" => "Daughter"
+				"name" => "Daughter",
+				"uid" => "0890fa24-b84c-4830-8166-a9bae38acc48"
 			],
 			[
 				"id" => 3,
-				"name" => "Father"
+				"name" => "Father",
+				"uid" => "fe4d0073-8b5c-4a75-a7c6-45e192e18206"
 			],
 			[
 				"id" => 4,
-				"name" => "Friend"
+				"name" => "Friend",
+				"uid" => "11fb3eae-35a0-4337-9420-ed825857c6dc"
 			],
 			[
 				"id" => 5,
-				"name" => "Mother"
+				"name" => "Mother",
+				"uid" => "1e110ad5-c30c-440c-8cb7-57679a1c35be"
 			],
 			[
 				"id" => 6,
-				"name" => "Other"
+				"name" => "Other",
+				"uid" => "b834ce7e-ae70-4bd2-99ec-592588dee6e5"
 			],
 			[
 				"id" => 7,
-				"name" => "Significant Other"
+				"name" => "Significant Other",
+				"uid" => "47ac5c33-a129-482b-b1bb-153b8837a99e"
 			],
 			[
 				"id" => 8,
-				"name" => "Sister"
+				"name" => "Sister",
+				"uid" => "a406f4ed-bedc-43b3-b8bf-b688def2cd07"
 			],
 			[
 				"id" => 9,
-				"name" => "Spouse"
+				"name" => "Spouse",
+				"uid" => "e849096b-725e-4ce1-b5b2-f3451bb5cc26"
 			],
 			[
 				"id" => 10,
-				"name" => "Son"
+				"name" => "Son",
+				"uid" => "5793dc2c-62d3-4610-a560-ec277f1d196d"
 			],
 			
 		);
@@ -410,31 +423,38 @@ function back_url($url = ""){
 		return $education_type = array(
 			[
 				"id" => 1,
-				"name" => "College"
+				"name" => "College",
+				"uid" => "50316f07-eb2d-4171-a11e-26d4b07d3b4e"
 			],
 			[
 				"id" => 2,
-				"name" => "High School"
+				"name" => "High School",
+				"uid" => "43ff7753-326b-4927-810c-1291113f14a4"
 			],
 			[
 				"id" => 3,
-				"name" => "Nursing School"
+				"name" => "Nursing School",
+				"uid" => "20bd27eb-b9ef-4153-beda-247a456cb017"
 			],
 			[
 				"id" => 4,
-				"name" => "Professional School"
+				"name" => "Professional School",
+				"uid" => "7dc02875-3098-4f66-bfa0-4b254985d97b"
 			],
 			[
 				"id" => 5,
-				"name" => "School"
+				"name" => "School",
+				"uid" => "ce1530ff-4267-418a-b5ab-fdf6bdc003a1"
 			],
 			[
 				"id" => 6,
-				"name" => "University"
+				"name" => "University",
+				"uid" => "df4abc60-10b4-40f3-ab64-4d4eac2ccd7b"
 			],
 			[
 				"id" => 7,
-				"name" => "Vocational School"
+				"name" => "Vocational School",
+				"uid" => "e2049103-d153-4142-aa9f-216110b39802"
 			],
 		);
 	}
@@ -444,23 +464,28 @@ function back_url($url = ""){
 		return $degree = array(
 			[
 				"id" => 1,
-				"name" => "Associate"
+				"name" => "Associate",
+				"uid" => "e248aec2-fc54-4801-a4a3-f8d50c8f0761"
 			],
 			[
 				"id" => 2,
-				"name" => "Bachelor of Science"
+				"name" => "Bachelor of Science",
+				"uid" => "26b8262b-2fb0-418f-a10e-595c45d7e2a0"
 			],
 			[
 				"id" => 3,
-				"name" => "Diploma"
+				"name" => "Diploma",
+				"uid" => "ab4ea587-bd73-46f8-aac9-19ef180fa455"
 			],
 			[
 				"id" => 4,
-				"name" => "Nursing Diploma"
+				"name" => "Nursing Diploma",
+				"uid" => "a18bc2d6-9739-4548-9c27-704268298f70"
 			],
 			[
 				"id" => 5,
-				"name" => "Other"
+				"name" => "Other",
+				"uid" => "ae310cba-bcb1-46a7-9ef7-58b018c82947"
 			]
 		);
 	}
@@ -524,6 +549,7 @@ function back_url($url = ""){
 
 function remove_mask($input){
 	if($input){
+		
 		$str = str_replace("-","",$input);
 		$str = str_replace("(","",$str);
 		$str = str_replace(")","",$str);

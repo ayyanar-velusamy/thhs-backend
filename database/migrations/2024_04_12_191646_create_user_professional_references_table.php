@@ -19,8 +19,8 @@ class CreateUserProfessionalReferencesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('relationship_id');
             $table->string('name');
-            $table->string('email');
-            $table->bigInteger('phone');
+            $table->string('email')->nullable();
+            $table->bigInteger('phone')->nullable();
             $table->timestamps();            
         });
     }

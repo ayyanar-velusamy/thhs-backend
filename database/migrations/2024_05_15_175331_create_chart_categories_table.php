@@ -16,6 +16,7 @@ class CreateChartCategoriesTable extends Migration
         Schema::create('chart_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name'); 
+            $table->string('uid')->nullable(); 
             $table->integer('status')->default(1); 
             $table->integer('created_by')->nullable()->default('1');    
             $table->timestamps();

@@ -335,7 +335,7 @@ class ProspectsController extends BaseController
 
         if($verify_documents){
             $user->hire_date = update_date_format($request->input('hire_date'), "Y-m-d");
-            $user->prospect_status = 12;
+            $user->prospect_status = 11;
             $user->user_type = 1;
             $user->status = 1;
             $user->staff_status = 1;

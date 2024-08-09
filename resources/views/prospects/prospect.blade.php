@@ -19,6 +19,8 @@
                     <option value="Archived">Archived</option>
                     <option value="Re Apply">Re Apply</option>
                     <option value="Hired">Hired</option>
+                    <option value="Prospect">Prospect</option>
+                    <option value="Terminated">Terminated</option> 
                 </select>
             </div>
         </div>

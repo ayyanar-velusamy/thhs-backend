@@ -19,7 +19,7 @@ class CreateUserPhoneNumbersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('phone_type');
             $table->string('extension')->nullable();
-            $table->bigInteger('phone_number');
+            $table->string('phone_number')->nullable();
             $table->integer('is_default')->nullable()->default(0);
             $table->timestamps();
         });

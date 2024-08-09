@@ -49,6 +49,12 @@ class ProspectStatusSeeder extends Seeder
             [
                 'status' => 'Hired',
             ],
+            [
+                'status' => 'Prospect',
+            ],
+            [
+                'status' => 'Terminated',
+            ]
         ];
         foreach ($createMultipleProspectStatuss as $data) {
             $ProspectStatus = new ProspectStatus();

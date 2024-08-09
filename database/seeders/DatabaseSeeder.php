@@ -25,7 +25,9 @@ class DatabaseSeeder extends Seeder
             EmploymentTypeSeeder::class,
             HandlingSeeder::class,
             ChartCategorySeeder::class,
+            ChartSeeder::class,
             UserSeeder::class,
+            ProspectSeeder::class,
         ]);
     }
 }
