@@ -50,7 +50,19 @@
   function hideToast(){
     $("#myToast").hide();
   }
-  
+  function showPassword() {
+    let x = document.getElementById("password");
+    let passwordicon = document.getElementById("passwordicon");
+    if (x.type === "password") {
+      x.type = "text";
+      passwordicon.classList.add("icon-eye");
+      passwordicon.classList.remove("icon-eye-open");
+    } else {
+      x.type = "password";
+      passwordicon.classList.add("icon-eye-open");
+      passwordicon.classList.remove("icon-eye");
+    }
+  }
 </script>
   
   

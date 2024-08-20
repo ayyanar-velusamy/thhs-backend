@@ -50,8 +50,8 @@
                             autocomplete="email" autofocus />
 
                         <div class="password-wrapper position-relative">
-                            <input type="password" name="password" placeholder="Password" required /><i
-                                class="icon icon-eye"></i>
+                            <input id="password" type="password" name="password" placeholder="Password" required /><i
+                                class="icon icon-eye-open" id="passwordicon" onclick="showPassword()"></i>
                         </div>
                         <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
                         @error('g-recaptcha-response')

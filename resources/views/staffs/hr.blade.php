@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <div class="hrdetail-wrapper m-3 bg-white overflow-scroll">
+    <div class="hrdetail-wrapper m-3 bg-white">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 first-col overflow-scroll">
                 <div class="hrdetail-header">
                     <div class="cta_section d-flex justify-content-between">
                         <!-- <button class="button">
@@ -33,6 +33,9 @@
                                 <input class="form-check-input mt-0" type="checkbox" value="" id="" />
                             </div> -->
                         </div>
+                        <div class="field-wrapper w-50 d-flex align-items-center justify-content-center">
+                            <h4 class="text-center mb-0">Gonzalez Fortunato</h4>
+                        </div>
                         <div class="field-wrapper d-flex align-items-center">
                             <label class="form-check-label me-2" for="">
                                 <i class="icon icon-scan me-2"></i>
@@ -49,7 +52,7 @@
                 </div>
                 <div>
                     <!-- Table list -->
-                    <table class="hrdetail-table w-100">
+                    <table class="hrdetail-table w-100 sticky-top">
                         <thead class="w-100">
                             <th class="text-start" style="width: 43%">Form Name</th>
                             <th class="">Issue Date</th>

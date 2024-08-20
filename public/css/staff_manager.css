@@ -65,6 +65,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
 }
 
 .dashboard-header-wrapper {
@@ -797,4 +798,13 @@ table tbody tr td {
 }
 .chart_name{
   cursor: pointer;
+}
+
+.hrdetail-wrapper .hrdetail-table {
+  background-color: #ffffff;
+  border-bottom: 1px solid;
+}
+
+.hrdetail-wrapper .first-col {
+  height: 100vh;
 }
