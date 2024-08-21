@@ -10,7 +10,11 @@
                 Email
               </button> -->
               
+              
                         <button class="button" onclick="location.reload()">Refresh All Forms</button>
+                        <div class="field-wrapper w-50 d-flex align-items-center justify-content-center">
+                            <h4 class="text-center mb-0">{{ @$charts->user->lastname . ", ". @$charts->user->firstname }}</h4>
+                        </div>
                         <div>
                             <span class="me-3">Generated :</span>
                             <button id="toggle-button" class="button" onclick="toggleAllAccordions()">
@@ -33,9 +37,7 @@
                                 <input class="form-check-input mt-0" type="checkbox" value="" id="" />
                             </div> -->
                         </div>
-                        <div class="field-wrapper w-50 d-flex align-items-center justify-content-center">
-                            <h4 class="text-center mb-0">Gonzalez Fortunato</h4>
-                        </div>
+                        
                         <div class="field-wrapper d-flex align-items-center">
                             <label class="form-check-label me-2" for="">
                                 <i class="icon icon-scan me-2"></i>
@@ -54,7 +56,7 @@
                     <!-- Table list -->
                     <table class="hrdetail-table w-100 sticky-top">
                         <thead class="w-100">
-                            <th class="text-start" style="width: 43%">Form Name</th>
+                            <th class="text-start" style="width: 45%">Form Name</th>
                             <th class="">Issue Date</th>
                             <th class="">Exp. Date</th>
                             <th class="">Required</th>
@@ -86,7 +88,7 @@
                                             <tbody class="w-100">
                                                 @foreach ($data as $chart)
                                                     <tr>
-                                                        <td class="text-start chart_name" style="width: 41%"
+                                                        <td class="text-start chart_name" style="width: 41%" id= "{{ 'open_chart_'. $chart['id']}}"
                                                             onclick="openDocument({{ json_encode($chart) }},event)">
                                                             {{ $chart['name'] }}
                                                         </td>
@@ -191,7 +193,7 @@
                             <a id="linkID"></a>
                         </div>
                         <div>
-                            
+                            <!-- <button class="sm-button primary me-3"  onclick="scanForm()">Scan</button>  -->
                             <button class="sm-button danger" id="delete_document_btn" data-id="" data-url="{{route('document.delete_document')}}" onclick="open_delete_document()">Delete</button>
                         </div>
                         @php                      
@@ -205,11 +207,9 @@
                             
                             <!-- <tr>
                                <button class="sm-button primary me-3"  onclick="scanForm()">Scan forms</button> 
-                                <td class="text-start">
-                                    <i class="icon icon-doc me-2"></i>Document 2
-                                </td>
-                            </tr>
-                            <tr>
+                                
+                            </tr> -->
+                            <!-- <tr>
                                 <td class="text-start">
                                     <i class="icon icon-doc me-2"></i>Document 3
                                 </td>

@@ -19,7 +19,7 @@ class CreateUserEducationTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('type_id');
             $table->string('name');
-            $table->date('date_completed');
+            $table->date('date_completed')->nullable();
             $table->integer('degree_id');
             $table->timestamps();            
         });

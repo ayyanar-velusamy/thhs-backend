@@ -51,7 +51,7 @@ class ProspectSeeder extends Seeder
             ->leftJoin('person', 'person.PersonId', '=', 'staff.StaffId')
             ->leftJoin('staffrole', 'staffrole.StaffRoleId', '=', 'staff.StaffRoleId')
             ->leftJoin('personaddress', 'personaddress.PersonId', '=', 'person.PersonId')
-            ->leftJoin('personphone', 'personphone.PersonId', '=', 'person.PersonId')
+            // ->leftJoin('personphone', 'personphone.PersonId', '=', 'person.PersonId')
             ->whereIn('staffstatus.StatusId', ['a651e513-11c8-4524-a8f6-42cf6544cb9d', '9419221f-9989-476a-940e-9310bb8b3258', '1d657b46-9db2-43eb-be37-46d2a2a4bcc4', "ba6122cd-b34f-4573-9ebf-b8a02abe53d0"])
             ->where('staff.OrganizationId', 64822)
             // ->where('personphone.PhoneNumber', '!=', '')
@@ -87,6 +87,10 @@ class ProspectSeeder extends Seeder
             }
             
             $position_id = Position::where("old_id", $data->StaffRoleId)->first()->id;
+            $phone_home = DB::connection('mysql_old')->select("SELECT * FROM personphone WHERE PersonId = '$data->PersonId' && PhoneTypeId = '0'");
+            $phone_cellular = DB::connection('mysql_old')->select("SELECT  *  FROM personphone WHERE PersonId = '$data->PersonId' && PhoneTypeId = 18");
+            $phone_home = (remove_mask(@$phone_home[0]->PhoneNumber) != "")? remove_mask($phone_home[0]->PhoneNumber) : null;
+            $phone_cellular = (remove_mask(@$phone_cellular[0]->PhoneNumber) != "")? remove_mask($phone_cellular[0]->PhoneNumber) : null;
             $user = new User();
             if ($data->Username != "admin@gmail.com") {
                 $user->email = $data->Username;
@@ -102,7 +106,8 @@ class ProspectSeeder extends Seeder
                 $user->address = $data->Address . " - " . $data->Country;
                 $user->state = $data->State;
                 $user->city = $data->City;
-                $user->cellular = remove_mask($data->PhoneNumber);
+                $user->cellular = $phone_cellular;
+                $user->phone_home = $phone_home;
                 $user->zip = $data->ZIP;
                 $user->gender = $gender;
                 $user->language_id = 1;
@@ -177,7 +182,7 @@ class ProspectSeeder extends Seeder
             if ($match_user && $data->Name) {
                 $edu_type = $this->search_exit($education_types, "uid", strtolower($data->EducationTypeId));
                 $degree = $this->search_exit($degrees, "uid", strtolower($data->EducationDegreeId)); 
-                $completion_date = "1970-01-01";
+                $completion_date = null;
                 if($data->DateCompleted){
                     $completion_date = update_date_format($data->DateCompleted,"Y-m-d");
                 }

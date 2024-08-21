@@ -29,7 +29,7 @@ class DocumentController extends BaseController
     public function hr(Request $request, $id)
     { 
         $charts = $this->getChartInformationData($id);  
-        // pr($charts->toArray(),1);
+        // pr($charts->toArray()["user"],1);
         return view('staffs/hr', compact("charts"));
     }
 
@@ -59,6 +59,8 @@ class DocumentController extends BaseController
             $chart->document = $document;  
             $chart->report = $report;  
             $chart->staff_id = $id; 
+            
+
             // pr($chart); 
             $arr[$chart->category][$key] = $chart->toArray(); 
         }
@@ -70,6 +72,7 @@ class DocumentController extends BaseController
             // pr($array);
         }
         $data->category_chart = $category_chart;
+        $data->user = $user; 
         // exit;
 
         return $data;

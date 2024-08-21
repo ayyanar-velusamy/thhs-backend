@@ -50,7 +50,7 @@
                     <th>Address</th>
                     <th>Status</th>
                     <th>Submit Date</th>
-                    <th>Date Hired</th>
+                    <!-- <th>Date Hired</th> -->
                     <th>Interview Scheduled Date</th>
                     <th>Interview Confirmed Date</th>
                     <th>Action</th>
@@ -90,7 +90,7 @@
                         <td><span class="tag active">{{@$prospect->prospect_status}}</span></td>
                         <td>{{ update_date_format($prospect->created_at,"m-d-Y") }}</td>
                         
-                        <td>{{ update_date_format($prospect->hire_date,"m-d-Y") }}</td>
+                        <!-- <td>{{ update_date_format($prospect->hire_date,"m-d-Y") }}</td> -->
                         <td>{{ update_date_format($prospect->interview_schedule_date,"m-d-Y") }}</td>
                         <td>{{ update_date_format($prospect->interview_confirm_date,"m-d-Y") }}</td>
                         
