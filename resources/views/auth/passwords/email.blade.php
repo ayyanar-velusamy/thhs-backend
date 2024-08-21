@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-<section class="register-page-wrapper login">
+<section class="register-page-wrapper login forgot">
     <div class="container">
 
         @if(session()->has('success'))

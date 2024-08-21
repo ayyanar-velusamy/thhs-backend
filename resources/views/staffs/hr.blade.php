@@ -2,7 +2,7 @@
 @section('content')
     <div class="hrdetail-wrapper m-3 bg-white">
         <div class="row">
-            <div class="col-lg-6 first-col overflow-scroll">
+            <div class="col-lg-6 first-col">
                 <div class="hrdetail-header">
                     <div class="cta_section d-flex justify-content-between">
                         <!-- <button class="button">
@@ -13,10 +13,10 @@
               
                         <button class="button" onclick="location.reload()">Refresh All Forms</button>
                         <div class="field-wrapper w-50 d-flex align-items-center justify-content-center">
-                            <h4 class="text-center mb-0">{{ @$charts->user->lastname . ", ". @$charts->user->firstname }}</h4>
+                            <h6 class="text-center mb-0">{{ @$charts->user->lastname . ", ". @$charts->user->firstname }}</h6>
                         </div>
-                        <div>
-                            <span class="me-3">Generated :</span>
+                        <div class=" d-flex justify-content-center" style="flex-direction: column" >
+                            <span class="me-3" style="font-size: 10px">Generated:</span>
                             <button id="toggle-button" class="button" onclick="toggleAllAccordions()">
                                 Expand
                             </button>
@@ -56,7 +56,7 @@
                     <!-- Table list -->
                     <table class="hrdetail-table w-100 sticky-top">
                         <thead class="w-100">
-                            <th class="text-start" style="width: 45%">Form Name</th>
+                            <th class="text-start" style="width: 36%">Form Name</th>
                             <th class="">Issue Date</th>
                             <th class="">Exp. Date</th>
                             <th class="">Required</th>

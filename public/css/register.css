@@ -38,7 +38,7 @@
 }
 
 .register-page-wrapper.login .form-wrapper .title-wrapper h1 {
-  font-size: 40px;
+  font-size: 28px;
 }
 
 .register-page-wrapper .form-wrapper .title-wrapper h1 {
@@ -84,8 +84,8 @@
 }
 
 .register-page-wrapper.login .form-wrapper .title-wrapper {
-  margin-top: 20px;
-  margin-bottom: 26px;
+  margin-top: 10px;
+  margin-bottom: 16px;
 }
 
 .register-page-wrapper.login .form-wrapper .form-field-wrapper > * + * {
@@ -120,12 +120,12 @@
 
 .register-page-wrapper.login .forgot-password-wrapper label,
 .register-page-wrapper.login .forgot-password-wrapper a {
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .register-page-wrapper.login .forgot-password-wrapper a {
   color: #082777 !important;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
   border-bottom: 1px solid transparent;
 }
@@ -136,9 +136,13 @@
 
 .login-page footer {
   padding-bottom: 0;
-  padding-top: 150px;
+  padding-top: 25px;
 }
 
 .login-btn-wrap{
-	margin-top: 25px !important;
+  width: 100% !important;
+}
+
+.register-page-wrapper.login.forgot .carousel.slide .carousel-inner .carousel-item img {
+    height: 250px !important;
 }

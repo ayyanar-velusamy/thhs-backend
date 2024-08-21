@@ -51,7 +51,7 @@ if(is_admin()){
                             {{ $role->role }}
                         </td>  
                         <td><span class="tag {{ $role->status == 2 ? 'deactivate' : 'active' }}">{{ $status }}</span></td> 
-                        <td class="icons dt-center justify-content-center" style="padding-top:20px">
+                        <td class="icons dt-center justify-content-center" style="padding-top:15px">
                             {{-- <a title="View Staff" href="{{ route('staffs.demographics', [$chart->id]) }}"><i
                                     class="icon icon-eye-green"></i></a> --}}
                                     @php                      
