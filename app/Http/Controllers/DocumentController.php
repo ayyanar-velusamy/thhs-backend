@@ -50,7 +50,7 @@ class DocumentController extends BaseController
             
             
             $document = $document->orderBy('id', 'DESC')->first();  
-            // pr($document->toArray());
+            
             $chart->valid_interval = $valid_interval;
             $chart->renewal_interval = @$renewal_interval;
             $chart->provide_interval = @$provide_interval;
@@ -58,12 +58,18 @@ class DocumentController extends BaseController
             $chart->category = $category;  
             $chart->document = $document;  
             $chart->report = $report;  
-            $chart->staff_id = $id;  
+            $chart->staff_id = $id; 
+            // pr($chart); 
             $arr[$chart->category][$key] = $chart->toArray(); 
         }
-        $data->category_chart = $arr;
-        // pr($data, 1);
-        // pr($chart_list->toArray(), 1);
+        $data->category_chart_no_sort = $arr;
+        // pr($data->category_chart_no_sort, 1);
+        foreach($data->category_chart_no_sort as $key => $value){
+            $array = collect($value)->sortBy('name')->toArray();
+            $category_chart[$key] = $array;
+            // pr($array);
+        }
+        $data->category_chart = $category_chart;
         // exit;
 
         return $data;

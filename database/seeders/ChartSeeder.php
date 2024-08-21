@@ -54,7 +54,13 @@ class ChartSeeder extends Seeder
                 $provide_interval = Interval::where("uid", $data->MustProvidePeriodTypeIdU)->first()->id;
             } 
             $handling = Handling::where("uid", $data->ChartHandlingId)->first()->id;
-     
+
+            $report = DB::connection('mysql_old')->select("SELECT  *  FROM report WHERE ReportId = '".$data->ReportId."'");
+            if(@$report[0]){
+                $report_name = $report[0]->Name;
+            }else{
+                $report_name = null;
+            }
             $chart = new Chart(); 
             $chart->user_id = 1;
             $chart->group = $category_id;
@@ -64,6 +70,7 @@ class ChartSeeder extends Seeder
             $chart->valid_number = $data->ValidFor;
             $chart->renewal_interval = $renewal_interval;
             $chart->renewal_number = $data->RenewalPeriod;
+            $chart->report = $report_name;
             $chart->provide_interval = $provide_interval;
             $chart->provide_number = $data->MustProvidePeriod;
             $chart->old_id = $data->StaffChartAlertId; 

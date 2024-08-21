@@ -76,7 +76,7 @@
                         </td>
 
                         <td>
-                            {{ $staff->name }}                           
+                            {{ $staff->lastname . ", ". $staff->firstname }}                           
                         </td>
                         <td>{{ update_date_format($staff->hire_date, 'm-d-Y') }}</td>
                         <td class="phone_text">{{ $staff->cellular }}</td>

@@ -48,7 +48,6 @@
                     <th>Position</th>
                     <th>Phone</th>
                     <th>Address</th>
-                    <th>Zip Code</th>
                     <th>Status</th>
                     <th>Submit Date</th>
                     <th>Date Hired</th>
@@ -76,7 +75,7 @@
                             <img class="userimage {{$class}}" src="{{ asset('images/'.$image) }}">
                         </td>
                         <td>
-                            {{ $prospect->name }}
+                            {{ $prospect->lastname . ", ". $prospect->firstname }}
                         </td>
                        
                         <td>{{$prospect->email}}</td>
@@ -88,7 +87,6 @@
                         <td class="large_text_ellipsis" title="{{ @$address }}">
                             {{ @$address }}
                         </td>
-                        <td>{{ $prospect->zip }}</td>
                         <td><span class="tag active">{{@$prospect->prospect_status}}</span></td>
                         <td>{{ update_date_format($prospect->created_at,"m-d-Y") }}</td>
                         

@@ -453,9 +453,9 @@ function archive_prospect(){
 
 $('#filter_status').on('change', function() {
 	var table = $('#datatable').DataTable();
-	console.log((table.column(7).data()));
+	console.log((table.column(6).data()));
 	// oTable.fnFilter("^"+selectedValue+"$", 0, true); //Exact value, column, reg
-	table.column(7).
+	table.column(6).
 	  search(this.value, true, false).
 		draw();
   });

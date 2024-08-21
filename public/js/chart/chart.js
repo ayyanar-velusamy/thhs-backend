@@ -47,7 +47,7 @@ $(document).on('click', '#save_chart_btn', function () {
 			name: {
 				required: true,
 				minlength: 1,
-				maxlength: 40,
+				maxlength: 70,
 			},  
 			group: {
 				required: true,

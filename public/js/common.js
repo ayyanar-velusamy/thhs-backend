@@ -160,7 +160,7 @@ $('#datatable').dataTable( {
       "orderable": false,
       "className": "dt-center"
       }, {
-      "targets": 12,
+      "targets": 11,
       "bSort": false,
       "orderable": false
       },

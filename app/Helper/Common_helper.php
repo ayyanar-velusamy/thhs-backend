@@ -592,14 +592,18 @@ function get_document_renewal_date($renewal_type, $renewal_number, $issue_date){
 			$renewal_date = get_renewal_date($issue_date,$days,"days");
 			break;
 		case "3":
+			//Manual
+			$renewal_date = null;
+			break;
+		case "4":
 			$renewal_date = get_renewal_date($issue_date,$renewal_number,"month");
 			$renewal_date;
 			break;
-		case "4":
+		case "5":
 			$renewal_date = get_renewal_date($issue_date,$renewal_number,"week");
 			$renewal_date;
 			break;
-		case "5":
+		case "6":
 			$renewal_date = get_renewal_date($issue_date,$renewal_number,"year");
 			$renewal_date;
 			break;

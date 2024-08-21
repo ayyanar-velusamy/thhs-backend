@@ -48,6 +48,10 @@
                             <div id="collapse_{{ $category->id }}" class="accordion-collapse collapse"
                                 aria-labelledby="heading_{{ $category->id }}">
                                 <div class="accordion-body">
+                                  @php
+                                    $category->reports = $category->reports->sortBy("name");
+
+                                   @endphp
                                     @foreach ($category->reports as $report)
                                         <div class="file-data">
                                             <div class="file">

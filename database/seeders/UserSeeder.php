@@ -31,13 +31,13 @@ class UserSeeder extends Seeder
         if (env('DB_MIGRATION', 0) == 1) {
             $this->add_admin();
             $this->staff_table_migration();
-            $this->address_table_migration();
-            $this->email_table_migration();
-            $this->phone_table_migration();
-            $this->education_table_migration();
-            $this->professional_table_migration(); 
-            $this->work_history_table_migration(); 
-            $this->emergency_contact_table_migration(); 
+            // $this->address_table_migration();
+            // $this->email_table_migration();
+            // $this->phone_table_migration();
+            // $this->education_table_migration();
+            // $this->professional_table_migration(); 
+            // $this->work_history_table_migration(); 
+            // $this->emergency_contact_table_migration(); 
 
         } else {
             $user = new User();
@@ -253,13 +253,13 @@ class UserSeeder extends Seeder
     { 
         $old_record = DB::connection('mysql_old')->table('staffemergencycontacts')->get();
         $relationships = get_emergency_contact_list(); 
+        $emergency_contact = new EmergencyContacts;
         foreach ($old_record as $data) {
             $match_user = User::where("old_id", $data->StaffId)->first(); 
          
           
             if ($match_user && $data->Name) {
                 $relation = $this->search_exit($relationships, "uid", strtolower($data->RelationshipId));  
-                $emergency_contact = new EmergencyContacts;
                 $emergency_contact->user_id = $match_user['id'];
                 $emergency_contact->relationship_id = $relation['id'];
                 $emergency_contact->relationship_name = $data->Name;

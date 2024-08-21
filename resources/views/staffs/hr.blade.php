@@ -63,6 +63,9 @@
                         </thead>
                     </table>
                     <div class="accordion" id="accordionExample">
+                        @php
+                        
+                        @endphp
                         @foreach ($charts->category_chart as $category => $data)
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
@@ -89,7 +92,18 @@
                                                             $renewal_date = $chart['document'] ? update_date_format($chart['document']['renewal_date']) : "";
                                                         @endphp
                                                         <td class="" style="width: 20%" >{{ @$issue_date }}</td>
-                                                        <td class="" style="width: 15%" >{{ @$renewal_date }}</td>
+                                                        @php
+                                                            if(@$issue_date){
+                                                                if(@$renewal_date){
+                                                                    $renewal_date = $renewal_date;
+                                                                }else{
+                                                                    $renewal_date = "NA";
+                                                                }
+                                                            }else{
+                                                                $renewal_date = null;
+                                                            }
+                                                        @endphp
+                                                        <td class="" style="width: 15%" >{{ (@$renewal_date) }}</td>
                                                         <td style="width: 10%" >
                                                             @php   
                                                             

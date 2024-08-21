@@ -82,7 +82,7 @@ class ChartController extends BaseController
         $chart->renewal_number = $request->input('renewal_number');
         $chart->provide_interval = $request->input('provide_interval');
         $chart->provide_number = $request->input('provide_number');
-        // $chart->report = $request->input('report');
+        $chart->report = $request->input('report');
         $chart->chart_handling = $request->input('chart_handling'); 
         $chart->created_by = $request->user()->id;
         // pr($request->all(),1);
