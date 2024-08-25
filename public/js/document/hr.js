@@ -170,6 +170,7 @@ function openDocument(chart,e) {
 	console.log('chart', chart); 
 	
 	sessionStorage.setItem("open_chart", chart.id)
+	sessionStorage.setItem("open_chart_staff_id", chart.staff_id)
 	
 	if(chart.document){
 		$('#hidden_user_id').val(chart.document.user_id)
@@ -236,7 +237,7 @@ window.onload = function() {
 		Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
 		// https://www.dynamsoft.com/customer/license/trialLicense?product=dwt
 		Dynamsoft.DWT.ProductKey =
-			't01898AUAADVndWcV9XLSj7/TrvIYXEhpYYFrLxqx4/KI0MT6cSFqk4gb5BGyK4A25wgIDk0UFu+eL1EBI3RMW9wJ6ZxVFhW9fjnZwantnSrtnejg5COnyJiHsez2kOetE7gA7wzofhx2ADVQajkBH7fVBgugBagBqFUDLOB2FdefTzkHpP76z4auTnZwantnHZA2TnRw8pEzBcRHGaa02qkEBPXJOQC0AL0FsF1kl4DIGaAF6AUgvB8CZQYvECq6';
+			't01898AUAAIpZ6/sGXPFqczt979KsP/uHK5IH+WsQOnJPTglWwm85y5QZLVAzEim6uwj08hQGdOwB5s/BHvwmKmmxi+AFSk3XLyc7OLW9U6W9Ex2cfOQUmbeh33d72OalCYzAewP0PA4ngBzYaymAjztqgwXQAtQA1KoBFnC7ivrnU8qA5F//2dDkZAentnfmAWnjRAcnHzlDQMZwSS5htcseEOQn5wLQAvQWwHGRVQGREqAFaAVQdXaTYAVAVysq';
 		Dynamsoft.DWT.ResourcesPath = 'https://unpkg.com/dwt/dist/';
 
 		Dynamsoft.DWT.Load();
@@ -297,6 +298,7 @@ function acquireImage() {
 }
 
 function upload() {
+	 
 	var OnSuccess = function(httpResponse) {
 		alert("Succesfully uploaded");
 	};
@@ -314,16 +316,49 @@ function upload() {
 	// 	1, // JPEG
 	// 	OnSuccess, OnFailure
 	// );
+	
 	DWObject.ConvertToBlob(
 		[0],
-		1,
+		4,
         function(result, indices, type) {
-			console.log('deviceList', result, indices, type)
+			// console.log('deviceList', result, indices, type)
             // var url = "https://YOUR-SITE:PORT/PATH/TO/SCRIPT.aspx";
-            // var fileName = "SampleFile" + getExtension(type);
-            // var formData = new FormData();
-            // formData.append('RemoteFile', result, fileName);
-            // makeRequest(url, formData, false);
+			let chart_id = sessionStorage.getItem("open_chart")
+			let staff_id = sessionStorage.getItem("open_chart_staff_id")
+            var fileName = "Scan_doc.pdf"
+            var formData = new FormData();
+            formData.append('document', result, fileName);
+            formData.append('chart_id', chart_id);
+            formData.append('user_id', staff_id); 
+			$.ajax({
+				url: '/thhs-backend/thhs/app/upload_document',
+				type: "POST",
+				data: formData,
+				contentType: false,
+				dataType: 'json',
+				processData: false,
+				success: function (data) {
+					unloadingButton('btnUpload') 
+					if (data.status) {
+						toastr.success(data.message) 
+						location.reload(); 
+					} else {
+						toastr.error(data.message)
+					}
+	
+				},
+				error: function (err) {
+					unloadingButton('btnUpload')
+					if (err.responseJSON) {
+						toastr.error(err.responseJSON.message)
+					}
+					handleFail(err.responseJSON, {
+						container: target,
+						errorPosition: "field"
+					})
+					// location.reload();
+				}
+			});
         },
         function(errorCode, errorString) {
             console.log(errorString);

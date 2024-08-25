@@ -193,7 +193,7 @@
                             <a id="linkID"></a>
                         </div>
                         <div>
-                            <!-- <button class="sm-button primary me-3"  onclick="scanForm()">Scan</button>  -->
+                           <button class="sm-button primary me-3"  onclick="scanForm()">Scan</button>
                             <button class="sm-button danger" id="delete_document_btn" data-id="" data-url="{{route('document.delete_document')}}" onclick="open_delete_document()">Delete</button>
                         </div>
                         @php                      
@@ -280,7 +280,7 @@
     </div> 
     <!-- Edit Document Modal-->
      <!-- Scan Form-->
-     <!--  <div class="modal fade" id="scanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     <div class="modal fade" id="scanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
      <div class="modal-dialog modal-dialog-centered" role="document">
          <div class="modal-content">
@@ -327,7 +327,7 @@
 
          </div>
      </div>
- </div> -->
+ </div> 
  <!-- Scan Modal-->
 
 <div
