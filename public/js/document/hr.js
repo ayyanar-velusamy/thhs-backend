@@ -230,7 +230,7 @@ window.onload = function() {
 		Dynamsoft.DWT.UseLocalService = true;
 		Dynamsoft.DWT.Containers = [{
 			ContainerId: 'dwtcontrolContainer',
-			Width: '640px',
+			Width: '580px',
 			Height: '640px'
 		}];
 		Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
@@ -302,28 +302,28 @@ function upload() {
 	};
 
 	var OnFailure = function(errorCode, errorString, httpResponse) {
-		alert(httpResponse);
+		alert(errorCode);
 	};
 
-	// var date = new Date();
-	// DWObject.HTTPUploadThroughPostEx(
-	// 	"{{ route('dwtupload_upload') }}",
-	// 	DWObject.CurrentImageIndexInBuffer,
-	// 	'',
-	// 	date.getTime() + ".jpg",
-	// 	1, // JPEG
-	// 	OnSuccess, OnFailure
-	// );
+	var date = new Date();
+	DWObject.HTTPUploadThroughPostEx(
+		"http://localhost/thhs/dwt_upload/upload",
+		DWObject.CurrentImageIndexInBuffer,
+		'',
+		date.getTime() + ".jpg",
+		1, // JPEG
+		OnSuccess, OnFailure
+	);
 	DWObject.ConvertToBlob(
 		[0],
 		1,
         function(result, indices, type) {
 			console.log('deviceList', result, indices, type)
-            // var url = "https://YOUR-SITE:PORT/PATH/TO/SCRIPT.aspx";
-            // var fileName = "SampleFile" + getExtension(type);
-            // var formData = new FormData();
-            // formData.append('RemoteFile', result, fileName);
-            // makeRequest(url, formData, false);
+            var url = "/upload";
+            var fileName = "SampleFile" + getExtension(type);
+            var formData = new FormData();
+            formData.append('RemoteFile', result, fileName);
+            makeRequest(url, formData, false);
         },
         function(errorCode, errorString) {
             console.log(errorString);

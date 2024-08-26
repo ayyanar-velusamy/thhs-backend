@@ -12,7 +12,7 @@ var staff_table = $('#staff_datatable').dataTable({
 		"className": "dt-center"	
 	},
 	{
-		"targets": 10,
+		"targets": 8,
 		"bSort": false,
 		"orderable": false
 	},

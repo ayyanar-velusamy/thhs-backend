@@ -83,9 +83,9 @@ class UserSeeder extends Seeder
             ->leftJoin('staffrole', 'staffrole.StaffRoleId', '=', 'staff.StaffRoleId')
             ->leftJoin('personaddress', 'personaddress.PersonId', '=', 'person.PersonId')
             ->leftJoin('personphone', 'personphone.PersonId', '=', 'person.PersonId')
-            ->where('staffstatus.StatusId', '0b1c0351-0773-460a-8b83-28d4586c8641')
+            ->where('staffstatus.StatusId', '0B1C0351-0773-460A-8B83-28D4586C8641')
             ->where('staff.OrganizationId', 64822)
-            ->where('personphone.PhoneNumber', '!=', '')
+            // ->where('personphone.PhoneNumber', '!=', '')
         // ->where('staff.StaffId', 2716)
         // ->groupBy('staff_id')
             ->get();
@@ -97,7 +97,9 @@ class UserSeeder extends Seeder
         }
         $users = array_values($_tmp);
         // print_r($users);
+        // // exit;
         // print_r(count($users));
+        // exit;
 
         foreach ($users as $data) {
             $gender = 3;
@@ -110,9 +112,9 @@ class UserSeeder extends Seeder
             $user = new User();
             if ($data->Username != "admin@gmail.com") {
                 $user->email = $data->Username;
-                $user->firstname = $data->FirstName;
+                $user->firstname = ($data->FirstName == "")?$data->Username:$data->FirstName;
                 $user->middlename = $data->MiddleName;
-                $user->lastname = $data->LastName;
+                $user->lastname = ($data->LastName == "")?$data->Username:$data->LastName;
                 $user->birth_date = update_date_format($data->BirthDate, "Y-m-d");
                 $user->name = $data->LastName . " " . $data->MiddleName . " " . $data->FirstName;
                 $user->position = $position_id;
