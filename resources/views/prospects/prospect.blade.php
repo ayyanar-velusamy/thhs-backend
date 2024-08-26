@@ -87,8 +87,8 @@
                         <td class="large_text_ellipsis" title="{{ @$address }}">
                             {{ @$address }}
                         </td>
-                        <td><span class="tag active">{{@$prospect->prospect_status}}</span></td>
-                        <td>{{ update_date_format($prospect->created_at,"m-d-Y") }}</td>
+                        <td><span class="tag active">{{ @$prospect->prospect_status }}</span></td>
+                        <td>{{ update_date_format($prospect->submit_date,"m-d-Y") }}</td>
                         
                         <!-- <td>{{ update_date_format($prospect->hire_date,"m-d-Y") }}</td> -->
                         <td>{{ update_date_format($prospect->interview_schedule_date,"m-d-Y") }}</td>

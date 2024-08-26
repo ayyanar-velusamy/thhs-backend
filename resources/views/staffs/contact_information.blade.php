@@ -1,4 +1,9 @@
-@extends('layouts.app')
+@php
+    $user = $data;
+    $page_title = @$user->lastname." ".@$user->firstname . " ($user->position)";
+@endphp
+@extends('layouts.app',['page_title'=>  $page_title,"user_phone"=>(@$user->cellular)?", ".@$user->cellular:"" ])
+
 @section('content')
 
 

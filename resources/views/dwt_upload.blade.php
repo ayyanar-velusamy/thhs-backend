@@ -34,7 +34,7 @@
                 Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
                 // https://www.dynamsoft.com/customer/license/trialLicense?product=dwt
                 Dynamsoft.DWT.ProductKey =
-                    't01898AUAADVndWcV9XLSj7/TrvIYXEhpYYFrLxqx4/KI0MT6cSFqk4gb5BGyK4A25wgIDk0UFu+eL1EBI3RMW9wJ6ZxVFhW9fjnZwantnSrtnejg5COnyJiHsez2kOetE7gA7wzofhx2ADVQajkBH7fVBgugBagBqFUDLOB2FdefTzkHpP76z4auTnZwantnHZA2TnRw8pEzBcRHGaa02qkEBPXJOQC0AL0FsF1kl4DIGaAF6AUgvB8CZQYvECq6';
+                    't01898AUAAIpZ6/sGXPFqczt979KsP/uHK5IH+WsQOnJPTglWwm85y5QZLVAzEim6uwj08hQGdOwB5s/BHvwmKmmxi+AFSk3XLyc7OLW9U6W9Ex2cfOQUmbeh33d72OalCYzAewP0PA4ngBzYaymAjztqgwXQAtQA1KoBFnC7ivrnU8qA5F//2dDkZAentnfmAWnjRAcnHzlDQMZwSS5htcseEOQn5wLQAvQWwHGRVQGREqAFaAVQdXaTYAVAVysq';
                 Dynamsoft.DWT.ResourcesPath = 'https://unpkg.com/dwt/dist/';
 
                 Dynamsoft.DWT.Load();

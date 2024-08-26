@@ -39,6 +39,7 @@ class CreateUsersTable extends Migration
             $table->string('signature_path')->nullable();
             $table->string('resume_path')->nullable(); 
             $table->string('start_date')->nullable();
+            $table->string('submit_date')->nullable();
             $table->integer('has_convicted_felony')->nullable();
             $table->string('convicted_reason')->nullable();
             $table->integer('has_reviewed_job_description')->nullable();

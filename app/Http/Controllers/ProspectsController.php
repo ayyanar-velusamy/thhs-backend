@@ -138,7 +138,8 @@ class ProspectsController extends BaseController
         $user->phone_home = remove_mask($request->input('phone_home'));   
         $user->business = $request->input('business');
         $user->cellular = remove_mask($request->input('cellular'));  
-        $user->start_date = update_date_format($request->input('dob'),"Y-m-d");
+        $user->start_date = update_date_format($request->input('start_date'),"Y-m-d");
+        $user->submit_date = update_date_format($request->input('submit_date'),"Y-m-d");
         $user->has_convicted_felony = $request->input('has_convicted_felony'); 
         $user->convicted_reason = $request->input('convicted_reason'); 
         $user->has_reviewed_job_description = $request->input('has_reviewed_job_description');
@@ -180,7 +181,8 @@ class ProspectsController extends BaseController
                     ->with("user_education")
                     ->with("professional_references")
                     ->findOrFail($id);
-        // pr($user,1);
+        $user->user_position = Position::where("id", $user->position)->first()->short_name;
+        
         return ["languages" => $languages, "user" => $user, "positions" => $positions];
     }
 

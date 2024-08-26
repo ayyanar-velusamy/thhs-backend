@@ -234,7 +234,9 @@
                                     <a class="sub-menu" href="{{ @route('staffs.hr', @request()->id) }}">
                                         <button class="defult-button {{ request()->routeIs('staffs.hr') ? 'active' : '' }}">
                                     HR</button></a>
+                                    <div>{{ @$page_title}}<span class="phone_text">{{ @$user_phone }}</span></div>
                                 </div>
+                                
                             @php
                               }
                             @endphp  
@@ -250,6 +252,7 @@
                                     <a class="sub-menu" href="{{ @route('prospects.hr', @request()->id) }}">
                                         <button class="defult-button {{ request()->routeIs('prospects.hr') ? 'active' : '' }}">
                                     Package Items</button></a>
+                                    <div>{{ @$page_title }}<span class="phone_text">{{ @$user_phone }}</span></div>
                                 </div>
                             @php
                               }

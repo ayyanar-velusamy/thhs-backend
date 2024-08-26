@@ -1,8 +1,13 @@
-@extends('layouts.app')
+@php
+    $user = $charts->user;
+    $page_title = @$user->lastname." ".@$user->firstname . " ($user->user_position)";
+@endphp
+@extends('layouts.app',['page_title'=>  $page_title,"user_phone"=>(@$user->cellular)?", ".@$user->cellular:"" ])
+
 @section('content')
     <div class="hrdetail-wrapper m-3 bg-white">
         <div class="row">
-            <div class="col-lg-6 first-col overflow-scroll">
+            <div class="col-lg-6 first-col">
                 <div class="hrdetail-header">
                     <div class="cta_section d-flex justify-content-between">
                         <!-- <button class="button">
@@ -13,10 +18,10 @@
               
                         <button class="button" onclick="location.reload()">Refresh All Forms</button>
                         <div class="field-wrapper w-50 d-flex align-items-center justify-content-center">
-                            <h4 class="text-center mb-0">{{ @$charts->user->lastname . ", ". @$charts->user->firstname }}</h4>
+                            <!-- <h6 class="text-center mb-0">{{ @$charts->user->lastname . ", ". @$charts->user->firstname }}</h6> -->
                         </div>
-                        <div>
-                            <span class="me-3">Generated :</span>
+                        <div class=" d-flex justify-content-center" style="flex-direction: column" >
+                            <span class="me-3" style="font-size: 10px">Generated:</span>
                             <button id="toggle-button" class="button" onclick="toggleAllAccordions()">
                                 Expand
                             </button>
@@ -56,7 +61,7 @@
                     <!-- Table list -->
                     <table class="hrdetail-table w-100 sticky-top">
                         <thead class="w-100">
-                            <th class="text-start" style="width: 45%">Form Name</th>
+                            <th class="text-start" style="width: 36%">Form Name</th>
                             <th class="">Issue Date</th>
                             <th class="">Exp. Date</th>
                             <th class="">Required</th>
@@ -193,7 +198,7 @@
                             <a id="linkID"></a>
                         </div>
                         <div>
-                            <button class="sm-button primary me-3"  onclick="scanForm()">Scan</button> 
+                           <button class="sm-button primary me-3"  onclick="scanForm()">Scan</button>
                             <button class="sm-button danger" id="delete_document_btn" data-id="" data-url="{{route('document.delete_document')}}" onclick="open_delete_document()">Delete</button>
                         </div>
                         @php                      
@@ -280,7 +285,7 @@
     </div> 
     <!-- Edit Document Modal-->
      <!-- Scan Form-->
-      <div class="modal fade" id="scanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     <div class="modal fade" id="scanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
      <div class="modal-dialog modal-dialog-centered" role="document">
          <div class="modal-content">
@@ -327,7 +332,7 @@
 
          </div>
      </div>
- </div>
+ </div> 
  <!-- Scan Modal-->
 
 <div
