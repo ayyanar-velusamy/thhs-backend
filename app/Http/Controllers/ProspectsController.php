@@ -87,7 +87,7 @@ class ProspectsController extends BaseController
         $user->email = $request->input('email');
         $user->gender = 3;
         $user->position = $request->input('position'); 
-        $user->created_at = update_date_format($request->input('submit_date'), "Y-m-d"); 
+        $user->submit_date = update_date_format($request->input('submit_date'), "Y-m-d"); 
         $user->status = 1;  
         $user->has_temp_password = 1;  
         $temp_pwd = Str::random(8);

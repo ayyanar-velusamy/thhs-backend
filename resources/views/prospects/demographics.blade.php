@@ -244,7 +244,7 @@
     <h3 class="heading-bg">Position Information</h3>
     <div class="form-wrapper single_row">
         <div class="field-wrapper w-25">
-            <label for="start_date">Submitted Date</label><span class="mandate">*</span>
+            <label for="start_date">Applied Date</label><span class="mandate">*</span>
             <div id="prospect_submit_date" class="date" data-date-format="dd/mm/yyyy">
                 <input type="text" readonly required name="submit_date" value="{{  @update_date_format($user->submit_date) }}" />
                 <span class="input-group-addon">

@@ -524,7 +524,7 @@ label {
 
 .icon-sidebar-folder {
   background-image: url("data:image/svg+xml,%0A%3Csvg width='56' height='45' viewBox='0 0 56 45' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d_255_2844)'%3E%3Cpath d='M44.1926 36.7314H4L11.8073 10.9019H52L44.1926 36.7314Z' fill='white'/%3E%3Cpath d='M10.0931 8.84843H44.1927V4.89321H24.111L22.0931 0.625488H4V29.0264L10.0931 8.84843Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_d_255_2844' x='0' y='0.625488' width='56' height='44.106' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='4'/%3E%3CfeGaussianBlur stdDeviation='2'/%3E%3CfeComposite in2='hardAlpha' operator='out'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_255_2844'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow_255_2844' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E%0A");
-  width: 56px;
+  width: 40px;
   height: 45px;
 }
 

@@ -49,7 +49,7 @@
                     <th>Phone</th>
                     <th>Address</th>
                     <th>Status</th>
-                    <th>Submit Date</th>
+                    <th>Applied Date</th>
                     <!-- <th>Date Hired</th> -->
                     <th>Interview Scheduled Date</th>
                     <th>Interview Confirmed Date</th>
@@ -181,7 +181,7 @@
                                 </select>
                             </div>
                             <div class="field-wrapper">
-                                <label for="fname">Submit date</label>
+                                <label for="fname">Applied date</label>
                                 <div id="submit_date" class="date" data-date-format="mm/dd/yyyy">
                                     <input required type="text" name="submit_date" readonly
                                         placeholder="Submit date" />
