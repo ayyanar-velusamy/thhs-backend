@@ -116,6 +116,7 @@
         }, 3000);
         // {{base_path()}}
         let PROJECT_URL = "{{ Config::get('app.project_url') }}";
+        let DYNAMSOFT_KEY = "{{ env('DYNAMSOFT_KEY') }}"
         console.log(PROJECT_URL);
     </script>
 

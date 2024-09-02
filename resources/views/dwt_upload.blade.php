@@ -33,8 +33,7 @@
                 }];
                 Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
                 // https://www.dynamsoft.com/customer/license/trialLicense?product=dwt
-                Dynamsoft.DWT.ProductKey =
-                    't01898AUAAIpZ6/sGXPFqczt979KsP/uHK5IH+WsQOnJPTglWwm85y5QZLVAzEim6uwj08hQGdOwB5s/BHvwmKmmxi+AFSk3XLyc7OLW9U6W9Ex2cfOQUmbeh33d72OalCYzAewP0PA4ngBzYaymAjztqgwXQAtQA1KoBFnC7ivrnU8qA5F//2dDkZAentnfmAWnjRAcnHzlDQMZwSS5htcseEOQn5wLQAvQWwHGRVQGREqAFaAVQdXaTYAVAVysq';
+                Dynamsoft.DWT.ProductKey = "{{ env('DYNAMSOFT_KEY') }}"
                 Dynamsoft.DWT.ResourcesPath = 'https://unpkg.com/dwt/dist/';
 
                 Dynamsoft.DWT.Load();
