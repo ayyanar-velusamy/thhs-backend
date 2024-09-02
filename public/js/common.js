@@ -30,7 +30,7 @@ $(function () {
 });
 
 $(function () {
-  $("#datepicker , #start_date , #influeza_vaccine_date, #hepatitis_vaccine_date, #date_completed, #hire_date, #terminated_date,  #hire_date_div, #issue_date" )
+  $("#datepicker , #start_date , #prospect_submit_date,  #influeza_vaccine_date, #hepatitis_vaccine_date, #date_completed, #hire_date, #terminated_date,  #hire_date_div, #issue_date" )
     .datepicker({
       format: "mm/dd/yyyy",
       autoclose: true,
@@ -153,6 +153,7 @@ DataTable.types().forEach(type => {
 // new DataTable('#datatable');
 $('#datatable').dataTable( {
   "lengthChange": false,
+  "pageLength": 15,
   "order": [],
   "columnDefs": [ {
       "targets": 0,

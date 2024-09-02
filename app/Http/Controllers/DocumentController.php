@@ -73,6 +73,7 @@ class DocumentController extends BaseController
         }
         $data->category_chart = $category_chart;
         $data->user = $user; 
+        $data->user->user_position= Position::where("id", $user->position)->first()->short_name; 
         // exit;
 
         return $data;

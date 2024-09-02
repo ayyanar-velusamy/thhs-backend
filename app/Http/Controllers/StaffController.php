@@ -257,6 +257,7 @@ class StaffController extends BaseController
                     ->with("user_education")
                     ->with("professional_references")
                     ->findOrFail($id);
+        $user->user_position = Position::where("id", $user->position)->first()->short_name;
         // pr($user,1);
         return ["languages" => $languages, "user" => $user, "positions" => $positions];
     }

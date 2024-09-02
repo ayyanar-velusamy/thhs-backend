@@ -182,7 +182,7 @@ function openDocument(chart,e) {
 		
 	}else if(chart.report && chart.report?.status != 0){ 
 		$('#document_text').text(""); 
-		$('#document').attr('src', `/thhs-backend/export?reportId=${chart.report.report_id}&userId=${chart.staff_id}`)   
+		$('#document').attr('src', `/thhs/export?reportId=${chart.report.report_id}&userId=${chart.staff_id}`)   
 	}else{
 		$('#document_text').text("No Document");
 	}
@@ -231,7 +231,7 @@ window.onload = function() {
 		Dynamsoft.DWT.UseLocalService = true;
 		Dynamsoft.DWT.Containers = [{
 			ContainerId: 'dwtcontrolContainer',
-			Width: '640px',
+			Width: '580px',
 			Height: '640px'
 		}];
 		Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
@@ -304,7 +304,7 @@ function upload() {
 	};
 
 	var OnFailure = function(errorCode, errorString, httpResponse) {
-		alert(httpResponse);
+		alert(errorCode);
 	};
 
 	// var date = new Date();
@@ -331,7 +331,7 @@ function upload() {
             formData.append('chart_id', chart_id);
             formData.append('user_id', staff_id); 
 			$.ajax({
-				url: '/thhs-backend/thhs/app/upload_document',
+				url: '/thhs/thhs/app/upload_document',
 				type: "POST",
 				data: formData,
 				contentType: false,

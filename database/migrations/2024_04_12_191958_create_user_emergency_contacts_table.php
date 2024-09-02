@@ -18,7 +18,7 @@ class CreateUserEmergencyContactsTable extends Migration
             $table->unsignedBigInteger("user_id");
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('relationship_id');
-            $table->string('relationship_name');
+            $table->string('relationship_name')->nullable();
             $table->text('relationship_address')->nullable();
             $table->string('relationship_email')->nullable();
             $table->text('relationship_notes')->nullable();

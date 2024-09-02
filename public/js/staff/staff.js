@@ -4,6 +4,7 @@ var formname = "save_staff_form";
 /**DataTable */
 var staff_table = $('#staff_datatable').dataTable({
 	"lengthChange": false,
+	"pageLength": 15,
 	"order": [],
 	"columnDefs": [{
 		"targets": 0,
@@ -12,7 +13,7 @@ var staff_table = $('#staff_datatable').dataTable({
 		"className": "dt-center"	
 	},
 	{
-		"targets": 10,
+		"targets": 8,
 		"bSort": false,
 		"orderable": false
 	},

@@ -1,4 +1,9 @@
-@extends('layouts.app')
+@php
+    $user = $charts->user;
+    $page_title = @$user->lastname." ".@$user->firstname . " ($user->user_position)";
+@endphp
+@extends('layouts.app',['page_title'=>  $page_title,"user_phone"=>(@$user->cellular)?", ".@$user->cellular:"" ])
+
 @section('content')
     <div class="hrdetail-wrapper m-3 bg-white">
         <div class="row">
@@ -13,7 +18,7 @@
               
                         <button class="button" onclick="location.reload()">Refresh All Forms</button>
                         <div class="field-wrapper w-50 d-flex align-items-center justify-content-center">
-                            <h6 class="text-center mb-0">{{ @$charts->user->lastname . ", ". @$charts->user->firstname }}</h6>
+                            <!-- <h6 class="text-center mb-0">{{ @$charts->user->lastname . ", ". @$charts->user->firstname }}</h6> -->
                         </div>
                         <div class=" d-flex justify-content-center" style="flex-direction: column" >
                             <span class="me-3" style="font-size: 10px">Generated:</span>

@@ -51,8 +51,8 @@
                     <th>Address</th>
                     <th>Zip Code</th>
                     <th>Status</th>
-                    <th>Employment Type</th>
-                    <th>Organization</th>
+                    <!-- <th>Employment Type</th>
+                    <th>Organization</th> -->
                     <th>Action</th>
                 </tr>
             </thead>
@@ -86,8 +86,8 @@
                         </td>
                         <td>{{ $staff->zip }}</td>
                         <td><span class="tag {{ $staff->staff_status_id == 5 ? 'deactivate' : 'active' }}">{{ $staff->staff_status }}</span></td>
-                        <td>{{ $staff->employment_type }}</td>
-                        <td>{{ $staff->organization }}</td>
+                        <!-- <td>{{ $staff->employment_type }}</td>
+                        <td>{{ $staff->organization }}</td> -->
                         <td class="icons" style="padding-top:20px">
                             <a title="View Staff" href="{{ route('staffs.demographics', [$staff->id]) }}"><i
                                     class="icon icon-eye-green"></i></a>

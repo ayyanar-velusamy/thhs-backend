@@ -1,7 +1,12 @@
-@extends('layouts.app')
-@section('content')
 @php
     $user = $data["user"];
+    $page_title = @$user->lastname." ".@$user->firstname . " ($user->user_position)";
+@endphp
+@extends('layouts.app',['page_title'=>  $page_title,"user_phone"=>(@$user->cellular)?", ".@$user->cellular:"" ])
+
+@section('content')
+@php
+
     $languages = $data["languages"];
     $positions = $data["positions"];
 @endphp
@@ -13,7 +18,9 @@
     class="form-headings-wrapper d-flex align-items-center justify-content-between demographics_head"
   >
     <a href="#" class="active"><h5>Demographics</h5></a>
-    @php                      
+    @php                     
+    
+
     if(is_admin()){                            
     @endphp
     <a href="#" data-toggle="modal" data-target="#scheduleIntModal">Schedule Interview</a>
@@ -236,6 +243,15 @@
     </div> -->
     <h3 class="heading-bg">Position Information</h3>
     <div class="form-wrapper single_row">
+        <div class="field-wrapper w-25">
+            <label for="start_date">Applied Date</label><span class="mandate">*</span>
+            <div id="prospect_submit_date" class="date" data-date-format="dd/mm/yyyy">
+                <input type="text" readonly required name="submit_date" value="{{  @update_date_format($user->submit_date) }}" />
+                <span class="input-group-addon">
+                    <i class="icon icon-eye"></i>
+                </span>
+            </div>
+        </div>
         <div class="field-wrapper w-25">
             <label for="start_date">Date you can start</label><span class="mandate">*</span>
             <div id="start_date" class="date" data-date-format="dd/mm/yyyy">

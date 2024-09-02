@@ -1,7 +1,12 @@
-@extends('layouts.app')
-@section('content')
 @php
     $user = $data["user"];
+    $page_title = @$user->lastname." ".@$user->firstname . " ($user->user_position)";
+@endphp
+@extends('layouts.app',['page_title'=>  $page_title,"user_phone"=>(@$user->cellular)?", ".@$user->cellular:"" ])
+
+@section('content')
+
+@php
     $languages = $data["languages"];
     $positions = $data["positions"];
 @endphp
