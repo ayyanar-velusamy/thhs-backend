@@ -85,7 +85,7 @@ class UserSeeder extends Seeder
             ->leftJoin('personphone', 'personphone.PersonId', '=', 'person.PersonId')
             ->where('staffstatus.StatusId', '0B1C0351-0773-460A-8B83-28D4586C8641')
             ->where('staff.OrganizationId', 64822)
-            // ->where('personphone.PhoneNumber', '!=', '')
+            ->where('personphone.PhoneNumber', '!=', '')
         // ->where('staff.StaffId', 2716)
         // ->groupBy('staff_id')
             ->get();
