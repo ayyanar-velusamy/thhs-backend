@@ -63,7 +63,7 @@
             @php                      
             if(is_admin()){                            
             @endphp
-            <a href="#" data-url="{{@route('staffs.get_emergency_contact',$emergency_contact->id)}}" onclick="get_emergency_contact(event)"><i class="icon icon-edit me-3" ></i></a>
+            <a href="#" data-url="{{@route('staffs.get_emergency_contact',$emergency_contact->id)}}" onclick="get_emergency_contact(event)" class="me-3"><i class="icon icon-edit" ></i></a>
             <a href="#" id="delete_emergency_contact_btn" data-url="{{@route('staffs.delete_emergency_contact',[$emergency_contact->id])}}" onclick="confirm_delete_emergency_contact()"><i class="icon icon-delete"></i></a>
             @php                      
             }                           
@@ -123,7 +123,7 @@
             @php                      
             if(is_admin()){                            
             @endphp
-            <a href="#" data-url="{{@route('staffs.get_address',$address->id)}}" onclick="get_address(event)"><i class="icon icon-edit me-3" ></i></a>
+            <a href="#" data-url="{{@route('staffs.get_address',$address->id)}}" onclick="get_address(event)" class="me-3"><i class="icon icon-edit" ></i></a>
             <a href="#" id="delete_address_btn" data-url="{{@route('staffs.delete_address',[$address->id])}}" onclick="confirm_delete_address()"><i class="icon icon-delete"></i></a>
             @php                      
             }                     
@@ -177,7 +177,7 @@
           <td class="phone_text">{{ $phone_number->phone_number }}</td>
           <td class="">
             <!-- <i class="icon icon-eye-green"></i> -->
-            <a href="#" data-url="{{@route('staffs.get_phone',$phone_number->id)}}" onclick="get_phone(event)"><i class="icon icon-edit me-3" ></i></a>
+            <a href="#" data-url="{{@route('staffs.get_phone',$phone_number->id)}}" onclick="get_phone(event)" class="me-3"><i class="icon icon-edit" ></i></a>
             <a href="#" id="delete_phone_btn" data-url="{{@route('staffs.delete_phone',[$phone_number->id])}}" onclick="confirm_delete_phone()"><i class="icon icon-delete"></i></a>
           </td>
         </tr>
@@ -230,7 +230,7 @@
             @php                      
             if(is_admin()){                            
             @endphp
-            <a href="#" data-url="{{@route('staffs.get_email',$email_address->id)}}" onclick="get_email(event)"><i class="icon icon-edit me-3" ></i></a>
+            <a href="#" data-url="{{@route('staffs.get_email',$email_address->id)}}" onclick="get_email(event)" class="me-3"><i class="icon icon-edit" ></i></a>
             <a href="#" id="delete_email_btn" data-url="{{@route('staffs.delete_email',[$email_address->id])}}" onclick="confirm_delete_email()"><i class="icon icon-delete"></i></a>
             @php                      
              }                            
