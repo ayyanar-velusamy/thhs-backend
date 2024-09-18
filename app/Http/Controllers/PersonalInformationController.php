@@ -58,6 +58,7 @@ class PersonalInformationController extends BaseController
 
     public function update_personal_info(PersonalInfoRequest $request, $id)
     {
+      
         $user = User::find($id);  
         $user->firstname = $request->input('firstname');
         $user->middlename = $request->input('middlename');
@@ -97,7 +98,7 @@ class PersonalInformationController extends BaseController
         $user->prospect_status = 3;
         $user->password = "";
         
-        // pr($request->all(),1);
+       
      
         if($user->save()){ 
             $this->save_user_education($request);

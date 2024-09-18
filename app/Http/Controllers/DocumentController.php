@@ -36,8 +36,15 @@ class DocumentController extends BaseController
     public function getChartInformationData($id)
     {  
         $user = User::findOrFail($id); 
-        $data =  Position::where(['id' => $user->position])->with('charts')->first();
-        $arr = array();
+       // $data =  Position::where(['id' => $user->position])->with('charts')->first();
+	 $value = '1';
+	$data = Position::with(['charts' => function($q) use($value) {
+            // Query the name field in status table
+            $q->where('status', '=', $value); // '=' is optional
+        }])
+        ->where('id', '=', $user->position)
+        ->first();
+	$arr = array();
         foreach ($data->charts as  $key => $chart) {
             $valid_interval = Interval::where("id", $chart->valid_interval)->first()->name;
             @$renewal_interval = @Interval::where("id", $chart->renewal_interval)->first()->name;
@@ -66,6 +73,7 @@ class DocumentController extends BaseController
         }
         $data->category_chart_no_sort = $arr;
         // pr($data->category_chart_no_sort, 1);
+		$category_chart = array(); 
         foreach($data->category_chart_no_sort as $key => $value){
             $array = collect($value)->sortBy('name')->toArray();
             $category_chart[$key] = $array;
@@ -86,7 +94,7 @@ class DocumentController extends BaseController
             $document = new Document(); 
 
             $document->chart_id = $request->input('chart_id');
-            $document->document_path =  $this->upload_resume($request);
+            $document->document_path =  $this->upload_doc($request);
             $document->user_id =  $request->input('user_id');
             $document->issue_date =  @$this->getDocumetDetails(["user_id"=>$request->input('user_id'),"chart_id"=>$request->input('chart_id')])->issue_date;
             $document->renewal_date =  @$this->getDocumetDetails(["user_id"=>$request->input('user_id'),"chart_id"=>$request->input('chart_id')])->renewal_date;
@@ -136,7 +144,7 @@ class DocumentController extends BaseController
     }
     
 
-    private function upload_resume($request){ 
+    private function upload_doc($request){ 
         $file = $request->file('document');  
         //Move Uploaded File
         $destinationPath = 'uploads/document/';

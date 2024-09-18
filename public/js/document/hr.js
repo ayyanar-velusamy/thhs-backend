@@ -251,19 +251,15 @@ function Dynamsoft_OnReady() {
 	DWObject.SetHTTPFormField('csrf-token', token);
 
 	let count = DWObject.SourceCount;
-	// let select = document.getElementById("source");
+	let sourceSelect = document.getElementById("source");
 
 	DWObject.GetDevicesAsync().then(function(devices) {
-		console.log('deviceList', devices)
+		console.log('deviceList', devices, sourceSelect)
 		for (var i = 0; i < devices.length; i++) { // Get how many sources are installed in the system
-			let option = document.createElement('option');
-			option.value = devices[i].displayName;
-			option.text = devices[i].displayName;
+		 
 			deviceList.push(devices[i]);
 			// select.appendChild(option);
-		   
-			// select.options.add(new Option(devices[i].displayName, i)); // Add the sources in a drop-down list
-
+		    sourceSelect.options[i] = new Option(devices[i].displayName, i);  
 			// twainsource.options.add(new Option(devices[i].displayName, i)); 
 		}
 	}).catch(function(exp) {
@@ -283,12 +279,16 @@ function loadImage() {
 
 function acquireImage() {
 	if (DWObject) {
-		// var sources = document.getElementById('source'); 
+		var sources = document.getElementById('source'); 
+		console.log('deviceList', sources.selectedIndex)
 		if (deviceList.length > 0) {
-			DWObject.SelectDeviceAsync(deviceList[0]).then(function() {
+			DWObject.SelectDeviceAsync(deviceList[sources.selectedIndex]).then(function() {
 				return DWObject.AcquireImageAsync({
 					IfShowUI: false,
-					IfCloseSourceAfterAcquire: true
+					IfCloseSourceAfterAcquire: true,
+					PixelType: Dynamsoft.DWT.EnumDWT_PixelType.TWPT_RGB,
+					Resolution: 300,
+					IfAutoDiscardBlankpages: true
 				});
 			}).catch(function(exp) {
 				alert(exp.message);
@@ -316,9 +316,9 @@ function upload() {
 	// 	1, // JPEG
 	// 	OnSuccess, OnFailure
 	// );
-	
+	 
 	DWObject.ConvertToBlob(
-		[0],
+		Array.apply(null, {length: DWObject.HowManyImagesInBuffer}).map(Number.call, Number),
 		4,
         function(result, indices, type) {
 			// console.log('deviceList', result, indices, type)
