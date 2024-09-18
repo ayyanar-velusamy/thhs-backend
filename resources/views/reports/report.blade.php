@@ -102,6 +102,7 @@
                     <h5 class="modal-title" id="exampleModalLongTitle">
                         Add Report
                     </h5>
+                    <button type="button" class="close close-modal-scan" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <form id="report_form" method="POST" class="ajax-form" action="{{ route('save_report') }}"

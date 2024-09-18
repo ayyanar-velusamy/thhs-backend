@@ -138,11 +138,11 @@ function reload_page($url){
   if($url){
     setTimeout(function () {
       location.href = $url
-    }, 3000);
+    }, 1000);
   }else{
     setTimeout(function () {
       location.reload()
-    }, 3000);
+    }, 1000);
   }
   
 }

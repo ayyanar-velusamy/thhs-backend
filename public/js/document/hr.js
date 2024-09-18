@@ -11,7 +11,7 @@ function showDeletedDocuments(checked) {
 		
 		if( deleted_documents != ""){
 			$.map(deleted_documents, function(val,i){
-				$(".deleted_files").append('<tr><td onclick="recover_document('+val.id+')" class="text-start"><i class="icon icon-doc me-2"></i>'+get_file_name(val.document_path)+'</td></tr>');
+				$(".deleted_files").append('<tr><td class="text-start"><i class="icon icon-doc me-2"></i><a onclick="recover_document('+val.id+')" href="javascript:void(0)">'+get_file_name(val.document_path)+'</a>&nbsp <a target="_blank" href="'+PROJECT_URL+val.document_path+'"><i class="icon icon-eye-green me-2"></i></a></td></tr>');
 			})
 			toggleDeletedView();
 		}
@@ -55,7 +55,7 @@ function get_file_name(path){
 
 
 function recover_document(document_id){
-	let url = PROJECT_URL+"/thhs/app/document/recover_deleted_document/"+document_id;
+	let url = PROJECT_URL+"thhs/app/document/recover_deleted_document/"+document_id;
 	$.ajax({
 		url: url, 
 		type: "GET", 

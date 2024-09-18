@@ -1150,3 +1150,18 @@ span.error {
 .deleted_files tr{
   cursor: pointer;
 }
+.close-modal {
+  margin: -50px -20px 0 0;
+  height: 23px;
+}
+.close-modal-scan {
+  margin: -27px -57px 0 0;
+    height: 23px;
+}
+.modal {
+  z-index: 9999 !important;
+}
+.close-modal-cancel-interview {
+  margin: -56px -20px 0 0;
+  height: 23px;
+}

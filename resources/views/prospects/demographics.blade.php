@@ -920,6 +920,7 @@
               <h5 class="modal-title" id="exampleModalLongTitle">
                 Schedule Interview
               </h5>
+              <button type="button" class="close close-modal-scan" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
               <form id="schedule_interview_form" class="ajax-form" method="POST" action="{{route('prospects.schedule_interview', [$user->id])}}">
@@ -965,6 +966,7 @@
               <h5 class="modal-title" id="exampleModalLongTitle">
                 Confirm Interview
               </h5>
+              <button type="button" class="close close-modal-scan" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
               <form id="confirm_interview_form" class="ajax-form" method="POST" action="{{route('prospects.confirm_interview', [$user->id])}}">
@@ -1012,6 +1014,7 @@
                 <h5 class="modal-title" id="exampleModalLongTitle">
                     Confirm
                 </h5>
+                <button type="button" class="close close-modal-cancel-interview" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                 <p id="cancel_modal_msg" class="pb-3"></p>
