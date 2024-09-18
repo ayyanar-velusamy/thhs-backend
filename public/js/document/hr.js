@@ -331,7 +331,7 @@ function upload() {
             formData.append('chart_id', chart_id);
             formData.append('user_id', staff_id); 
 			$.ajax({
-				url: '/thhs/thhs/app/upload_document',
+				url: '/thhs/app/upload_document',
 				type: "POST",
 				data: formData,
 				contentType: false,

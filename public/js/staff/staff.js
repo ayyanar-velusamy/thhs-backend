@@ -13,7 +13,7 @@ var staff_table = $('#staff_datatable').dataTable({
 		"className": "dt-center"	
 	},
 	{
-		"targets": 8,
+		"targets": 7,
 		"bSort": false,
 		"orderable": false
 	},
@@ -35,13 +35,13 @@ var staff_table = $('#staff_datatable').dataTable({
 $('#filter_status').on('change', function () {
 	// alert();
 	var table = $('#staff_datatable').DataTable();
-	table.column(7).
+	table.column(6).
 		search(this.value, true, false).
 		draw();
 });
 $('#filter_organization').on('change', function() {
 	var table = $('#staff_datatable').DataTable();
-	table.column(9).
+	table.column(8).
 	  search(this.value && `^${this.value}$`, true, false).
 		draw();
 });

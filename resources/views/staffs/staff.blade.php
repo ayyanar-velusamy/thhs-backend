@@ -49,7 +49,6 @@
                     <th>Phone</th>
                     <th>Position</th>
                     <th>Address</th>
-                    <th>Zip Code</th>
                     <th>Status</th>
                     <!-- <th>Employment Type</th>
                     <th>Organization</th> -->
@@ -81,10 +80,12 @@
                         <td>{{ update_date_format($staff->hire_date, 'm-d-Y') }}</td>
                         <td class="phone_text">{{ $staff->cellular }}</td>
                         <td>{{ $staff->position }}</td>
+                        @php 
+                        $staff_address = @implode(", ",[$staff->address,$staff->city,$staff->state,$staff->zip]);
+                        @endphp
                         <td>
-                            {{ $staff->address }}<br>{{ $staff->state, $staff->city }}
+                            {{ $staff_address }}
                         </td>
-                        <td>{{ $staff->zip }}</td>
                         <td><span class="tag {{ $staff->staff_status_id == 5 ? 'deactivate' : 'active' }}">{{ $staff->staff_status }}</span></td>
                         <!-- <td>{{ $staff->employment_type }}</td>
                         <td>{{ $staff->organization }}</td> -->

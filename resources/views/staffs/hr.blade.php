@@ -322,7 +322,7 @@
                         </select> --}}
                         <div id="dwtcontrolContainer"></div>
                         <div class="cta_wrapper d-flex justify-content-center gap-5">
-                            <button type="button"  class="success" onclick="loadImage();" >Load Image</button>
+                            <!-- <button type="button"  class="success" onclick="loadImage();" >Load Image</button> -->
                             <button type="button"  class="success"  onclick="acquireImage();" >Scan</button>
                             <button id="btnUpload"  class="success" type="button" onclick="upload()">Upload</button>
                         </div>

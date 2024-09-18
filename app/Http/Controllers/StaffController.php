@@ -48,7 +48,8 @@ class StaffController extends BaseController
         // if($status){
         //     $staff_list = User::where(['status' => $status])->select('*')->orderBy('id', 'desc')->get();
         // }
-        $staff_list =  User::where(['is_admin' => 0,'user_type' => 1])->select('*')->orderBy('id', 'desc')->get();
+        $staff_list =  User::where(['is_admin' => 0,'user_type' => 1])->select('*')->orderBy('lastname', 'asc')->get();
+        // pr($staff_list,1);
         $positions = Position::all();
         $employments = EmploymentType::all();
         $languages = Language::all();
@@ -66,6 +67,7 @@ class StaffController extends BaseController
             $staff->staff_status_id = $staff->staff_status;
             @$staff->staff_status = $staff_status;
         }
+        // pr($staff_list,1);
         return view('staffs/staff', compact("staff_list", "positions", "employments", "languages", "organizations", "staff_statuses"));
     }
 

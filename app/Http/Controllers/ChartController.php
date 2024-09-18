@@ -55,7 +55,7 @@ class ChartController extends BaseController
             $chart->category = $category;
           
         }
-        return view('charts/chart', compact("chart_list", "intervals", "handlings", "categories", "positions"));
+        return view('charts/chart', compact("chart_list", "intenrvals", "handlings", "categories", "positions"));
     }
 
     /**

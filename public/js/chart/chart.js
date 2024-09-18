@@ -47,7 +47,7 @@ $(document).on('click', '#save_chart_btn', function () {
 			name: {
 				required: true,
 				minlength: 1,
-				maxlength: 70,
+				maxlength: 100,
 			},  
 			group: {
 				required: true,
@@ -81,7 +81,7 @@ $(document).on('click', '#save_chart_btn', function () {
 		messages: {
 			name: {
 				required: "Name cannot be empty",
-				maxlength: "Name cannot exceed 40 characters",
+				maxlength: "Name cannot exceed 100 characters",
 			}, 
 			group: {
 				required: "Group cannot be empty",
