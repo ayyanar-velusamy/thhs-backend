@@ -299,6 +299,8 @@
                      action="{{ route('upload_document') }}" role="form">
                      <input type="hidden" name="chart_id" id="chart_id"/>
                      <div class="form-wrapper">
+                        <select size="1" id="source" style="position:relative;" onchange="source_onchange()"> 
+                        </select>
                          {{-- <div class="field-wrapper"> 
                              <div class="d-block"> 
                                  <button id="upload_button" name="button" type="button" value="Upload"
@@ -322,7 +324,7 @@
                         </select> --}}
                         <div id="dwtcontrolContainer"></div>
                         <div class="cta_wrapper d-flex justify-content-center gap-5">
-                            <!-- <button type="button"  class="success" onclick="loadImage();" >Load Image</button> -->
+                            {{-- <button type="button"  class="success" onclick="loadImage();" >Load Image</button> --}}
                             <button type="button"  class="success"  onclick="acquireImage();" >Scan</button>
                             <button id="btnUpload"  class="success" type="button" onclick="upload()">Upload</button>
                         </div>

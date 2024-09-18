@@ -72,7 +72,8 @@ class DocumentController extends BaseController
             $arr[$chart->category][$key] = $chart->toArray(); 
         }
         $data->category_chart_no_sort = $arr;
-        $category_chart = array(); 
+        // pr($data->category_chart_no_sort, 1);
+		$category_chart = array(); 
         foreach($data->category_chart_no_sort as $key => $value){
             $array = collect($value)->sortBy('name')->toArray();
             $category_chart[$key] = $array;
