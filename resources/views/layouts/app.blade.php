@@ -313,6 +313,7 @@
                         <h5 class="modal-title" id="exampleModalLongTitle">
                             Confirm
                         </h5>
+                        <button type="button" class="close close-modal" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <p id="modal_msg"></p>

@@ -121,7 +121,7 @@ class UserSeeder extends Seeder
                 $user->staff_status = 1;
                 $user->role = 2;
                 $user->ssn = $data->SSN;
-                $user->address = $data->Address . " - " . $data->Country;
+                $user->address = $data->Address;
                 $user->state = $data->State;
                 $user->city = $data->City;
                 $user->cellular = $data->PhoneNumber;

@@ -122,6 +122,7 @@
                     <h5 class="modal-title" id="formTitle">
                         Add User
                     </h5>
+                    <button type="button" class="close close-modal-scan" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <form id="save_user_form" method="POST" class="ajax-form" action="{{ route('save_user') }}"

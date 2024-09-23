@@ -61,7 +61,7 @@
                     <!-- Table list -->
                     <table class="hrdetail-table w-100 sticky-top">
                         <thead class="w-100">
-                            <th class="text-start" style="width: 36%">Form Name</th>
+                            <th class="text-start" style="width: 45%">Form Name</th>
                             <th class="">Issue Date</th>
                             <th class="">Exp. Date</th>
                             <th class="">Required</th>
@@ -171,7 +171,7 @@
                             @endphp
                             <div class="field-wrapper d-flex align-items-center me-5">
                                 <label class="form-check-label me-2" for="">
-                                    Show deleted files:
+                                    Show Archived files:
                                 </label>
                                 <div class="flex-field">
 
@@ -250,7 +250,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">
                         File Upload
-                    </h5>
+                   </h5>
+                   <button type="button" class="close close-modal-scan" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <form id="upload" method="POST" class="ajax-form"
@@ -293,6 +294,7 @@
                  <h5 class="modal-title" id="exampleModalLongTitle">
                      Scan File
                  </h5>
+                 <button type="button" class="close close-modal-scan" data-dismiss="modal">&times;</button>
              </div>
              <div class="modal-body"> 
                  <form id="upload" method="POST" class="ajax-form"
@@ -351,6 +353,7 @@ aria-hidden="true"
       <h5 class="modal-title" id="add_phone_form_title">
         Edit Document Detail
       </h5>
+      <button type="button" class="close close-modal-scan" data-dismiss="modal">&times;</button>
     </div>
     <form id="edit_document_form" action="{{route('document.update_details')}}" class="ajax-form">
     <div class="modal-body">

@@ -103,6 +103,8 @@ if(is_admin()){
                     <h5 class="modal-title" id="formTitle">
                         Add Role
                     </h5>
+                    <button type="button" class="close close-modal-scan" data-dismiss="modal">&times;</button>
+
                 </div>
                 <div class="modal-body">
                     <form id="save_role_form" method="POST" class="ajax-form" action="{{ route('save_role') }}"

@@ -36,15 +36,15 @@ class DocumentController extends BaseController
     public function getChartInformationData($id)
     {  
         $user = User::findOrFail($id); 
-       // $data =  Position::where(['id' => $user->position])->with('charts')->first();
-	 $value = '1';
-	$data = Position::with(['charts' => function($q) use($value) {
-            // Query the name field in status table
-            $q->where('status', '=', $value); // '=' is optional
+        // $data =  Position::where(['id' => $user->position])->with('charts')->first();
+        $value = '1';
+        $data = Position::with(['charts' => function($q) use($value) {
+            $q->where('status', '=', $value);
         }])
         ->where('id', '=', $user->position)
         ->first();
-	$arr = array();
+        $arr = array();
+        // pr($data,1);
         foreach ($data->charts as  $key => $chart) {
             $valid_interval = Interval::where("id", $chart->valid_interval)->first()->name;
             @$renewal_interval = @Interval::where("id", $chart->renewal_interval)->first()->name;

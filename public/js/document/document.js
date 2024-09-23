@@ -56,7 +56,7 @@ $(document).on('submit', `#${formname}`, function (e) {
 				form.trigger("reset");
 				if (data.status) {
 					toastr.success(data.message) 
-				//	location.reload(); 
+					location.reload(); 
 				} else {
 					toastr.error(data.message)
 				}
@@ -71,7 +71,7 @@ $(document).on('submit', `#${formname}`, function (e) {
 					container: target,
 					errorPosition: "field"
 				})
-				// location.reload();
+				location.reload();
 			}
 		});
 	}

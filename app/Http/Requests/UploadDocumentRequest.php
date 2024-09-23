@@ -28,7 +28,7 @@ class UploadDocumentRequest extends FormRequest
     { 
             return [
                 'chart_id' => ['required'],
-                'document' => ['required']
+                'document' => ['required','max:5000000']
                 
             ];
  

@@ -142,6 +142,7 @@
                     <h5 class="modal-title" id="exampleModalLongTitle">
                         Add Prospect
                     </h5>
+                    <button type="button" class="close close-modal-scan" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <form id="add_prospect_form" method="POST"  class="ajax-form" action="{{route('add_prospect')}}" role="form">

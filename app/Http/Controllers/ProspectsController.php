@@ -43,7 +43,7 @@ class ProspectsController extends BaseController
     public function index()
     {
         // $prospect_list = User::all()->sortByDesc("id");
-        $prospect_list = User::where(['is_admin' => 0,'user_type' => 2])->select('*')->orderBy('id', 'desc')->get();
+        $prospect_list = User::where(['is_admin' => 0,'user_type' => 2])->select('*')->orderBy('lastname', 'asc')->get();
         $positions = Position::all();
         $prospect_statuses = ProspectStatus::all();
         foreach ($prospect_list as $prospect) {
