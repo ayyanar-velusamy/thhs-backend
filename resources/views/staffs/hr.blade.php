@@ -43,18 +43,18 @@
                             </div> -->
                         </div>
                         
-                        <div class="field-wrapper d-flex align-items-center">
+                        <!--  <div class="field-wrapper d-flex align-items-center">
                             <label class="form-check-label me-2" for="">
                                 <i class="icon icon-scan me-2"></i>
                                 Print All
                             </label>
-                            <!-- <input
+                           <input
                 class="form-check-input mt-0"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
-              /> -->
-                        </div>
+              />
+                        </div> -->
                     </div>
                 </div>
                 <div>
@@ -182,8 +182,8 @@
                             @php                      
                          }                     
                         @endphp
-                            <button class="btn-with-text">
-                                <i class="icon icon-scan me-2"></i> Print
+                            <button class="btn-with-text" onclick="printDocument('document')">
+                                <i class="icon icon-scan me-2"></i> Prints
                             </button>
                         </div>
                     </div>
@@ -236,7 +236,7 @@
                 </div>
                 <div class="pdf-view-wrapper mt-4 document_preview">
                     <span id="document_text"></span>
-                    <embed src="../sample.pdf" type="application/pdf" id="document" width="100%" height="800px" />
+                    <iframe  src="http://localhost/thhs/uploads/document/1726652509_Scan_doc.pdf" type="application/pdf" id="document" width="100%" height="800px" ></iframe >
                 </div>
             </div>
         </div>

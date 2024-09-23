@@ -191,6 +191,19 @@ function openDocument(chart,e) {
 	// embed.setAttribute('src', embedUrl);
 
 } 
+
+function printDocument(documentId) {
+    var doc = document.getElementById(documentId);
+     
+	doc.contentWindow.focus();
+	doc.contentWindow.print();
+    //Wait until PDF is ready to print    
+    // if (typeof doc.print === 'undefined') {    
+    //     setTimeout(function(){printDocument(documentId);}, 1000);
+    // } else {
+    //     doc.print();
+    // }
+}
  
 
 

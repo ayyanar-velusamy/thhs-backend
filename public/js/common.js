@@ -1,3 +1,17 @@
+var unsaved = false;
+
+$(".page-form :input").change(function(){ //triggers change in all input fields including text type
+    unsaved = true;
+});
+        
+function unloadPage(){ 
+    if(unsaved){
+        return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+    }
+}
+        
+window.onbeforeunload = unloadPage;
+
 $(function () {
   $("#ssn").inputmask({"mask": "999-99-9999"});
   $(".phone").inputmask({"mask": "(999)-999-9999"});
@@ -183,5 +197,5 @@ $(".date").on("change",function(e){
 	if($this.value != ""){
 		$($this).next('.error').remove();
 	}
-  })
+})
 
