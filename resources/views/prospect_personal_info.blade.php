@@ -301,7 +301,7 @@
     
                     <input type="file" class="" id="customFile" name="resume"
     
-                    placeholder="Upload Signature" accept=".doc, .docx, .pdf" required/>
+                    placeholder="Upload Signature" accept=".doc, .docx, .pdf" />
     
                      <span class="with-icon"><i class="icon icon-upload"></i></span>  
     
@@ -408,18 +408,18 @@
                         placeholder="Name" name="education_name[0]" />
                 </div>
                 <div class="field-wrapper">
-                    <label for="education_date_completed">Date Completed</label><span class="mandate">*</span>
+                    <label for="education_date_completed">Date Completed</label>
                     
                     <div id="date_completed" class="date" data-date-format="dd/mm/yyyy">
-                        <input type="text" placeholder="Date" readonly required name="education_date_completed[0]"/>
+                        <input type="text" placeholder="Date" readonly name="education_date_completed[0]"/>
                         <span class="input-group-addon">
                             <i class="icon icon-eye"></i>
                         </span>
                     </div>
                 </div>
                 <div class="field-wrapper">
-                    <label for="education_degree">Degree</label><span class="mandate">*</span>
-                    <select required name="education_degree[0]" class="select-control">
+                    <label for="education_degree">Degree</label>
+                    <select name="education_degree[0]" class="select-control">
                         <option value="">Select Degree</option>
                         
                         @foreach (get_education_degree_list() as $degree)

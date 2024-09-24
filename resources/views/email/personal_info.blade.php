@@ -23,7 +23,7 @@
                     <p class="sub_title" style="font-size: 22px">Dear {{ $user->name }}</p>
 
                     <p>
-                        Your application has been received received!.
+                        Your application has been received!.
                         <br />
                         Please wait for Interview Date Confirmation.
                         @php
@@ -32,7 +32,7 @@
 
                         
                         <br />
-                        Please bring the following documents to your Interview or you can email them to 
+                        Please bring the following documents to your Interview or you can email them ahead of time to our HR department at
                         <br>
                         <span
                             style="
@@ -84,6 +84,8 @@
                         Main: (305) 654-4090
                         <br />
                         Fax: 305-654-0409
+                        <br />
+                        Email:  hr@trendhhs.com
                     </p>
                 </div>
                 <div style="color: #000;align-self: end;margin-top: 44px;font: 300 12px/18px Poppins, sans-serif;">

@@ -29,7 +29,7 @@ class DocumentController extends BaseController
     public function hr(Request $request, $id)
     { 
         $charts = $this->getChartInformationData($id);  
-        // pr($charts->toArray()["user"],1);
+        // pr($charts->toArray(),1);
         return view('staffs/hr', compact("charts"));
     }
 
@@ -72,13 +72,15 @@ class DocumentController extends BaseController
             $arr[$chart->category][$key] = $chart->toArray(); 
         }
         $data->category_chart_no_sort = $arr;
-        // pr($data->category_chart_no_sort, 1);
+        
 		$category_chart = array(); 
         foreach($data->category_chart_no_sort as $key => $value){
             $array = collect($value)->sortBy('name')->toArray();
             $category_chart[$key] = $array;
             // pr($array);
         }
+        ksort($category_chart);
+        // pr($category_chart, 1);
         $data->category_chart = $category_chart;
         $data->user = $user; 
         $data->user->user_position= Position::where("id", $user->position)->first()->short_name; 
