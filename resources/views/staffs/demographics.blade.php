@@ -12,7 +12,7 @@
 @endphp
 
 <section class="form-section bg-white">
-  <form id="staff_demographics_form" method="POST" class="ajax-form"  action="{{route('staffs.update_demographics', [$user->id])}}" role="form" enctype="multipart/form-data" >
+  <form id="staff_demographics_form" method="POST" class="ajax-form page-form"  action="{{route('staffs.update_demographics', [$user->id])}}" role="form" enctype="multipart/form-data" >
  
     <div
     class="form-headings-wrapper d-flex align-items-center justify-content-between"
