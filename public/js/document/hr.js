@@ -180,7 +180,7 @@ function openDocument(chart,e) {
 		$('#document').attr('src', PROJECT_URL+`/${chart.document.document_path}`) 
 		$('#delete_document_btn').attr("data-id",chart.document.id);
 		
-	}else if(chart.report && chart.report?.status != 0){ 
+	}else if(chart.report){ 
 		$('#document_text').text(""); 
 		$('#document').attr('src', `/thhs/export?reportId=${chart.report.report_id}&userId=${chart.staff_id}`)   
 	}else{

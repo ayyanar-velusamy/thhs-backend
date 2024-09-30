@@ -86,8 +86,8 @@ class ReportController extends BaseController
         if ( $report_id) {
             $report = Report::find( $report_id);
         } 
-        $report->name = $request->input('name'); 
-        $report->report_id =  uniqid(); 
+        $report->name = $request->input('name');  
+        $report->report_id = time(); 
         $report->category_id = $request->input('category');  
         $report->created_by = $request->user()->id;
         if ($report->save()) {

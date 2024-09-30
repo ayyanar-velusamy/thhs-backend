@@ -10,14 +10,17 @@ use Stimulsoft\StiReportEventArgs;
 use Stimulsoft\StiResult;
 use Stimulsoft\StiVariablesEventArgs;
 use Illuminate\Http\Request;
+use App\Models\Report;
 
 class HandlerController extends BaseController
 {
     
     public $reportId;
+    public $recordId;
     public function process(Request $request)
     {
         $this->reportId = $request->query('reportId');
+        $this->recordId = $request->query('recordId');
        
         $handler = new StiHandler();
         $handler->onPrepareVariables = array($this, 'onPrepareVariables');
@@ -167,12 +170,24 @@ class HandlerController extends BaseController
 
        
 
-        // For example, you can save a report to the 'reports' folder on the server-side.
-        // file_put_contents('public/reports/' . $reportFileName, $args->reportJson);
-        file_put_contents('public/reports/' . $this->reportId.'.mrt', $args->reportJson);
-
+        // For example, you can save a report to the 'reports' folder on the server-side. 
+         
+        //Save report
+        $report = new Report();   
+        if ($this->recordId) {
+            $report = Report::find($this->recordId); 
+            if($report->report_id){
+                if (file_exists(public_path('reports/' . $report->report_id.'.mrt'))){
+                    $filedeleted = unlink(public_path('reports/' . $report->report_id.'.mrt'));  
+                }  
+                $report->report_id = $this->recordId."_".time();  
+                if ($report->save()) {
+                    file_put_contents('public/reports/' . $report->report_id.'.mrt', $args->reportJson);
+                } 
+            } 
+        }  
         //return StiResult::success();
-        return StiResult::success('Report file saved successfully as ' . $args->fileName);
+        return StiResult::success('Report file saved successfully');
         //return StiResult::error('An error occurred while saving the report file on the server side.');
     }
 

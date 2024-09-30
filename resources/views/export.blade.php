@@ -29,15 +29,17 @@
       
         function onLoad() {
             // Load and show report
-            var report = new Stimulsoft.Report.StiReport();
-            report.loadFile("public/reports/66967672c6f76.mrt");
-
-            console.log('report', report)
-            var user = report.dictionary.variables.getByName("userId");
+           
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            const userId = urlParams.get('userId')
             const reportId = urlParams.get('reportId')
+
+            var report = new Stimulsoft.Report.StiReport();
+            report.loadFile(`public/reports/${reportId}.mrt`);
+ 
+            var user = report.dictionary.variables.getByName("userId");  
+            const userId = urlParams.get('userId')
+            
             if (user && userId) {
                 user.value = userId;
             }
