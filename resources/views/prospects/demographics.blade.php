@@ -360,18 +360,18 @@
                 placeholder="Name" name="education_name[0]" />
         </div>
         <div class="field-wrapper">
-            <label for="education_date_completed">Date Completed</label><span class="mandate">*</span>
+            <label for="education_date_completed">Date Completed</label>
             
             <div id="date_completed" class="date" data-date-format="dd/mm/yyyy">
-                <input type="text" placeholder="Date" readonly value="{{ @update_date_format($user->user_education[0]->date_completed) }}" required name="education_date_completed[0]"/>
+                <input type="text" placeholder="Date" readonly value="{{ @update_date_format($user->user_education[0]->date_completed) }}"  name="education_date_completed[0]"/>
                 <span class="input-group-addon">
                     <i class="icon icon-eye"></i>
                 </span>
             </div>
         </div>
         <div class="field-wrapper">
-            <label for="education_degree">Degree</label><span class="mandate">*</span>
-            <select required name="education_degree[0]" class="select-control">
+            <label for="education_degree">Degree</label>
+            <select name="education_degree[0]" class="select-control">
                 <option value="">Select Degree</option>
                 
                 @foreach (get_education_degree_list() as $degree)
@@ -534,12 +534,12 @@
                 placeholder="Name" name="reference_name[0]" />
         </div>
         <div class="field-wrapper">
-            <label for="reference_email">Email</label><span class="mandate">*</span>
+            <label for="reference_email">Email</label>
             <input type="email"  value="{{ @$user->professional_references[0]->email }}"
                 placeholder="Email" name="reference_email[0]" />
         </div>
         <div class="field-wrapper">
-            <label for="reference_phone">Phone</label><span class="mandate">*</span>
+            <label for="reference_phone">Phone</label>
             <input type="text" class="phone" value="{{ @$user->professional_references[0]->phone }}"
                 name="reference_phone[0]" placeholder="Phone" />
         </div>
@@ -573,12 +573,12 @@
                 placeholder="Name" name="reference_name[1]" />
         </div>
         <div class="field-wrapper">
-            <label for="reference_email">Email</label><span class="mandate">*</span>
+            <label for="reference_email">Email</label>
             <input type="email" id="reference_email" value="{{ @$user->professional_references[1]->email }}"
                 placeholder="Email" name="reference_email[1]" />
         </div>
         <div class="field-wrapper">
-            <label for="reference_phone">Phone</label><span class="mandate">*</span>
+            <label for="reference_phone">Phone</label>
             <input type="text" class="phone" id="reference_phone" value="{{ @$user->professional_references[1]->phone }}"
                 name="reference_phone[1]" placeholder="Phone" />
         </div>

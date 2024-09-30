@@ -69,7 +69,7 @@ class PersonalInformationController extends BaseController
         $user->ssn = remove_mask($request->input('ssn'));
         $user->employement_authorization = $request->input('employeement_authorization');
         $user->corporation_name = $request->input('corporation_name');
-        $user->name = $request->input('firstname') . $request->input('middlename') . $request->input('lastname'); 
+        $user->name = $request->input('firstname') ." ". $request->input('middlename')." " . $request->input('lastname'); 
         // $user->email = $request->input('email');  
         $user->position = $request->input('position');  
         $user->tax_id = $request->input('tax_id');  

@@ -129,7 +129,7 @@ class RegisterController extends Controller
             $user->temp_pwd = $temp_pwd;
               
             Mail::to($data['email'])->send(new RegisterEmail($user));
-            return back()->with('message', 'Registered successfully. Please verify your email.');
+            return back()->with('message', 'You have registered successfully. Please chek your email to complete the registeration');
         } else {
             return back()->with('message', 'Registration failed');
         }

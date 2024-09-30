@@ -82,7 +82,7 @@
                         <td title="{{ $prospect->position }}">{{ $prospect->short_name }}</td>
                         <td class="phone_text">{{ $prospect->cellular }}</td>
                         @php
-                            $address = @implode(", ",array_filter([$prospect->address,$prospect->city,$prospect->state]));
+                            $address = @implode(", ",array_filter([$prospect->address,$prospect->city,$prospect->state,$prospect->zip] ));
                         @endphp
                         <td class="large_text_ellipsis" title="{{ @$address }}">
                             {{ @$address }}
